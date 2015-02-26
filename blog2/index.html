@@ -1,0 +1,14 @@
+---
+layout: default
+title: 朝画夕拾
+category: blog2
+---
+<p class="page-heading"> 朝画夕拾</p>
+{% for post in site.posts %}
+  {% if post.categories contains 'blog2' %}
+	<div class="post">
+		<h3 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+		<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+	</div>
+  {% endif %}
+{% endfor %}

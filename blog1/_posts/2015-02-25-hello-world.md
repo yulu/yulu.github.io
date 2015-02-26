@@ -1,5 +1,6 @@
 ---
 layout: post
+category: blog1
 title:  "Hello World from LittleCheeseCake"
 date:   2015-02-25 22:48:25
 categories: jekyll update
