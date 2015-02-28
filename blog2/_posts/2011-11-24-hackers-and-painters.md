@@ -3,9 +3,8 @@ layout: post
 title:  "黑客与画家"
 date:   2011-11-24 22:48:25
 categories: blog2
+image: hackers-and-painters.jpg
 ---
-
-![hackers_and_painters](/assets/hackers-and-painters.jpg)
 
 一开始吸引我的仅仅是这个书名。后来才了解到作者是有硅谷创业教父的之称的Paul Graham。这本书是他的文集。书中他用浅显的文字阐述自己对于计算机科学的认识，其对世界变革的影响和高科技创业蕴藏的巨大挑战和财富。他是一个成功的创业者，投资人，同时也是黑客，作家，并且在拿到哈佛计算机博士学位之后，在佛罗伦萨学习绘画，有过一段短暂的艺术家生涯。接触奇特而睿智的灵魂总是发人深省，似醍醐灌顶。
 

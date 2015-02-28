@@ -8,13 +8,22 @@ layout: default
     {% for post in site.posts %}
         {% if post.categories contains 'blog1' %}
       <li>
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <div> 
-            <p>{{ post.content | strip_html | truncatewords:75 }}
+        <div>
+          <div class="post-title-icon">
+            <p>{{ post.title | strip_html | truncatewords: 1}}</p>
+          </div>
+          <div>
+            <span>
+              <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </span>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+          </div>
+        </div> 
+
+        <div class="post-preview">
+          <p>{{ post.content | strip_html | truncatewords:75 }}
         </div>
+        <div>
       </li>
     {% endif %}
     {% endfor %}
