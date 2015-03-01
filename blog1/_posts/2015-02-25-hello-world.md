@@ -4,7 +4,6 @@ category: blog1
 title:  "Hello World from LittleCheeseCake"
 date:   2015-02-25 22:48:25
 categories: blog1
-image: image-footer.jpg
 ---
 This is the very first blog
 

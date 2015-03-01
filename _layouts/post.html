@@ -7,9 +7,11 @@
 
     {% include header.html %}
 
-    <div class="post-image-container">
-  		<img class="post-image" src="{{ site.url }}/assets/{{ page.image }}"></img>
-  	</div>
+    {% if page.image %}
+      <div class="post-image-container">
+    		<img class="post-image" src="{{ site.url }}/assets/{{ page.image }}"></img>
+    	</div>
+    {% endif %}
 
     <div class="page-content">
       <div class="wrapper">

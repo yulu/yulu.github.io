@@ -13,15 +13,15 @@ layout: default
             <p>{{ post.title | strip_html | truncatewords: 1}}</p>
           </div>
           <div>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
             <span>
               <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
             </span>
-            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
           </div>
         </div> 
 
         <div class="post-preview">
-          <p>{{ post.content | strip_html | truncatewords:75 }}
+          <p>{{ post.content | strip_html | truncatewords:150 }}
         </div>
         <div>
       </li>
