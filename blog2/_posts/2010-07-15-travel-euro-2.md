@@ -15,14 +15,14 @@ image: night_in_sh.jpg
  
 
 
->![suitcase](/assets/suitcase.jpg)
+![suitcase](/assets/suitcase.jpg)
 
 小牛皮包，真是明智的选择，折腾了四十天还完好无损。打折的旅行箱就没有这么好运气了，一路下来几乎夭折。
 
->![write_diary](/assets/write_diary.jpg)
+![write_diary](/assets/write_diary.jpg)
 
 第一篇日记。记得那天我7块钱买了个白素描本，回到家就给TOWER说这个多便宜多好使，激动地描绘着我的计划。一转眼她都面目全非了，满满的全是我的随笔，涂鸦，照片，明信片，门票，车票，地图和旅途中遇见的人们留下的印迹。她是有生命的，我相信，孤独时她似乎可以和我对话
 
->![night_in_sh](/assets/night_in_sh.jpg)
+![night_in_sh](/assets/night_in_sh.jpg)
 
 南京路夜景，小DC就只能出这个效果了，纵然我自称是PS高手。

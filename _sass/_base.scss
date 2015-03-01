@@ -41,8 +41,15 @@ ul, ol, dl, figure,
  * Images
  */
 img {
+    display: block;
     max-width: 100%;
     vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p, pre {
+    margin-left: 20px;
 }
 
 
@@ -57,7 +64,6 @@ figure > img {
 figcaption {
     font-size: $small-font-size;
 }
-
 
 
 /**
@@ -79,11 +85,18 @@ li {
 /**
  * Headings
  */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 h4 {
+    font-weight: bold;
+}
+
+h5, h6 {
     font-weight: 300;
 }
 
-
+h2, h3, h4 {
+    color: #444;
+    margin-top: 40px !important;
+}
 
 /**
  * Links
@@ -109,10 +122,10 @@ a {
  */
 blockquote {
     color: $grey-color;
-    border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
+    border-left: 4px solid #eee;
+    padding-left: $spacing-unit / 10;
     font-size: 14px;
-    letter-spacing: -1px;
+    font-weight: 300;
 
     > :last-child {
         margin-bottom: 0;

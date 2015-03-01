@@ -6,6 +6,7 @@ categories: blog1
 image: starry-night.jpg
 ---
 
+
 It has been a year! A year ago I put up some posts on image processing using Shaders just for my own record. I have never expected that this to be rewarded. Now the work is integrated in my very own app, and included in a published book. It is my privilege to receive by emails the feedbacks, queries and thanks notes from people around the world about what I have shared. I was not excelled at programming, neither at drawing or design, but I never stop learning. More important thing is that I start to get the meaning of:
 
  >CONNECTING THE DOTS
@@ -18,11 +19,13 @@ Colors can perform magic tricks I believe. The tone of a picture sometimes touch
 
 ###1.1 Color Gradient on the Fly 
 
-Previously I bind a color gradient map or pattern as a texture to an opengl target to perform the blending. Later I realized that the shader itself can produce color gradient map2 (or patterns3) by playing around with the positions of the texels.
+Previously I bind a color gradient map or pattern as a texture to an opengl target to perform the blending. Later I realized that the shader itself can produce color gradient map (or patterns) by playing around with the positions of the texels.
 
-Gradient Functions
+**Gradient Functions**
+
 It is a simple linear equation to represent gradient distributed over positions. The horizontal linear gradient is:
 
+{% highlight c %}
 vec4 LinearGradientH(vec4 start, vec4 end)
 {
     vec4 color;
@@ -31,9 +34,11 @@ vec4 LinearGradientH(vec4 start, vec4 end)
 
     return color;
 }
+{% endhighlight %}
 
 The radius linear gradient with a specified center point is:
 
+{% highlight c %}
 vec4 RadiusGradient(vec4 center, vec4 corner, vec2 center_point)
 {
     vec4 color;
@@ -44,9 +49,13 @@ vec4 RadiusGradient(vec4 center, vec4 corner, vec2 center_point)
 
     return color;
 }
-Nice Combination by Accident
+{% endhighlight %}
+
+**Nice Combination by Accident**
+
 More appealing effect is to randomly generate a warm color gradient map like this:
 
+{% highlight c %}
 vec3 RandomGradientWarm() {
     vec3 color;
     vec3 purple = vec3(180./255., 151./255., 202./255.);
@@ -58,10 +67,13 @@ vec3 RandomGradientWarm() {
 
     return color;
 }
-warm gradien
+{% endhighlight %}
+
+![warm_gradient](/assets/warm_gradient.png)
 
 Or a cool color gradient map like this:
 
+{% highlight c %}
 vec3 RandomGradientCool() {
 
     vec3 color;
@@ -75,24 +87,31 @@ vec3 RandomGradientCool() {
 
     return color;
 }
-cool gradient
+{% endhighlight %}
+
+![cool_gradient](/assets/cool_gradient.png)
 
 ###1.2 Blend Functions One More Time
 
 With these beautiful colors, I can blend them on an image and get the effect I want! Review the three blend mode4 that is being used mostly.
 
-Screen
+**Screen**
+
 With Screen blend mode the values of the pixels in the two layers are inverted, multiplied, and then inverted again. This yields the opposite effect to multiply. The result is a brighter picture.Here introduce an alpha value to control the level of strength the screen blending is performed.
 
+$$f(a,b)=1- (1 - a*alpah)(1- b)$$
 
-f(a,b)=1- (1 - a*alpah)(1- b)
+{% highlight c %}
 vec3 ScreenBlend(vec3 maskPixelComponent, float alpha, vec3 imagePixelComponent) {
     return 1.0 - (1.0 - (maskPixelComponent * alpha)) * (1.0 - imagePixelComponent);
 }
-Multiply
+{% endhighlight %}
+
+**Multiply**
+
 Multiply blend mode multiplies the numbers for each pixel of the top layer with the corresponding pixel for the bottom layer. The result is a darker picture.
 
-f(a,b)=a*alpha*b
+$$ f(a,b)=a * alpha * b $$
 
 {% highlight c %}
 vec3 MultiplyBlend(vec3 overlayComponent, float alpha, vec3 underlayComponent) {
@@ -100,10 +119,13 @@ vec3 MultiplyBlend(vec3 overlayComponent, float alpha, vec3 underlayComponent) {
 }
 {% endhighlight %}
 
-Overlay
+**Overlay**
+
 Overlay combines Multiply and Screen blend modes. The parts of the top layer where base layer is light become lighter, the parts where the base layer is dark become darker. An overlay with the same picture looks like an S-curve.
 
-f(a,b)={2ab1- (1 - a*alpah)(1- b)if b<0.5otherwise
+$$ f(a,b)= {2ab1- (1 - a*alpah)(1- b) if b<0.5otherwise $$
+
+{% highlight c %}
 vec3 OvelayBlender(vec3 Color, vec3 filter){
     vec3 filter_result;
     float luminance = dot(filter, W);
@@ -115,7 +137,10 @@ vec3 OvelayBlender(vec3 Color, vec3 filter){
 
     return filter_result;
 }
-flower warm
+{% endhighlight %}
+
+![flower](/assets/flower.png)
+![flower_warm](/assets/flower_warm.png)
 
 ##2. Being an Artist
 
@@ -123,29 +148,34 @@ flower warm
 
 Forget about the codes and equations for a while, let's talk about how to draw on paper (here, actually I drew this on iPad, but I think it's similar) A sketch of the outline is first created. Then roughly blend the color on it. If want a finer look, nicely touch on some details. This is a simple approach I used to draw.
 
-drawing
+![drawing](/assets/drawing.png)
 
-How about asking the computer to draw for us like this? Emm, how to sketch a outline? Here again comes the very simple edge detection algorithm Sobel filter. (Codes are shared in previous post1)
+How about asking the computer to draw for us like this? Emm, how to sketch an outline? Here again comes the very simple edge detection algorithm Sobel filter. (Codes are shared in previous post1)
 
 How to blend the colors? We can pick up color from the real photo for each texel, but it seems look so real because too much fine details are included. We would like to make it less accurate. To do so by grouping the similar colors and giving them an average. In shader, to categorize each color channel into 10 groups can simply write like this by knowing that each channel in vec4 color ranges from 0 to 1:
 
+{% highlight c %}
     color = floor(color * 10.0) * 0.1;
+{% endhighlight %}
 
 Now, we can sketch and blend:
 
-
+![outline](/assets/outline.jpg)
+![paint](/assets/paint.jpg)
 
 ###2.2 Masters' Styles: Just for Fun
 
-waterlilies starry night
+![waterlili](/assets/waterlili.jpg)
+![starry](/assets/starry.jpg)
 
 Waterlilies by Monet and Starry Night by Van Gogh are some famous masterpieces we all are familiar with. We can easily recognize the unique ways they blend colors. Monet,the Impressionist, in his work eliminated the edges and randomized the brush touches. To mimic an effect like this, I tried to combine the artistic effect without edge detection with the method4 I discussed previously - scanning the random selected pixels around the center one, and take either the brightest or darkest to replace the center. This gives a quite nice view I feel, if not alike.
 
->![flower]()
-![monet]()
+![flower-1](/assets/flower-1.png)
+![flower-1-r](/assets/flower-1-r.png)
 
 Curved lines and circular brush touches are the identities of Vincent Van Gogh. To mimic the kind of circular motion feel, I give wave-patterned displacements to texels by using a sine function:
 
+{% highlight c %}
 vec2 circular(vec2 position){
     vec2 p = position;
     p.x = p.x + sin(p.y*80.)*0.003;
@@ -153,9 +183,10 @@ vec2 circular(vec2 position){
 
     return p;
 }
+{% endhighlight %}
 
->![lili]()
-![van]()
+![waterlili-1](/assets/waterlili-1.png)
+![waterlili-1-r](/assets/waterlili-1-r.png)
 
 Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally6, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
 
@@ -165,6 +196,7 @@ We often see dots in American comics. Ben-Day7 dots was invented dating back to 
 
 To generate a strips pattern:
 
+{% highlight c %}
 vec3 StripsPattern(vec2 position)
 {
     vec2 p = (position - 0.5) * 500.;
@@ -180,6 +212,7 @@ vec3 StripsPattern(vec2 position)
     else
         return vec3(120./255., 120./255., 120./255.);
 }
+{% endhighlight %}
 
 To generate a dots pattern:
 
@@ -204,8 +237,9 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
         return vec3(0.);
 }
 {% endhighlight %}
->![image]()
-![mango]()
+
+![algo](/assets/algo.jpg)
+![algo-r](/assets/algo-r.jpg)
 
 ##The Issue!
 
@@ -237,15 +271,15 @@ vec3 main()
 }
 {% endhighlight %}
 
->![green]()
-![blur]()
+![scene](/assets/scene.png)
+![scene-r](/assets/scene-r.png)
 
 ##Closure
 
 It is wonderful to combine the two things I like most - coding and painting together, to create something beautiful and smart. Hope this will give you little hints in your hacking. Happy coding, and photographing! Painting also!
 
->Source Code on My [GitHub]() 
+>Source Code on My [GitHub](https://github.com/yulu/ShaderFilter) 
 >
->My [Camera App]()
+>My [Camera App](https://play.google.com/store/apps/details?id=com.littlecheesecake.filterblendercamera.free&hl=en)
 >
->Credit of nice photos goes to my adventurous nerd, [Flickr]()
+>Credit of nice photos goes to my adventurous nerd, [Flickr](https://www.flickr.com/photos/fenixzhang/)

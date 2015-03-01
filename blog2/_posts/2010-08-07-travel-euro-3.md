@@ -14,22 +14,22 @@ image: pup.jpg
 
 最后一天和思华去了小餐馆吃法餐。十分温馨的小店，老板穿着西装，彬彬有礼。在昏暗的灯光下享受美食，聊着彼此的生活。聊过什么都忘了，但有一件事记得很清晰，关于爱情，关于异国的浪漫与孤单酝酿的烈酒，和自己手中那杯暖暖的回味无穷的奶茶。以至于现在想来我还是感激那一天的晚餐，让我更加理解岁月里那些发生过或者没有发生的故事，学着把心放低。
 
->![effel](/assets/effel.jpg)
+![effel](/assets/effel.jpg)
 
 在凯旋门顶上拍铁塔，原来它真的很高~！
 
->![pup](/assets/pup.jpg)
+![pup](/assets/pup.jpg)
 
 爱极了蓬皮杜的小广场，一群一群的年轻人在这里聊天，喝酒，弹琴，充满自由的气息。我就枕着包躺着，看天空中飞机划过……
 
->![luv](/assets/luv.jpg)
+![luv](/assets/luv.jpg)
 
 卢浮宫外面也是歇脚的好地方。这里的景色很壮观，很巴黎。
 
->![opera](/assets/opera.jpg)
+![opera](/assets/opera.jpg)
 
 歌剧院的金色雕塑。不得不承认欧洲的天空很漂亮，所以蹩脚摄影师拿傻瓜相机也能拍照片了。。。
 
->![tower_in_photo](/assets/tower_in_photo.jpg)
+![tower_in_photo](/assets/tower_in_photo.jpg)
 
 傍晚，买了一个三明治，在铁塔下的草地上自娱自乐。

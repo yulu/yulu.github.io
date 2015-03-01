@@ -10,7 +10,7 @@ layout: default
       <li>
         <div>
           <div class="post-title-icon">
-            <p>{{ post.title | strip_html | truncatewords: 1}}</p>
+            <p style="margin: 0px !important">{{ post.title | strip_html | truncatewords: 1}}</p>
           </div>
           <div>
             <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
@@ -21,7 +21,7 @@ layout: default
         </div> 
 
         <div class="post-preview">
-          <p>{{ post.content | strip_html | truncatewords:150 }}
+          <p>{{ post.content | strip_html | truncatewords:70 }}
         </div>
         <div>
       </li>
