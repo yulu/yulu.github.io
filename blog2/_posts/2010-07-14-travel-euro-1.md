@@ -2,7 +2,7 @@
 layout: post
 category: blog2
 date: 2010-07-14 21:00:00
-title: 明日即天涯1-未启程的旅行日记
+title: 明日即天涯1－未启程的旅行日记
 image: pencil_title.jpg
 ---
 
