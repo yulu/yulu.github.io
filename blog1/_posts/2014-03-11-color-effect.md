@@ -13,11 +13,11 @@ It has been a year! A year ago I put up some posts on image processing using Sha
 
 Being busy with study, I could barely spare time working on this topic. But ideas and inspirations always jumped out sometime that I could stop but to code. Whenever I came across a nice picture, a smart algorithm or anything that reminds me the fantasy of the world we viewed, I would noted down and later explored on it. Thanks to the Pixel Shader by Toby Schachman, I could instantly experiment on my ideas (also a lot of inspirations are from this interactive book). I gathered all the ideas of color and art effects and deliver a new camera app that allows us to explore the combination of filter effects on real-time. I also put the source code of some filter effects discussed here into a simple demo app for sharing.
 
-##1. The Tricks of Colors
+##The Tricks of Colors
 
 Colors can perform magic tricks I believe. The tone of a picture sometimes touches us more than the subjects do. I explored the idea of adjust the B/S/C of an image and blend color map on an image previously1. With the same blending process, here are some more interesting color gradient maps I could share.
 
-###1.1 Color Gradient on the Fly 
+####Color Gradient on the Fly 
 
 Previously I bind a color gradient map or pattern as a texture to an opengl target to perform the blending. Later I realized that the shader itself can produce color gradient map (or patterns) by playing around with the positions of the texels.
 
@@ -91,7 +91,7 @@ vec3 RandomGradientCool() {
 
 ![cool_gradient](/assets/cool_gradient.png)
 
-###1.2 Blend Functions One More Time
+####Blend Functions One More Time
 
 With these beautiful colors, I can blend them on an image and get the effect I want! Review the three blend mode4 that is being used mostly.
 
@@ -99,7 +99,7 @@ With these beautiful colors, I can blend them on an image and get the effect I w
 
 With Screen blend mode the values of the pixels in the two layers are inverted, multiplied, and then inverted again. This yields the opposite effect to multiply. The result is a brighter picture.Here introduce an alpha value to control the level of strength the screen blending is performed.
 
-$$f(a,b)=1- (1 - a*alpah)(1- b)$$
+$$ f(a,b)=1- (1 - a*alpah)(1- b) $$
 
 {% highlight c %}
 vec3 ScreenBlend(vec3 maskPixelComponent, float alpha, vec3 imagePixelComponent) {
@@ -123,7 +123,11 @@ vec3 MultiplyBlend(vec3 overlayComponent, float alpha, vec3 underlayComponent) {
 
 Overlay combines Multiply and Screen blend modes. The parts of the top layer where base layer is light become lighter, the parts where the base layer is dark become darker. An overlay with the same picture looks like an S-curve.
 
-$$ f(a,b)= {2ab1- (1 - a*alpah)(1- b) if b<0.5otherwise $$
+$$ f(a,b)=\left\{ 
+\begin{array}{l l} 
+2ab & \quad \text{if $b < 0.5$}\\
+1-2(1-a)(1-b) & \quad \text{otherwise} 
+\end{array} \right. $$
 
 {% highlight c %}
 vec3 OvelayBlender(vec3 Color, vec3 filter){
@@ -140,11 +144,12 @@ vec3 OvelayBlender(vec3 Color, vec3 filter){
 {% endhighlight %}
 
 ![flower](/assets/flower.png)
+
 ![flower_warm](/assets/flower_warm.png)
 
-##2. Being an Artist
+##Being an Artist
 
-###2.1 How to Draw
+####How to Draw
 
 Forget about the codes and equations for a while, let's talk about how to draw on paper (here, actually I drew this on iPad, but I think it's similar) A sketch of the outline is first created. Then roughly blend the color on it. If want a finer look, nicely touch on some details. This is a simple approach I used to draw.
 
@@ -161,16 +166,19 @@ How to blend the colors? We can pick up color from the real photo for each texel
 Now, we can sketch and blend:
 
 ![outline](/assets/outline.jpg)
+
 ![paint](/assets/paint.jpg)
 
-###2.2 Masters' Styles: Just for Fun
+####Masters' Styles: Just for Fun
 
 ![waterlili](/assets/waterlili.jpg)
+
 ![starry](/assets/starry.jpg)
 
 Waterlilies by Monet and Starry Night by Van Gogh are some famous masterpieces we all are familiar with. We can easily recognize the unique ways they blend colors. Monet,the Impressionist, in his work eliminated the edges and randomized the brush touches. To mimic an effect like this, I tried to combine the artistic effect without edge detection with the method4 I discussed previously - scanning the random selected pixels around the center one, and take either the brightest or darkest to replace the center. This gives a quite nice view I feel, if not alike.
 
 ![flower-1](/assets/flower-1.png)
+
 ![flower-1-r](/assets/flower-1-r.png)
 
 Curved lines and circular brush touches are the identities of Vincent Van Gogh. To mimic the kind of circular motion feel, I give wave-patterned displacements to texels by using a sine function:
@@ -186,11 +194,12 @@ vec2 circular(vec2 position){
 {% endhighlight %}
 
 ![waterlili-1](/assets/waterlili-1.png)
+
 ![waterlili-1-r](/assets/waterlili-1-r.png)
 
 Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally6, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
 
-##2.3 Comic Book
+##Comic Book
 
 We often see dots in American comics. Ben-Day7 dots was invented dating back to 1879, to produce more dynamic colors in printing, e.g. spaced dots of red colors gives pink. Later it was explored by pop artists to produce illustrations. Same in black-and-white Japanese comics, gray areas are sometimes shaded by strips. The intention of using dots and strips patterns in comics have gave me this inspiration - how about check the intensities of the texels, on the texels that are within a defined gray region, overlay the patterns. What kind of effect can I get?
 
@@ -239,6 +248,7 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
 {% endhighlight %}
 
 ![algo](/assets/algo.jpg)
+
 ![algo-r](/assets/algo-r.jpg)
 
 ##The Issue!
@@ -272,6 +282,7 @@ vec3 main()
 {% endhighlight %}
 
 ![scene](/assets/scene.png)
+
 ![scene-r](/assets/scene-r.png)
 
 ##Closure
