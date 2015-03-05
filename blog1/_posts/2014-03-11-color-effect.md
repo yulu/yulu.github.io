@@ -143,9 +143,8 @@ vec3 OvelayBlender(vec3 Color, vec3 filter){
 }
 {% endhighlight %}
 
-![flower](/assets/flower.png)
+![flower](/assets/flower.jpg)
 
-![flower_warm](/assets/flower_warm.png)
 
 ##Being an Artist
 
@@ -167,19 +166,15 @@ Now, we can sketch and blend:
 
 ![outline](/assets/outline.jpg)
 
-![paint](/assets/paint.jpg)
-
 ####Masters' Styles: Just for Fun
 
-![waterlili](/assets/waterlili.jpg)
+![waterlili](/assets/vangogh.jpg)
 
-![starry](/assets/starry.jpg)
 
 Waterlilies by Monet and Starry Night by Van Gogh are some famous masterpieces we all are familiar with. We can easily recognize the unique ways they blend colors. Monet,the Impressionist, in his work eliminated the edges and randomized the brush touches. To mimic an effect like this, I tried to combine the artistic effect without edge detection with the method4 I discussed previously - scanning the random selected pixels around the center one, and take either the brightest or darkest to replace the center. This gives a quite nice view I feel, if not alike.
 
-![flower-1](/assets/flower-1.png)
+![flower-1](/assets/flower-1.jpg)
 
-![flower-1-r](/assets/flower-1-r.png)
 
 Curved lines and circular brush touches are the identities of Vincent Van Gogh. To mimic the kind of circular motion feel, I give wave-patterned displacements to texels by using a sine function:
 
@@ -193,9 +188,8 @@ vec2 circular(vec2 position){
 }
 {% endhighlight %}
 
-![waterlili-1](/assets/waterlili-1.png)
+![waterlili-1](/assets/waterlili.jpg)
 
-![waterlili-1-r](/assets/waterlili-1-r.png)
 
 Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally6, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
 
@@ -249,7 +243,6 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
 
 ![algo](/assets/algo.jpg)
 
-![algo-r](/assets/algo-r.jpg)
 
 ##The Issue!
 
@@ -281,9 +274,8 @@ vec3 main()
 }
 {% endhighlight %}
 
-![scene](/assets/scene.png)
+![scene](/assets/blur.jpg)
 
-![scene-r](/assets/scene-r.png)
 
 ##Closure
 
