@@ -1,3 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Cantarell);
+
+$base-font-family: Cantarell, serif;
+$grey-color-light: #f7f7f7;
+
 /**
  * Reset some basic elements
  */
@@ -138,7 +143,7 @@ blockquote {
  */
 pre,
 code {
-    font-size: 12px;
+    font-size: 90%;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
     background-color: $grey-color-light;
@@ -146,6 +151,7 @@ code {
 
 code {
     padding: 1px 5px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 pre {

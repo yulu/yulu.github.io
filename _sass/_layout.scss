@@ -320,6 +320,9 @@
     height: 410px;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 0 10px #777;
+    -moz-box-shadow: 0 0 10px #777;
+    -webkit-box-shadow: 0 0 10px #777;
 }
 
 .video-frame {
