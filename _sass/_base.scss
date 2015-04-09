@@ -1,7 +1,20 @@
 @import url(http://fonts.googleapis.com/css?family=Cantarell);
 
 $base-font-family: Cantarell, serif;
-$grey-color-light: #f7f7f7;
+$text-color: #525151;
+$header-color: #3c3b3b;
+$theme-color: #d62615;
+$block-background-color: #fdfafa;
+$header-background-color: rgba(255, 255, 255, 0.88);
+$header-shadow-color: #636262; 
+$image-caption-color: #8b8888;
+$block-quote-color: #8b8888;
+$footer-background-color: #f5f5f5;
+$footer-background-shadow: #E0DBDB;
+$footer-text-color: #939291;
+$button-border: #eee;
+$button-background: rgba(247, 247, 247, 0.44);
+$more-button-color: #979797;
 
 /**
  * Reset some basic elements
@@ -22,9 +35,7 @@ body {
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
-    font-weight: 300;
     color: $text-color;
-    background-color: $background-color;
     -webkit-text-size-adjust: 100%;
 }
 
@@ -53,9 +64,9 @@ img {
     margin-right: auto;
 }
 
-p, pre {
-    margin-left: 20px;
-}
+//p, pre {
+//    margin-left: 20px;
+//}
 
 
 /**
@@ -106,16 +117,12 @@ h2, h3, h4 {
  * Links
  */
 a {
-    color: $brand-color;
+    color: $theme-color;
     text-decoration: none;
 
-    &:visited {
-        color: darken($brand-color, 15%);
-    }
-
     &:hover {
-        color: $text-color;
-        text-decoration: underline;
+        font-weight: bold;
+        text-decoration: none;
     }
 }
 
@@ -125,11 +132,14 @@ a {
  * Blockquotes
  */
 blockquote {
-    color: $grey-color;
+    color: $block-quote-color;
+    background-color: $block-background-color;
     border-left: 4px solid #eee;
     padding-left: $spacing-unit / 10;
     font-size: 14px;
     font-weight: 300;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
     > :last-child {
         margin-bottom: 0;
@@ -144,9 +154,6 @@ blockquote {
 pre,
 code {
     font-size: 90%;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: $grey-color-light;
 }
 
 code {
@@ -190,6 +197,7 @@ pre {
         padding-left: $spacing-unit / 2;
     }
 }
+
 
 
 

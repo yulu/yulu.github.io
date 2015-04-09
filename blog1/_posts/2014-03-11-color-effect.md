@@ -13,7 +13,7 @@ It has been a year! A year ago I put up some posts on image processing using Sha
 
 Being busy with study, I could barely spare time working on this topic. But ideas and inspirations always jumped out sometime that I could stop but to code. Whenever I came across a nice picture, a smart algorithm or anything that reminds me the fantasy of the world we viewed, I would noted down and later explored on it. Thanks to the Pixel Shader by Toby Schachman, I could instantly experiment on my ideas (also a lot of inspirations are from this interactive book). I gathered all the ideas of color and art effects and deliver a new camera app that allows us to explore the combination of filter effects on real-time. I also put the source code of some filter effects discussed here into a simple demo app for sharing.
 
-##The Tricks of Colors
+###The Tricks of Colors
 
 Colors can perform magic tricks I believe. The tone of a picture sometimes touches us more than the subjects do. I explored the idea of adjust the B/S/C of an image and blend color map on an image previously1. With the same blending process, here are some more interesting color gradient maps I could share.
 
@@ -21,7 +21,7 @@ Colors can perform magic tricks I believe. The tone of a picture sometimes touch
 
 Previously I bind a color gradient map or pattern as a texture to an opengl target to perform the blending. Later I realized that the shader itself can produce color gradient map (or patterns) by playing around with the positions of the texels.
 
-**Gradient Functions**
+*Gradient Functions*
 
 It is a simple linear equation to represent gradient distributed over positions. The horizontal linear gradient is:
 
@@ -51,7 +51,7 @@ vec4 RadiusGradient(vec4 center, vec4 corner, vec2 center_point)
 }
 {% endhighlight %}
 
-**Nice Combination by Accident**
+*Nice Combination by Accident*
 
 More appealing effect is to randomly generate a warm color gradient map like this:
 
@@ -69,7 +69,10 @@ vec3 RandomGradientWarm() {
 }
 {% endhighlight %}
 
-![warm_gradient](/assets/warm_gradient.png)
+<figcaption>
+Warm Gradient
+</figcaption>
+![warm_gradient](https://farm9.staticflickr.com/8719/16397434123_7702494a25_o.jpg)
 
 Or a cool color gradient map like this:
 
@@ -89,13 +92,16 @@ vec3 RandomGradientCool() {
 }
 {% endhighlight %}
 
-![cool_gradient](/assets/cool_gradient.png)
+<figcaption>
+Cool Gradient
+</figcaption>
+![cool_gradient](https://farm9.staticflickr.com/8692/16991573076_769edeae5e_o.jpg)
 
 ####Blend Functions One More Time
 
 With these beautiful colors, I can blend them on an image and get the effect I want! Review the three blend mode4 that is being used mostly.
 
-**Screen**
+*Screen*
 
 With Screen blend mode the values of the pixels in the two layers are inverted, multiplied, and then inverted again. This yields the opposite effect to multiply. The result is a brighter picture.Here introduce an alpha value to control the level of strength the screen blending is performed.
 
@@ -107,7 +113,7 @@ vec3 ScreenBlend(vec3 maskPixelComponent, float alpha, vec3 imagePixelComponent)
 }
 {% endhighlight %}
 
-**Multiply**
+*Multiply*
 
 Multiply blend mode multiplies the numbers for each pixel of the top layer with the corresponding pixel for the bottom layer. The result is a darker picture.
 
@@ -119,7 +125,7 @@ vec3 MultiplyBlend(vec3 overlayComponent, float alpha, vec3 underlayComponent) {
 }
 {% endhighlight %}
 
-**Overlay**
+*Overlay*
 
 Overlay combines Multiply and Screen blend modes. The parts of the top layer where base layer is light become lighter, the parts where the base layer is dark become darker. An overlay with the same picture looks like an S-curve.
 
@@ -143,16 +149,20 @@ vec3 OvelayBlender(vec3 Color, vec3 filter){
 }
 {% endhighlight %}
 
-![flower](/assets/flower.jpg)
+
+![flower](https://farm8.staticflickr.com/7608/17017567585_c241dfb69f_o.jpg)
 
 
-##Being an Artist
+###Being an Artist
 
 ####How to Draw
 
 Forget about the codes and equations for a while, let's talk about how to draw on paper (here, actually I drew this on iPad, but I think it's similar) A sketch of the outline is first created. Then roughly blend the color on it. If want a finer look, nicely touch on some details. This is a simple approach I used to draw.
 
-![drawing](/assets/drawing.png)
+<figcaption>
+How I Draw
+</figcaption>
+![drawing](https://farm9.staticflickr.com/8705/17016113192_60e9ee2218_o.jpg)
 
 How about asking the computer to draw for us like this? Emm, how to sketch an outline? Here again comes the very simple edge detection algorithm Sobel filter. (Codes are shared in previous post1)
 
@@ -164,16 +174,16 @@ How to blend the colors? We can pick up color from the real photo for each texel
 
 Now, we can sketch and blend:
 
-![outline](/assets/outline.jpg)
+![outline](https://farm9.staticflickr.com/8702/16991579826_1132fbe75d_o.jpg)
 
 ####Masters' Styles: Just for Fun
 
-![waterlili](/assets/vangogh.jpg)
+![waterlili](https://farm9.staticflickr.com/8736/16810167707_7dd748ca50_o.jpg)
 
 
 Waterlilies by Monet and Starry Night by Van Gogh are some famous masterpieces we all are familiar with. We can easily recognize the unique ways they blend colors. Monet,the Impressionist, in his work eliminated the edges and randomized the brush touches. To mimic an effect like this, I tried to combine the artistic effect without edge detection with the method4 I discussed previously - scanning the random selected pixels around the center one, and take either the brightest or darkest to replace the center. This gives a quite nice view I feel, if not alike.
 
-![flower-1](/assets/flower-1.jpg)
+![flower-1](https://farm8.staticflickr.com/7614/16810166937_6864317cee_o.jpg)
 
 
 Curved lines and circular brush touches are the identities of Vincent Van Gogh. To mimic the kind of circular motion feel, I give wave-patterned displacements to texels by using a sine function:
@@ -188,12 +198,12 @@ vec2 circular(vec2 position){
 }
 {% endhighlight %}
 
-![waterlili-1](/assets/waterlili.jpg)
+![waterlili-1](https://farm9.staticflickr.com/8741/17016121082_fabe7a1d7b_o.jpg)
 
 
 Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally6, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
 
-##Comic Book
+###Comic Book
 
 We often see dots in American comics. Ben-Day7 dots was invented dating back to 1879, to produce more dynamic colors in printing, e.g. spaced dots of red colors gives pink. Later it was explored by pop artists to produce illustrations. Same in black-and-white Japanese comics, gray areas are sometimes shaded by strips. The intention of using dots and strips patterns in comics have gave me this inspiration - how about check the intensities of the texels, on the texels that are within a defined gray region, overlay the patterns. What kind of effect can I get?
 
@@ -241,10 +251,10 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
 }
 {% endhighlight %}
 
-![algo](/assets/algo.jpg)
+![algo](https://farm8.staticflickr.com/7588/17016692551_0a088402e5_o.jpg)
 
 
-##The Issue!
+###The Issue!
 
 I think I have not really figured out the way to do blurring. Blur effect seems to be very popular after the releasing of IOS7. Gaussian blur however involves heavy computation. I tried using 9-by-9 Gaussian kernels to do blurring, with the optimized method proposed by Daniel Rakos8, it runs really slowly on my Note II! So I give up the idea of trying filtering multiple times or with larger sized kernel. I also studied through the post and dig into the codes by Brad Larson9, luckily I learned the way to write loop for shader! However I still cannot got the idea to do a fast blur with larger sized Gaussian kernel. How can it be so fast on iPhone? Is it the hardware issue or my understanding is not accurate. I think there should be smarter way to implement blurring. Later I will revisit some fundamentals of OpenGL.
 
@@ -274,10 +284,10 @@ vec3 main()
 }
 {% endhighlight %}
 
-![scene](/assets/blur.jpg)
+![scene](https://farm9.staticflickr.com/8735/16395151344_e533fac091_o.jpg)
 
 
-##Closure
+###Closure
 
 It is wonderful to combine the two things I like most - coding and painting together, to create something beautiful and smart. Hope this will give you little hints in your hacking. Happy coding, and photographing! Painting also!
 

@@ -3,30 +3,31 @@ layout: default
 ---
 
 <div class="home">
-
-  <ul class="post-list">
-    {% for post in site.posts %}
+    <ul class="post-list">
+        {% for post in site.posts limit: 10 %}
         {% if post.categories contains 'blog1' %}
-      <li>
-        <div>
-          <div class="post-title-icon">
-            <p style="margin: 0px !important">{{ post.title | strip_html | truncatewords: 1}}</p>
-          </div>
-          <div>
-            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-            <span>
-              <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </span>
-          </div>
-        </div> 
+        <li>
+            <div>
+                <div class="post-title-icon">
+                    <p style="margin: 0px !important">{{ post.title | split: '' | first }}</p>
+                </div>
+                <div class="post-item">
+                    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+                    <span>
+                        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                    </span>
+                </div>
 
-        <div class="post-preview">
-          <p>{{ post.content | strip_html | truncatewords:70 }}
-        </div>
-        <div>
-      </li>
+                <div class="post-preview">
+                    <p>{{ post.content | strip_html | truncatewords:50 }}
+                </div>
+                <a class="post-meta" href="{{ post.url | prepend: site.baseurl }}">Continue reading</a>
+            </div>
+        </li>
     {% endif %}
     {% endfor %}
-  </ul>
-
+    </ul>
+    <div class="center">
+        <a href="{{ '/blog1/index.html' | prepend: site.baseurl}}"><button class="more-button center">View full list of blog posts</button></a>
+    </div>
 </div>

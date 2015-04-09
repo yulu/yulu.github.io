@@ -3,7 +3,8 @@ layout: post
 category: blog2
 date: 2010-08-07 21:00:00
 title: 明日即天涯3－狂欢巴黎
-image: pup.jpg
+image_url: "https://farm8.staticflickr.com/7587/16823517237_e5a19e8f31_o.jpg"
+image_caption: "爱极了蓬皮杜的小广场，一群一群的年轻人在这里聊天，喝酒，弹琴，充满自由的气息。我就枕着包躺着，看天空中飞机划过……"
 ---
 
 巴黎的四天，每一天都是狂欢，一群人的，两个人的或者独自一人。
@@ -14,22 +15,22 @@ image: pup.jpg
 
 最后一天和思华去了小餐馆吃法餐。十分温馨的小店，老板穿着西装，彬彬有礼。在昏暗的灯光下享受美食，聊着彼此的生活。聊过什么都忘了，但有一件事记得很清晰，关于爱情，关于异国的浪漫与孤单酝酿的烈酒，和自己手中那杯暖暖的回味无穷的奶茶。以至于现在想来我还是感激那一天的晚餐，让我更加理解岁月里那些发生过或者没有发生的故事，学着把心放低。
 
-![effel](/assets/effel.jpg)
-
+<figcaption>
 在凯旋门顶上拍铁塔，原来它真的很高~！
+</figcaption>
+>![effel](https://farm9.staticflickr.com/8746/16823516127_d515aa3497_z.jpg)
 
-![pup](/assets/pup.jpg)
-
-爱极了蓬皮杜的小广场，一群一群的年轻人在这里聊天，喝酒，弹琴，充满自由的气息。我就枕着包躺着，看天空中飞机划过……
-
-![luv](/assets/luv.jpg)
-
+<figcaption>
 卢浮宫外面也是歇脚的好地方。这里的景色很壮观，很巴黎。
+</figcaption>
+>![luv](https://farm9.staticflickr.com/8734/17029547752_ce11777680_z.jpg)
 
-![opera](/assets/opera.jpg)
-
+<figcaption>
 歌剧院的金色雕塑。不得不承认欧洲的天空很漂亮，所以蹩脚摄影师拿傻瓜相机也能拍照片了。。。
+</figcaption>
+>![opera](https://farm9.staticflickr.com/8740/16843461280_5596da83ce_z.jpg)
 
-![tower_in_photo](/assets/tower_in_photo.jpg)
-
+<figcaption>
 傍晚，买了一个三明治，在铁塔下的草地上自娱自乐。
+</figcaption>
+>![tower_in_photo](https://farm8.staticflickr.com/7612/16844714379_df5af29dcb_z.jpg)

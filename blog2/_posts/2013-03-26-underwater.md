@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2013-03-26 21:00:00
 title: 水下的世界
-image: underwater4.jpg
+image: underwater.jpg
 ---
 
 和姐妹们尝试了一组水下拍摄。生活中最幸运的是，拥有这些不只可以陪你brunch，hightea，evening hanging out，还能帮助彼此实现生活中小梦想的朋友们。
@@ -12,12 +12,11 @@ image: underwater4.jpg
 
 世界很大，大到你无法触及的蔚蓝海底，大到你不能攀登的悬崖峭壁，大到你执着梦想的坚强内心，如果你有足够大的勇气，世界真的很大。
 
-![underwater1](/assets/underwater1.jpg)
+<figcaption>
+学习游泳三个月之后，和姐妹尝试水下拍摄
+</figcaption>
+>![underwater1](https://farm9.staticflickr.com/8650/15994785590_214af36e34_h.jpg)
 
-![underwater1](/assets/underwater2.jpg)
+>![underwater2](https://farm8.staticflickr.com/7465/16182105425_3b2f0045b0_h.jpg)
 
-![underwater1](/assets/underwater3.jpg)
-
-![underwater1](/assets/underwater4.jpg)
-
-![underwater1](/assets/underwater5.jpg)
+>![underwater2](https://farm8.staticflickr.com/7651/17030390305_45a843b97c_o.jpg)

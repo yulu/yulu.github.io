@@ -1,0 +1,30 @@
+<!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+        
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="{{ '/index.html' | prepend: site.baseurl }}">Home</a></li>
+            <li><a href="{{ '/blog1/index.html' | prepend: site.baseurl }}">Posts</a></li>
+            <li><a href="{{ '/blog2/index.html' | prepend: site.baseurl }}">朝画夕拾</a></li>
+        </ul>
+        <div class="overlay-about">
+            <img src="../../../../assets/avatar.png" align="middle" /><span><a href="{{ '/about/about.html' | site.baseurl }}">by Yu Lu</a></span>
+        </div>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>

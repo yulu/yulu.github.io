@@ -10,3 +10,6 @@ github_username:  yulu
 
 # Build settings
 markdown: kramdown
+
+# Time zone
+timezone: Asia/Singapore
