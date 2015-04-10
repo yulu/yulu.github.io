@@ -44,7 +44,7 @@ $block-background-color: #fdfafa;
  * Header image in home page
  */
 .header-image {
-    background: url('../assets/background.jpg') no-repeat center center;
+    background: url('https://farm9.staticflickr.com/8729/16907239749_3c2c0365f8_k.jpg') no-repeat center center;
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -245,7 +245,7 @@ body,
 }
 
 .about-image {
-    background: url("../assets/background.jpg") no-repeat center right;
+    background: url("https://farm9.staticflickr.com/8729/16907239749_3c2c0365f8_k.jpg") no-repeat center right;
     background-size: cover;
     width: 40%;
     height: 100%;
@@ -371,7 +371,6 @@ body,
     font-size: 20px;
     color: $header-color;
 
-    &,
     &:hover {
         color: $theme-color;
         cursor: pointer;
@@ -433,7 +432,7 @@ body,
  * Page
  */
 .page-image {
-    background: url("../assets/background.jpg") no-repeat center center;
+    background: url("https://farm9.staticflickr.com/8729/16907239749_3c2c0365f8_k.jpg") no-repeat center center;
     background-size: cover;
     height: 200px;
     width: 100%;
@@ -632,7 +631,7 @@ body,
 
 .post-image-container {
     width: 100%;
-    height: 500px;
+    height: 70%;
     overflow: hidden;
     position: relative;
     

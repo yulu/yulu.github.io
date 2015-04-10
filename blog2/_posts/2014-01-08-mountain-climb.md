@@ -14,7 +14,7 @@ image_url: https://farm8.staticflickr.com/7482/15562347823_60907379d6_k.jpg
 
 影片的开始，是Mitty这个卑微的中年人平淡乏味的生活，而伴随着“Ground control to Major Tom”几句俏皮的歌词，壮阔的冰岛火山和巍峨的喜马拉亚缓缓张开，进入一场奇妙的旅行。只是远行不能解答生活中的所有问题，画面又拉回了喧嚣的都市，回到这里他仍需要直面现实的困境。然而他却发现旅行中没有解决的问题，却恰恰都在这日常生活之中找到了答案。正如影片最后那张让人动容的封面照片——Mitty坐在公司大楼前的水池边，眯着眼迎着阳光筛选底片。这幅画面透着那么一丝禅意，我们所追寻的，也许不是遥不可及的远方，不是不着边际的白日梦想，它不在高山不在深海，而是伸手就能触及的地方。生活，仍就是这样每天的重复，但并不因此我们就要减少对她的专注和热爱，而正是因为这份专注和热爱，我们才得以享受她丰富的馈赠。
 
-![mitty](/assets/mitty.jpg)
+![mitty](https://farm9.staticflickr.com/8694/16395144684_86723e322b_o.jpg)
 
 ###【二】
 
@@ -26,9 +26,9 @@ image_url: https://farm8.staticflickr.com/7482/15562347823_60907379d6_k.jpg
 Jan 1, 2014 @Kinabalu
 </figcaption>
 >![mountain_2](https://farm8.staticflickr.com/7553/15559775494_8c18198c5c_h.jpg)
-
+>
 >![mountain_3](https://farm8.staticflickr.com/7511/16180265471_26c917e15a_h.jpg)
-
+>
 >![mountain_1](https://farm9.staticflickr.com/8659/15994832290_d6e11d09c6_h.jpg)
 
 ###【三】

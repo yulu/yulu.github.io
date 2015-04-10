@@ -57,8 +57,6 @@ K-nearest neighbours classification method is used. Among the top n scores, the 
 
 ####Reference
 
-[0] Slides - Bag-of-features Model
-
 [1] J. Ha, K. Cho et al. Real-Time Scalable Recognition and Tracking based on the Server-client Model for Mobile Augmented Reality. IEEE International Symposium on Virtual Reality Innovation 2011
 
 [2] S. Gammerter, A. Gassmann et al. Server-side object recognition and client-side object tracking for mobile augmented reality. CVPRW 2010.

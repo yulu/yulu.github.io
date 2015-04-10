@@ -7,7 +7,7 @@ categories: blog1
 
 I have spent some time to play around with [Facebook](https://developers.facebook.com/android/) and [Weibo](http://open.weibo.com/wiki/SDK#Android_SDK) SDK for Android and create an app for photo-sharing to Facebook and Weibo with in-app log in. Here are the steps and tips. The source code is available in my [Github Repo](https://github.com/yulu/SocialShare). Before it can be built and run, some steps need to be done first:
 
-####For Facebook (detail in section 2)
+####For Facebook (details in section 2)
 
 1. Download Facebook SDK and add the correct dependency path
 

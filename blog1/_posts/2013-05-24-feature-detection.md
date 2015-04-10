@@ -5,7 +5,7 @@ date:   2013-05-24 19:00:00
 categories: blog1
 ---
 
-<figcaption>
+<figcaption class="reading-notes">
 Update on July 18, 2013: 
 </figcaption>
 >A simple program based on OpenCV is on my [github](https://github.com/yulu/desc_compare). Demo program, not guarantee to work perfectly. 

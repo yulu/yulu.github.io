@@ -130,7 +130,7 @@ vec3 filter()
 
 {% endhighlight %}
 
-![filter-1](/assets/filter-1.jpg)
+![filter-1](https://farm9.staticflickr.com/8798/17091936692_6eeb3c9f6a_o.jpg)
 
 ### Diffuse Glow Effect
 
@@ -215,7 +215,7 @@ vec3 screen(vec3 mask, float alpha, vec3 color){
 
 {% endhighlight %}
 
-![filter-2](/assets/filter-2.jpg)
+![filter-2](https://farm8.staticflickr.com/7645/16470994114_5d65ea3957_o.jpg)
 
 ### Closure
 
