@@ -26,21 +26,26 @@
   cursor: pointer;
   overflow: hidden;
   transition: opacity .25s ease;
+  -webkit-transition: opacity .25s ease;
 }
 .button-toggle.active .top {
   transform: translateY(9px) translate(0) rotate(45deg);
+  -webkit-transform: translateY(9px) translate(0) rotate(45deg);
   background: #525151;
 }
 .button-toggle.active .middle_1 {
   transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
   background: #525151;
 }
 .button-toggle.active .middle_2 {
   transform: translateX(100%);
+  -webkit-transform: translateX(100%);
   background: #525151;
 }
 .button-toggle.active .bottom {
   transform: translateY(-9px) translateX(0) rotate(-45deg);
+  -webkit-transform: translateY(-9px) translateX(0) rotate(-45deg);
   background: #525151;
 }
 .button-toggle:hover {
@@ -99,6 +104,7 @@
   height: 80%;
   top: 80%;
   transform: translateY(-40%);
+  -webkit-transform: translateY(-40%);
   font-size: 30px;
   font-weight: 400;
 }
@@ -139,6 +145,7 @@
   left: 50%;
   width: 0%;
   transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
   height: 3px;
   background: #fff;
   transition: .35s;
