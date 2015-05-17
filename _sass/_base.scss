@@ -21,11 +21,17 @@ $more-button-color: #979797;
  */
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
+dl, dd, ol, ul, figure, a {
     margin: 0;
     padding: 0;
 }
 
+::selection {
+  background: #f8d8d8; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #f8d8d8; /* Gecko Browsers */
+}
 
 
 /**
@@ -37,6 +43,7 @@ body {
     line-height: $base-line-height;
     color: $text-color;
     -webkit-text-size-adjust: 100%;
+
 }
 
 
