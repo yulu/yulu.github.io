@@ -1,6 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Serif);
 @import url(http://fonts.googleapis.com/css?family=Cantarell);
 
-$base-font-family: Cantarell, serif;
+$base-font-family: sans-serif;
+$content-font-family: sans-serif;
 $text-color: #525151;
 $header-color: #3c3b3b;
 $theme-color: #d62615;
@@ -41,7 +43,7 @@ body {
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
-    font-weight: normal;
+    font-weight: 400;
     color: $text-color;
     -webkit-text-size-adjust: 100%;
 }
@@ -128,8 +130,7 @@ a {
     text-decoration: none;
 
     &:hover {
-        font-weight: bold;
-        text-decoration: none;
+        text-decoration: underline;
     }
 }
 

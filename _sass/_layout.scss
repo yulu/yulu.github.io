@@ -329,6 +329,10 @@ body,
  * CN site
  */
 .cn-title {
+    border-bottom: 0px !important;
+    a:hover {
+        border-bottom: 1px solid $theme-color !important;
+    }
     &,
     &:visited {
         color: $grey-color-dark !important;
@@ -509,7 +513,9 @@ body,
 
 .post-content {
     margin-bottom: $spacing-unit;
-    
+    p {
+        font-family: $content-font-family;
+    }
 
     h2 {
         font-size: 32px;
@@ -552,6 +558,9 @@ body,
         margin-bottom: 50px;
         padding-top: 20px;
         text-align: right;
+        .addthis_button_tweet {
+            border-bottom: 0px !important;
+        }
     }
     
     .share-container {
@@ -578,7 +587,12 @@ body,
     }
     
     a {
-	   color: $theme-color;
+        text-decoration: none;
+        border-bottom: 1px solid $block-quote-color;
+	    color: $theme-color;
+        &:hover {
+            border-bottom: 2px solid $theme-color;
+        }
     }
 
     figcaption {
