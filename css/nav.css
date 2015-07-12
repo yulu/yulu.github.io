@@ -167,13 +167,3 @@
 .overlay .overlay-about a:hover {
   color: #fff;
 }
-@keyframes menuFade {
-  0% {
-    opacity: 0;
-    left: -25%;
-  }
-  100% {
-    opacity: 1;
-    left: 0;
-  }
-}
