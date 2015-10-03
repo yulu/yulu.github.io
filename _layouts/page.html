@@ -10,7 +10,7 @@
     <div class="page-image">
         <span>
             {% for page in site.pages %}
-            {% if page.title and page.title != 'About' %}
+            {% if page.title and (page.title == 'POSTS' or page.title == '朝画夕拾') %}
             <a href="{{ page.url | prepend: site.baseurl }}"><button class="button" id={{ page.title }}>{{ page.title }}</button></a>
             {% endif %}
             {% endfor %}
