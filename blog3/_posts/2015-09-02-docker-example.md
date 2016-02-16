@@ -7,6 +7,12 @@ categories: blog3
 
 文／银大伟，《程序员》2014,09
 
+>Docker是目前非常流行的虚拟化技术，它轻量且易于使用，对系统的侵入性低，非常适合做应用程序部署。本文将通过真实案例展示如何在构建持续交付流程中应用Docker技术，实现更为灵活的持续集成及自动化部署。
+
+近几年，随着DevOps的流行，持续交付（Continuous Delivery,CD）越来越被传统企业所重视。持续交付讲求以短周期，小细粒度，自动化的方式频繁地交付软件。在这个过程中要求开发，测试，用户体验等角色紧密合作，快速收集反馈，从而不断改善软件质量并减少浪费。然而，在我所接触的传统企业中，对于持续交付实践的实施都还非常初级，坦白地说，大部分还停留在手工生成发布包，手工替换文件进行部署的阶段，这样做无疑缺乏管理且容易出错。
+
+究其原因，我想主要是因为构建一个可实际运行且适合企业自身环境的持续发布流程并不简单。然而，Docker作为轻量级的基于容器的解决方案，它对系统侵入性低，容易移植，天生就适合做自动化部署，非常有助于降低构建持续交付流程的复杂度。本文将通过一个实际案例，分享我们在一个真实项目中使用Docker构建持续发布流程的经验总结。
+
 ###项目背景
 
 这是一个来自物流行业的案例，由于近几年业务的飞速发展，企业老的门户网站对于日常访问的订单查询还勉强可以支撑，但每天遇到像“双11”这样访问量成倍增长的情况就很难招架了。因此，这家企业希望我们帮他们开发一个全新的门户网站。
@@ -40,14 +46,14 @@ categories: blog3
 
 Jenkins容器创建一个全新CI的过程变得非常简单，只需下面一行命令就可完成：
 
-```
+{% highlight python %}
 docker run -d -p 9090:8080 --name jenkins
 jenkins:1.576
-```
+{% endhighlight %}
 
 该命令启动Jenkins容器并将容器内部8080端口重定向到主机9090端口，此时访问主机IP:9090，就可能得到一个正在运行的Jenkins服务。为了降低升级和维护成本，可将构建Jenkins容器的所有操作写入Dockerfile，并用版本工具进行管理。如果需要升级Jenkins，那么重新build一次Dockerfile即可。
 
-```
+{% highlight python %}
 FROM ubuntu
 ADD source.list /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q wget
@@ -58,21 +64,21 @@ RUN apt-get install -y -q jenkins
 ENV JENKINS_HOME /var/lib/jenkins/
 EXPOSE 8080
 CMD ["java", "-jar", "/usr/share/jenkins/jenkins.war"]
-```
+{% endhighlight %}
 
 每次build时标注一个新的tag：
 
-```
+{% highlight python %}
 docker build -t jenkins:1.578 --rm . 
-```
+{% endhighlight %}
 
 另外，建议使用Docker volume功能将外部目录挂载到JENKINS_HOME目录（Jenkins会讲安装的插件等文件存放在这个目录），这样保证了升级Jenkins容器后已安装的插件都还在。例如，讲主机/usr/local/jenkins/home目录挂在到容器内部/var/lib/jenkins：
 
-```
+{% highlight python %}
 docker run -d -p 9090:8080 -v /usr/local/
 jenkins/home:/var/lib/jenkins --name
 jenkins jenkins:1.578
-```
+{% endhighlight %}
 
 ####将Docker容器作为Jenkins容器的Slave
 
@@ -80,36 +86,36 @@ jenkins jenkins:1.578
 
 例如，为了构建Java项目，需要创建一个包含JDK及其构建工具的容器。依然适用Dockerfile构建该容器，以下是示例代码（可根据项目实际需要安装其他工具，如Gradle等）：
 
-```
+{% highlight python %}
 FROM ubuntu
 RUN apt-get update && apt-get install -y -q openssh-server openjdk-7-jdk
 RUN mkdir -p /var/run/sshd
 RUN echo 'root:change' |chpasswd
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
-```
+{% endhighlight %}
 
 在这里安装openssh-server的原因是Jenkins需要使用SSH的方式访问和操作Slave，因此SSH应作为每一个Slave必须安装的服务，运行该容器：
 
-```
+{% highlight python %}
 docker run -d -P -name java java:1.7
-```
+{% endhighlight %}
 
 其中，-P是让Docker为容器内部的22端口自动分配重新定向到主机的端口，这时如果执行命令：
 
-```
+{% highlight python %}
 docker ps
 804b1d9e4202    java:1.7    /usr/sbin/sshd -D    6 minutes ago
 Up 6 minutes    0.0.0.0:49153->22/tcp java
-```
+{% endhighlight %}
 
 端口22被重定向到了49153端口。这样，Jenkins就可以通过SSH直接操作该容器了（在Jenkins的Manage Nodes中配置该Slave）。
 
 有了包含构建Java项目的Slave容器后，我们依然要遵循容器中不能存放项目相关数据的原则。因此，又需要借助volume：
 
-```
+{% highlight python %}
 docker run -d -v /usr/local/jenkins/workspace:/usr/local/jenkins -P -name java java:1.7
-```
+{% endhighlight %}
 
 这样，我们在Jenkins Slave中配置的Job、Workspace及下载的源代码都会被放置到主机目录/usr/local/jenkins/workspace下，最终达成了不在容器中放置任何项目数据的目标。
 
@@ -145,7 +151,7 @@ docker run -d -v /usr/local/jenkins/workspace:/usr/local/jenkins -P -name java j
 
 在Dockerfile中使用FROM命令可以帮助构建分层镜像。例如，依据标准化规范，客户的产品环境运行RHEL6.3，因此在测试环境中，我们选择用CentOS 6.3来作为所有镜像的基础操作系统。这里给出从构建base镜像到Java镜像的方法。首先是定义base镜像的Dockerfile：
 
-```
+{% highlight python %}
 FROM centos
 RUN yum install -y -q unzip openssh-server 
 RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
@@ -155,11 +161,11 @@ RUN sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/ss
 ssh/sshd_config
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
-```
+{% endhighlight %}
 
 接着，构建服务层基础镜像Java，依据客户的标准化规范，Java的版本为jdk-6u38-linux-x64：
 
-```
+{% highlight python %}
 FROM base
 ADD jdk-6u38-linux-x64-rpm.bin /var/local/
 RUN chmod +x /var/local/jdk-6u38-linux-x64-rpm.bin
@@ -167,11 +173,11 @@ RUN yes | /var/local/jdk-6u38-linux-x64-rpm.bin &>/dev/null
 ENV JAVA_HOMe /usr/java/jdk1.6.0_38
 RUN rm -rf var/local/*.bin
 CMD ["/usr/sbin/sshd", "-D"]
-```
+{% endhighlight %}
 
 如果还需要构建JBoss镜像，那么将JBoss安装到Java镜像即可：
 
-```
+{% highlight python %}
 FROM java
 ADD jboss-4.3-201307.zip /app/
 RUN unzip /app/jboss-4.3-201307.zip -d /app/ &>/dev/dull && rm -rf /app/jboss-4.3-201307.zip
@@ -179,7 +185,7 @@ ENV JBOSS_HOME /app/jboss/jboss-as
 EXPOSE 8080
 
 CMD ["/app/jboss/jboss-as/bin/run.sh", "-b", "0.0.0.0"]
-```
+{% endhighlight %}
 
 这样，所有使用JBoss应用程序都保证使用与标准化规范定义一致的Java版本和JBoss版本，从而使测试环境更靠近产品环境。
 
@@ -187,40 +193,40 @@ CMD ["/app/jboss/jboss-as/bin/run.sh", "-b", "0.0.0.0"]
 
 为了更好地组织自动化发布脚本，版本化控制是必须的。我们在项目中单独创建了一个目录：deloy，在这个目录下存放所有与发布相关的文件，包括：用于自动化发布的脚本，用于构建镜像的Dockerfile及与环境相关的配置文件等，其目录结构是：
 
-```
-|-README.md
-|-artifacts #war/jar, 数据迁移脚本等
-|-bin       #shell脚本，用于自动化构建镜像和部署
-|-images    #所有镜像的Dockerfile
-|-regions   #环境相关的配置信息，我们只包含本地环境及测试环境
-|-roles     #角色化部署脚本，会在bin中调用脚本
-```
+{% highlight c %}
+├──README.md
+├──artifacts #war/jar, 数据迁移脚本等
+├──bin       #shell脚本，用于自动化构建镜像和部署
+├──images    #所有镜像的Dockerfile
+├──regions   #环境相关的配置信息，我们只包含本地环境及测试环境
+└──roles     #角色化部署脚本，会在bin中调用脚本
+{% endhighlight %}
 
 这样，当需要向某一台机器上安装Java和JBoss镜像时，用下面这条命令即可：
 
-```
+{% highlight python %}
 bin/install.sh images -p 10.1.2.15 java jboss
-```
+{% endhighlight %}
 
 而在部署过程中，我们采用了角色化部署的方式。在roles目录下，它是这样的：
 
-```
-|-nginx
-| └──deploy.sh
-|-opencms
-| └──deploy.sh
-|-service-backend
-| └──deploy.sh
-|-service-web
-| └──deploy.sh
+{% highlight c %}
+├──nginx
+│  └──deploy.sh
+├──opencms
+│ └──deploy.sh
+├──service-backend
+│ └──deploy.sh
+├──service-web
+│ └──deploy.sh
 └──utils.sh
-```
+{% endhighlight %}
 
 这里我们定义了四种角色：ngix、opencms、service-backend和service-web。每个角色下都有自己的发布脚本。例如，当需要发布service-web时，可以执行命令：
 
-```
+{% highlight python %}
 bin/deploy.sh -e test -p 10.1.2.15 service-web
-```
+{% endhighlight %}
 
 该脚本会加载由-e指定的test环境的配置信息，并讲service-web部署至IP地址为10.1.2.15的机器上。而最终，bin/deploy.sh会调用每个角色下的deploy.sh脚本。
 
@@ -232,7 +238,7 @@ bin/deploy.sh -e test -p 10.1.2.15 service-web
 
 Vagrant（http://www.vagrantup.com）是很好的本地化虚拟化工具，与Docker结合可以很容易地在本地搭建起与测试环境几乎相同的环境。以这个项目为例，可以使用Vagrant模拟两台机器。以下是Vagrant示例：
 
-```
+{% highlight python %}
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "server1", primary: true do |server1|
         server1.vm.box = "raring-docker"
@@ -243,7 +249,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             server2.vm.network :private_network, ip: "10.1.2.16"
     end
 end
-```
+{% endhighlight %}
 
 由于部署脚本通常采用SSH当方式连接，所以完全可以把这两台虚拟机看做是网络中的两台机器，可以调用部署脚本验证是否正确。
 
@@ -253,31 +259,31 @@ end
 
 构建本地的Registry非常简单，执行下面的命令：
 
-```
+{% highlight python %}
 docker run -p 5000:5000 registry
-```
+{% endhighlight %}
 
 关于如何使用Registry的更多信息，参见：https://github.com/docker/docker-registry
 
 在搭建好Registry后，就可以向它push自己的镜像了。例如：需要将base镜像提交至Registry：
 
-```
+{% highlight python %}
 docker push your_registry_ip:5000/
 base:centros
-```
+{% endhighlight %}
 
 而提交Java和JBoss也相似：
 
-```
+{% highlight python %}
 docker push your_registry_ip:5000/java:1.6
 docker push your_registry_ip:5000/jboss:4.3
-```
+{% endhighlight %}
 
 使用下面的方式下载镜像：
 
-```
+{% highlight python %}
 docker pull your_registry_ip:5000/jboss:4.3
-```
+{% endhighlight %}
 
 ###总结
 

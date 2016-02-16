@@ -5,7 +5,7 @@ $base-font-family: sans-serif;
 $content-font-family: sans-serif;
 $text-color: #525151;
 $header-color: #3c3b3b;
-$theme-color: #d62615;
+$theme-color: #34215A;
 $block-background-color: #fdfafa;
 $header-background-color: rgba(255, 255, 255, 0.88);
 $header-shadow-color: #636262; 
@@ -29,10 +29,10 @@ dl, dd, ol, ul, figure, a {
 }
 
 ::selection {
-  background: #f8d8d8; /* WebKit/Blink Browsers */
+  background: #DDD9E4; /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-  background: #f8d8d8; /* Gecko Browsers */
+  background: #DDD9E4; /* Gecko Browsers */
 }
 
 
