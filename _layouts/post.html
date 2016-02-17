@@ -8,9 +8,7 @@
     {% include header.html %}
 
     <div class="post-image-container">
-        {% if page.image %}
-        <img class="post-image" src="../../../../assets/{{ page.image }}"/>
-        {% elsif page.image_url %}
+        {% if page.image_url %}
         <img class="post-image" src="{{ page.image_url }}"/>
         {% else %}
         <img class="post-image" src="https://c2.staticflickr.com/2/1501/25042644286_11a49077d1_h.jpg"/>
