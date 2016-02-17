@@ -12,7 +12,7 @@ Update on July 18, 2013:
 
 Feature descriptors are commonly used in lots of computer vision algorithms - object recognition, tracking, image stitching camera calibration and etc. I used it in three different types of tasks - tracking for AR, panorama creation and visual classification. Recently I conducted a detail analysis of the state-of-the-art detectors and descriptor-generators, since I am considering to try different algorithms in  some of my undergoing research projects as well as for the purpose of my paper revision [I hate this  most! :( ]. Here is a good [report](http://computer-vision-talks.com/2011/08/feature-descriptor-comparison-report/) about descriptor comparison. In the post I briefly summarized the most popular open source detectors and descriptors (All of them are implemented in newest version of OpenCV). 
 
-####SIFT(2003)
+#### SIFT(2003)
 
 SIFT descriptor is a classic approach, also the "original" inspiration for most of the descriptors proposed later. Up to date, it still outperforms most of the descriptors in the field. The drawback  is that it is mathematically complicated and computationally heavy.  Main issues it addresses are the scaling-invariance and orientation-invariance in describing the features.
 
@@ -24,13 +24,13 @@ Descriptor: To describe the keypoints, SIFT make uses of the local gradient valu
 
 ![desc-2](/assets/desc-2.png)
 
-####FAST(2006)
+#### FAST(2006)
 
 FAST is a standalone feature detector (not descriptor generator). It is designed to be very efficient and suitable for real-time applications of any complexity. The segment test criterion operates by considering a circle of sixteen pixels around the corner candidate p. The original detector classifies p as a corner if there exists a set of n contiguous pixels in the circle which are all brighter than the intensity of the candidate pixel Ip plus a threshold t, or all darker than Ip - t, as illustrated below. To speed up the detector, a machine learning approach is adopted, and a decision tree is generated. The detail discussion is in the paper. FAST is only a detector, but it is proven to be quite reliable and used in the upstream for lots of other descriptor generating process.
 
 ![desc-3](/assets/desc-3.png)
 
-####SURF(2008)
+#### SURF(2008)
 
 SURF detector is recognized as a more efficient substitution for SIFT. It has a Hessian-based detector and a distribution-based descriptor generator.
 
@@ -44,7 +44,7 @@ Descriptor: An orientation is first assigned to the keypoint. Then a square regi
 
 ![desc-4](/assets/desc-4.png)
 
-####BRIEF(2010)
+#### BRIEF(2010)
 
 BRIEF descriptor is a light-weight, easy-to-implement descriptor based on binary strings. Binary test is explored in FERN algorithm, which is a Naive-Bayesian classifier method for feature matching. BRIEF descriptor targeted to low-power devices, and compensate some of its robustness and accuracy to the efficiency. It is a standalone descriptor generator, an upstream detector, such as FAST is required.
 
@@ -52,7 +52,7 @@ The approach is to define a test pattern (experiment indicates Gaussian distribu
 
 ![desc-5](/assets/desc-5.png)
 
-####ORB(2011)
+#### ORB(2011)
 
 ORB is an extension of BRIEF descriptor by introducing orientation invariance. It uses FAST detector with an orientation assignment by intensity centroid. To describe the feature, BRIEF pattern is rotated with orientation angles and a good pattern distribution is trained from the large rotated pattern database. A bit more detail about ORB is summarized here.
 
@@ -66,7 +66,7 @@ A vector from the corner's center to centroid can be calculated, and the orienta
 
 Descriptor: The test pattern is steered according to the orientation of the keypoints. But the steered BRIEF lowers its variance because the oriented corner keypoints present a more uniform appearance to binary tests. To recover from the loss of variance in steered BRIEF, a learning method is developed to select a good subset from the binary test pool. The results rBRIEF has a better diversity and lower correlation.
 
-####BRISK(2011)
+#### BRISK(2011)
 
 BRISK is more recent method based on scale-space enabled FAST for testing and binary test patterns for describing.
 
@@ -78,7 +78,7 @@ Descriptors: BRISK is a 512 bit binary descriptor that computes the weighted Gau
 
 ![desc-7](/assets/desc-7.png)
 
-####FREAK(2012)
+#### FREAK(2012)
 
 FREAK is a standalone descriptor. It improves upon the sampling pattern and method of pair selection that BRISK uses. FREAK evalues 43 weighted Gaussians at locations around the keypoint, but the pattern formed by these Gaussians is biologically inspired by the retinal pattern in the eye. The pixels being averaged overlap, and are much more concentrated near the keypoint. The actual FREAK algorithm uses a cascade for comparing these pairs, and puts the 64 most important bits in front to speed up the matching process.
 

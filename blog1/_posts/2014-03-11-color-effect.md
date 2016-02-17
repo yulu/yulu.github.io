@@ -13,11 +13,11 @@ It has been a year! A year ago I put up some posts on image processing using Sha
 
 Being busy with study, I could barely spare time working on this topic. But ideas and inspirations always jumped out sometime that I could stop but to code. Whenever I came across a nice picture, a smart algorithm or anything that reminds me the fantasy of the world we viewed, I would noted down and later explored on it. Thanks to the Pixel Shader by Toby Schachman, I could instantly experiment on my ideas (also a lot of inspirations are from this interactive book). I gathered all the ideas of color and art effects and deliver a new camera app that allows us to explore the combination of filter effects on real-time. I also put the source code of some filter effects discussed here into a simple demo app for sharing.
 
-###The Tricks of Colors
+### The Tricks of Colors
 
 Colors can perform magic tricks I believe. The tone of a picture sometimes touches us more than the subjects do. I explored the idea of adjust the B/S/C of an image and blend color map on an image previously1. With the same blending process, here are some more interesting color gradient maps I could share.
 
-####Color Gradient on the Fly 
+#### Color Gradient on the Fly 
 
 Previously I bind a color gradient map or pattern as a texture to an opengl target to perform the blending. Later I realized that the shader itself can produce color gradient map (or patterns) by playing around with the positions of the texels.
 
@@ -97,7 +97,7 @@ Cool Gradient
 </figcaption>
 ![cool_gradient](https://farm9.staticflickr.com/8692/16991573076_769edeae5e_o.jpg)
 
-####Blend Functions One More Time
+#### Blend Functions One More Time
 
 With these beautiful colors, I can blend them on an image and get the effect I want! Review the three blend mode4 that is being used mostly.
 
@@ -153,9 +153,9 @@ vec3 OvelayBlender(vec3 Color, vec3 filter){
 ![flower](https://farm8.staticflickr.com/7608/17017567585_c241dfb69f_o.jpg)
 
 
-###Being an Artist
+### Being an Artist
 
-####How to Draw
+#### How to Draw
 
 Forget about the codes and equations for a while, let's talk about how to draw on paper (here, actually I drew this on iPad, but I think it's similar) A sketch of the outline is first created. Then roughly blend the color on it. If want a finer look, nicely touch on some details. This is a simple approach I used to draw.
 
@@ -176,7 +176,7 @@ Now, we can sketch and blend:
 
 ![outline](https://farm9.staticflickr.com/8702/16991579826_1132fbe75d_o.jpg)
 
-####Masters' Styles: Just for Fun
+#### Masters' Styles: Just for Fun
 
 ![waterlili](https://farm9.staticflickr.com/8736/16810167707_7dd748ca50_o.jpg)
 
@@ -203,7 +203,7 @@ vec2 circular(vec2 position){
 
 Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally6, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
 
-###Comic Book
+### Comic Book
 
 We often see dots in American comics. Ben-Day7 dots was invented dating back to 1879, to produce more dynamic colors in printing, e.g. spaced dots of red colors gives pink. Later it was explored by pop artists to produce illustrations. Same in black-and-white Japanese comics, gray areas are sometimes shaded by strips. The intention of using dots and strips patterns in comics have gave me this inspiration - how about check the intensities of the texels, on the texels that are within a defined gray region, overlay the patterns. What kind of effect can I get?
 
@@ -254,7 +254,7 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
 ![algo](https://farm8.staticflickr.com/7588/17016692551_0a088402e5_o.jpg)
 
 
-###The Issue!
+### The Issue!
 
 I think I have not really figured out the way to do blurring. Blur effect seems to be very popular after the releasing of IOS7. Gaussian blur however involves heavy computation. I tried using 9-by-9 Gaussian kernels to do blurring, with the optimized method proposed by Daniel Rakos8, it runs really slowly on my Note II! So I give up the idea of trying filtering multiple times or with larger sized kernel. I also studied through the post and dig into the codes by Brad Larson9, luckily I learned the way to write loop for shader! However I still cannot got the idea to do a fast blur with larger sized Gaussian kernel. How can it be so fast on iPhone? Is it the hardware issue or my understanding is not accurate. I think there should be smarter way to implement blurring. Later I will revisit some fundamentals of OpenGL.
 
@@ -287,7 +287,7 @@ vec3 main()
 ![scene](https://farm9.staticflickr.com/8735/16395151344_e533fac091_o.jpg)
 
 
-###Closure
+### Closure
 
 It is wonderful to combine the two things I like most - coding and painting together, to create something beautiful and smart. Hope this will give you little hints in your hacking. Happy coding, and photographing! Painting also!
 

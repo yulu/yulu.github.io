@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2010-09-04 21:00:00
 title: 明日即天涯5-天上的门
-image_url: https://farm8.staticflickr.com/7633/17030072361_6514c00503_o.jpg
+image_url: 'https://farm8.staticflickr.com/7633/17030072361_6514c00503_o.jpg'
 image_caption: "米兰火车站是当年清朝政府赔款在米兰修建的，欧洲城市的火车站是一道极美的风景线。但是米兰火车站里精美的浮雕和大理石像，藏匿着中国百年前的没落，让人寒心。"
 ---
 

@@ -4,7 +4,6 @@ category: blog2
 date: 2010-07-15 21:00:00
 title: 明日即天涯2－大城市小弄堂
 image_url: https://farm8.staticflickr.com/7641/16823513697_6cc70e5293_o.jpg
-image_caption: "小牛皮包，真是明智的选择，折腾了四十天还完好无损。打折的旅行箱就没有这么好运气了，一路下来几乎夭折。"
 ---
 
 <figcaption class="reading-notes">

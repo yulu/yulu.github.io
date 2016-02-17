@@ -7,7 +7,7 @@ categories: blog1
 
 Occasionally I receives emails asking how to render Camera Frame using OpenGL ES on Android. I lazily used some codes from an open source project [InstaCam](https://github.com/harism/android_instacam) without fully understand until recently I reviewed some fundamentals of OpenGL ES and re-impelemented a demo app for camera frame rendering using shaders. This post is to discuss some key aspects in the implementation and share the demo codes.
 
-###CameraRenderer
+### CameraRenderer
 
 Drawing using OpenGL is implemented by rendering on `GLSurfaceView`. The common approach is subclass the `GLSurfaceView` and implements the `GLSurfaceView.Renderer`. The rendering tasks are performed by implementing the interface.
 
@@ -37,7 +37,7 @@ public class CameraRenderer extends GLSurfaceView implements
 }
 {% endhighlight %}
 
-###SurfaceTexture
+### SurfaceTexture
 
 `SurfaceTexture` Interface provided by Android SDK (API Level 11+) has made our life much easier when dealing with image streaming either from Camera or MediaPlayer. `SurfaceTexture` is bound with an OpenGL Texture id at its instantiate (`mCameraTexture` is discussed later, which generates OpenGL texture handle):
 
@@ -177,6 +177,6 @@ void main(){
 }
 {% endhighlight %}
 
-###Closure
+### Closure
 
 Some details are not covered in the post. It might be confusing by looking at the code fragments above. Here what I want to do is to take note of the critical steps in my implementation for my own record. I think it will be much helpful to go through the complete implementation of the [demo app](https://github.com/yulu/ShaderCam) (which is quite concise, only a few hundered lines of codes). What will be more interesting? Try to replace the fragment shader with some funny shaders in [Instagram Filter](https://github.com/yulu/Instagram_Filter) and [Shader Filter](https://github.com/yulu/ShaderFilter), to see the interesting filter applied real-time on camera view.

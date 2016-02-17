@@ -5,23 +5,23 @@ date:   2013-04-25 19:00:00
 categories: blog1
 ---
 
-###Rationale
+### Rationale
 
 The inspirations are from some researches [1][2] in Server-client structure for large-scale AR tracking system. What I'm going to explored as illustrated in the figure below, is to build a backend server for my current outdoor tracking system running solely on the client device currently.
 
 ![reco-1](/assets/reco-1.png)
 
-###Bag-of-Feature Visual Recognition
+### Bag-of-Feature Visual Recognition
 
 ![reco-2](/assets/reco-2.png)
 
-####Bag-of-Features
+#### Bag-of-Features
 
 Bag of features (bag of words) models are a popular technique for image classification inspired by models used in natural language processing. The model ignores or downplays word arrangement and classifiers based only on a histogram of frequency of visual words. Figure here depicts the difference of histogram distribution of the different textures trained against a collections of features (codebook).
 
 ![reco-3](/assets/reco-3.png)
 
-####Generate "Visual Words"
+#### Generate "Visual Words"
 
 The basic steps to generate "visual words" for an image is first to extract features from the image, then a "visual vocabulary" needs to be learned from the features. For each image, the features are quantized using the "visual vocabulary" and represented by frequencies of "visual words".
 
@@ -55,7 +55,7 @@ The entropy weight wi is defined below. This results in a TF-IDF scheme. It is f
 K-nearest neighbours classification method is used. Among the top n scores, the category which the most-voted image is from is selected as the classification result. A very good implementation can be found in[6].
 
 
-####Reference
+#### Reference
 
 [1] J. Ha, K. Cho et al. Real-Time Scalable Recognition and Tracking based on the Server-client Model for Mobile Augmented Reality. IEEE International Symposium on Virtual Reality Innovation 2011
 

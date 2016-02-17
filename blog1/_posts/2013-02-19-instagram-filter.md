@@ -32,7 +32,7 @@ Basically that's it! Just simply three steps: 1) adjust B/C/S, 2) adjust color b
 
 So, I have three things to do: adjust the B/C/S, change the color balance and add a new layer of texture to overlay blend on top.
 
-####Adjust the B/C/S
+#### Adjust the B/C/S
 
 In my previous post, I have discussed all the three processes, I just combine them into a single function in the Fragment Shader.
 
@@ -49,7 +49,7 @@ vec3 BrightnessContrastSaturation(vec3 color, float brt, float con, float sat){
 }
 {% endhighlight %}
 
-####Adjust color
+#### Adjust color
 
 I slightly adjust the single channel.
 
@@ -58,7 +58,7 @@ I slightly adjust the single channel.
 vec3 blue_result = vec3(bcs_result.r, bcs_result.g, bcs_result.b * 1.1);
 {% endhighlight %}
 
-####Overlay blending
+#### Overlay blending
 
 The function of overlay blending:
 
@@ -85,7 +85,7 @@ The result from shader implementation:
 
 ![ins-7](/assets/ins-7.png)
 
-####Some Other Exploration
+#### Some Other Exploration
 
 Similarly I create more filters to mimic the Instagram® style.
 

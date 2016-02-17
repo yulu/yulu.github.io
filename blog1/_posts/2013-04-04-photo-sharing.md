@@ -7,7 +7,7 @@ categories: blog1
 
 I have spent some time to play around with [Facebook](https://developers.facebook.com/android/) and [Weibo](http://open.weibo.com/wiki/SDK#Android_SDK) SDK for Android and create an app for photo-sharing to Facebook and Weibo with in-app log in. Here are the steps and tips. The source code is available in my [Github Repo](https://github.com/yulu/SocialShare). Before it can be built and run, some steps need to be done first:
 
-####For Facebook (details in section 2)
+#### For Facebook (details in section 2)
 
 1. Download Facebook SDK and add the correct dependency path
 
@@ -15,7 +15,7 @@ I have spent some time to play around with [Facebook](https://developers.faceboo
 
 3. Fill in your own app id in res/values/strings.xml
 
-####For Weibo (details in section 3)
+#### For Weibo (details in section 3)
 
 1. Add the weibo lib (.jar) file in libs.
 
@@ -25,7 +25,7 @@ I have spent some time to play around with [Facebook](https://developers.faceboo
 
 ### 1. Create an app with simple UI
 
-####1.1 Main Activity Layout
+#### 1.1 Main Activity Layout
 
 The UI is minimum. Take notes that the uri (local path) of the image needs to be passed to the two new activities which are triggered by the "Facebook" and Weibo" buttons. Since the screen sizes differ for phones, some photo might be too large to be displayed, you may want to resize it before display (not done in the sample code).
 
@@ -65,7 +65,7 @@ The main UI:
 
 ![share-1](/assets/share-1.png)
 
-####1.2 Dialog layout for Log-in
+#### 1.2 Dialog layout for Log-in
 
 The Facebook Log-in button is default, and similar button for weibo log-in is drawn by myself. When the user logged in, the profile image is displayed for the confirmation of the user id.
 
@@ -75,13 +75,13 @@ The Facebook Log-in button is default, and similar button for weibo log-in is dr
 
 [Here](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/) is a must-go-through tutorial for Facebook integration in Android app. The main points summarized below
 
-####2.1 Add dependency
+#### 2.1 Add dependency
 
 If the Facebook lib conflict with the project, a error will be shown. Just delete the android-support-v4.jar file in libs folder.
 
 ![share-3](/assets/share-3.png)
 
-####2.2 Declare Activities in the Manifest
+#### 2.2 Declare Activities in the Manifest
 
 Delcare not only the self-defined activity from which the Facebook log-in is called, but also the default Facebook Log-in activity
 
@@ -105,7 +105,7 @@ Delcare not only the self-defined activity from which the Facebook log-in is cal
     android:value="@string/fb_app_id"/>
 {% endhighlight %}
     
-####2.3 Generate Key Hash
+#### 2.3 Generate Key Hash
 The tutorial has talked about it carefully. It is an IMPORTANT step, I stuck in the development for a long time because I didn't realize I should do this first! Use the keytool to generate the key hash and filled in at the development page app settings accordingly.
 
 {% highlight c %}
@@ -114,7 +114,7 @@ keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore |
 
 ![share-4](/assets/share-4.png)
 
-####2.4 Add the app_id to the project
+#### 2.4 Add the app_id to the project
 
 Add the app_id provided by Facebook in the project /res/values/strings.xml
 
@@ -124,13 +124,13 @@ If all the above have been carefully done, the Facebook Log-in should work and c
 
 ### 3. Weibo Log-in
 
-####3.1 Add the Weibo lib in the project
+#### 3.1 Add the Weibo lib in the project
 
 The weibo.sdk.android.sso.jar file should be included in the download zip file from the web. It should be put inside the libs folder. Also a class is copied from the sample code to manage the access token (AccessTokenKeeper.java).
 
 ![share-6](/assets/share-6.png)
 
-####3.2 Fill the App Key
+#### 3.2 Fill the App Key
 
 The same as the Facebook app, the app key is required in the res/values/strings.xml
 
@@ -142,7 +142,7 @@ If the log-in user is not the developer of the sample app (app still under devel
 
 ![share-8](/assets/share-8.png)
 
-####3.4 Get the Profile Image
+#### 3.4 Get the Profile Image
 
 Weibo SDK does not have default function to load the user profile image. We need to use the AccountAPI object and UsersAPI object, and listening for the query of an Json object. The user profile image url is referred by the "avatar_large" parameter.
 

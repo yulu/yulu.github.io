@@ -7,7 +7,7 @@ title: 他们是如何开始的
 
 最近看完了这本书《How they started DIGITAL》。讲述了25个电子商业巨头是如何从一个想法发展起来的。很多故事非常的有趣并且具有启发性。所以翻译总结了一些吸引我的章节。也算是读了好几年英文和中文科技博后，一次正式的自己翻译文章。以后会持续纪录。
 
-####谷歌（Google）
+#### 谷歌（Google）
 
 创始人：Sergey Brin （24,斯坦福计算机科学博士）Larry Page (25,斯坦福计算机科学博士）
 
@@ -28,7 +28,7 @@ Sergrey和Larry都是在科学氛围浓郁的家庭中长大的。Larry的父亲
 
  
 
-####皮克斯（Pixar）
+#### 皮克斯（Pixar）
 
 创始人：Ed Catmull（41， 计算机图像图形PhD） John Lasseter（29， 迪斯尼动画设计师） Steve Jobs（30， 苹果创始人）
 创世于：1986，美国
@@ -46,7 +46,7 @@ Ed Catmull在1974拿到了计算机图形图像研究的博士学位。他是星
 
  
 
-####Dropbox
+#### Dropbox
 
 创始人：Drew Houston (24，电脑奇客）Arash Ferdowsi (21，电脑奇客）
 创始于：2007, 美国

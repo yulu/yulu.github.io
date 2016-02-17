@@ -136,7 +136,7 @@ vec3 filter()
 
 Diffuse glow effect, as termed in Photoshop, gives the image a smooth, dreamy and lightening effect. It softens the skin color if applied to portrait images. I have done some research on Google, however could not find a detail explanation of the mechanism of this effect. Then I dig deep into the codes of the open source image processing software GIMP (It can be cloned from git by git clone git://git.gnome.org/gimp). The effect is termed as Soft Glow Filter in GIMP, and the source code can be found under the plug-in/common folder. Modified for an efficient implementation using Shaders, the steps are summaried:
 
-####1. Gaussian Blur
+#### 1. Gaussian Blur
 
 A 3x3 Gaussian Blur box is used for a fast implementation. Slightly adjust the pixel size here to achieve a stronger blurring effect.
 
@@ -159,7 +159,7 @@ vec3 sample8=(texture2D(sTexture, vec2(texturePos.x+dx, texturePos.y-dy)).rgb);
 
 {% endhighlight %}
 
-####2. Desaturation
+#### 2. Desaturation
 
 Mix with luminance image of itself we can get the saturated image.
 
@@ -173,7 +173,7 @@ vec3 saturation(vec3 color, float sat) {
 }
 {% endhighlight %}
 
-####3. Sigmoidal Transfer
+#### 3. Sigmoidal Transfer
 
 A sigmoid function, which has an "S" shape,  is defined as below. The parameters are adopted from the open source codes of GIMP. (It is a curve adjusting process)
 
@@ -198,7 +198,7 @@ vec3 sigmoid(vec3 color) {
 
 {% endhighlight %}
  
-####4. Screen Blend
+#### 4. Screen Blend
 
 With screen blend mode the values of the pixels in the two layers are negated, multiplied, and then negated again. The result is a brighter picture:
 
