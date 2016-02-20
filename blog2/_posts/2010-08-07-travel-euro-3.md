@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2010-08-07 21:00:00
 title: 明日即天涯3－狂欢巴黎
-image_url: "https://farm8.staticflickr.com/7587/16823517237_e5a19e8f31_o.jpg"
+image_url: 'https://farm8.staticflickr.com/7587/16823517237_e5a19e8f31_o.jpg'
 image_caption: "爱极了蓬皮杜的小广场，一群一群的年轻人在这里聊天，喝酒，弹琴，充满自由的气息。我就枕着包躺着，看天空中飞机划过……"
 ---
 

@@ -8,7 +8,7 @@
     {% include header.html %}
     
     <div class="page-image">
-        <span>
+        <span style="z-index: 20;">
             {% for page in site.pages %}
             {% if page.title and (page.title == 'POSTS' or page.title == '朝画夕拾') %}
             <a href="{{ page.url | prepend: site.baseurl }}"><button class="button" id={{ page.title }}>{{ page.title }}</button></a>
