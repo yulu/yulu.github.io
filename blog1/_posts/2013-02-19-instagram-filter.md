@@ -7,26 +7,26 @@ categories: blog1
 
 I used to spend quite some time working with Photoshop®, to edit photos or do some digital painting. However I became too lazy to PS since I started to use smartphones. Apps like Instagram® seems to be able to do the processing job more efficiently and produce results that look surprisingly amazing (not considering the quality loss of the photo). After studying the OpenGL Shaders, I thought I should be enable to do mimic the filter effect using shaders, with those previous experience working with Photoshop®. I could first explore in Photoshop® to figure out the steps to take to produce the filter effect. Then I could implement it using OpenGL ES Shaders. After spending some time in research, I kind of found the way to duplicate the filter effect, might not be exactly the same, but the feeling is captured. Take the Hudson filter as an example, I summarized the work I have done.
 
-![ins-1](/assets/ins-1.png)
+![ins-1](https://c1.staticflickr.com/9/8742/17067546716_44fe02ee61.jpg)
 
 ### Working with Photoshop®
 
 Learned from a digital photography course in the college, the first thing we need to do when loading an photo into the Photoshop, is to adjust the level and curve. However I think level and curve adjusting is not that easy to implement in the shaders. How about a less effective but simpler way: adjust Brightness/Contrast/Saturation. All these three steps can be easily realized by blending the image with a base image (either a constant image or the luminanced image of itself). By simply doing these, the quality of the image can be improved quite a lot.
 
 
-![ins-2](/assets/ins-2.png)
+![ins-2](https://c2.staticflickr.com/8/7665/17067547336_95c1901627.jpg)
 
-![ins-3](/assets/ins-3.png)
+![ins-3](https://c2.staticflickr.com/8/7671/16886111067_a545bbf835.jpg)
 
 Then if the filter favors a particular color, can adjust the color balance a bit. Or can also add a filter layer on top then blend it with the base image. Hudson is a filter to make the image have an icy look, the slight tint and altered lighting give the images a colder feel. Therefore a radial gradient mask with blue to black is used for blending. With a lot trials, I found that overlay blending mode is best suitable to produce the vignetting effect (darkens the corners). Overlay blending is a combination of multiply and screen. It darkens the darker part and brightens the lighter part of the base image. And we can adjust the opacity of the top filtering layer to make the effect less strong.
 
-![ins-4](/assets/ins-4.png)
+![ins-4](https://c2.staticflickr.com/8/7674/16905949040_cb6e62df4b.jpg)
 
-![ins-5](/assets/ins-5.png)
+![ins-5](https://c2.staticflickr.com/8/7605/17067549246_c611ab20de_z.jpg)
 
 Basically that's it! Just simply three steps: 1) adjust B/C/S, 2) adjust color balance, 3) overlay blend a radial gradient layer with some opacity. Let's see the result. Emm.. not exactly, but similar.
 
-![ins-6](/assets/ins-6.png)
+![ins-6](https://c2.staticflickr.com/8/7600/16907301009_156210a24a.jpg)
 
 ### Implement using OpenGL ES Shaders
 
@@ -83,7 +83,7 @@ vec3 ovelayBlender(vec3 Color, vec3 filter)
 
 The result from shader implementation:
 
-![ins-7](/assets/ins-7.png)
+![ins-7](https://c1.staticflickr.com/9/8696/16471061984_33530f710f.jpg)
 
 #### Some Other Exploration
 

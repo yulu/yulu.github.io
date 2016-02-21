@@ -3,9 +3,12 @@ layout: post
 title:  "True to Yourself"
 date:   2013-03-30 19:00:00
 categories: blog1
-video: "https://www.youtube.com/embed/c0KYU2j0TM4?rel=0&autoplay=0&showinfo=0&controls=0"
 image_caption: "To show the world what you carry in your suitcase bravely and, to speak softly."
 ---
+
+<div class="video-container">
+    <iframe class="video-frame"  width="640" height="360" src="https://www.youtube.com/embed/c0KYU2j0TM4?rel=0&autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+</div>
 
 "Why are you being so mellow?" I was quite often, actually I AM still occasionally, being asked on this question. I am a typical introvert, and I was aware of this quite well since I was small. However for a very long time, I felt uncomfortable and even guilty being quiet among people.
 

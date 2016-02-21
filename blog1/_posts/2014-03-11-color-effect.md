@@ -3,7 +3,7 @@ layout: post
 title:  "Color and Art Effect by OpenGL Shaders on Android"
 date:   2014-03-11 22:48:25
 categories: blog1
-image: starry-night.jpg
+image_url: https://c2.staticflickr.com/8/7603/16886024207_895d74f072_h.jpg
 ---
 
 

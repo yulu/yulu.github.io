@@ -3,7 +3,7 @@ layout: post
 title:  "UI/UX Design for Blender Camera"
 date:   2014-04-10 22:48:25
 categories: blog1
-image: blender.png
+image_url: https://c1.staticflickr.com/9/8684/16473297463_d2289f306f_b.jpg
 ---
 
 This is the first time I practice a methodological design process for Android app. I did not have any professional training on graphic/UI/UX design, just did every step with intuition. Here I note down the process.

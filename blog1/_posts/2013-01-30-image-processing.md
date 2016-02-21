@@ -11,7 +11,7 @@ I have taken a very long time to get myself familiar with OpenGL ES Shaders. Fin
 
 [Here](http://www.learnopengles.com/android-lesson-one-getting-started/) is a good online tutorial to get start with on OpenGL ES 2.0 for Android. A simple project of texture mapping is created. It basically maps an bitmap image to a square fragment that fits into the window size of the device. The fun things I am going to do start from this stage.
 
-![rendering](/assets/texture_rendering.png)
+![rendering](https://c2.staticflickr.com/8/7614/16905771328_c58d995850_z.jpg)
 
 ### Basic Concepts
 
@@ -52,14 +52,14 @@ void main()
 <figcaption>
 Illuminance Adjustment
 </figcaption>
-![illuminance](/assets/illuminance.png)
+![illuminance](https://c2.staticflickr.com/8/7625/16907296299_82e96ecba3_z.jpg)
 
 *Hue shifting*: the RGB is first converted into the HSV color space, the hue shifting is just a adjustment of the h value in degree.The code is a bit long, check it out in the source code directory.
 
 <figcaption>
 Hue Shift
 </figcaption>
-![hueshift](/assets/hueshift.png)
+![hueshift](https://c2.staticflickr.com/8/7630/17093504515_9523c3c071_z.jpg)
 
 *Negative*: negative is obtained by subtracting the color of each pixel from the white
 
@@ -82,7 +82,7 @@ void main()
 <figcaption>
 Negative
 </figcaption>
-![negative](/assets/negative.png)
+![negative](https://c2.staticflickr.com/8/7588/17067558526_7787654204_z.jpg)
 
 *Brightness*: add or subtract black can be used to adjust the brightness of the image
 
@@ -105,7 +105,7 @@ void main()
 <figcaption>
 Brightness Adjustment
 </figcaption>
-![brightness](/assets/brightness.png)
+![brightness](https://c1.staticflickr.com/9/8768/16473298933_3a217ae515_z.jpg)
 
 *Contrast*: use a gray image as a base image, and mix with the color image. It can be made either move the color component towards the gray or away from. That is how the contrast is adjusted.
 
@@ -152,7 +152,7 @@ The twirl transformation rotates the image around a given anchor point(xc, yc) b
 <figcaption>
 Twirl
 </figcaption>
-![twirl](/assets/twirl.png)
+![twirl](https://c2.staticflickr.com/8/7689/16473395223_2cae1c636e_z.jpg)
 
 #### Image processing/vision
 
@@ -161,14 +161,14 @@ Twirl
 <figcaption>
 Edge Detection
 </figcaption>
-![edge](/assets/edge.png)
+![edge](https://c1.staticflickr.com/9/8790/17093470525_f64935b03a_z.jpg)
 
 *Blurring*: 3x3 Gaussian filter s used for blurring in this case. The result is not a obvious since a small radius is used.
 
 <figcaption>
 Blur Effect
 </figcaption>
-![blurring](/assets/blurring.png)
+![blurring](https://c2.staticflickr.com/8/7691/17091947422_fbb60308e9_z.jpg)
 
 #### Artistic Effect
 
@@ -177,14 +177,14 @@ Blur Effect
 <figcaption>
 Emboss Effect
 </figcaption>
-![emboss](/assets/emboss.png)
+![emboss](https://c1.staticflickr.com/9/8793/17093478185_5feab22704_z.jpg)
 
 *Toon like image*: steps includes -Calculate the luminance of each pixel, apply the Sobel filter to detect edge and get a magnitude, if magnitude is larger than the threshold, color the pixel black, else quantize the pixel's color.
 
 <figcaption>
 Toon Effect
 </figcaption>
-![toon](/assets/toon.png)
+![toon](https://c2.staticflickr.com/8/7612/17093548725_9cf8a4e090_z.jpg)
 
 ### Closure
 

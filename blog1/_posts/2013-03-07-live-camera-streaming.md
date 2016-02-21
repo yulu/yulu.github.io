@@ -59,4 +59,4 @@ static inline void color_convert_common(
 
 {% endhighlight %}
 
-The Android project source code can be pulled from the my [github](). There are a TextView class I added on, just a test of another app under development of mine. The issue I encountered currently is that texture mapping is not working in my HTC One X with image dimension more than 128x128. So the code might not be working on devices other than Samsung Galaxy S3 (the only device on hand for testing).
+The Android project source code can be pulled from the my [github](https://github.com/yulu/GLTexture). There are a TextView class I added on, just a test of another app under development of mine. The issue I encountered currently is that texture mapping is not working in my HTC One X with image dimension more than 128x128. So the code might not be working on devices other than Samsung Galaxy S3 (the only device on hand for testing).

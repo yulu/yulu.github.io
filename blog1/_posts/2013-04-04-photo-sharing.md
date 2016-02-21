@@ -63,13 +63,13 @@ weiboButton.setOnClickListener(new OnClickListener(){
 
 The main UI:
 
-![share-1](/assets/share-1.png)
+![share-1](https://c2.staticflickr.com/8/7701/16907323929_9fddfc133a_z.jpg)
 
 #### 1.2 Dialog layout for Log-in
 
 The Facebook Log-in button is default, and similar button for weibo log-in is drawn by myself. When the user logged in, the profile image is displayed for the confirmation of the user id.
 
-![share-2](/assets/share-2.png)
+![share-2](https://c2.staticflickr.com/8/7642/17067575076_22b5314d87_z.jpg)
 
 ### 2. Facebook Log-in
 
@@ -79,7 +79,7 @@ The Facebook Log-in button is default, and similar button for weibo log-in is dr
 
 If the Facebook lib conflict with the project, a error will be shown. Just delete the android-support-v4.jar file in libs folder.
 
-![share-3](/assets/share-3.png)
+![share-3](https://c2.staticflickr.com/8/7694/16886137807_77b84a6686_z.jpg)
 
 #### 2.2 Declare Activities in the Manifest
 
@@ -112,13 +112,13 @@ The tutorial has talked about it carefully. It is an IMPORTANT step, I stuck in 
 keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
 {% endhighlight %}
 
-![share-4](/assets/share-4.png)
+![share-4](https://c2.staticflickr.com/8/7677/16905758618_9ac8775a8a_z.jpg)
 
 #### 2.4 Add the app_id to the project
 
 Add the app_id provided by Facebook in the project /res/values/strings.xml
 
-![share-5](/assets/share-5.png)
+![share-5](https://c1.staticflickr.com/9/8764/17067578166_c706bc140f_z.jpg)
 
 If all the above have been carefully done, the Facebook Log-in should work and can share the photo within the app to Facebook now.
 
@@ -128,19 +128,17 @@ If all the above have been carefully done, the Facebook Log-in should work and c
 
 The weibo.sdk.android.sso.jar file should be included in the download zip file from the web. It should be put inside the libs folder. Also a class is copied from the sample code to manage the access token (AccessTokenKeeper.java).
 
-![share-6](/assets/share-6.png)
-
 #### 3.2 Fill the App Key
 
 The same as the Facebook app, the app key is required in the res/values/strings.xml
 
-![share-7](/assets/share-7.png)
+![share-7](https://c2.staticflickr.com/8/7678/17067580176_d9330ac167_z.jpg)
 
 ####3.3 Add the test user in the app
 
 If the log-in user is not the developer of the sample app (app still under developing and testing, not approved yet), Weibo requires a declare of the test users in the app management page.
 
-![share-8](/assets/share-8.png)
+![share-8](https://c1.staticflickr.com/9/8814/17092846651_2e8515a6cc_z.jpg)
 
 #### 3.4 Get the Profile Image
 

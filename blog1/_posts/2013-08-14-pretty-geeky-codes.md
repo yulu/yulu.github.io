@@ -13,5 +13,5 @@ Another interesting find-out is the [interactive-book](http://pixelshaders.com/)
 
 Cheer up and keep working!!
 
-![geeky](/assets/geeky.png)
+![geeky](https://c2.staticflickr.com/8/7685/16907289489_3b927221d6_b.jpg)
 

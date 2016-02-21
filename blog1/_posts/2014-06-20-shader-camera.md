@@ -89,7 +89,7 @@ The texture updated by `SurfaceTexture` can only be bound to `GL_TEXTURE_EXTERNA
 public class OESTexture {
     ...
 
-    public void init(){
+    public void init() {
         int[] mTextureHandles = new int[1];
         GLES20.glGenTextures(1, mTextureHandles, 0);
         mTextureHandle = mTextureHandles[0];
@@ -120,7 +120,7 @@ Draw Screen Quad
 Using shaders, a simple screen quad can be easily drawn.
 
 {% highlight java %}
-private void init(){
+private void init() {
     //Create full scene quad buffer
     final byte FULL_QUAD_COORDS[] = {-1, 1, -1, -1, 1, 1, 1, -1};
     mFullQuadVertices = ByteBuffer.allocateDirect(4 * 2);
@@ -128,8 +128,8 @@ private void init(){
     ...
 }
 ...
-private void renderQuad(int aPosition){
-    GLES20.glVertexAttribPointer(aPosition, 2, GLES20.GL_BYTE,                                         false, 0, mFullQuadVertices);
+private void renderQuad(int aPosition) {
+    GLES20.glVertexAttribPointer(aPosition, 2, GLES20.GL_BYTE, false, 0, mFullQuadVertices);
     GLES20.glEnableVertexAttribArray(aPosition);
     GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
 }
@@ -170,7 +170,7 @@ attribute vec2 aPosition;
 
 varying vec2 vTextureCoord;
 
-void main(){
+void main() {
     gl_Position = vec4(aPosition, 0.0, 1.0);
     vTextureCoord = (uTransformM * ((uOrientationM * gl_Position + 1.0)*0.5)).xy;
     gl_Position.xy *= ratios;

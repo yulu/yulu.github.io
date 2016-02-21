@@ -3,8 +3,11 @@ layout: post
 title:  "Lazy Snapping"
 date:   2014-01-30 19:00:00
 categories: blog1
-video: "http://www.youtube.com/embed/_LCFladNgRo?rel=0&autoplay=0&showinfo=0&controls=0"
 ---
+
+<div class="video-container">
+    <iframe class="video-frame"  width="640" height="360" src="http://www.youtube.com/embed/_LCFladNgRo?rel=0&autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+</div>
 
 Recently I received some emails asking about the implementation of Lazy Snapping (through a video post on my YouTube). I thought of taking notes of this work, however postponed many times due to lack of time. I dig out some old stuff and felt that it is worthy to be record here. Lazy Snapping is an interactive segmentation algorithm developed by Microsoft Research Center. A similar algorithm GrabCut, also by Microsoft are used in Office Words, PowerPoint to segment image foreground and background. These are the papers to look at - [Lazy Snapping](http://research.microsoft.com/pubs/69040/lazysnapping_siggraph04.pdf) and [GrabCut](http://research.microsoft.com/pubs/67890/siggraph04-grabcut.pdf).
 
