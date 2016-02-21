@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2010-09-10 21:00:00
 title: 明日即天涯6-消失的威尼斯
-image: venice.jpg
+image_url: https://c2.staticflickr.com/8/7704/16905773948_c4a04fe04b_k.jpg
 image_caption: "Kisses end. Dreams vanish, and sometimes cities too. We long for the perfect ending, but the curtain falls along with our hearts. Beauty is so difficult."
 ---
 

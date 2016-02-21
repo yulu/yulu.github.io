@@ -24,26 +24,37 @@ $block-background-color: #fdfafa;
  */
 .site-header {
     color: $header-color;
-    height: 40px;
+    height: 50px;
     width: 100%;
     position: absolute;
     text-align: left;
     vertical-align: middle;
     font-size: 150%;
     z-index: 5;
-    top: 7px;
+//    background-color: #efefef;
+    top: 0px;
     
     span {
         margin: 20px;
     }
     
     a {
+        display: inline-block;
+        padding: 5px 0;
         color: white;
-        opacity: 0.8;
+        opacity: 1.0;
         text-decoration: none;
         &:hover {
-            opacity: 1.0;
+            opacity: 0.8;
         }
+        &.page {
+            background-color: $theme-color;
+        }
+    }
+    
+    &.post {
+        background-color: #efefef;
+        top: 0px;
     }
 }
 
@@ -428,9 +439,9 @@ body,
  * Page
  */
 .page-image {
-    background: url("https://c2.staticflickr.com/2/1501/25042644286_11a49077d1_h.jpg") no-repeat bottom center;
+    background-color: $footer-background-color;
     background-size: cover;
-    height: 50px;
+    height: 45px;
     width: 100%;
     text-align: center;
     

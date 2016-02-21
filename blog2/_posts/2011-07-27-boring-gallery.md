@@ -10,17 +10,17 @@ title: 无聊艺术
 <figcaption>
 在亚特兰大无聊的工作
 </figcaption>
->![boring-gallery-1](/assets/boring-gallery-1.jpg)
+>![boring-gallery-1](https://c1.staticflickr.com/9/8819/17067468176_b54535d4ac_z.jpg)
 
 <figcaption>
 多伦多无聊的生活
 </figcaption>
->![boring-gallery-1](/assets/boring-gallery-2.jpg)
+>![boring-gallery-1](https://c1.staticflickr.com/9/8753/17092736261_a4bc24568c_z.jpg)
 
 <figcaption>
 在伦敦， 干IT真无聊
 </figcaption>
->![boring-gallery-3](/assets/boring-gallery-3.jpg)
+>![boring-gallery-3](https://c2.staticflickr.com/8/7687/16470980614_390d582a2a_z.jpg)
 
 
 #### 从twiiter中提取的数据库
@@ -29,12 +29,12 @@ title: 无聊艺术
 <figcaption>
 twitter数据分析
 </figcaption>
->![boring-gallery-4](/assets/boring-gallery-4.jpg)
+>![boring-gallery-4](https://c2.staticflickr.com/8/7688/17092732161_a9095fe6a8_z.jpg)
 
 <figcaption>
 关键词频率分析和画笔大小生成
 </figcaption>
->![boring-gallery-5](/assets/boring-gallery-5.jpg)
+>![boring-gallery-5](https://c2.staticflickr.com/8/7594/16907218629_1d23a1a801_z.jpg)
 
 
 #### 从Flickr照片中提取的色彩
@@ -43,7 +43,7 @@ twitter数据分析
 <figcaption>
 “伦敦生活”的色彩
 </figcaption>
->![boring-gallery-6](/assets/boring-gallery-6.jpg)
+>![boring-gallery-6](https://c1.staticflickr.com/9/8739/17067464036_a218aca49a_z.jpg)
 
 #### 任何人都可能是参与者
 这样的一个设计，让任何人都可能是这副抽象画的创作者之一，可能你没有亲手涂抹，但是也许你曾经的一句抱怨，或者一张照片被数据化后成为了某幅作品中的一个元素。
@@ -51,7 +51,7 @@ twitter数据分析
 <figcaption>
 参与创作
 </figcaption>
->![boring-gallery-7](/assets/boring-gallery-7.jpg)
+>![boring-gallery-7](https://c2.staticflickr.com/8/7665/16473270553_3f109cd17b_z.jpg)
 
 #### 融合，矛盾和深思
 这些绚丽迷人的艺术作品，竟然起始于我们平日里的无聊和抱怨。它是艺术和科技奇特的融合和尖锐的冲撞。在暗藏着社交网络的巨大魔力的同时，它也激发了后信息时代里我们对于生命意义的反思。

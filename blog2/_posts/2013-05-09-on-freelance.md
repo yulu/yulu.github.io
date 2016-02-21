@@ -15,14 +15,14 @@ image_url: 'https://c2.staticflickr.com/8/7681/16473363233_14bdde6b6e_h.jpg'
 <figcaption>
 我的google keep
 </figcaption>
->![freelance-1](/assets/freelance-1.jpg)
+>![freelance-1](https://c1.staticflickr.com/9/8742/16471042374_c51191d121_n.jpg)
 
 我喜欢和图像打交道，不管是用一支笔一张纸画画涂鸦，还是在photoshop里开一个窗口调试一堆参数，甚至写一段代码处理复杂的计算机视觉问题。我喜欢视觉上的丰富和美好，期望把自己看到的感受到的与人分享。于是，我决定写一个美化照片表达心情的相机App。
 
 <figcaption>
 为app做的文案
 </figcaption>
->![freelance-2](/assets/freelance-2.jpg)
+>![freelance-2](https://c1.staticflickr.com/9/8813/16905715448_1238e57cae_n.jpg)
 
 #### 需要多硬的基本功？
 
@@ -31,28 +31,28 @@ image_url: 'https://c2.staticflickr.com/8/7681/16473363233_14bdde6b6e_h.jpg'
 <figcaption>
 第一次做UI的效果
 </figcaption>
->![freelance-3](/assets/freelance-3.jpg)
+>![freelance-3](https://c2.staticflickr.com/8/7596/17093493725_98dfaec804_n.jpg)
 
 虽然已经有一定专业知识，但是要做出想要的东西似乎还远远不够——那就学习吧。App中用到核心的图像处理算法，参考了github上的开源Android项目，GIMP这样的开源软件，也从参考书里的范例里举一反三自己设计。各方涉猎，也颇有收获。更重要的是不要犹豫，直接把理论付诸实践，有些很看似不能解决的问题，在真正开始着手做之后总能找到突破口。
 
 <figcaption>
 图书馆抱回的书
 </figcaption>
->![freelance-4](/assets/freelance-4.jpg)
+>![freelance-4](https://c2.staticflickr.com/8/7723/16471045754_f4d6a2b089_n.jpg)
 
 做独立开发还需要懂一点设计，幸运的是我那些平日里喜欢拍照涂鸦的个人爱好这时都可能发挥功效了。但是没有受过任何专业指导的我，也只是犹如盲人摸象一样，凭着感觉设计一堆图像元素，拼凑着放到界面上。
 
 <figcaption>
 在Illustrator里画的UI设计
 </figcaption>
->![freelance-5](/assets/freelance-5.jpg)
+>![freelance-5](https://c2.staticflickr.com/8/7616/17092801741_bd12d8f812_n.jpg)
 
 之前读过一本很受欢迎的设计指南《Mobile Design Pattern Gallery》，这本书比较系统的总结了Android和IOS应用界面设计的基本形式。但其实只要平时用过较多的App，对这些设计也大概都有概念了。我觉得学习总是从临摹开始的，自己不懂，就去看别人怎么做的，跟着学跟着做慢慢就会找到自己模式。所以朋友把玩我的iPad时颇为无奈——怎么全是相机App！
 
 <figcaption>
 我的ipad截屏
 </figcaption>
->![freelance-6](/assets/freelance-6.jpg)
+>![freelance-6](https://c1.staticflickr.com/9/8724/16905937710_26e88e9ef6_n.jpg)
 
 最后发现做设计开发真不是难事。这里分享一个让我捧腹的故事：[编程小白插画家Christoph，是如何开发自己第一个iphone App的](http://www.ifanr.com/265414?utm_source=feedlyhttp://www.newyorker.com/online/blogs/culture/2013/03/christoph-niemann-petting-zoo-app.html)。文中有一个8秒的视频，作者拍摄他自己终于在iPhone上实现了“手指点击使方块变色”的效果——文中这些呆萌的视频和插画，配合他幽默风趣的讲述，实在令人忍俊不禁。但是仔细读下去，就会惊叹他竟能把这样简单的触屏效果结合到自己的插画中，最后终于做出了自己理想中的App。他表达的化繁为简的设计理念，以及他求知若渴的学习态度，着实让人钦佩。
 

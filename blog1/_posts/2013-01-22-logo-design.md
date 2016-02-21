@@ -13,16 +13,16 @@ Step1: Brain storm among all the members, and ART (short for Augmented Reality T
 
 Step2: Draw them Out! Try different transformations and colors. SketchBook Pro is a good choice for free sketch. Among the designs, pick a few to refine.
 
-![logo-1](/assets/logo-1.jpg)
+![logo-1](https://c2.staticflickr.com/8/7598/16905734478_db8c173ace_z.jpg)
 
 Step3: Vectorize the candidate designs in illustrator. Pick the one that is best suitable for requirement.
 
-![logo-2](/assets/logo-2.jpg)
+![logo-2](https://c2.staticflickr.com/8/7680/16907303839_96dba560eb_z.jpg)
 
 Step4: Add more effect and refinement using Photoshop if necessary.
 
-![logo-3](/assets/logo-3.jpg)
+![logo-3](https://c1.staticflickr.com/9/8802/17092820451_d603dfa9ff_z.jpg)
 
 The final design to be used
 
-![logo-4](/assets/logo-4.jpg)
+![logo-4](https://c1.staticflickr.com/9/8825/16471065614_7ca0d41030_m.jpg)
