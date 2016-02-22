@@ -282,6 +282,11 @@ body,
     float: left;
     text-align: right;
     
+    @media screen and (max-width: $break-medium) {
+        width: 100%;
+        height: 50%;
+    }
+    
     span {
         position: relative;
         bottom: -webkit-calc(-100% + 50px);
@@ -315,8 +320,12 @@ body,
     display: inline-block;
     background-color: #efefef;
     
+    @media screen and (max-width: $break-medium) {
+        width: 100%;
+    }
+    
     p {
-        padding: 30% 5% 10% 5%;
+        padding: 100px 5% 10% 5%;
         margin: auto;
         
         span {
