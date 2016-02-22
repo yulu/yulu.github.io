@@ -5,7 +5,7 @@ date:   2016-02-01 18:00:00
 categories: blog1
 ---
 
-In order to modularize the [ViSearch Android SDK](https://github.com/visenze/visearch-sdk-android) that I am working with previously, I developed my very first UI lib - [image-crop-layout](https://github.com/yulu/crop-image-layout). This is a light-weight image cropping module that supports UI customization and box update listener. 
+In order to modularize the [ViSearch Android SDK](https://github.com/visenze/visearch-sdk-android) that I was working with previously, I developed my very first UI lib - [image-crop-layout](https://github.com/yulu/crop-image-layout). This is a light-weight image cropping module that supports UI customization and box update listener. 
 
 Here is a very good tutorial on how to [upload a library to jCenter by Brian Attwell](http://brianattwell.com/distributing-android-libs-via-jcenter/). 
 
@@ -26,7 +26,7 @@ Add bintray plug-in and maven plug-in under the project's `build.gradle` file
 {% endhighlight %}
 
 #### Step 2
-config the metadata by adding the script to `build.gradle` file under the library module
+Config the metadata by adding the script to `build.gradle` file under the library module
 
 {% highlight c %}
 ext {
