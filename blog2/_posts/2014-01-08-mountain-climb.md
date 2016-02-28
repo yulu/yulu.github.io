@@ -18,18 +18,20 @@ image_url: https://farm8.staticflickr.com/7482/15562347823_60907379d6_k.jpg
 
 ### 【二】
 
+<div class="image-banner">
+    <img src="https://farm9.staticflickr.com/8659/15994832290_d6e11d09c6_h.jpg">
+    <span>Jan 1, 2014 @Kinabalu</span>
+</div>
+
 但是为什么，我们还是乐此不疲的怀揣着好奇与恐惧，大步地走向未知世界？我看到过最好的回答，是一个睿智的女孩说：仅仅是把将旅途在外那种风雨无阻的魄力转变为平日认真活着的勇气的而已。
 
 新年伊始。凌晨三四点的天空还是深紫色，漫天繁星，若隐若现的银河。在海拔近四千米的山顶，拉着绳索爬上峭壁之后我终于筋疲力竭，于是坐在地上不起来，撅着嘴赌气不爬了。结果第一次看到某人严肃生气的样子。他皱着眉说你要么马上原路返回到住处，要么继续往上爬，在这里坐着一会儿热量流失当心被冻死！被这一吓唬，只有重新上路。不知道是感冒还是高反的缘故，或者是一开始就对自己的能力没有正确估计，一直都在极限的边缘坚持着，根本没力气去想山顶的距离，更顾不得欣赏沿途景色，只是默默的数着自己的步子。这一路始终有个声音一直在耳边鼓励我，把握自己的节奏，不用太在意身边的环境，保证自己的每一步都坚定有力，不仅爬山如此，生活中的很多事也是如此。
 
-<figcaption>
-Jan 1, 2014 @Kinabalu
-</figcaption>
->![mountain_2](https://farm8.staticflickr.com/7553/15559775494_8c18198c5c_h.jpg)
->
->![mountain_3](https://farm8.staticflickr.com/7511/16180265471_26c917e15a_h.jpg)
->
->![mountain_1](https://farm9.staticflickr.com/8659/15994832290_d6e11d09c6_h.jpg)
+![mountain_2](https://farm8.staticflickr.com/7553/15559775494_8c18198c5c_h.jpg)
+
+![mountain_3](https://farm8.staticflickr.com/7511/16180265471_26c917e15a_h.jpg)
+
+![mountain_1](http://c2.staticflickr.com/8/7531/16182145015_5b68c373c9_k.jpg)
 
 ### 【三】
 

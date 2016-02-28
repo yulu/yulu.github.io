@@ -527,7 +527,35 @@ body,
     p {
         font-family: $content-font-family;
     }
-
+    
+    .image-banner {
+        max-width: 100%;
+        padding: 0;
+        max-height: 450px;
+        height: 450px;
+        overflow: hidden;
+        position: relative;
+        margin: 20px 0;
+        
+        img {
+            left: -100%;
+            right: -100%;
+            top: -100%;
+            bottom: -100%;
+            min-width: 100%;
+            min-height: 100%;
+            margin: auto;
+            position: absolute;
+        }
+        span {
+            position: absolute;
+            bottom: 30px;
+            color: white;
+            left: 30px;
+            font-size: 12px;
+        }
+    }
+    
     h2 {
         font-size: 32px;
         position: relative;
