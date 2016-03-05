@@ -65,7 +65,7 @@ or download the scripts and apply from local path:
 apply from: '../tools/bintray.gradle'
 {% endhighlight %}
 
-Then upload the `local.properties` file in the project by including the bintray user name and password:
+Then update the `local.properties` file in the project by including the bintray user name and password:
 
 {% highlight python %}
 bintray.user=(BINTRAY_USERNAME)
@@ -95,7 +95,7 @@ dependencies {
 
 By add the package to jCenter using the option provided on bintray website, the step of including the maven repo could be eliminated.
 
-### Usage the crop-image-layout library
+### Use the crop-image-layout library
 
 #### Import
 
