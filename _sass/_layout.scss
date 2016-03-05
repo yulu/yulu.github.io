@@ -531,11 +531,21 @@ body,
     .image-banner {
         max-width: 100%;
         padding: 0;
-        max-height: 450px;
-        height: 450px;
         overflow: hidden;
         position: relative;
         margin: 20px 0;
+        height: 250px;
+        min-height: 250px;
+        
+        @media screen and (min-width: $break-medium) {
+            height: 350px;
+            min-height: 350px;
+        }
+        
+        @media screen and (min-width: $break-large) {
+            height: 450px;
+            min-height: 450px;
+        }
         
         img {
             left: -100%;
