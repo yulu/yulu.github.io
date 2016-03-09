@@ -11,11 +11,11 @@ It has been a year! A year ago I put up some posts on image processing using Sha
 
  >CONNECTING THE DOTS
 
-Being busy with study, I could barely spare time working on this topic. But ideas and inspirations always jumped out sometime that I could stop but to code. Whenever I came across a nice picture, a smart algorithm or anything that reminds me the fantasy of the world we viewed, I would noted down and later explored on it. Thanks to the Pixel Shader by Toby Schachman, I could instantly experiment on my ideas (also a lot of inspirations are from this interactive book). I gathered all the ideas of color and art effects and deliver a new camera app that allows us to explore the combination of filter effects on real-time. I also put the source code of some filter effects discussed here into a simple demo app for sharing.
+Being busy with study, I could barely spare time working on this topic. But ideas and inspirations always jumped out sometime that I could stop but to code. Whenever I came across a nice picture, a smart algorithm or anything that reminds me the fantasy of the world we viewed, I would noted down and later explored on it. Thanks to the [Pixel Shader](http://pixelshaders.com/) by Toby Schachman, I could instantly experiment on my ideas (also a lot of inspirations are from this interactive book). I gathered all the ideas of color and art effects and deliver a new camera app that allows us to explore the combination of filter effects on real-time. I also put the source code of some filter effects discussed here into a simple demo app for sharing.
 
 ### The Tricks of Colors
 
-Colors can perform magic tricks I believe. The tone of a picture sometimes touches us more than the subjects do. I explored the idea of adjust the B/S/C of an image and blend color map on an image previously1. With the same blending process, here are some more interesting color gradient maps I could share.
+Colors can perform magic tricks I believe. The tone of a picture sometimes touches us more than the subjects do. I explored the idea of adjust the B/S/C of an image and blend color map on an image previously. With the same blending process, here are some more interesting color gradient maps I could share.
 
 #### Color Gradient on the Fly 
 
@@ -99,7 +99,7 @@ Cool Gradient
 
 #### Blend Functions One More Time
 
-With these beautiful colors, I can blend them on an image and get the effect I want! Review the three blend mode4 that is being used mostly.
+With these beautiful colors, I can blend them on an image and get the effect I want! Review the three blend mode that is being used mostly.
 
 *Screen*
 
@@ -164,7 +164,7 @@ How I Draw
 </figcaption>
 ![drawing](https://farm9.staticflickr.com/8705/17016113192_60e9ee2218_o.jpg)
 
-How about asking the computer to draw for us like this? Emm, how to sketch an outline? Here again comes the very simple edge detection algorithm Sobel filter. (Codes are shared in previous post1)
+How about asking the computer to draw for us like this? Emm, how to sketch an outline? Here again comes the very simple edge detection algorithm Sobel filter. (Codes are shared in previous post)
 
 How to blend the colors? We can pick up color from the real photo for each texel, but it seems look so real because too much fine details are included. We would like to make it less accurate. To do so by grouping the similar colors and giving them an average. In shader, to categorize each color channel into 10 groups can simply write like this by knowing that each channel in vec4 color ranges from 0 to 1:
 
@@ -181,7 +181,7 @@ Now, we can sketch and blend:
 ![waterlili](https://farm9.staticflickr.com/8736/16810167707_7dd748ca50_o.jpg)
 
 
-Waterlilies by Monet and Starry Night by Van Gogh are some famous masterpieces we all are familiar with. We can easily recognize the unique ways they blend colors. Monet,the Impressionist, in his work eliminated the edges and randomized the brush touches. To mimic an effect like this, I tried to combine the artistic effect without edge detection with the method4 I discussed previously - scanning the random selected pixels around the center one, and take either the brightest or darkest to replace the center. This gives a quite nice view I feel, if not alike.
+Waterlilies by Monet and Starry Night by Van Gogh are some famous masterpieces we all are familiar with. We can easily recognize the unique ways they blend colors. Monet,the Impressionist, in his work eliminated the edges and randomized the brush touches. To mimic an effect like this, I tried to combine the artistic effect without edge detection with the method I discussed previously - scanning the random selected pixels around the center one, and take either the brightest or darkest to replace the center. This gives a quite nice view I feel, if not alike.
 
 ![flower-1](https://farm8.staticflickr.com/7614/16810166937_6864317cee_o.jpg)
 
@@ -201,11 +201,11 @@ vec2 circular(vec2 position){
 ![waterlili-1](https://farm9.staticflickr.com/8741/17016121082_fabe7a1d7b_o.jpg)
 
 
-Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally6, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
+Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
 
 ### Comic Book
 
-We often see dots in American comics. Ben-Day7 dots was invented dating back to 1879, to produce more dynamic colors in printing, e.g. spaced dots of red colors gives pink. Later it was explored by pop artists to produce illustrations. Same in black-and-white Japanese comics, gray areas are sometimes shaded by strips. The intention of using dots and strips patterns in comics have gave me this inspiration - how about check the intensities of the texels, on the texels that are within a defined gray region, overlay the patterns. What kind of effect can I get?
+We often see dots in American comics. [Ben-Day dots](https://en.wikipedia.org/wiki/Ben-Day_dots) was invented dating back to 1879, to produce more dynamic colors in printing, e.g. spaced dots of red colors gives pink. Later it was explored by pop artists to produce illustrations. Same in black-and-white Japanese comics, gray areas are sometimes shaded by strips. The intention of using dots and strips patterns in comics have gave me this inspiration - how about check the intensities of the texels, on the texels that are within a defined gray region, overlay the patterns. What kind of effect can I get?
 
 To generate a strips pattern:
 
@@ -256,9 +256,9 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
 
 ### The Issue!
 
-I think I have not really figured out the way to do blurring. Blur effect seems to be very popular after the releasing of IOS7. Gaussian blur however involves heavy computation. I tried using 9-by-9 Gaussian kernels to do blurring, with the optimized method proposed by Daniel Rakos8, it runs really slowly on my Note II! So I give up the idea of trying filtering multiple times or with larger sized kernel. I also studied through the post and dig into the codes by Brad Larson9, luckily I learned the way to write loop for shader! However I still cannot got the idea to do a fast blur with larger sized Gaussian kernel. How can it be so fast on iPhone? Is it the hardware issue or my understanding is not accurate. I think there should be smarter way to implement blurring. Later I will revisit some fundamentals of OpenGL.
+I think I have not really figured out the way to do blurring. Blur effect seems to be very popular after the releasing of IOS7. Gaussian blur however involves heavy computation. I tried using 9-by-9 Gaussian kernels to do blurring, with the optimized method proposed by [Daniel Rakos](), it runs really slowly on my Note II! So I give up the idea of trying filtering multiple times or with larger sized kernel. I also studied through the post and dig into the codes by Brad Larson9, luckily I learned the way to write loop for shader! However I still cannot got the idea to do a fast blur with larger sized Gaussian kernel. How can it be so fast on iPhone? Is it the hardware issue or my understanding is not accurate. I think there should be smarter way to implement blurring. Later I will revisit some fundamentals of OpenGL.
 
-I come up with another way to do blur, also get inspiration from here10. Instead of using Gaussian kernel, I first mosaic the image, and then use the smoothstep and mix function to perform color interpolation.
+I come up with another way to do blur, also get inspiration from here. Instead of using Gaussian kernel, I first mosaic the image, and then use the smoothstep and mix function to perform color interpolation.
 
 {% highlight c %}
 vec3 mosaic(vec2 position){
