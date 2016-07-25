@@ -2,28 +2,44 @@
 layout: default
 ---
 <div class="home">
-    <ul class="post-list">
-        {% for post in site.posts limit: 15 %}
-        {% if post.categories contains 'blog1' %}
-        <li>
-            <div>
-                <div class="post-item">
-                    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-                    <span>
-                        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                    </span>
-                </div>
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="post-list">
+          {% for post in site.posts limit: 15 %}
+            {% if post.categories contains 'blog1' %}
+            <li>
+                <div>
+                    <div class="post-item">
+                        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+                        <span>
+                            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                        </span>
+                    </div>
 
-                <div class="post-preview">
-                    <p>{{ post.content | strip_html | truncatewords:50 }}
+                    <div class="post-preview">
+                        <p>{{ post.content | strip_html | truncatewords:30 }}
+                    </div>
+                    <div>
+                      {% for tag in post.tags %}
+                      <span class="tag">{{tag}}</span>
+                      {% endfor %}
+                    </div>
                 </div>
-<!--                <a class="post-meta" href="{{ post.url | prepend: site.baseurl }}">Continue reading</a>-->
-            </div>
-        </li>
-    {% endif %}
-    {% endfor %}
-    </ul>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <div class="journal">
+          <img class="img-responsive" src="https://c3.staticflickr.com/2/1592/24892233514_ee77fc8948_n.jpg">
+          <span>JOURNAL</span>
+        </div>
+      </div>
+    </div>
     <div class="center">
-        <a href="{{ '/blog1/index.html' | prepend: site.baseurl}}"><button class="more-button center">View full list of blog posts</button></a>
+        <a href="{{ '/blog1/index.html' | prepend: site.baseurl}}">
+          <button class="more-button center">View full list of blog posts</button>
+        </a>
     </div>
 </div>

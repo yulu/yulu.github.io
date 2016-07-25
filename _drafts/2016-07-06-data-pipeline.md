@@ -3,6 +3,7 @@ layout: post
 title:  "Stacks for Big Data"
 date:   2016-07-01 18:00:00
 categories: blog1
+tags: "big-data architecture"
 ---
 
 ## Kafka

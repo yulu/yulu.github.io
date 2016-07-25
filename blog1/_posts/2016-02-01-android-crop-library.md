@@ -3,11 +3,12 @@ layout: post
 title:  "How to Distribute Library on jCenter and My First UI Lib"
 date:   2016-02-01 18:00:00
 categories: blog1
+tags: "android jcenter ui-widget"
 ---
 
-In order to modularize the [ViSearch Android SDK](https://github.com/visenze/visearch-sdk-android) that I was working with previously, I developed my very first UI lib - [image-crop-layout](https://github.com/yulu/crop-image-layout). This is a light-weight image cropping module that supports UI customization and box update listener. 
+In order to modularize the [ViSearch Android SDK](https://github.com/visenze/visearch-sdk-android) that I was working with previously, I developed my very first UI lib - [image-crop-layout](https://github.com/yulu/crop-image-layout). This is a light-weight image cropping module that supports UI customization and box update listener.
 
-Here is a very good tutorial on how to [upload a library to jCenter by Brian Attwell](http://brianattwell.com/distributing-android-libs-via-jcenter/). 
+Here is a very good tutorial on how to [upload a library to jCenter by Brian Attwell](http://brianattwell.com/distributing-android-libs-via-jcenter/).
 
 ### Submit library to jCenter via Bintray
 
@@ -118,7 +119,7 @@ imageView.initView(this, image);
 imageView.setOnBoxChangedListener(new OnBoxChangedListener() {
     @Override
     public void onChanged(int x1, int y1, int x2, int y2) {
-        //TODO: cropping box updated 
+        //TODO: cropping box updated
     }
 });
 {% endhighlight %}
