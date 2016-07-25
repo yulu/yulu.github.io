@@ -4,7 +4,7 @@ $text-color: #525151;
 $header-color: #3c3b3b;
 $theme-color: #34215A;
 $header-background-color: rgba(255, 255, 255, 0.88);
-$header-shadow-color: #cccccc; 
+$header-shadow-color: #cccccc;
 $image-caption-color: #8b8888;
 $block-quote-color: #8b8888;
 $footer-background-color: #f5f5f5;
@@ -33,11 +33,11 @@ $block-background-color: #fdfafa;
     z-index: 5;
 //    background-color: #efefef;
     top: 0px;
-    
+
     span {
         margin: 20px;
     }
-    
+
     a {
         display: inline-block;
         padding: 5px 0;
@@ -51,7 +51,7 @@ $block-background-color: #fdfafa;
             background-color: $theme-color;
         }
     }
-    
+
     &.post {
         background-color: #efefef;
         top: 0px;
@@ -68,13 +68,13 @@ $block-background-color: #fdfafa;
     height: 100%;
     position: fixed;
     top: 0;
-    
+
     span {
         position: absolute;
         top: 550px;
         right: 20px;
     }
-    
+
     .button {
         color: #fff;
         background: $button-background;
@@ -83,7 +83,7 @@ $block-background-color: #fdfafa;
         outline: none;
         border: 1px solid $button-border;
         padding: 3px 15px 3px 15px;
-        
+
         &:hover{
             outline: none;
             color: #fff;
@@ -181,7 +181,7 @@ $block-background-color: #fdfafa;
     height: 300px;
     color: #fff;
     position: relative;
-    
+
     p {
         width: 100%;
         text-align: center;
@@ -281,19 +281,19 @@ body,
     height: 100%;
     float: left;
     text-align: right;
-    
+
     @media screen and (max-width: $break-medium) {
         width: 100%;
         height: 50%;
     }
-    
+
     span {
         position: relative;
         bottom: -webkit-calc(-100% + 50px);
         bottom:         calc(-100% + 50px);
         margin-right: 30px;
     }
-    
+
     .button {
         color: #fff;
         background: $button-background;
@@ -302,7 +302,7 @@ body,
         outline: none;
         border: 1px solid $button-border;
         padding: 3px 15px 3px 15px;
-        
+
         &:hover{
             outline: none;
             color: #fff;
@@ -319,28 +319,28 @@ body,
     height: 100%;
     display: inline-block;
     background-color: #efefef;
-    
+
     @media screen and (max-width: $break-medium) {
         width: 100%;
     }
-    
+
     p {
         padding: 100px 5% 10% 5%;
         margin: auto;
-        
+
         span {
             font-size: 100%;
             color: $theme-color;
             font-weight: 600;
         }
     }
-    
+
     .center {
         border-top: 1px solid #eee;
         margin: 80px;
         padding-top: 30px;
         text-align: center;
-        
+
         .image-button {
             margin: 5px;
             width: 20px;
@@ -391,7 +391,7 @@ body,
         border-bottom: 1px solid #ddd;
         padding: 10px 0px 20px 0px;
     }
-    
+
     .post-item {
         display: inline-block;
     }
@@ -453,14 +453,14 @@ body,
     height: 45px;
     width: 100%;
     text-align: center;
-    
+
     span {
         position: relative;
         bottom: -webkit-calc(-100% - 10px);
         bottom:         calc(-100% - 10px);
         margin-right: 30px;
     }
-    
+
     .button {
         color: #999;
         background: rgba(247, 247, 247, 0.44);
@@ -469,7 +469,7 @@ body,
         outline: none;
         border: solid 2px #fff;
         padding: 5px 25px 5px 25px;
-        
+
         &.active {
             color: $theme-color;
             border: solid 2px $theme-color;
@@ -527,7 +527,7 @@ body,
     p {
         font-family: $content-font-family;
     }
-    
+
     .image-banner {
         max-width: 100%;
         padding: 0;
@@ -536,17 +536,17 @@ body,
         margin: 20px 0;
         height: 250px;
         min-height: 250px;
-        
+
         @media screen and (min-width: $break-medium) {
             height: 350px;
             min-height: 350px;
         }
-        
+
         @media screen and (min-width: $break-large) {
             height: 450px;
             min-height: 450px;
         }
-        
+
         img {
             left: -100%;
             right: -100%;
@@ -565,7 +565,7 @@ body,
             font-size: 12px;
         }
     }
-    
+
     h2 {
         font-size: 32px;
         position: relative;
@@ -592,7 +592,7 @@ body,
         font-size: 20px;
         position: relative;
         left: -10px;
-        
+
         @include media-query($on-laptop) {
             font-size: 18px;
         }
@@ -600,7 +600,7 @@ body,
     li, ul {
         list-style-position: inside;
     }
-    
+
     .post-end {
         border-top: 2px solid #ddd;
         margin-top: 80px;
@@ -611,7 +611,7 @@ body,
             border-bottom: 0px !important;
         }
     }
-    
+
     .share-container {
         margin:auto;
         padding: 0 0 30px 0;
@@ -621,7 +621,7 @@ body,
             font-weight: 600
         }
     }
-    
+
     h2,h3,h4,p,pre,ul,ol,
     .post-end {
         max-width: -webkit-calc(800px - (#{$spacing-unit} * 2));
@@ -639,7 +639,7 @@ body,
             padding-left: $spacing-unit / 2;
         }
     }
-    
+
     a {
         text-decoration: none;
         border-bottom: 1px solid $block-quote-color;
@@ -665,7 +665,7 @@ body,
     .reading-notes {
         color: $theme-color;
     }
-    
+
     strong {
         background-color: $theme-color;
         color: #fff;
@@ -690,7 +690,6 @@ body,
     bottom: -100%;
     margin:auto;
 //    box-shadow: 0px 0px 3px #333;
-    box-shadow: 3px 10px 18px 1px #999;
 }
 
 .post-image-container {
@@ -709,7 +708,7 @@ body,
     overflow: hidden;
     position: relative;
     background-size: cover;
-    
+
     .post-caption {
         position: absolute;
         max-width: 450px;
