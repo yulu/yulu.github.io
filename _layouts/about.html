@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
-    
+
     {% include head.html %}
     <body>
-        
+
         {% include header.html %}
-        <div class="about-container">
-            <div class="about-image">
+        <div class="blog-container">
+            <div class="blog-image">
+              <div class="title-container">
+                <span class="title">ABOUT ME</span>
+              </div>
             </div>
 
-            <div class="about-content">
+            <div class="blog-content">
                 {{ content }}
                 <div style="text-align:center">
                     <span>
                     <a href="https://github.com/yulu" target="_blank">
-                        <img src="../assets/github.png" style="display:inline; margin: 5px; width: 25px"></a> 
+                        <img src="../assets/github.png" style="display:inline; margin: 5px; width: 25px"></a>
                     <a href="https://www.linkedin.com/in/yulu8798" target="_blank">
                         <img src="../assets/linkedin.png" style="display:inline; margin: 5px; width: 25px"></a>
                     <a href="http://www.weibo.com/littlecheesecake" target="_blank">
@@ -23,6 +26,6 @@
                 </div>
             </div>
         </div>
-        
+
     </body>
 </html>

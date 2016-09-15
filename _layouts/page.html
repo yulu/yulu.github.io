@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html>
 
-    {% include head.html %}
+{% include head.html %}
 
-  <body>
+<body>
 
-    {% include header-page.html %}
-    
-    <div class="page-image">
-        <span style="z-index: 20;">
-            {% for page in site.pages %}
-            {% if page.title and (page.title == 'POSTS' or page.title == '朝画夕拾') %}
-            <a href="{{ page.url | prepend: site.baseurl }}"><button class="button" id={{ page.title }}>{{ page.title }}</button></a>
-            {% endif %}
-            {% endfor %}
-        </span>
-    </div>
+    {% include header.html %}
 
-    <div class="page-content">
-        <div class="wrapper">
-            <article class="post-content">
+    <div class="blog-container">
+        <div class="blog-image">
+            <div class="title-container">
+                <span class="title">{{ page.title }}</span>
+                <span class="sub-title">{{ page.desc }}</span>
+            </div>
+            <div class="blog-layer"></div>
+        </div>
+
+        <div class="blog-content">
             {{ content }}
-            </article>
         </div>
     </div>
-      
-      <script>
-        $({{ page.title }}).toggleClass('active');
-      </script>
-      
-    {% include footer-page.html %}
-    </body>
+</body>
 </html>

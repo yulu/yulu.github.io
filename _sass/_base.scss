@@ -48,6 +48,19 @@ body {
     color: $text-color;
     -webkit-text-size-adjust: 100%;
     min-width: 320px;
+
+    /**
+     * Links
+     */
+    a {
+        color: $theme-color;
+        text-decoration: none;
+
+        &:hover {
+          color: inherit;
+          text-decoration: none;
+        }
+    }
 }
 
 
@@ -125,15 +138,12 @@ h2, h3, h4 {
 }
 
 /**
- * Links
+ * paragraph
  */
-a {
-    color: $theme-color;
-    text-decoration: none;
-
-    &:hover {
-        text-decoration: underline;
-    }
+p {
+  font-size: 16px;
+  color: #525151;
+  line-height: 1.5;
 }
 
 
@@ -142,14 +152,17 @@ a {
  * Blockquotes
  */
 blockquote {
-    color: $block-quote-color;
     background-color: $block-background-color;
     border-left: 4px solid #eee;
     padding-left: $spacing-unit / 10;
-    font-size: 14px;
     font-weight: 300;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    font-size: 14px !important;
+    color: $block-quote-color !important;
+
+    p {
+      font-size: 14px;
+      color: $block-quote-color;
+    }
 
     > :last-child {
         margin-bottom: 0;
