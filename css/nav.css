@@ -97,22 +97,16 @@
 }
 .overlay nav {
   position: relative;
-  height: 80%;
-  top: 80%;
-  transform: translateY(-40%);
-  -webkit-transform: translateY(-40%);
+  top: 20%;
   font-size: 30px;
   font-weight: 400;
+  text-align: center;
 }
 .overlay ul {
-  float: left;
   list-style: none;
   padding: 0;
-  margin-bottom: 50px;
-  margin-left: 15%;
-  display: inline-block;
-  position: relative;
   height: 100%;
+  display: inline-block;
 }
 .overlay ul li {
   display: block;
