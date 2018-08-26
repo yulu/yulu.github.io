@@ -5,7 +5,7 @@ date:   2015-10-25 18:00:00
 categories: blog3
 ---
 
-###Background
+### Background
 
 Medium is a network. It's a place to share stories and ideas that matter - it's where you move thinking forward, and people have spent 1.4 billion minutes - or 2.6 millennia - reading on Medium.
 
@@ -13,7 +13,7 @@ We get over 25 million unique readers every month and tens of thousands of posts
 
 I lead the engineering team. I was previously a Staff Software Engineer at Google, where I worked on Google+ and Gmail, and co-founded the Closure project. In past lives I raced snowboards, jumped out of planes, and lived in the jungle.
 
-###The Team
+### The Team
 
 I couldn't be prouder of this team. It's an awesome bunch of talented, curious, mindful individuals who come tegother to do great work.
 
@@ -21,7 +21,7 @@ We operate in cross-functional, mission-driven teams, so while some people speci
 
 The teams have a lot of flexibility in how they organize around their work, but as a company we set quarterly goals and encourage iterative sprints. We use GitHub for code reviews and bug tracking and Google Apps for email, docs, and spreadsheets. We're heavy users of Slack - and slack bots - and many teams use Trello.
 
-###Initial Stack
+### Initial Stack
 
 We deployed to EC2 from the start. The main app servers were written in Node.js and we migrated to DynamoDB fro the public launch.
 
@@ -37,7 +37,7 @@ For a site as seemingly simple as Medium, it may be surprising how much complexi
 
 Anyway, enough snark. Let's start at the bottom.
 
-####Production Environment
+#### Production Environment
 
 We are on Amazon's Virtual Private Cloud. We use [Ansbile]() for system management, which allows us to keep our configuration under source control and easily roll out changes in a controlled way.
 
@@ -53,7 +53,7 @@ We use a combination of [Nginx]() and [HAProxy]() as reverse proxies and load ba
 
 We still use [Datagod]() for monitoring and [PageDuty]() for alerts, but we now heavily use ELK (Elasticsearch, Logstash, Kibana) for debugging production issues.
 
-####Databases
+#### Databases
 
 DynamoDB is still our primary datastore, but it hasn't been completely smooth sailing. One of the perennial issues we've hit is the hotkey issue during viral events or fanouts for million-follower users. We have a Redis cache cluster sitting in front of Dynamo, which mitigates these issues with reads. Optimizating for developer convenience and production stability have often seemed at odds, but we're working to close the gap.
 
@@ -75,27 +75,27 @@ We use Protocol Buffers for our schemas (and schema evolution rules) to keep all
 
 People need to remain in sync too so mobile and web app developers can all log the same way, and Product Scientists can interpret fields, in the same way. We help our people work with data by treating the schemas as the spec, rigorously documenting messages and fields and publishing generated documentation from the .proto files.
 
-####Images
+#### Images
 
 Our image server is now written in Go and uses a waterfall strategy for serving processed images. The servers use [groupcache](), which provides a memcache alternative while helping to reduce duplicated work across the fleet. The in-memory cache is backed by a persistent S3 cache; then images are processed on demand. This gives our designers the flexibility to change image presentation and optimize for different platforms without having to do large batch jobs to generate resized images. 
 
 While it's now mainly used for resizing and cropping, earlier versions of the site allowed fro color washes, blurring, and other image effects. Processing animated gifs has been a huge pain for reasons that should be another post.
 
-####TextShots
+#### TextShots
 
 The fun TextShots feature is powered by a small Go server that interfaces with [PhantomJS]() as a renderer process.
 
 I always imagined switching the rendering engine to use something like Pango, but in practice, the ability to lay out the image in HTML is way more flexible and convenient. And the frequency at which the feature is used means we can handle the throughput quite easily.
 
-####Custom Domains
+#### Custom Domains
 
 We allow people to set up custom domains for their Medium publications. We wanted single sign-on and HTTPS everywhere, so it wasn't super trival to get working. We have a set of dedicated HAProxy servers that manage certs and route traffic to the main fleet of application servers. There is some manual work required when setting up a domain, but we've automated large swatches of it through a custom integration with Namecheap. The cert provisioning and publication linking is handled by a dedicated service.
 
-####Web Frontend
+#### Web Frontend
 
 On the web, we tend to want to stay close to the metal. We have our own Single Page Application framework that uses [Closure]() as a standard library. We use Closure Templates for rendering on both the client and the server, and we use the Closure Compiler to minify the code and split it into modules. The editor is the most complex part of our web app, which Nick has written about.
 
-####iOS
+#### iOS
 
 Both our apps are native, making minimal use of web views.
 
@@ -105,7 +105,7 @@ Every commit is built and pushed to Medium employees, so that we can try out the
 
 For tests, we XCTest and OCMock.
 
-####Android
+#### Android
 
 On Android, we stay current with the very lasted edition of the SDK and support libraries. We don't use any comprehensive frameworks, preferring instead to establish consitent patterns for repeated problems. We use [guava]() for all the things missing from Java. But otherwise, we tend to use [3rd part tools that aim to solve more narrow problems](). We define our API responses using protocol buffers and then generate the objects we use in the app.
 
@@ -113,15 +113,15 @@ We use [mockito]() and [robolectric](). We write high-level tests that spin up a
 
 Every commit is automatically pushed to the play store as an alpha build, which goes out to Medium staff right away. (This includes another flavor of the app, for our internal version of Medium - Hatch). Most Fridays we promote the lastest alpha to our beta group and have them play with things over the weekend. Then, on Monday, we promote it from beta to production. Since the lastest code is always ready for release, when we find a bad bug, we get the fix out to production immediately. When we're worried about a new feature, we let the beta group play with things a little longer; when we're excited, we release even more frequently.
 
-####A/B Testing & Feature Flags
+#### A/B Testing & Feature Flags
 
 All our clients use server-supplied feature flags, called variants, for A/B testing and guarding unfinished features.
 
-####Misc
+#### Misc
 
 There are a lot of other things on the fringe of the product that I haven't mentioned above: [Algolia]() has allowed us to iterate quickly on search-related functionality, [SendGrid]() for inbound and outbound email, [Urban Airship]() for notifications, [SQS]() for queue processing, [Bloomd]() for bloom filters, [PubSubHubbub]() and [Superfeedr]() for RSS, etc, etc.
 
-###Build, Test, Deploy Workflow
+### Build, Test, Deploy Workflow
 
 We embrace continuous integration and delivery, pushing on green as fast as possible. Jenkins manages all those processes.
 
@@ -133,12 +133,12 @@ We deploy to a staging environment as quickly as we can - currently about 15 min
 
 We do blue/green deploys. For production we send traffic to a canary instance, and the release process monitors error rates before proceeding with the deloy. Rollbacks are internal DNS flips.
 
-###What's Next?
+### What's Next?
 
 So much! There's a lot to do to refine the core product and make the reading and writing better. We're also starting to work on monetization features for authors and publishers. This is a green field project, and we're approaching the problem space with open minds. We think the future needs new mechanism for funding content, and we want to make sure our features incentivize quality content and value to the network.
 
 
-###Summary of Stacks
+### Summary of Stacks
 
 EC2
 Node.js

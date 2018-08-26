@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "东南亚纪行4——越南之南"
+title:  "东南亚纪行4—越南之南"
 date:   2017-01-05 19:00:00
 categories: blog2
 image_url: "https://c2.staticflickr.com/6/5550/29808628251_b905cb9667_h.jpg"
@@ -17,8 +17,14 @@ image_url: "https://c2.staticflickr.com/6/5550/29808628251_b905cb9667_h.jpg"
 
 
 
+#### 摩托车上的城市
+
+
+
 <div class="video-container">
 <iframe class="video-frame" src="https://drive.google.com/file/d/0B9XjGtS_KzVGS1VxN0kxdlY4bGc/preview" width="640" height="360"></iframe></div>
+
+
 
 
 #### 水上集市

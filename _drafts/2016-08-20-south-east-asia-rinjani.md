@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "东南亚纪行3——火山历险"
+title:  "东南亚纪行3—火山历险"
 date:   2016-08-15 19:00:00
 categories: blog2
 image_url: "https://c1.staticflickr.com/9/8456/29856874436_68461f82f6_h.jpg"

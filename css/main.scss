@@ -46,3 +46,11 @@ $on-laptop:        800px;
         "layout",
         "syntax-highlighting"
 ;
+
+
+@font-face {
+font-family: 'Mistral';
+font-style: normal;
+font-weight: normal;
+src: local('Mistral'), url('MISTRAL.woff') format('woff');
+}

@@ -3,6 +3,7 @@
 $text-color: #525151;
 $header-color: #3c3b3b;
 $theme-color: #34215A;
+$theme-color-dark: #372D4A;
 $grey-text-color: #ababab;
 $header-background-color: rgba(255, 255, 255, 0.88);
 $header-shadow-color: #cccccc;
@@ -23,15 +24,22 @@ $block-background-color: #fdfafa;
 /**
  * Site header
  */
+header {
+    text-align: center;
+}
 .site-header {
     color: $header-color;
     height: 50px;
-    position: fixed;
-    text-align: left;
+    position: absolute;
     vertical-align: middle;
     font-size: 150%;
     z-index: 20;
-    top: 0px;
+    border: solid;
+    background-color: white;
+    display: inline-block;
+    text-align: center;
+    top: 20px;
+    left: 20px;
 
     span {
         margin: 20px;
@@ -40,12 +48,11 @@ $block-background-color: #fdfafa;
     a {
         display: inline-block;
         padding: 5px 0;
-        color: white;
         opacity: 1.0;
         text-decoration: none;
         &:hover {
             opacity: 0.8;
-            color: white;
+            color: $theme-color-dark;
             text-decoration: none;
         }
         &.page {
@@ -63,8 +70,7 @@ $block-background-color: #fdfafa;
  * Header image in home page
  */
 .header-image {
-    background: url('https://c2.staticflickr.com/2/1501/25042644286_11a49077d1_h.jpg') no-repeat center center;
-    background-size: cover;
+    background-color: $theme-color-dark;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -177,9 +183,9 @@ $block-background-color: #fdfafa;
  * Site footer
  */
 .site-footer {
-    background-color: rgba($theme-color, 0.85);
+    background-color: $theme-color-dark;
     width: 100%;
-    height: 300px;
+    height: 100px;
     position: relative;
 
     p {
@@ -413,80 +419,80 @@ body,
     z-index: 10;
     width: 100%;
     background: #F4F3F6;
-    padding: 40px 0 20px 0;
 }
 
-.page-heading {
-    font-size: 20px;
-}
-
-.post-list {
+.block-group {
+    height: 100vh;
     margin: 0;
-    list-style: none;
-
-    > li {
-        margin-bottom: $spacing-unit;
-        border-bottom: 1px solid #ddd;
-        padding: 0 0 20px 0px;
-    }
-
-    .post-item {
-        display: inline-block;
-    }
-
-    .tag {
-      margin-right: 10px;
-      display: inline-block;
-      padding: 1px 10px;
-      background-color: #4CB894;
-      color: white;
-      font-size: 11px;
+    padding: 0;
+    .block {
+        height: 50%;
+        padding: 0;
+        font-family: 'Mistral';
+        position: relative;
+        .block-title {
+            font-size: 30px;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            border-bottom: solid 3px white;
+            color: white;
+        }
+        .block-tag {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            color: white;
+            bottom: 30px;
+            .inner {
+                background-color: black;
+                display: inline-block;
+                padding: 2px 20px;
+            }
+        }
+        &.blog {
+            padding: 50px;
+            background: url("https://c1.staticflickr.com/2/1893/44230851762_e43ba55510_h.jpg") no-repeat center center;
+            background-size: cover;
+        }
+        &.about {
+            text-align: center;
+            outline-style: solid;
+            outline-color: black;
+            z-index: 10;
+            .block-about-title {
+                transform: translate(0, 100%);
+                font-size: 60px;
+            }
+        }
+        &.tech {
+            background-color: black;
+            color: chartreuse;
+            padding: 60px;
+            font-family: Consolas, monaco, monospace;
+        }
+        &.vlog {
+            padding: 50px;
+            background: url("https://c1.staticflickr.com/8/7531/16182145015_8fa813f382_h.jpg") no-repeat center center;
+            background-size: cover;
+            .recording-icon {
+                background-color: red;
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                margin-right: 10px;
+                border-radius: 10px;
+            }
+            .block-title {
+                color: black;
+                border-bottom: solid 3px black;
+            }
+        }
     }
 }
 
-.post-meta {
-    font-size: 10px;
-    color: $grey-text-color;
-    padding: 2px 5px 2px 1px;
-    border-radius: 0 20% 0 20%;
-}
 
-.post-link {
-    display: block;
-    font-weight: 600;
-    font-size: 18px;
-    color: $header-color;
-
-    &:hover {
-        color: $theme-color;
-        cursor: pointer;
-        text-decoration: none;
-    }
-    &:visited {
-        color: $header-color !important;
-    }
-}
-
-.post-preview {
-  margin: 10px 0px 0px 0px;
-  font-size: 13px;
-  color: $text-color;
-}
-
-.journal {
-  background: white;
-  color: #bbb;
-  font-weight: 200;
-  display: inline-block;
-  img {
-    height: 150px;
-  }
-  span {
-    text-align: center;
-    width: 100%;
-    display: inline-block;
-  }
-}
 
 .more-button {
     border-radius: 2px;

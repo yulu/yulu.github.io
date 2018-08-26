@@ -28,28 +28,28 @@
 .button-toggle.active .top {
   transform: translateY(9px) translate(0) rotate(45deg);
   -webkit-transform: translateY(9px) translate(0) rotate(45deg);
-  background: #4CB894;
+  background: #34215A;
 }
 .button-toggle.active .middle_1 {
   transform: translateX(-100%);
   -webkit-transform: translateX(-100%);
-  background: #4CB894;
+  background: #34215A;
 }
 .button-toggle.active .middle_2 {
   transform: translateX(100%);
   -webkit-transform: translateX(100%);
-  background: #4CB894;
+  background: #34215A;
 }
 .button-toggle.active .bottom {
   transform: translateY(-9px) translateX(0) rotate(-45deg);
   -webkit-transform: translateY(-9px) translateX(0) rotate(-45deg);
-  background: #4CB894;
+  background: #34215A;
 }
 .button-toggle:hover {
   opacity: 1.0;
 }
 .button-toggle span {
-  background: #4CB894;
+  background: #34215A;
   position: absolute;
   top: 0;
   left: 0;
@@ -137,6 +137,6 @@
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   height: 3px;
-  background: #4CB894;
+  background: #34215A;
   transition: .35s;
 }
