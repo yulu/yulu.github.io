@@ -282,7 +282,7 @@ body,
 }
 
 .blog-layer {
-  background-color: rgba(76, 184, 148, 0.9);
+  background-color: transparentize($theme-color-dark, 0.1) ;
   position: absolute;
   top: 0;
   left: 0;
@@ -419,6 +419,13 @@ body,
     z-index: 10;
     width: 100%;
     background: #F4F3F6;
+}
+
+.post-meta {
+    font-size: 10px;
+    color: $grey-text-color;
+    padding: 2px 5px 2px 1px;
+    border-radius: 0 20% 0 20%;
 }
 
 .block-group {
@@ -561,6 +568,7 @@ body,
  */
 .post-header {
     margin: $spacing-unit 0px;
+    text-align: left;
     h1 {
         line-height: 60px;
         color: $text-color;
