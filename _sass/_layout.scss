@@ -430,7 +430,7 @@ body,
 
 .block-group {
     height: 100vh;
-    margin: 0;
+    margin: 0 !important; 
     padding: 0;
     .block {
         height: 50%;
