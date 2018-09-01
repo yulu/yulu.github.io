@@ -65,5 +65,5 @@ image_url: https://c2.staticflickr.com/2/1883/44333432121_5502c65db6_o.jpg
 爬山的流水帐通过Vlog记录，也可以叫“爬山我们吃什么”，因为基本记录的就是我们早上吃什么，中午吃什么，晚上吃什么的。前程我主要拍摄解说，手抖但是风趣幽默，后程太石解说，手稳但是解说呆板带官腔。
 
 <div class="video-container">
-    <iframe class="video-frame"  width="640" height="360" src="https://www.youtube.com/embed/yncJOJ8z3K8?rel=0&autoplay=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-frame"  width="100%" height="100%" src="https://www.youtube.com/embed/yncJOJ8z3K8?rel=0&autoplay=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
 </div>
