@@ -13,18 +13,15 @@ image_url: "https://c2.staticflickr.com/6/5550/29808628251_b905cb9667_h.jpg"
 
 胡志明市的
 
+
 #### 十二属相里的猫
-
-
-
-#### 摩托车上的城市
-
-
-
-<div class="video-container">
-<iframe class="video-frame" src="https://drive.google.com/file/d/0B9XjGtS_KzVGS1VxN0kxdlY4bGc/preview" width="640" height="360"></iframe></div>
 
 
 
 
 #### 水上集市
+
+
+
+<div class="video-container">
+<iframe class="video-frame" src="https://drive.google.com/file/d/0B9XjGtS_KzVGS1VxN0kxdlY4bGc/preview" width="100%" height="100%"></iframe></div>
