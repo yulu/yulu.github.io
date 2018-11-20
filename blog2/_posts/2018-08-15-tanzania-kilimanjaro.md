@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "非洲纪行1-闪闪发光的山"
+title:  "非洲纪行1—闪闪发光的山"
 date:   2018-08-15 19:00:00
 categories: blog2
 image_url: https://c2.staticflickr.com/2/1883/44333432121_5502c65db6_o.jpg

@@ -567,7 +567,7 @@ body,
  * Posts
  */
 .post-header {
-    margin: $spacing-unit 0px;
+    margin: $spacing-unit 0px 0px;
     text-align: left;
     h1 {
         line-height: 60px;
@@ -576,7 +576,7 @@ body,
 }
 
 .post-title {
-    font-size: 42px;
+    font-size: 36px;
     letter-spacing: -1px;
     line-height: 1;
 
@@ -669,6 +669,7 @@ body,
 
     h4 {
         font-size: 20px;
+        margin-bottom: 20px;
         color: $text-color;
         @include media-query($on-laptop) {
             font-size: 18px;
