@@ -604,6 +604,7 @@ body,
 .post-content {
     margin-bottom: $spacing-unit;
     p {
+        margin-bottom: 20px;
         font-family: $content-font-family;
     }
 
@@ -760,7 +761,7 @@ body,
     }
     @media screen and (min-width: $break-medium) {
         height: 430px;
-        max-width: 780px;
+        max-width: 765px;
     }
     height: 100vh;
     margin: auto;
