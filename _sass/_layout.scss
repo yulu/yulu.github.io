@@ -576,12 +576,12 @@ body,
 }
 
 .post-title {
-    font-size: 36px;
+    font-size: 32px;
     letter-spacing: -1px;
     line-height: 1;
 
     @include media-query($on-laptop) {
-        font-size: 36px;
+        font-size: 24px;
     }
 }
 
@@ -703,8 +703,8 @@ body,
 
     h2,h3,h4,p,pre,ul,ol,
     .post-end {
-        max-width: -webkit-calc(900px - (#{$spacing-unit} * 2));
-        max-width:         calc(900px - (#{$spacing-unit} * 2));
+        max-width: -webkit-calc(800px - (#{$spacing-unit} * 2));
+        max-width:         calc(800px - (#{$spacing-unit} * 2));
         margin-right: auto;
         margin-left: auto;
         padding-right: $spacing-unit;
@@ -712,8 +712,8 @@ body,
         @extend %clearfix;
 
         @include media-query($on-laptop) {
-            max-width: -webkit-calc(900px - (#{$spacing-unit}));
-            max-width:         calc(900px - (#{$spacing-unit}));
+            max-width: -webkit-calc(800px - (#{$spacing-unit}));
+            max-width:         calc(800px - (#{$spacing-unit}));
             padding-right: $spacing-unit / 2;
             padding-left: $spacing-unit / 2;
         }
@@ -733,7 +733,7 @@ body,
         position: relative;
         color: $block-quote-color;
         font-size: 12px;
-        width: 200px;
+        width: 250px;
         margin: 10px 0 0 10px;
         padding-right: 2%;
         padding-left: 5px;
@@ -761,7 +761,7 @@ body,
     }
     @media screen and (min-width: $break-medium) {
         height: 430px;
-        max-width: 765px;
+        max-width: 680px;
     }
     height: 100vh;
     margin: auto;

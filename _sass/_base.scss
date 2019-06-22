@@ -143,7 +143,7 @@ h2, h3, h4 {
 p {
   font-size: 15px;
   color: #525151;
-  line-height: 1.5;
+  line-height: 1.8;
 }
 
 
@@ -205,8 +205,8 @@ pre {
  * Wrapper
  */
 .wrapper {
-    max-width: -webkit-calc(900px - (#{$spacing-unit} * 2));
-    max-width:         calc(900px - (#{$spacing-unit} * 2));
+    max-width: -webkit-calc(800px - (#{$spacing-unit} * 2));
+    max-width:         calc(800px - (#{$spacing-unit} * 2));
     margin-right: auto;
     margin-left: auto;
     padding-right: $spacing-unit;
@@ -214,8 +214,8 @@ pre {
     @extend %clearfix;
 
     @include media-query($on-laptop) {
-        max-width: -webkit-calc(900px - (#{$spacing-unit}));
-        max-width:         calc(900px - (#{$spacing-unit}));
+        max-width: -webkit-calc(800px - (#{$spacing-unit}));
+        max-width:         calc(800px - (#{$spacing-unit}));
         padding-right: $spacing-unit / 2;
         padding-left: $spacing-unit / 2;
     }
