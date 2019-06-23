@@ -43,7 +43,7 @@ image_url: https://farm2.staticflickr.com/1460/24981381119_bef1cb7ee7_o.jpg
 在蒲甘呆了好几天，每天早上都五点起床，骑着自行车穿梭在一座座佛塔间。在浓雾密布的平原上寻找一座安静耸立的佛塔，赤脚爬上去等待日出。晨光洒在一座座若影若现的佛塔尖顶上，一群群飞鸟在空中盘旋，逆光的剪影给这幅画面增加了些许生动。太阳在云层中探出了头，开始是柔和的光和清晰的轮廓，渐渐的，太阳的光辉一点点释放，当你意识到的时候，已经发觉阳光刺眼得不敢直视，佛塔，飞鸟，热气球的美丽轮廓被强烈的阳光掩盖，日出的观礼仪式到此结束。
 
 <div class="image-banner">
-    <img src="https://farm2.staticflickr.com/1472/25266070784_dcfdf68ae0_o.jpg">
+    <img src="https://live.staticflickr.com/65535/48113937652_496b499283_o.jpg">
     <span>蒲甘日出</span>
 </div>
 
@@ -74,7 +74,7 @@ image_url: https://farm2.staticflickr.com/1460/24981381119_bef1cb7ee7_o.jpg
 
 [image-1]:	https://farm2.staticflickr.com/1546/25872619686_f6e68a592f_o.jpg
 [image-2]:	https://farm2.staticflickr.com/1460/24981381119_bef1cb7ee7_o.jpg
-[image-3]:	https://farm2.staticflickr.com/1602/25597951590_f6a8dc8049_o.jpg
+[image-3]:	https://live.staticflickr.com/65535/48113839996_1e692e152c_o.jpg
 [image-4]:	https://farm2.staticflickr.com/1496/25898511045_2ede3459f8_o.jpg
 [image-5]:  https://c5.staticflickr.com/2/1605/25777738732_f93f784d3d_b.jpg
 [image-6]:  https://c7.staticflickr.com/2/1713/25265795334_d3532ea032_b.jpg
