@@ -304,7 +304,7 @@ body,
     position: fixed;
 
     &.about {
-      background: url("https://c2.staticflickr.com/2/1505/24438322014_77651f1040_h.jpg") no-repeat center;
+      background: url("https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/diving_2.jpg") no-repeat center;
       background-size: cover;
     }
 
@@ -676,6 +676,16 @@ body,
             font-size: 18px;
         }
     }
+
+    h5 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: $text-color;
+        @include media-query($on-laptop) {
+            font-size: 14px;
+        }
+    }
+
     li, ul {
         list-style-position: inside;
     }
@@ -701,7 +711,7 @@ body,
         }
     }
 
-    h2,h3,h4,p,pre,ul,ol,
+    h2,h3,h4,h5,p,pre,ul,ol,
     .post-end {
         max-width: -webkit-calc(800px - (#{$spacing-unit} * 2));
         max-width:         calc(800px - (#{$spacing-unit} * 2));
@@ -750,7 +760,8 @@ body,
         background-color: $theme-color;
         color: #fff;
         font-size: 90%;
-        border-radius: 4px 4px;
+        border-radius: 2px 2px;
+        padding: 2px 3px;
     }
 
 }
