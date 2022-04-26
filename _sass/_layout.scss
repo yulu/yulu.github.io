@@ -607,6 +607,15 @@ body,
         font-family: $content-font-family;
     }
 
+    ul {
+        margin-bottom: 20px;
+
+        li {
+            color: #525151;
+            line-height: 1.8;
+        }
+    }
+
     .image-banner {
         max-width: 100%;
         padding: 0;
@@ -772,6 +781,22 @@ body,
     @media screen and (min-width: $break-medium) {
         height: 430px;
         max-width: 680px;
+    }
+    height: 100vh;
+    margin: auto;
+    margin-top: 40px;
+    overflow: hidden;
+    background-size: cover;
+    position: relative;
+}
+
+.mindmap-container {
+    @media screen and (min-width: $break-small) {
+        height: 500px;
+    }
+    @media screen and (min-width: $break-medium) {
+        height: 550px;
+        max-width: 900px;
     }
     height: 100vh;
     margin: auto;
