@@ -40,6 +40,7 @@ header {
     text-align: center;
     top: 20px;
     left: 20px;
+    line-height: 37px;
 
     span {
         margin: 20px;
@@ -192,10 +193,9 @@ header {
         width: 100%;
         text-align: center;
         font-size: 80%;
-        display: inline-block;
-        position: absolute;
+        display: block;
         color: #fff;
-        bottom: 20px;
+        padding-top: 20px;
     }
     a {
         color: white;
@@ -429,7 +429,7 @@ body,
 }
 
 .block-group {
-    height: 100vh;
+    height: 85vh;
     margin: 0 !important; 
     padding: 0;
     .block {
