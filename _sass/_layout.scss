@@ -438,11 +438,10 @@ body,
         font-family: 'Mistral';
         position: relative;
         .block-title {
-            font-size: 30px;
+            font-size: 40px;
             width: 100%;
             text-align: center;
             padding: 20px;
-            border-bottom: solid 3px white;
             color: white;
         }
         .block-tag {
@@ -468,6 +467,7 @@ body,
             outline-style: solid;
             outline-color: black;
             z-index: 10;
+            background-color: #F4F3F6;
             .block-about-title {
                 transform: translate(0, 100%);
                 font-size: 60px;
@@ -493,7 +493,6 @@ body,
             }
             .block-title {
                 color: black;
-                border-bottom: solid 3px black;
             }
         }
     }

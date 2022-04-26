@@ -64,7 +64,7 @@ Before start the learning journey, plan it well. It is important to understand t
 
 ![][image-progress]
 
-#### In the progress
+#### In progress
 >1. take note in the format as questions, then answer the questions in your own words `[Active Recall]`
 >2. create a mind map and attach the questions and answers to the branches of the map `[Active Recall and Categorization]`
 
