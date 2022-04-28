@@ -793,10 +793,11 @@ body,
 .mindmap-container {
     @media screen and (min-width: $break-small) {
         height: 500px;
+        max-width: 600px;
     }
     @media screen and (min-width: $break-medium) {
         height: 550px;
-        max-width: 900px;
+        max-width: 1200px;
     }
     height: 100vh;
     margin: auto;
