@@ -135,7 +135,7 @@ categories: blog2
 
 ### 面试体验
 
->总结自三月中到四月中找面试期间逐步更新的面试笔记。
+>总结自三月中到四月中面试期间逐步更新的面试笔记。
 
 ##### JP Morgan and Chase
 
@@ -183,7 +183,7 @@ Tech interview还挺难。两轮都是先来两道medium题（有高频，也不
 - 面试体验：?/5
 - 面试流程：HR interview → 1-hour tech screening → virtual onsite ?
 
-我没有走完流程，fail了一次tech screening，放弃了第二次screening的机会。 只能说天时地利人和都没有占到吧。第一次screening前我高烧了三天（之前娃手足口家里蹲一星期也没有太多精力准备），吃着退烧药勉强把leetcode高频tag刷了两遍以上，面试当天也是退烧药顶着，面完全身一身大汗衣服全湿了。meta比较变态的是要求45分钟两道bug free，而我最大的问题就是手速慢。都是leetcode题，但是我有一道题没有写完，面完就知道悬了。第二天rRecruiter打电话来说差一点点meet bar，可以再安排一次screening。Recruiter应该很想我过，使劲把我的screening往后拖，每次都往后拖两三个星期好给我时间继续刷题。但是拖着拖着就拖黄，因为拿到了比较满意的offer，又对enterprise engineer的职位意向不大，就放弃了。看来刷题菜鸟如我注定进不了科技大厂。
+我没有走完流程，fail了一次tech screening，放弃了第二次screening的机会。 只能说天时地利人和都没有占到吧。第一次screening前我高烧了三天（之前娃手足口家里蹲一星期也没有太多精力准备），吃着退烧药勉强把leetcode高频tag刷了两遍以上，面试当天也是退烧药顶着，面完一身大汗衣服全湿了。meta比较变态的是要求45分钟两道bug free，而我最大的问题就是手速慢。都是leetcode题，但是我有一道题没有写完，面完就知道悬了。第二天Recruiter打电话来说差一点点meet bar，可以再安排一次screening。Recruiter应该很想我过，使劲把我的screening往后拖，每次都往后拖两三个星期好给我时间继续刷题。但是拖着拖着就拖黄，因为拿到了比较满意的offer，又对enterprise engineer的职位意向不大，就放弃了。看来刷题菜鸟如我注定进不了科技大厂。
 
 ##### Indeed
 
