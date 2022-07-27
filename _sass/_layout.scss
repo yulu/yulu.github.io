@@ -729,8 +729,8 @@ body,
 
     h2,h3,h4,h5,p,pre,ul,ol,
     .post-end {
-        max-width: -webkit-calc(800px - (#{$spacing-unit} * 2));
-        max-width:         calc(800px - (#{$spacing-unit} * 2));
+        max-width: -webkit-calc(1000px - (#{$spacing-unit} * 2));
+        max-width:         calc(1000px - (#{$spacing-unit} * 2));
         margin-right: auto;
         margin-left: auto;
         padding-right: $spacing-unit;
@@ -738,8 +738,8 @@ body,
         @extend %clearfix;
 
         @include media-query($on-laptop) {
-            max-width: -webkit-calc(800px - (#{$spacing-unit}));
-            max-width:         calc(800px - (#{$spacing-unit}));
+            max-width: -webkit-calc(1000px - (#{$spacing-unit}));
+            max-width:         calc(1000px - (#{$spacing-unit}));
             padding-right: $spacing-unit / 2;
             padding-left: $spacing-unit / 2;
         }
