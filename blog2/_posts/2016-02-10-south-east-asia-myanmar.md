@@ -3,7 +3,7 @@ layout: post
 title:  东南亚纪行1—缅甸岁月
 date:   2016-02-10 19:00:00
 categories: blog2
-image_url: https://farm2.staticflickr.com/1460/24981381119_bef1cb7ee7_o.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/24981381119_bef1cb7ee7_o.jpg
 ---
 
 说来惭愧，到今年年初为止，在小坡待了正好十年，但是对东南亚的各个国家几乎没有涉足。东南亚其实有相当精彩的人文景色和自然景观，非常值得慢慢体味。这一年里趁着各种小长假，探访了一直好奇的缅甸，在马来西亚学习了水肺潜水，挑战了印尼火山徒步，品尝了最地道的越南街头美食。终于有时间整理这几次旅途的见闻和体验，记录为《东南亚纪行》。
@@ -43,7 +43,7 @@ image_url: https://farm2.staticflickr.com/1460/24981381119_bef1cb7ee7_o.jpg
 在蒲甘呆了好几天，每天早上都五点起床，骑着自行车穿梭在一座座佛塔间。在浓雾密布的平原上寻找一座安静耸立的佛塔，赤脚爬上去等待日出。晨光洒在一座座若影若现的佛塔尖顶上，一群群飞鸟在空中盘旋，逆光的剪影给这幅画面增加了些许生动。太阳在云层中探出了头，开始是柔和的光和清晰的轮廓，渐渐的，太阳的光辉一点点释放，当你意识到的时候，已经发觉阳光刺眼得不敢直视，佛塔，飞鸟，热气球的美丽轮廓被强烈的阳光掩盖，日出的观礼仪式到此结束。
 
 <div class="image-banner">
-    <img src="https://live.staticflickr.com/65535/48113937652_496b499283_o.jpg">
+    <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/48113937652_496b499283_o.jpg">
     <span>蒲甘日出</span>
 </div>
 
@@ -72,10 +72,10 @@ image_url: https://farm2.staticflickr.com/1460/24981381119_bef1cb7ee7_o.jpg
 ![][image-4]
 
 
-[image-1]:	https://farm2.staticflickr.com/1546/25872619686_f6e68a592f_o.jpg
-[image-2]:	https://farm2.staticflickr.com/1460/24981381119_bef1cb7ee7_o.jpg
-[image-3]:	https://live.staticflickr.com/65535/48113839996_1e692e152c_o.jpg
-[image-4]:	https://farm2.staticflickr.com/1496/25898511045_2ede3459f8_o.jpg
-[image-5]:  https://c5.staticflickr.com/2/1605/25777738732_f93f784d3d_b.jpg
-[image-6]:  https://c7.staticflickr.com/2/1713/25265795334_d3532ea032_b.jpg
-[image-7]:  https://farm2.staticflickr.com/1472/25266070784_dcfdf68ae0_o.jpg
+[image-1]:	https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/25872619686_f6e68a592f_o.jpg
+[image-2]:	https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/24981381119_bef1cb7ee7_o.jpg
+[image-3]:	https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/48113839996_1e692e152c_o.jpg
+[image-4]:	https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/25898511045_2ede3459f8_o.jpg
+[image-5]:  https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/25777738732_f93f784d3d_b.jpg
+[image-6]:  https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/25265795334_d3532ea032_b.jpg
+[image-7]:  https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/25266070784_dcfdf68ae0_o.jpg

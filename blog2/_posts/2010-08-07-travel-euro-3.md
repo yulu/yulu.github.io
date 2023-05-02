@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2010-08-07 21:00:00
 title: 明日即天涯3－狂欢巴黎
-image_url: 'https://farm8.staticflickr.com/7587/16823517237_e5a19e8f31_o.jpg'
+image_url: 'https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16823517237_e5a19e8f31_o.jpg'
 image_caption: "爱极了蓬皮杜的小广场，一群一群的年轻人在这里聊天，喝酒，弹琴，充满自由的气息。我就枕着包躺着，看天空中飞机划过……"
 ---
 
@@ -18,19 +18,19 @@ image_caption: "爱极了蓬皮杜的小广场，一群一群的年轻人在这�
 <figcaption>
 在凯旋门顶上拍铁塔，原来它真的很高~！
 </figcaption>
->![effel](https://farm9.staticflickr.com/8746/16823516127_d515aa3497_z.jpg)
+>![effel](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16823516127_d515aa3497_z.jpg)
 
 <figcaption>
 卢浮宫外面也是歇脚的好地方。这里的景色很壮观，很巴黎。
 </figcaption>
->![luv](https://farm9.staticflickr.com/8734/17029547752_ce11777680_z.jpg)
+>![luv](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17029547752_ce11777680_z.jpg)
 
 <figcaption>
 歌剧院的金色雕塑。不得不承认欧洲的天空很漂亮，所以蹩脚摄影师拿傻瓜相机也能拍照片了。。。
 </figcaption>
->![opera](https://farm9.staticflickr.com/8740/16843461280_5596da83ce_z.jpg)
+>![opera](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16843461280_5596da83ce_z.jpg)
 
 <figcaption>
 傍晚，买了一个三明治，在铁塔下的草地上自娱自乐。
 </figcaption>
->![tower_in_photo](https://farm8.staticflickr.com/7612/16844714379_df5af29dcb_z.jpg)
+>![tower_in_photo](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16844714379_df5af29dcb_z.jpg)

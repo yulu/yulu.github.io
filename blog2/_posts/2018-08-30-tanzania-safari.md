@@ -3,7 +3,7 @@ layout: post
 title:  "非洲纪行2—天真的人类"
 date:   2018-12-07 19:00:00
 categories: blog2
-image_url: https://c2.staticflickr.com/2/1890/44104607222_836954daeb_h.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/44104607222_836954daeb_h.jpg
 ---
 
 #### 坦桑尼亚的“重庆”
@@ -106,11 +106,11 @@ Safari向导首先必须是个老司机，不管是在东非大裂谷里崎岖�
 </div>
 
 
-[image-me_with_kid]:    https://c2.staticflickr.com/2/1856/44191971271_0b61bed12d_h.jpg
-[image-masai_kid]:    https://c1.staticflickr.com/5/4870/45977165522_eafc19f36f_o.jpg
-[image-flamingo]:    https://c2.staticflickr.com/2/1835/30324801798_9250e128df_h.jpg
-[image-masai_men]:    https://c2.staticflickr.com/2/1862/44104615702_b89a0e077b_h.jpg
-[image-guide]:  https://c1.staticflickr.com/5/4840/45977571312_3204de1b54_o.jpg
-[image-masai_house]:  https://c1.staticflickr.com/5/4894/46027368061_513124d16a_h.jpg
-[image-masai_school]:  https://c2.staticflickr.com/2/1813/44104609522_645032e4c7_h.jpg
-[image-road]: https://c1.staticflickr.com/5/4813/32166959328_029efffa83_h.jpg
+[image-me_with_kid]:    https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/44191971271_0b61bed12d_h.jpg
+[image-masai_kid]:    https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/45977165522_eafc19f36f_o.jpg
+[image-flamingo]:    https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/30324801798_9250e128df_h.jpg
+[image-masai_men]:    https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/44104615702_b89a0e077b_h.jpg
+[image-guide]:  https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/45977571312_3204de1b54_o.jpg
+[image-masai_house]:  https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/46027368061_513124d16a_h.jpg
+[image-masai_school]:  https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/44104609522_645032e4c7_h.jpg
+[image-road]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/32166959328_029efffa83_h.jpg

@@ -3,7 +3,7 @@ layout: post
 title: "老街，出城"
 date: 2017-06-30 19:00:00
 categories: blog2
-image_url: https://farm5.staticflickr.com/4424/35590596513_21ab918217_o.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/35590596513_21ab918217_o.jpg
 ---
 
 兴坪离桂林阳朔县不远，小小一个县城，几条纵横街道，一天来来回回可以走好几遍。

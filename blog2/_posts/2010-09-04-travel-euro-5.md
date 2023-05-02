@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2010-09-04 21:00:00
 title: 明日即天涯5-天上的门
-image_url: 'https://farm8.staticflickr.com/7633/17030072361_6514c00503_o.jpg'
+image_url: 'https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17030072361_6514c00503_o.jpg'
 image_caption: "米兰火车站是当年清朝政府赔款在米兰修建的，欧洲城市的火车站是一道极美的风景线。但是米兰火车站里精美的浮雕和大理石像，藏匿着中国百年前的没落，让人寒心。"
 ---
 
@@ -18,11 +18,11 @@ image_caption: "米兰火车站是当年清朝政府赔款在米兰修建的，�
 <figcaption>
 感激帮我收集这一切的男孩子们
 </figcaption>
->![baggio](https://farm9.staticflickr.com/8739/16829213177_ef87f250ff_o.jpg)
+>![baggio](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16829213177_ef87f250ff_o.jpg)
 
 <figcaption>
 米兰大教堂，最著名的哥特式教堂之一
 </figcaption>
->![church](https://farm9.staticflickr.com/8739/17030075701_11a19a5058_z.jpg)
+>![church](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17030075701_11a19a5058_z.jpg)
 
 因为巴乔，年幼的我认识了整个意大利。意大利的第一站，我来到了米兰。

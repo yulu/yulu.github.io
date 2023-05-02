@@ -23,10 +23,10 @@ Interesting! So I start to look at my daily schedule before and now. I even draw
 
 Well this "time wheel" below illustrates the "unhealthy" schedule I used to follow. The most productive time is always in the midnight. Two reasons that have been discussed too often by other programmers: no distraction at that particular time; the more concentrated we could be when we are actually more tired. Or in other words, we just could not stop after we really start it. That 6 hours are really made full use of with the high efficiency. I then managed to get up before noon, grab some food and went to lab just to do some routine stuff. (One interesting thing is that, the very tricky bugs are often fixed at the office hour in the afternoon, because what confused or obstructed me last night would suddenly became clear after a whole night sound sleep).
 
->![efficiency-1](https://c2.staticflickr.com/8/7593/17092781151_be27e93248_z.jpg)
+>![efficiency-1](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17092781151_be27e93248_z.jpg)
 
 What does the "wheel" look like now? Still 7 hours of sleep. Production hour seems to be increased. And refreshment hours also. I guess this is because I start to have self-cooked big breakfast everyday. Now I can see clearly why the efficiency decreases!! The production hour, which should be as continuous as possible, now is segmented. Not only segmented into two pieces, the most important period-the afternoon is disrupted with the utility tasks ALL THE TIME: emails, meetings, chats. The concentration could not be guaranteed. The few hour before bed time, I could only say: too short, like now: I haven't finish drafting this article, but close to 1 am, both my bio-clock and my self-discipline tell me to go to bed without the work done!
 
->![efficiency-2](https://c1.staticflickr.com/9/8761/16886079067_d34899c654_z.jpg)
+>![efficiency-2](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16886079067_d34899c654_z.jpg)
 
 I don't want to switch back to the "unhealthy" lifestyle, because it is really unhealthy and I don't want to break those good habits I took so much effect to build - breakfast, sleep on time and exercises! But I cannot allow myself living with such low efficiency in producing "real work". I sense I should play around with the "time wheel" a bit. I will take some time to figure that out. Now it's bed time.

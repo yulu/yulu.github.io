@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2013-03-26 21:00:00
 title: 水下的世界
-image_url: 'https://c2.staticflickr.com/8/7589/16907230589_daffd0bc24_b.jpg'
+image_url: 'https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16907230589_daffd0bc24_b.jpg'
 ---
 
 和姐妹们尝试了一组水下拍摄。生活中最幸运的是，拥有这些不只可以陪你brunch，hightea，evening hanging out，还能帮助彼此实现生活中小梦想的朋友们。
@@ -16,8 +16,8 @@ image_url: 'https://c2.staticflickr.com/8/7589/16907230589_daffd0bc24_b.jpg'
 学习游泳三个月之后，和姐妹尝试水下拍摄
 </figcaption>
 
->![underwater1](https://farm9.staticflickr.com/8650/15994785590_214af36e34_h.jpg)
+>![underwater1](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/15994785590_214af36e34_h.jpg)
 
->![underwater2](https://farm8.staticflickr.com/7465/16182105425_3b2f0045b0_h.jpg)
+>![underwater2](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16182105425_3b2f0045b0_h.jpg)
 
->![underwater2](https://farm8.staticflickr.com/7651/17030390305_45a843b97c_o.jpg)
+>![underwater2](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17030390305_45a843b97c_o.jpg)

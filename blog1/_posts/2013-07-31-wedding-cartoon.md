@@ -9,14 +9,14 @@ Just to record the process to draw two cartoon characters for my best friend's w
 
 1) Trace the outline in Illustrator
 
-![wedding-1](https://c1.staticflickr.com/9/8827/17092046902_949455b596_b.jpg)
+![wedding-1](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17092046902_949455b596_b.jpg)
 
 2) Paint in Photoshop
 
-![wedding-2](https://c2.staticflickr.com/8/7678/16473398353_dfb32ab799_b.jpg)
+![wedding-2](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16473398353_dfb32ab799_b.jpg)
 
 3) Finish up
 
-![wedding-3](https://c2.staticflickr.com/8/7653/16473279563_9dc57a8a6c_n.jpg)
+![wedding-3](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16473279563_9dc57a8a6c_n.jpg)
 
 Thanks to my firends' trust and appreciation, I gradually start the career as a parttime freelance graphic designer, work hard and work smart.

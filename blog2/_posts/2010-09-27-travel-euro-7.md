@@ -3,13 +3,13 @@ layout: post
 category: blog2
 date: 2010-09-27 21:00:00
 title: 明日即天涯7-翡冷翠
-image_url: https://farm9.staticflickr.com/8696/16844803099_984decc88d_o.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16844803099_984decc88d_o.jpg
 image_caption: "很喜欢在米开朗基罗广场，俯瞰这个城市。黄昏时很多人聚集在这里，在向西的一排石阶上坐着，看日落，却有一点像并排坐看电影的感觉。而这部电影绝对不会让你后悔，看金色阳光撒在阿诺河上，教堂顶上，温暖又带一点落寞，让人心生平静又有一些伤感。 回来的时候天已经黑了，一个人在公交车上，不知道车开去哪里，有那么一点害怕和担心。不过，还是顺利回了住处。"
 ---
 
 佛罗伦萨绝对一座可以让人无限回味的城市，是那种在你经过她之后很久，才越发觉得她迷人的城市。佛罗伦萨可以让人记住她，因为他太有自己的特点和象征了。橘色的城池，巨大的穹顶，古败的桥梁。但也是这时我意识到，意大利不是我所能轻易了解的国度，他承载了太多文化，艺术和历史。法国的十天，我满足的欣赏到了我期望中的美景，甚至远远超出了我的期望。但是意大利的十二天，我只能说自己是个过客，匆匆一瞥，不曾有太多收获。 不过，这一段旅途中，我遇见了许多的人，听到了许多故事。在别人的故事中，看到不一样的世界。
 
->![dayna](https://farm8.staticflickr.com/7606/16823595097_a0cbb19199_o.jpg)
+>![dayna](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16823595097_a0cbb19199_o.jpg)
 
 在翡冷翠遇见了一个美国女子，我们一起搭公车去市区，一起逛学院美术馆，一起在传统的意大利餐馆里享受精致的午餐。很幸运遇见一些人，然后看到很不同的人生。Dayna的生活是我很向往的那一种。在美国有一家自己的studio，教小朋友绘画和瑜伽，也自己创作艺术。想尝试一些新鲜于是开始一段长途旅途，在南美邂逅了一段爱情，却草草结束了。接着来到意大利，教意大利小孩英文，顺便在这里游玩一圈。一起逛美术馆时，她给我讲她对这些画的看法，我这才发现原来不是只有我对于欧洲这些美术馆感到乏味，原来大家都一样。基督教徒的她甚至也开起了耶稣和圣母玛利亚的玩笑。在美术馆门口，她买了一张大卫的PENIS特写的明信片，她说她妹妹下个月就要生小孩了，而且是个男孩，这个作为礼物太有意思了。
 
@@ -21,14 +21,14 @@ image_caption: "很喜欢在米开朗基罗广场，俯瞰这个城市。黄昏�
 <figcaption>
 这个城市的色彩太美了，太美了。我爱橘色，我爱橘色！
 </figcaption>
->![florence](https://farm9.staticflickr.com/8713/16843172278_ed00d9c1e7_z.jpg)
+>![florence](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16843172278_ed00d9c1e7_z.jpg)
 
 <figcaption>
 最后一天去OUTLET，意外收获托斯卡纳田园美景。当然，在OUTLET也有小小收获。 
 </figcaption>
->![toscuni](https://farm9.staticflickr.com/8742/16410811463_73788ea7e7_o.jpg)
+>![toscuni](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16410811463_73788ea7e7_o.jpg)
 
 <figcaption>
 重逢的情侣——去罗马的火车晚点了很久。在等车无所事事时，看到对面站台上重逢的情侣，列车都离开好久了，他们还是原地，一直相拥着。似乎此时周围的一切都消失了，只有他们两个人。远处的我很感动。
 </figcaption>
->![meet](https://farm9.staticflickr.com/8755/17030100931_604a973443_o.jpg)
+>![meet](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17030100931_604a973443_o.jpg)

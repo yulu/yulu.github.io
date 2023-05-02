@@ -82,8 +82,8 @@ To reinstall ubuntu, opencv, cuda is always a struggle, but also a progress to l
 
 The Bug is noted in the source (RectSelector Class in common.py), however I don't quite understand why it happens. Instead of using the class, I rewrite a PlanerTracker Class to perform the tracking by mouse clicking.
 
-![python-1](https://c1.staticflickr.com/9/8759/17093523655_e420956e6c_z.jpg)
+![python-1](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17093523655_e420956e6c_z.jpg)
 
 The source is uploaded [here](https://gist.github.com/yulu/6867298).
 
-![python-2](https://c1.staticflickr.com/9/8733/17092831861_295644e39d_b.jpg)
+![python-2](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17092831861_295644e39d_b.jpg)

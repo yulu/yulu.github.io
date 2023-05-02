@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2011-03-20 21:00:00
 title: 明日即天涯9-爱琴海
-image_url: https://farm8.staticflickr.com/7503/16182249091_663f86ed8f_k.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16182249091_663f86ed8f_k.jpg
 ---
 
 每次翻希腊的照片，心里就一阵感动。希腊在我的旅行地图上被圈上又划掉，划掉又圈上，犹犹豫豫不知多少次。一次跨越七八个国家的旅行，潜意识里总是有一个小天平，对于一些地方的期待多过其他。最后终于下定决心买下机票和船票的时候，心里满满的全是感激。感激家人和朋友支持，感激年轻而放肆的年华，感激心中那个烂漫天真的孩子，让我有这一次机会来到梦中向往的天堂，只身一人，却更能安静的，缓慢的，享受这一份美好。
@@ -17,29 +17,29 @@ image_url: https://farm8.staticflickr.com/7503/16182249091_663f86ed8f_k.jpg
 <figcaption>
 住在一个希腊大叔和他的瑞士老婆经营的小民宿，精致的房间。纯白的小阳台太喜欢了，拍拍照，涂涂鸦
 </figcaption>
->![santorini](https://farm8.staticflickr.com/7639/17005029746_7a86e979b7_o.jpg)
+>![santorini](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17005029746_7a86e979b7_o.jpg)
 
 <figcaption>
 连地图都没有，我竟然用了四个小时从FIRA徒步到了OIA。一点不觉得辛苦，因为沿途景色太美了太美了
 </figcaption>
->![santorini](https://farm9.staticflickr.com/8685/16843190428_fd9d1b8dd8_o.jpg)
+>![santorini](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16843190428_fd9d1b8dd8_o.jpg)
 
 <figcaption>
 精美的oia小镇，白色的房子，蓝色的大海，就是圣托里尼的精髓，没有更美好的角度来诠释
 </figcaption>
->![santorini](https://farm8.staticflickr.com/7620/16843231238_0a48f1e89f_o.jpg)
+>![santorini](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16843231238_0a48f1e89f_o.jpg)
 
 <figcaption>
 在某沙滩边的小餐馆，对着大海享受一顿午餐
 </figcaption>
->![santorini](https://farm9.staticflickr.com/8723/16843440470_e34ceb1b2d_o.jpg)
+>![santorini](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16843440470_e34ceb1b2d_o.jpg)
 
 <figcaption>
 在无人的港口等夜船回雅典，倚在小箱子上涂涂画画。彩色笔在罗马用得没墨了，还进了高级文具店添了几只新的~
 </figcaption>
->![santorini](https://farm9.staticflickr.com/8731/17029534882_c985888242_o.jpg)
+>![santorini](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17029534882_c985888242_o.jpg)
 >
->![santorini](https://farm9.staticflickr.com/8724/16843219898_29beeab944_o.jpg)
+>![santorini](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16843219898_29beeab944_o.jpg)
 
 三天之后回到雅典。对于雅典的期望不高，酷热的天气，嘈杂的人群，印象中都是这样的评价。但是，当我走在卫城脚下，经过宪法广场，走进泛雅典娜体育场，短暂的休息在国家公园，我发现自己无可救药的爱上了这里。最后一天，还忍不住在H&M里购物一番，彻底的满足了。
 

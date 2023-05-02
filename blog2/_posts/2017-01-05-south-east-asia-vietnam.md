@@ -3,7 +3,7 @@ layout: post
 title:  "东南亚纪行2—越南之南"
 date:   2017-01-05 19:00:00
 categories: blog2
-image_url: "https://c1.staticflickr.com/5/4863/46224537121_bce85a400f_h.jpg"
+image_url: "https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/46224537121_bce85a400f_h.jpg"
 ---
 
 #### 战争之觞
@@ -56,8 +56,8 @@ image_url: "https://c1.staticflickr.com/5/4863/46224537121_bce85a400f_h.jpg"
 <iframe class="video-frame" src="https://drive.google.com/file/d/0B9XjGtS_KzVGS1VxN0kxdlY4bGc/preview" width="640" height="360"></iframe></div>
 
 
-[image-rice]: https://c1.staticflickr.com/5/4809/45500746064_148283b14f_h.jpg
-[image-bbq]: https://c1.staticflickr.com/5/4865/31285757727_ce53bed129_h.jpg
-[image-boat]: https://c1.staticflickr.com/5/4863/46224537121_bce85a400f_h.jpg
-[image-girl]: https://c1.staticflickr.com/5/4890/45500756824_2c39d1173e_h.jpg
-[image-city]: https://c2.staticflickr.com/6/5550/29808628251_b905cb9667_h.jpg
+[image-rice]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/45500746064_148283b14f_h.jpg
+[image-bbq]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/31285757727_ce53bed129_h.jpg
+[image-boat]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/46224537121_bce85a400f_h.jpg
+[image-girl]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/45500756824_2c39d1173e_h.jpg
+[image-city]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/29808628251_b905cb9667_h.jpg

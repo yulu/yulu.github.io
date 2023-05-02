@@ -3,7 +3,7 @@ layout: post
 title:  "印度纪行—织物的反面"
 date:   2019-04-29 19:00:00
 categories: blog2
-image_url: https://live.staticflickr.com/65535/33860408708_279229ffd0_h.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/33860408708_279229ffd0_h.jpg
 ---
 
 
@@ -148,7 +148,7 @@ image_url: https://live.staticflickr.com/65535/33860408708_279229ffd0_h.jpg
     <iframe class="video-frame"  width="100%" height="100%" src="https://www.youtube.com/embed/s1YiQ0-MpgY?rel=0&autoplay=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
 </div>
 
-[image-amristar]:    https://live.staticflickr.com/65535/33860408698_ad7234ed5c_h.jpg
-[image-border]:    https://live.staticflickr.com/65535/46948149204_75001c4cdf_h.jpg
-[image-agra]:    https://live.staticflickr.com/65535/46948149214_dc9e91b4e3_h.jpg
-[image-varanasi]:    https://live.staticflickr.com/65535/46948149224_404176b71e_h.jpg
+[image-amristar]:    https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/33860408698_ad7234ed5c_h.jpg
+[image-border]:    https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/46948149204_75001c4cdf_h.jpg
+[image-agra]:    https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/46948149214_dc9e91b4e3_h.jpg
+[image-varanasi]:    https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/46948149224_404176b71e_h.jpg

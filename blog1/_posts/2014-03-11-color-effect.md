@@ -3,7 +3,7 @@ layout: post
 title:  "Color and Art Effect by OpenGL Shaders on Android"
 date:   2014-03-11 22:48:25
 categories: blog1
-image_url: https://c2.staticflickr.com/8/7603/16886024207_895d74f072_h.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16886024207_895d74f072_h.jpg
 ---
 
 
@@ -72,7 +72,7 @@ vec3 RandomGradientWarm() {
 <figcaption>
 Warm Gradient
 </figcaption>
-![warm_gradient](https://farm9.staticflickr.com/8719/16397434123_7702494a25_o.jpg)
+![warm_gradient](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16397434123_7702494a25_o.jpg)
 
 Or a cool color gradient map like this:
 
@@ -95,7 +95,7 @@ vec3 RandomGradientCool() {
 <figcaption>
 Cool Gradient
 </figcaption>
-![cool_gradient](https://farm9.staticflickr.com/8692/16991573076_769edeae5e_o.jpg)
+![cool_gradient](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16991573076_769edeae5e_o.jpg)
 
 #### Blend Functions One More Time
 
@@ -150,7 +150,7 @@ vec3 OvelayBlender(vec3 Color, vec3 filter){
 {% endhighlight %}
 
 
-![flower](https://farm8.staticflickr.com/7608/17017567585_c241dfb69f_o.jpg)
+![flower](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17017567585_c241dfb69f_o.jpg)
 
 
 ### Being an Artist
@@ -162,7 +162,7 @@ Forget about the codes and equations for a while, let's talk about how to draw o
 <figcaption>
 How I Draw
 </figcaption>
-![drawing](https://farm9.staticflickr.com/8705/17016113192_60e9ee2218_o.jpg)
+![drawing](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17016113192_60e9ee2218_o.jpg)
 
 How about asking the computer to draw for us like this? Emm, how to sketch an outline? Here again comes the very simple edge detection algorithm Sobel filter. (Codes are shared in previous post)
 
@@ -174,16 +174,16 @@ How to blend the colors? We can pick up color from the real photo for each texel
 
 Now, we can sketch and blend:
 
-![outline](https://farm9.staticflickr.com/8702/16991579826_1132fbe75d_o.jpg)
+![outline](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16991579826_1132fbe75d_o.jpg)
 
 #### Masters' Styles: Just for Fun
 
-![waterlili](https://farm9.staticflickr.com/8736/16810167707_7dd748ca50_o.jpg)
+![waterlili](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16810167707_7dd748ca50_o.jpg)
 
 
 Waterlilies by Monet and Starry Night by Van Gogh are some famous masterpieces we all are familiar with. We can easily recognize the unique ways they blend colors. Monet,the Impressionist, in his work eliminated the edges and randomized the brush touches. To mimic an effect like this, I tried to combine the artistic effect without edge detection with the method I discussed previously - scanning the random selected pixels around the center one, and take either the brightest or darkest to replace the center. This gives a quite nice view I feel, if not alike.
 
-![flower-1](https://farm8.staticflickr.com/7614/16810166937_6864317cee_o.jpg)
+![flower-1](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16810166937_6864317cee_o.jpg)
 
 
 Curved lines and circular brush touches are the identities of Vincent Van Gogh. To mimic the kind of circular motion feel, I give wave-patterned displacements to texels by using a sine function:
@@ -198,7 +198,7 @@ vec2 circular(vec2 position){
 }
 {% endhighlight %}
 
-![waterlili-1](https://farm9.staticflickr.com/8741/17016121082_fabe7a1d7b_o.jpg)
+![waterlili-1](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17016121082_fabe7a1d7b_o.jpg)
 
 
 Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
@@ -251,7 +251,7 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
 }
 {% endhighlight %}
 
-![algo](https://farm8.staticflickr.com/7588/17016692551_0a088402e5_o.jpg)
+![algo](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17016692551_0a088402e5_o.jpg)
 
 
 ### The Issue!
@@ -284,7 +284,7 @@ vec3 main()
 }
 {% endhighlight %}
 
-![scene](https://farm9.staticflickr.com/8735/16395151344_e533fac091_o.jpg)
+![scene](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16395151344_e533fac091_o.jpg)
 
 
 ### Closure

@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2010-09-10 21:00:00
 title: 明日即天涯6-消失的威尼斯
-image_url: https://c2.staticflickr.com/8/7704/16905773948_c4a04fe04b_k.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16905773948_c4a04fe04b_k.jpg
 image_caption: "Kisses end. Dreams vanish, and sometimes cities too. We long for the perfect ending, but the curtain falls along with our hearts. Beauty is so difficult."
 ---
 
@@ -33,29 +33,29 @@ Travel Diary, Jul 2, 2009
  
 还好，那么幸运的遇见了一群真挚简单的朋友。第三天在圣乔治的钟楼上，一个中国男生试探式的和我说话。然后我们聊了起来，他给我拍了照，接着我加入了他们三个人的小团队里。我就这样跟着他们，逛小集市，逛小巷子。在小汽船驶在那条著名的大运河上时，那个内蒙古的男孩和我讲起了建筑史。我现在还记得他给我讲的好多细节：钥匙状的门窗，总督府材质不连贯的立柱和浮华的巴洛克教堂。那一个个名词——洛可可，巴洛克，哥特，文艺复兴——在我脑海中由简单的符号变成了生动的画面。威尼斯变得立体起来，至少我看到多于表面一点点的东西，前一天的那些关于被拒之门外的困惑和烦恼也不那么强烈了。我真的是万分的感激他，感谢他给我打开了这么一扇门。我也欣赏他们的旅行态度，是真正为了了解和学习自己想要的东西而来。
 
->![venice2](https://farm9.staticflickr.com/8744/17004966426_233fc85df8_o.jpg)
+>![venice2](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17004966426_233fc85df8_o.jpg)
 
 最感激，他们带着我看到夜幕降临之后的威尼斯，因为担心安全问题，欧洲天黑又都在十点之后，所以晚上几乎是不出门的。但是，朋友说你一定一定不能错过夜晚的圣马可广场。那一晚，我们在广场上席地而坐，安静的听着餐厅里乐队的表演。宝石蓝的天空，夹杂着海味的微风，悠扬缠绵的小提琴声。我对自己说，既然选择了远行，就不要转身去看自己的得失。在还有这么多时间，这么难得的机会的时候，好好的享受精彩。我想就算失去了很多，至少不会一无所获。
 
 <figcaption>
 摄影控男生在做了很多功课之后，说这里可以拍到全威尼斯最美丽的景
 </figcaption>
->![venice1](https://farm9.staticflickr.com/8699/17004965156_f08e9f2590_o.jpg)
+>![venice1](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17004965156_f08e9f2590_o.jpg)
 
 <figcaption>
 黄昏景色，美到无法言语
 </figcaption>
->![venice3](https://farm8.staticflickr.com/7631/16823543877_bece2c3249_z.jpg)
+>![venice3](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16823543877_bece2c3249_z.jpg)
 
 <figcaption>
 圣乔治钟楼上
 </figcaption>
->![venice4](https://farm9.staticflickr.com/8690/17030089031_ff475abca8_o.jpg)
+>![venice4](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17030089031_ff475abca8_o.jpg)
 
 <figcaption>
 黄昏在海边，和朋友闲聊，摆弄手机
 </figcaption>
->![venice5](https://farm9.staticflickr.com/8754/16843416510_303042ba52_o.jpg)
+>![venice5](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16843416510_303042ba52_o.jpg)
 
 现在，回想起来，一个人四十天的跋涉，似乎没有真正留下些什么，连美丽的城市也只是记录于我粗陋的照片上。但是我似乎是成长了，如果没有巴黎的晚餐，没有威尼斯的夜晚，没有那些消磨在火车上看风景掠过的时光：一个人，想一想自己的生活，或者和旅途中巧遇的朋友，交换彼此想法。我也许不会是现在这样的，是吗？其实没有人知道。
 

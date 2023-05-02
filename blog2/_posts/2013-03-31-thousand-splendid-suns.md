@@ -3,7 +3,7 @@ layout: post
 category: blog2
 date: 2013-03-31 21:00:00
 title: 那一千个灿烂的太阳
-image_url: 'https://farm9.staticflickr.com/8709/16473265673_f366907d63_o.jpg'
+image_url: 'https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16473265673_f366907d63_o.jpg'
 ---
 
 >人们数不清她的屋顶上有多少轮皎洁的月亮,也数不清她的墙壁之后那一千个灿烂的太阳

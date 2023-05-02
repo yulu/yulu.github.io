@@ -49,9 +49,9 @@ categories: blog2
 
 水彩的颜色明亮清新，大概找到了如何使用“水”的感觉，掌握几种简单的水彩画技巧，很容易就可以画出好看的画来，所以上手是比较容易的。但是要进一步的提到水彩画的技巧，大量的练习，基本功的积累，对颜色搭配的敏感度提高都不可少。作为一个小爱好，我只能算入了门，希望再以后的日子里可以多多练习，慢慢进步，享受水彩画的愉悦过程。
 
-[image1]: https://c3.staticflickr.com/6/5581/30967269762_fa48484f31_b.jpg
-[image2]: https://c5.staticflickr.com/6/5486/30967270572_6435e74c08_b.jpg
-[image3]: https://c3.staticflickr.com/6/5615/30967271562_d8cff70029_b.jpg
-[image4]: https://c1.staticflickr.com/6/5521/30967272672_4a31976378_b.jpg
-[image5]: https://c7.staticflickr.com/6/5503/30967273222_642d4bc92b_b.jpg
+[image1]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/30967269762_fa48484f31_b.jpg
+[image2]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/30967270572_6435e74c08_b.jpg
+[image3]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/30967271562_d8cff70029_b.jpg
+[image4]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/30967272672_4a31976378_b.jpg
+[image5]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/30967273222_642d4bc92b_b.jpg
 

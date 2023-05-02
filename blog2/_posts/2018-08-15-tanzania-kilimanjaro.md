@@ -3,7 +3,7 @@ layout: post
 title:  "非洲纪行1—闪闪发光的山"
 date:   2018-08-15 19:00:00
 categories: blog2
-image_url: https://c2.staticflickr.com/2/1883/44333432121_5502c65db6_o.jpg
+image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/44333432121_5502c65db6_o.jpg
 ---
 
 #### 哈库那马塔塔
@@ -25,7 +25,7 @@ image_url: https://c2.staticflickr.com/2/1883/44333432121_5502c65db6_o.jpg
 <figcaption>
 冲顶前的银河
 </figcaption>
-![kili_1](https://c2.staticflickr.com/2/1843/30466675438_6ac54a26bf_o.jpg)
+![kili_1](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/30466675438_6ac54a26bf_o.jpg)
 
 
 #### 佛系登山
@@ -46,7 +46,7 @@ image_url: https://c2.staticflickr.com/2/1883/44333432121_5502c65db6_o.jpg
 <figcaption>
 下山途中，一脸轻松
 </figcaption>
-![kili_2](https://c2.staticflickr.com/2/1847/43617036164_5cdefcf828_o.jpg)
+![kili_2](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/43617036164_5cdefcf828_o.jpg)
 
 
 #### 闪闪发光的山
@@ -56,7 +56,7 @@ image_url: https://c2.staticflickr.com/2/1883/44333432121_5502c65db6_o.jpg
 更具传奇色彩的，当然是乞力马扎罗的雪。在海明威笔下一夜成名，也因为这是赤道上的雪，火山上的雪，而更让人神往。在登山过程中只有最后冲顶的一天才会走到雪线之上，能看到雪的机会只有那几个小时。登顶的过程艰难又疲惫，夜里又是漆黑一片，因为高反不适，我基本是喘两大口气挪一小步的速度在走，根本没有什么心思欣赏“周遭的环境”。在六个小时的攀升之后终于过了Gillman's point哑口，这时火山口出现眼前，我这才真正的理解了乞力马扎罗的雪—今年这段时间的雪量尤其的大，整个火山口里外都覆盖着白色，几乎没有裸露的灰土地面，宛如一个巨大的玉盘，而我们站在盘沿上，一眼望去，白茫茫的一片，大自然的鬼斧神工。
 
 <div class="image-banner">
-    <img src="https://c2.staticflickr.com/2/1866/43428158675_8522d07207_o.jpg">
+    <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/43428158675_8522d07207_o.jpg">
     <span>乞力马扎罗的雪</span>
 </div>
 
