@@ -61,7 +61,7 @@ We're starting to use Amazon Aurora for some newer data, which allows more flexi
 
 We use [Neo4j]() to store relations between the entities that represent the Medium network, running a master with two replicas. People, posts, tags, and collections are nodes in the graphs. Edges are created on entity creation and when people perform acdtions such as follow, recommend, and highlight. We walk the graph to filter and recommend posts.
 
-####Data Platform
+#### Data Platform
 
 From early on we've been very data hungry, investing in our analytics infrastructure to help us make business and product decisions. More recently we're able to use the same data pipelines to feed back into production systems to power data-driven features sudh as Explore.
 
@@ -139,7 +139,7 @@ So much! There's a lot to do to refine the core product and make the reading and
 
 
 ### Summary of Stacks
-
+```
 EC2
 Node.js
 DynamoDB
@@ -181,3 +181,4 @@ Superfeedr
 Jenkins
 Pants
 Cluster Runner
+```
