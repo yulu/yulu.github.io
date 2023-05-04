@@ -137,11 +137,11 @@ private void renderQuad(int aPosition) {
 
 Three issues are considered here
 
-* A transformation matrix is queried using `mSurfaceTexture.getTransformMatrix(float[])`. This matrix transforms traditional 2D OpenGL ES texture coordinate column vectors of the form (s, t, 0, 1) where s and t are on the inclusive interval [0, 1] to the proper sampling location in the streamed texture.
+- A transformation matrix is queried using `mSurfaceTexture.getTransformMatrix(float[])`. This matrix transforms traditional 2D OpenGL ES texture coordinate column vectors of the form (s, t, 0, 1) where s and t are on the inclusive interval [0, 1] to the proper sampling location in the streamed texture.
 
-* The orientation change of the phone has effect on the Surface dimension change (Height and Width swapped) but has no effect on the camera size (Width and Height remains as Width > Height all the time). This should be considered using an orientation matrix passed to the shader to adjust the orientation of the frame whenever the phoneâ€™s orientation changes.
+- The orientation change of the phone has effect on the Surface dimension change (Height and Width swapped) but has no effect on the camera size (Width and Height remains as Width > Height all the time). This should be considered using an orientation matrix passed to the shader to adjust the orientation of the frame whenever the phoneâ€™s orientation changes.
 
-* The screen dimension (`SurfaceView` dimension and the camera frame dimension might not be the same, to maintain a proper w/h ratio, a scaling factor should be passed to the shader to resize the screen quad.
+- The screen dimension (`SurfaceView` dimension and the camera frame dimension might not be the same, to maintain a proper w/h ratio, a scaling factor should be passed to the shader to resize the screen quad.
 
 The codes below are the passing of the three parameters to the shader. Noted that `uTransformM` updated every frame as required, `uOrientationM` updated whenever the orientation of the phone changes, and ratios updated also when the orientation of the phone changes since the w/h ratio changes when their actual values change. The later two are updated in the `onSurfaceChanged(GL10, int width, int height)` method.
 

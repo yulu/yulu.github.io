@@ -3,7 +3,6 @@ layout: post
 title:  "浪潮之巅"
 date:   2015-04-10 18:00:00
 categories: blog2
-image_url: "https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16930532828_aac5839e36_h.jpg"
 ---
 
 旧同事搬家，留下一些书，眼馋看着就都搬了回来。吴军的《浪潮之巅》算是IT互联网从业人员的必读书目了，我竟是才听说，看来确实算行业新兵。趁着短途的小假看了一大半，也算是科普了很多业界八卦。之后还给老妈也推荐了，主要是觉得要讲清楚自己目前的工作挺费劲的，不如让她自己阅读领会吧。
