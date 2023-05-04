@@ -15,14 +15,6 @@ My illustration of the concept
 </figcaption>
 ![concept](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16395159474_15ca31d60f_k.jpg)
 
-The overall visual design and the fully-impelementation on Android platform is done by me: 
-<figcaption>
-Prototype with POP
-</figcaption>
-><div style="height: 780px; overflow: hidden; margin: auto;">
-><iframe src="https://popapp.in/w/projects/53ae3fa23200c0070ddb6742/embedded" width="820" height="1620" frameborder="0" allowTransparency="true" style="position: relative; top: -402px; display:block; margin: 0 auto; transform: scale3d(0.5, 0.5, 1); -webkit-transform: scale3d(0.5, 0.5, 1);"></iframe>
-></div>
-
 Now I have officially left the company, but the startup exprience and the design and programming skills I gained are most valuable to me. The main contributions I've made to this project:
 
 - Took responsibility for software development lifecycle of TapiWallet app, including software architecture design, API design, UI/UX design, test, deployment, maintenance and documentation preparation.
