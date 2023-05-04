@@ -214,6 +214,5 @@ Tech interview还挺难。两轮都是先来两道medium题（有高频，也不
 在经历自我探索，自省反思之后。作为一个[INFP](https://www.16personalities.com/infp-personality)，我的职业目标更加明确：**内容创作，成为导师或教育工作者，并对社会产生积极影响**。虽然终极目标明确但是短期方向模糊，我决定从保持透明，坚持内容输出和提高沟通交流能力开始做起——比如掏心掏肺地写了这篇文章！
 
 [leetcode]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/job-hunting/leetcode.png
-[system-design]: xx
 [calendar]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/job-hunting/calendar.png
 
