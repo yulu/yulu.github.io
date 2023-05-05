@@ -1,0 +1,72 @@
+---
+layout: post
+tag: reading_status/reading
+category: growth
+author: Norman Lewis
+cover: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Word_Power_Made_Easy.jpg
+---
+
+## Checklist
+- [x] Test Your Vocabulary 2022-08-31
+- [x] [[How to talk about personality types]]
+	- [x] session 1 2022-09-01
+	- [x] session 2 2022-09-02
+	- [x] session 3 2022-09-03
+- [ ] Brief Intermission One: Test Your Grammar
+- [x] [[How to talk about doctors]]
+	- [x] session 4 2022-09-03
+	- [x] session 5 2022-09-05
+	- [x] session 6 2022-09-10
+- [ ] Brief Intermission Two: Random notes on modern usage
+- [ ] [[How to talk about various practitioners]]
+	- [x] session 7 2022-09-10
+	- [x] session 8 2022-09-10
+	- [ ] session 9
+	- [ ] session 10
+- [ ] How to talk about science and scientists
+	- [ ] session 11
+	- [ ] session 12
+	- [ ] session 13
+- [ ] How to talk about liars and lying
+	- [ ] session 14
+	- [ ] session 15
+	- [ ] session 16
+	- [ ] session 17
+- [ ] How to check your progress Test I session 18
+- [ ] How to talk about actions
+	- [ ] session 19
+	- [ ] session 20
+	- [ ] session 21
+	- [ ] session 22
+	- [ ] session 23
+- [ ] How to talk about various speech habits
+	- [ ] session 24
+	- [ ] session 25
+	- [ ] session 26
+	- [ ] session 27
+- [ ] How to insult your enemies
+	- [ ] session 28
+	- [ ] session 29
+	- [ ] session 30
+	- [ ] session 31
+- [ ] How to flatter your friends
+	- [ ] session 32
+	- [ ] session 33
+	- [ ] session 34
+	- [ ] session 35
+	- [ ] session 36
+	- [ ] session 37
+- [ ] How to check your progress test II session 38
+- [ ] How to talk about common phenomena and occurrences
+	- [ ] session 39
+	- [ ] session 40
+	- [ ] session 41
+- [ ] How to talk about what goes on
+	- [ ] session 42
+	- [ ] session 43
+	- [ ] session 44
+- [ ] How to talk about a variety of personal characteristics
+	- [ ] session 45
+	- [ ] session 46
+- [ ] How to check your progress Test III session 47
+- [x] How to keep building your vocabulary

@@ -428,6 +428,24 @@ body,
     border-radius: 0 20% 0 20%;
 }
 
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 120px);
+    column-gap: 10px;
+    row-gap: 10px;
+    
+    .grid-item {
+        width: 120px;
+        padding: 5px;
+        border: solid 1px #ddd;
+        border-radius: 3px;
+
+        .title {
+            font-size: 11px;
+        }
+    }
+}
+
 .block-group {
     height: 85vh;
     margin: 0 !important; 
@@ -497,8 +515,6 @@ body,
         }
     }
 }
-
-
 
 .more-button {
     border-radius: 2px;
@@ -873,6 +889,9 @@ iframe {
   border: none;
 }
 
+/**
+ * table
+ */
 table a:link {
 	color: #666;
 	font-weight: bold;

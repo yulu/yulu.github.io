@@ -13,3 +13,8 @@ markdown: kramdown
 
 # Time zone
 timezone: Asia/Singapore
+
+# Collections
+collections:
+  books:
+    output: true
