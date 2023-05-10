@@ -30,7 +30,7 @@ header {
 .site-header {
     color: $header-color;
     height: 50px;
-    position: absolute;
+    position: fixed;
     vertical-align: middle;
     font-size: 150%;
     z-index: 20;
@@ -41,6 +41,10 @@ header {
     top: 20px;
     left: 20px;
     line-height: 37px;
+
+    @media screen and (max-width: $break-medium) {
+        position: absolute;
+    }
 
     span {
         margin: 20px;
