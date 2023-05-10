@@ -1,15 +1,18 @@
 ---
 layout: page
-title: Reading List
+title: Book Shelf
 category: blog4
+desc: "Hope you can be inspired, happy reading"
 ---
 
-<h3></h3>
 <h3>Tech Books</h3>
 <div class="post-grid">
 {% for post in site.books %}
   {% if post.cover and post.category == 'tech' %}
         <div class="grid-item" >
+            {% if post.status == 'noted' %}
+              <div class="ribbon">Done</div>
+            {% endif %}
             <img src="{{post.cover}}">
             <div>
               <a href="{{ post.url }}">
@@ -27,6 +30,9 @@ category: blog4
 {% for post in site.books %}
   {% if post.cover and post.category == 'non-fiction' %}
         <div class="grid-item" >
+            {% if post.status == 'noted' %}
+              <div class="ribbon">Done</div>
+            {% endif %}
             <img src="{{post.cover}}">
             <div>
               <a href="{{ post.url }}">
@@ -44,6 +50,9 @@ category: blog4
 {% for post in site.books %}
   {% if post.cover and post.category == 'fiction' %}
         <div class="grid-item" >
+            {% if post.status == 'noted' %}
+              <div class="ribbon">Done</div>
+            {% endif %}
             <img src="{{post.cover}}">
             <div>
               <a href="{{ post.url }}">
@@ -61,6 +70,9 @@ category: blog4
 {% for post in site.books %}
   {% if post.cover and post.category == 'growth' %}
         <div class="grid-item" >
+            {% if post.status == 'noted' %}
+              <div class="ribbon">Done</div>
+            {% endif %}
             <img src="{{post.cover}}">
             <div>
               <a href="{{ post.url }}">
@@ -78,6 +90,9 @@ category: blog4
 {% for post in site.books %}
   {% if post.cover and post.category == 'biz' %}
         <div class="grid-item" >
+            {% if post.status == 'noted' %}
+              <div class="ribbon">Done</div>
+            {% endif %}
             <img src="{{post.cover}}">
             <div>
               <a href="{{ post.url }}">

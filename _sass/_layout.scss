@@ -430,19 +430,48 @@ body,
 
 .post-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 120px);
-    column-gap: 10px;
-    row-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 140px);
+    column-gap: 15px;
+    row-gap: 15px;
     
     .grid-item {
-        width: 120px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        background-color: #fbfbfb;
+        width: 140px;
         padding: 5px;
-        border: solid 1px #ddd;
         border-radius: 3px;
+        position: relative;
+        overflow: hidden;
 
         .title {
             font-size: 11px;
         }
+        
+        .ribbon {
+            margin: 0;
+            padding: 0;
+            background: $theme-color;
+            color:white;
+            position: absolute;
+            top:0;
+            right:0;
+            transform: translateX(30%) translateY(0%) rotate(45deg);
+            transform-origin: top left;
+            font-size: 12px;
+          }
+          .ribbon:before,
+          .ribbon:after {
+            content: '';
+            position: absolute;
+            top:0;
+            margin: 0 -1px; /* tweak */
+            width: 100%;
+            height: 100%;
+            background: $theme-color;
+          }
+          .ribbon:before {
+            right:100%;
+          }
     }
 }
 
