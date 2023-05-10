@@ -1,6 +1,6 @@
 ---
 layout: post
-tag: reading_status/reading
+tag: reading_status/noting
 status: noted
 category: tech
 author: Martin Kleppmann

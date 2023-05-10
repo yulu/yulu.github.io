@@ -9,9 +9,17 @@ cover: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/boo
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16395141654_1c229496a8_o.jpg
 ---
 
-My reading notes of Hackers and Painters's Chinese version can be found in a [blog post](/blog2/2011/11/25/hackers-and-painters.html).
+My reading notes of Hackers and Painters's Chinese version can be found in a [blog post](/blog2/2011/11/25/hackers-and-painters.html) which was written in 2011.
 
-This is an important book for my career, which inspired me to take the path to step out from the Acedamic and become a software engineer. I cannot really understand the value of startups and the spirit of hackers until recent years when I experienced different cultures of start-up and cooperation. Thanks for this book and my choices made in my 20s, I had a fruitful early career in a wonderful start-up company. 
+This is an important book for my career, which inspired me to take the path to step out from the Acedamic and became a software engineer. I cannot really understand the value of startups and the spirit of hackers until recent years when I experienced different cultures of start-up and cooperation. Thanks for this book and my choice made in my mid 20s, I had a fruitful early career in a wonderful start-up company and I will always be grateful for my younger self who worked really hard to find the way out and for a group of great people lifting me up. 
+
+<figcaption class="reading-notes">
+A presentation I gave when I was at Visenze, about my tech journey
+</figcaption>
+![my-journey](https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/hackers_and_painters_notes/hackers_and_painters-journey.jpg)
+
+
+Some inspirational quotes from the book: 
 
 #### About research
 > Everyone in the sciences secretly believes that mathematicians are smarter than they are. I think mathematicians also believe this. At any rate, scientists tend to make their work look as mathematical as possible. A page of formulas just looks so impressive. (Tip: for extra impressiveness, use Greek variables.) And so there is a great temptation to work on problems you can treat formally, rather than problems that are, say, important.

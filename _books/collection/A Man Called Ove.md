@@ -1,6 +1,7 @@
 ---
 layout: post
 tag: reading_status/reading
+status: noted
 category: fiction
 author: Fredrik Backman
 cover: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/A_Man_Called_Ove.jpg

@@ -715,7 +715,7 @@ body,
         }
     }
 
-    h2 {
+    h1,h2 {
         font-size: 32px;
         position: relative;
         left: -10px;
@@ -780,7 +780,7 @@ body,
         }
     }
 
-    h2,h3,h4,h5,p,pre,ul,ol,table,
+    h1,h2,h3,h4,h5,p,pre,ul,ol,table,
     .post-end {
         max-width: -webkit-calc(1000px - (#{$spacing-unit} * 2));
         max-width:         calc(1000px - (#{$spacing-unit} * 2));
