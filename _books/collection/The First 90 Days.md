@@ -6,15 +6,6 @@ author: Michael D. Watkins
 cover: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_First_90_Days.jpg
 ---
 
-# The First 90 Days
-
-![rw-book-cover|100](https://images-na.ssl-images-amazon.com/images/I/51BE4JUbE3L._SL200_.jpg)
-
-## Metadata
-- Author: [[Michael D. Watkins]]
-- Full Title: The First 90 Days
-- Category: #books
-
 ## Highlights
  >[!note]
 “They put me in the job because of my skills and accomplishments,” the reasoning goes. “So that must be what they expect me to do here.”  ([Location 367](https://readwise.io/to_kindle?action=open&asin=B00B6U63ZE&location=367))

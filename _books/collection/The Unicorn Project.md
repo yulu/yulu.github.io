@@ -2,18 +2,9 @@
 layout: post
 tag: reading_status/reading
 cover: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Unicorn_Project.jpg
-category: tech
+category: fiction
 author: Gene Kim
 ---
-
-# The Unicorn Project
-
-![rw-book-cover](https://images-na.ssl-images-amazon.com/images/I/51w7S7zFNXL._SL200_.jpg)
-
-## Metadata
-- Author: [[Gene Kim]]
-- Full Title: The Unicorn Project
-- Category: #books
 
 ## Highlights
  >[!note]
