@@ -40,7 +40,9 @@ A common used pattern structure includes three especially valuable sections:
 	- generalisation: a pattern that is a general solution to a problem
 	- specialisation: a specialised form of a particular pattern
 
-<div style="width: 960px; height: 640px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:960px; height:640px" src="https://lucid.app/documents/embedded/a1ba9c00-fb28-4aec-8e8b-e85bfc1d0102" id=".dRW6dUzun-n"></iframe></div>
+<div class="mindmap-container">
+<iframe allowfullscreen frameborder="0" style="width:960px; height:640px" src="https://lucid.app/documents/embedded/a1ba9c00-fb28-4aec-8e8b-e85bfc1d0102" id=".dRW6dUzun-n"></iframe>
+</div>
 
 ![[microservices_patterns_discovery1.excalidraw]]
 
