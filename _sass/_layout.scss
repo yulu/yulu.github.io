@@ -718,7 +718,7 @@ body,
     h1,h2 {
         font-size: 32px;
         position: relative;
-        left: -10px;
+        padding-top: 15px;
 
         @include media-query($on-laptop) {
             font-size: 28px;
