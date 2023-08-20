@@ -432,6 +432,16 @@ body,
     border-radius: 0 20% 0 20%;
 }
 
+.post-tag {
+    font-size: 10px;
+    background-color: $theme-color;
+    color: #F4F3F6;
+    padding: 2px 5px 2px 5px;
+    position: relative;
+    border-radius: 10px;
+    top: -5px;
+}
+
 .post-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, 140px);
@@ -631,18 +641,6 @@ body,
     @include media-query($on-laptop) {
         font-size: 24px;
     }
-}
-
-.post-tag {
-    background-color: #A74A8A;
-    color: #fff;
-    font-size:12px;
-    font-weight: 500%;
-    padding: 3px 5px 3px 5px;
-    border-top-left-radius: 5%;
-    border-bottom-left-radius: 5%;
-    border-top-right-radius: 5%;
-    border-bottom-right-radius: 30%;
 }
 
 .post-wrapper {
