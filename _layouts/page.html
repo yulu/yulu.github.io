@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
 
-{% include head.html %}
+    {% include head.html %}
 
-<body>
+    <body>
 
-    {% include header.html %}
+        {% include header.html %}
 
-    <div class="blog-container">
-        <div class="blog-image">
-            <div class="title-container">
-                <span class="title">{{ page.title }}</span>
-                <span class="sub-title">{{ page.desc }}</span>
+        <div class="blog-container">
+            <div class="blog-image">
+                <div class="title-container">
+                    <span class="title">{{ page.title }}</span>
+                    <span class="sub-title">{{ page.desc }}</span>
+                </div>
+                <div class="blog-layer"></div>
             </div>
-            <div class="blog-layer"></div>
+
+            <div class="blog-content">
+            {{ content }}
+            </div>
         </div>
 
-        <div class="blog-content">
-          {{ content }}
-        </div>
-    </div>
-</body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
 </html>
