@@ -2,9 +2,11 @@
 layout: post
 category: blog2
 date: 2010-08-18 21:00:00
-title: 明日即天涯4-永远的普罗旺斯
+title: 明日即天涯4－永远的普罗旺斯
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/17030064561_010bc512ab_o.jpg
 image_caption: "亚薇农小镇中心充满童真的木马。"
+summary: 从普罗旺斯开始，我体会到了独游的意义。听歌，画画，拍照，野餐，看风景，记日记，逛集市。在大大的世界里拥有自己小小的国度，不被打扰不被侵犯，不得不承认我是太自我的女孩子了，我太享受这样的日子
+tags: 旅行
 ---
 
 如果只是不到一个星期的停留，旅行者眼中的普罗旺斯一定和彼特梅尔笔下的山居岁月很不一样。如果期望宁静的乡村，如果期望一望无际的薰衣草田，更可能会失望而归。但是对于我，普罗旺斯美得太让人意外了。

@@ -3,6 +3,7 @@ layout: post
 title:  "Lazy Snapping"
 date:   2014-01-30 19:00:00
 categories: blog1
+tags: research
 ---
 
 <div class="video-container">

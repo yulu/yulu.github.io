@@ -4,6 +4,8 @@ category: blog2
 date: 2013-03-31 21:00:00
 title: 那一千个灿烂的太阳
 image_url: 'https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16473265673_f366907d63_o.jpg'
+tags: 阅读
+summary: 在阿富汗——一个女性被法律禁止吃冰淇淋的国度，自己被悄悄带到隐蔽的冰淇淋小店，看到阿富汗女性小心翼翼的揭开遮挡脸庞的布卡，吃着香草冰淇淋的经历
 ---
 
 >人们数不清她的屋顶上有多少轮皎洁的月亮,也数不清她的墙壁之后那一千个灿烂的太阳

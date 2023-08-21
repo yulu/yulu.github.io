@@ -3,6 +3,7 @@ layout: post
 title:  "Explore Instagram-like Filters with Photoshop and OpenGL ES Shaders"
 date:   2013-02-19 19:00:00
 categories: blog1
+tags: OpenGL
 ---
 
 I used to spend quite some time working with Photoshop®, to edit photos or do some digital painting. However I became too lazy to PS since I started to use smartphones. Apps like Instagram® seems to be able to do the processing job more efficiently and produce results that look surprisingly amazing (not considering the quality loss of the photo). After studying the OpenGL Shaders, I thought I should be enable to do mimic the filter effect using shaders, with those previous experience working with Photoshop®. I could first explore in Photoshop® to figure out the steps to take to produce the filter effect. Then I could implement it using OpenGL ES Shaders. After spending some time in research, I kind of found the way to duplicate the filter effect, might not be exactly the same, but the feeling is captured. Take the Hudson filter as an example, I summarized the work I have done.

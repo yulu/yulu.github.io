@@ -3,6 +3,7 @@ layout: post
 title:  "Pretty Images from Pretty Geeky Codes"
 date:   2013-08-14 19:00:00
 categories: blog1
+tags: WebGL
 ---
 
 Haven't been here writing about techqies for such a long time. During the past few months, I had a wonderful backpack trip to Europe, where I met the Taiwanese guy who is writing shaders for Disney Animation - my dream job! Through the blog, I also made friends with a few freelance app designers and entrepreneurs in Singapore, and was given the chance to talk to [media in China](http://www.geekpark.net/read/view/185730) and tech-book author in Europe. On the other hand, thanks to my best friend, who is going to start an online business targeting Singapore market, I made money from my paintings for the very first time. These are great opportunities for me to grow, which made me step just a little bit closer to my dream career.

@@ -425,21 +425,28 @@ body,
     background: #F4F3F6;
 }
 
+.post-row {
+    margin: 10px 0 20px 0;
+    
+    .post-preview {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .post-tag {
+        font-size: 10px;
+        background-color: #fff;
+        padding: 4px 5px 4px 5px;
+        border-radius: 10px;
+        margin-right: 5px;
+    }
+}
+
 .post-meta {
     font-size: 10px;
     color: $grey-text-color;
     padding: 2px 5px 2px 1px;
     border-radius: 0 20% 0 20%;
-}
-
-.post-tag {
-    font-size: 10px;
-    background-color: $theme-color;
-    color: #F4F3F6;
-    padding: 2px 5px 2px 5px;
-    position: relative;
-    border-radius: 10px;
-    top: -5px;
 }
 
 .post-grid {

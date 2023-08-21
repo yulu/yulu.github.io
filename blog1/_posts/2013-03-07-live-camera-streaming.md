@@ -3,6 +3,7 @@ layout: post
 title:  "Live Camera Streaming using OpenGL Texture Mapping"
 date:   2013-03-07 19:00:00
 categories: blog1
+tags: OpenGL
 ---
 
 Previous works are handling only single image. Now I consider to apply those shader manipulations on live camera feed in, so that I might achieve a "real-time" filter effect.  There is a good [example](http://nhenze.net/?p=172) on camera frame mapped to OpenGL texture by Niels Henze. The app can be downloaded from [Google Play](https://play.google.com/store/apps/details?id=de.offis.magic.core&hl=en). However the author just dealt with black-and-white image mapping. To deal with color image really takes much more effort. The main problem to handle in the process is the image format conversion. Since the raw data from the camera is yuv format, rgb format however is required for the gltexture mapping. While pixel manipulation is extremely slow in Java (that's why we want to use GPU to take the burden off). Here I adopt a piece of native code (from the [AndAR](https://code.google.com/p/andar/) project) to perform the yuv to rgb conversion.

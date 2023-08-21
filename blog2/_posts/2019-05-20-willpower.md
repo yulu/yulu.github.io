@@ -3,6 +3,8 @@ layout: post
 title:  "自律养成乱记"
 date:   2019-05-20 19:00:00
 categories: blog2
+tags: "生活 效率"
+summary: 于是我在新年立下Flag，要在今年养成好习惯。
 ---
 
 19年我的目标，是养成好习惯。

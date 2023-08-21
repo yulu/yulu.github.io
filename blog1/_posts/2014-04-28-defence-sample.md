@@ -3,6 +3,7 @@ layout: post
 title:  "An Excellent Defence Presentation"
 date:   2014-04-28 19:00:00
 categories: blog1
+tags: research
 ---
 
 <div class="video-container">

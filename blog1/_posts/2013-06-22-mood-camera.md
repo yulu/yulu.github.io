@@ -3,6 +3,7 @@ layout: post
 title:  "Mood Camera"
 date:   2013-06-22 19:00:00
 categories: blog1
+tags: Android
 ---
 
 <div class="video-container">

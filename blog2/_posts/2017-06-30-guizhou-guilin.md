@@ -4,6 +4,8 @@ title: "老街，出城"
 date: 2017-06-30 19:00:00
 categories: blog2
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/35590596513_21ab918217_o.jpg
+summary: 下一代的孩子们，如果他们第一眼看到就是这光怪陆离的摩登世界，他们将以何种渠道去了解另一种真实存在的原始质朴？他们看待世界会是什么样的角度？对此我也充满好奇，就像我窥探老时光一样，我急切地想要窥探他们的那个新世界
+tags: "旅行 阅读"
 ---
 
 兴坪离桂林阳朔县不远，小小一个县城，几条纵横街道，一天来来回回可以走好几遍。

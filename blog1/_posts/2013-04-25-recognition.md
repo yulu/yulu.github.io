@@ -3,6 +3,7 @@ layout: post
 title:  "Bag-of-Features for Visual Recognition"
 date:   2013-04-25 19:00:00
 categories: blog1
+tags: research
 ---
 
 ### Rationale

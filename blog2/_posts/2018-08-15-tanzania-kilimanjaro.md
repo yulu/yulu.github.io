@@ -4,6 +4,8 @@ title:  "非洲纪行1—闪闪发光的山"
 date:   2018-08-15 19:00:00
 categories: blog2
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/44333432121_5502c65db6_o.jpg
+summary: 在日出的几分钟里，天空中日月同辉，强烈的晨光映照在积雪的山峰上，乌呼噜主峰像被点着火焰一样闪着金色的光。乞力马扎罗（Kilimanjaro），斯瓦希里语里就是指“闪闪发光的山”，难道这就是他名字的由来？
+tags: "旅行 爬山"
 ---
 
 #### 哈库那马塔塔

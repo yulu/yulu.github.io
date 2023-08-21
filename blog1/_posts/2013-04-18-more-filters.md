@@ -3,6 +3,7 @@ layout: post
 title:  "More Interesting Filters using Fragment Shader"
 date:   2013-04-18 19:00:00
 categories: blog1
+tags: OpenGL
 ---
 
 Continued with the previous project - image processing using OpenGL ES shaders, I studied and implemented another two interesting filters: artistic painting effect and diffuse glow effect.

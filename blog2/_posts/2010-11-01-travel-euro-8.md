@@ -2,8 +2,10 @@
 layout: post
 category: blog2
 date: 2010-11-01 21:00:00
-title: 明日即天涯8-罗马假日
+title: 明日即天涯8－罗马假日
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/4528406143_1d91269e8b_b.jpg
+summary: 我知道意大利必有可取之处，是我自己学得太少，了解得太少。看不懂那些艺术珍品，也不了解古罗马留下的文明的璀璨。在罗马留下了太多遗憾
+tags: 旅行
 ---
 
 似乎初到一个城市，总会有一些失落和疲倦。所以初到罗马时对于拥挤的街道，混乱的交通的失望，并没被我认定为对这座城市的最终评价。

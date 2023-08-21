@@ -3,6 +3,7 @@ layout: post
 title:  "Feature Detectors and Descriptors"
 date:   2013-05-24 19:00:00
 categories: blog1
+tags: research
 ---
 
 <figcaption class="reading-notes">

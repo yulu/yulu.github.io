@@ -4,6 +4,8 @@ category: blog2
 date: 2010-07-15 21:00:00
 title: 明日即天涯2－大城市小弄堂
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16823513697_6cc70e5293_o.jpg
+summary: 大城市，小弄堂……无论如何在这个城市里，我还是强烈的感受到那些砖瓦和草木散发着中国的气息。我总觉得城市是有味道的，味道难于记忆，只有当你置身其中才能感受到，并且牵动每一丝关于这些味道的记忆。
+tags: 旅行
 ---
 
 <figcaption class="reading-notes">

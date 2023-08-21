@@ -3,6 +3,7 @@ layout: post
 title:  "Color and Art Effect by OpenGL Shaders on Android"
 date:   2014-03-11 22:48:25
 categories: blog1
+tags: OpenGL
 ---
 
 

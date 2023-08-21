@@ -3,6 +3,7 @@ layout: post
 title:  "Gestures to Control the Camera View"
 date:   2013-05-24 19:00:00
 categories: blog1
+tags: Android
 ---
 
 After I published the Mood Camera app to the play store, I have received some, not too many comments - some are from my friends (all of them give me 5 stars, thanks so much guys), some are from the users who are totally strangers to me. I am overwhelmed by the feeling of gratefulness since I didn't expect such sincere and useful comments from people around the world. Honestly I never care enough to leave any words for any apps I have used. An email I have received said that the camera view is totally upside down for him. I have tested for a few phones but this issue never came up, so I have never considered it a problem. It will be an easy fix actually. I just need to add a button to trigger a restart of the camera with a feed in of frames that has been flipped upside down. But I looked at my UI - where to add the button. Like this? So stupid.

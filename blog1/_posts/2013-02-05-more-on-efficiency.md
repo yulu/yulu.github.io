@@ -3,6 +3,7 @@ layout: post
 title:  "More on Efficiency and Effectiveness"
 date:   2013-02-05 19:00:00
 categories: blog1
+tags: productivity
 ---
 
 Previously I analyzed the situation I was facing - less efficient in doing my "work" after living in a more healthier way. I urged myself to figure out a way to solve the 'low efficiency' problem. Then I was in the middle of reading the very famous book The 7 Habits of Highly Effective People. A very interesting concept caught my attention and made me rethink the way I was scheduling my daily life. I realized that I should make sure I have decided WHAT needs to be done before I find out HOW to do it.

@@ -3,6 +3,8 @@ layout: post
 title:  "裸辞和找工作笔记"
 date:   2022-05-10 01:00:00
 categories: blog2
+summary: 虽然终极目标明确但是短期方向模糊，我决定从保持透明，坚持内容输出和提高沟通交流能力开始做起
+tags: "程序媛"
 ---
 
 >这些是我在裸辞和找工作期间的一些笔记。之前是散乱的记录在自己的notion笔记里，还有随意的发表在社交媒体上，这里整理总结了一下。分享的原因是我在其他人，特别是一些youtuber的分享中受益匪浅（[Colors of Chloe](https://www.youtube.com/c/ColorsofChloe)[Hussein Nasser](https://www.youtube.com/c/HusseinNasser-software-engineering), [mayuko](https://www.youtube.com/c/hellomayuko), [Nian Li](https://www.youtube.com/c/NianLi%C3%86/videos))，希望自己保持透明，保持输出，并分享经验给他人参考。
