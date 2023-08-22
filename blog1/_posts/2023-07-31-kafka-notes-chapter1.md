@@ -6,7 +6,7 @@ categories: blog1
 tags: "reading_notes Kafka"
 ---
 
-## What Problems does Kafka Solve
+### What Problems does Kafka Solve
 
 > ##### How Kafka comes in to save the data transportation problems here
 >
@@ -14,16 +14,16 @@ tags: "reading_notes Kafka"
 > A filesystem or database commit log is designed to provide a durable record of all transactions so that they can be replayed to consistently build the state of the system. Similarly, data within Kafka is stored durably, in order, and can be read deterministically. In addition, the data can be distributed within the system to provide additional protections against failures, as well as significant opportunities for scaling performance. 
 
 
-#### direct-connection in/out data communications between services is difficult to trace:
+##### direct-connection in/out data communications between services is difficult to trace
 ![][kafka-chapter1-1.jpeg]
 
-#### use a pub/sub pattern
+##### use a pub/sub pattern
 ![][kafka-chapter1-2.jpeg]
 
-#### multiple publish/subscribe systems to support different biz use cases
+##### multiple publish/subscribe systems to support different biz use cases
 ![][kafka-chapter1-3.jpeg]
 
-## Summary as Ankicard
+### Summary as Ankicard
 
 💡 What problem does Kafka solve? 
 
@@ -39,7 +39,7 @@ Kafka is a pub/sub messaging system what is designed to decouple the business se
 
 Key is an optional metadata comes with the message, it will be hashed and used to decide which partition the message goes. Kafka brokers make sure that message comes with the same key goes to the same partition so they can be consumed in order. e.g. for mod-N partition, key is used to generate a consistent hash and used to select the partition number for that message so the same key are always written to the same partition
 
-## Basic Concepts
+### Basic Concepts
 **message**:: the unit of data in Kafka, just an array of bytes as far as Kafka concerned
 
 **key**:: an optional piece of metadata of the message. Keys are used when messages are to be written to partitions in a more controlled manner. e.g. for mod-N partition, key is used to generate a consistent hash and used to select the partition number for that message so the same key are always written to the same partition  

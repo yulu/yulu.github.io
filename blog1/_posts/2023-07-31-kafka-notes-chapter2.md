@@ -6,16 +6,17 @@ categories: blog1
 tags: "reading_notes Kafka"
 ---
 
-## Hands-on
+### Hands-on
 
-#### Running on AWS EC2 (ubuntu, t2.micro)
+##### Running on AWS EC2 (ubuntu, t2.micro)
+
 - ssh to server
-```
+```shell
 ssh -i yulu-mac.pem ubuntu@xx.xx.xx.xx
 ```
 
 - install java 11
-```
+```shell
 sudo apt-get update
 sudo apt install openjdk-11-jre-headless
 ```
@@ -46,26 +47,26 @@ export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
 /usr/local/kafka/bin/kafka-server-start.sh -daemon /usr/local/kafka/config/server.properties
 ```
 
-#### Running on Mac
+##### Running on Mac
 - install
-```
+```shell
 brew install kafka
 ```
 
 - start zookeeper
-```
+```shell
 /opt/homebrew/bin/zookeeper-server-start /opt/homebrew/etc/zookeeper/zoo.cfg
 ```
 
 - start kafka
-```
+```shell
 /opt/homebrew/bin/kafka-server-start /opt/homebrew/etc/kafka/server.properties
 ```
 
-#### Test the Kafka broker is working
+##### Test the Kafka broker is working
 
 - send from producer console
-```
+```shell
 kafka-console-producer --broker-list localhost:9092 --topic test
 > send first message
 > send second message
@@ -73,16 +74,16 @@ kafka-console-producer --broker-list localhost:9092 --topic test
 ```
 
 - consume by the consumer console
-```
+```shell
 kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning
 send first message
 send second message
 wow it is working
 ```
 
-## Configuring the Broker
+### Configuring the Broker
 
-#### General Broker Parameters
+##### General Broker Parameters
 - `broker.id`: every Kafka broker must have an integer identifier, which is set using the `broker.id`
 - `listener`: A listener is defined as `<protocol>://<hostname>:<port>` e.g. `PLAINTEXT://localhost:9092,SSL://:9091` 
 - `zookeeper.connect`: The location of the ZooKeeper used for storing the broker metadata is set using the zookeeper.connect configuration parameter. The format for this parameter is a semicolon-separated list of `hostname:port/path` strings
@@ -90,7 +91,7 @@ wow it is working
 	- port: the client port number for the server
 	- /path: an optional ZooKeeper path to use as a chroot environment for the Kafka cluster. If it is omitted, the root path is used
 
-> *Why use a Chroot path?*
+> Why use a Chroot path?
 > 
 > It is generally considered to be good practice to use chroot path for the Kafka cluster. This allows the ZooKeeper ensemble to be shared with other applications, including other Kafka clusters, without a conflict. It is also best to specify multiple ZooKeeper servers in this configuration. This allows the Kafka broker to connect to another member of the ZooKeeper ensemble in the event of server failure
 
@@ -100,7 +101,9 @@ wow it is working
 - `auto.leader.rebalance.enable`: in order to ensure a Kafka cluster doesn't become unbalanced by having all topic leadership on one broker, this config can be specified to ensure leadership is balanced as much as possible.
 - `delete.topic.enable`: depending on your environment and data retention guidelines, you may wish to lock down a cluster to prevent arbitrary deletions of topics. Disabling topic deletion can be set by setting this flag to `false`.
 
-#### Topic Defaults Parameters
+---
+
+##### Topic Defaults Parameters
 - `num.partitions`: how many partitions a new topic is created with. 
 	- keep in mind that the number of partitions for a topic can only be increased, never decreased. 
 	- many users will have the partition count for a topic be equal to, or a multiple of, the number of brokers in the cluster.
@@ -109,41 +112,51 @@ wow it is working
 - `log.retention.bytes`: another way to expire messages is based on the total number of bytes of messages retained. 
 - `log.segment.bytes`: once the log segment has reached to the size specified by this parameter, which defaults to 1GB, the log segment is closed and a new one is opened. Once a log segment has been closed, it can be considered for expiration. 
 - `log.roll.ms`: another way to control when log segments are closed. This parameter specifies the amount of time after which a log segment should be closed. 
-- `min.insync.replicas`: when configuring your cluster for data durability, setting `min.insync.replicas` to 2 ensures that at least two replicas are caught up and "in sync" with the producer.  refer to [DDIA-Chapter5 replication](/blog1/2023/04/10/ddia-5.html)
+- `min.insync.replicas`: when configuring your cluster for data durability, setting `min.insync.replicas` to 2 ensures that at least two replicas are caught up and "in sync" with the producer. Refer to [DDIA-Chapter5 replication](/blog1/2023/04/10/ddia-5.html)
 - `message.max.bytes`: this limits the maximum size of a message that can be produced, defaults to 1 MB.
 
-## Summary as Ankicard
+### Summary as Ankicard
 
-##### what are the two simple commands to test a Kafka server?
-```
+💡 What are the two simple commands to test a Kafka server?
+
+```shell
 kafka-console-producer --broker-list localhost:9092 --topic test
 kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
 
-##### what is `broker.id` config?
-every broker must have a integer identifier
+💡 What is `broker.id` config?
 
-##### what is `log.dirs` config? 
-where the log segments are stored in `log.dir`, for multiple directories, `log.dirs` are preferable. 
+Every broker must have a integer identifier
 
-##### how will Kafka broker store the partitions in multiple log directories if log.dirs is configured?
-kafka will store the partitions in a "least-used" fashion
+💡 What is `log.dirs` config? 
 
-##### what configuration will prevent Kafka to automatically create topic by sending message to a non-existing topic? 
+Where the log segments are stored in `log.dir`, for multiple directories, `log.dirs` are preferable. 
+
+💡 How will Kafka broker store the partitions in multiple log directories if `log.dirs` is configured?
+
+Kafka will store the partitions in a "least-used" fashion
+
+💡 What configuration will prevent Kafka to automatically create topic by sending message to a non-existing topic? 
+
 `auto.create.topics.enable`
 
-##### which parameter configs how many partitions a new topic is created with? 
+💡 Which parameter configs how many partitions a new topic is created with? 
+
 `num.partitions`
 
-##### can the number of partitions for a topic be decreased?
+💡 Can the number of partitions for a topic be decreased?
+
 No, the number of partitions for a topic can only be increased
 
-##### what is the replication factor configured by `default.replication.factor`? 
+💡 What is the replication factor configured by `default.replication.factor`? 
+
 It is the number of copies of data across several brokers. It should be greater than 1 to ensure the reliability
 
-##### what is the `min.insync.replicas` config and how does it ensure the reliability?
-you should set this to 2 at least to ensure that at least two replicas are caught up and "in sync" with the producer. This enables the semi-sync replication strategy.
+💡 What is the `min.insync.replicas` config and how does it ensure the reliability?
 
-##### how does `log.retention.ms` and `log.retention.bytes` works differently as Kafka's retention policies?
+You should set this to 2 at least to ensure that at least two replicas are caught up and "in sync" with the producer. This enables the semi-sync replication strategy.
+
+💡 How does `log.retention.ms` and `log.retention.bytes` works differently as Kafka's retention policies?
+
 `log.retention.ms` is the most common retention policy - for how long the Kafka will retain the message, it indicates the amount of time after which messages may be deleted.
 `log.retention.bytes` indicates once the log segment has reached to the size specified by this parameter (defaults to 1GB), the log segment is closed and a new one is opened. Once a log segment has been closed, it can be considered expiration. 
