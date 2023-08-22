@@ -4,7 +4,7 @@ category: blog2
 date: 2013-05-09 21:00:00
 title: 第一次尝试独立开发的经验和感悟
 image_url: 'https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16473363233_14bdde6b6e_h.jpg'
-summary: 这是第一次独立完成一个Android手机App的开发——从立意构思，后程算法，界面设计，调试测试，到最后放上商店的各种文案都是自己一个人完成的。
+summary: 这是第一次独立完成一个Android手机App的开发——从立意构思，后程算法，界面设计，调试测试，到最后放上商店的各种文案都是自己一个人完成的。虽然是一个功能略单薄，设计也稍显稚嫩的应用，我也并没期望从中能获得任何收益，但是这个过程中学到的各种知识和能力对我很是受用和鼓舞。所有的这些收获最终也确实转化成了新的契机，让我能继续在设计和开发的路上走下去。
 tags: "程序媛 创业"
 ---
 

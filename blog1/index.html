@@ -9,8 +9,8 @@ desc: "Tech • Book • Growth • Reflection"
   {% if post.categories contains 'blog1' %}
 	<div class="post-row">
 		<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span><br>
-		<h5><a class="cn-title" href="{{ post.url }}">{{ post.title }}</a></h5>
-		<div class="post-preview"> {{ post.content | strip_html | truncatewords:25 }} </div>
+		<div class="title-container"><a class="page-title" href="{{ post.url }}">{{ post.title }}</a></div>
+		<div class="post-preview"> {{ post.content | strip_html | truncatewords:40 }} </div>
 		{% for tag in post.tags %}
 			<span class="post-tag">{{ tag }}</span>
 		{% endfor %}

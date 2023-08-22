@@ -4,6 +4,7 @@ category: blog2
 date: 2013-03-26 21:00:00
 title: 水下的世界
 image_url: 'https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16907230589_daffd0bc24_b.jpg'
+summary: 和姐妹们尝试了一组水下拍摄。生活中最幸运的是，拥有这些不只可以陪你brunch，hightea，evening hanging out，还能帮助彼此实现生活中小梦想的朋友们。
 tags: "生活"
 ---
 

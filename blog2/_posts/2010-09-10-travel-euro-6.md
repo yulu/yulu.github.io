@@ -5,7 +5,7 @@ date: 2010-09-10 21:00:00
 title: 明日即天涯6－消失的威尼斯
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog2/archive/16905773948_c4a04fe04b_k.jpg
 image_caption: "Kisses end. Dreams vanish, and sometimes cities too. We long for the perfect ending, but the curtain falls along with our hearts. Beauty is so difficult."
-summary: 在我的床上可以看到夜晚的天空，听到海波怕打石板路的声音和不同国家的年轻人用不同语言喧哗和歌唱。尽管走过了好些城市，看过了好些风景，遇见了好些人，我还是看不透想不通这是一个如何的世界，我仿佛永远徘徊在门外，没有真正的进入，没有真正的去看去听去感受
+summary: 在我的床上可以看到夜晚的天空，听到海波怕打石板路的声音和不同国家的年轻人用不同语言喧哗和歌唱。尽管走过了好些城市，看过了好些风景，遇见了好些人，我还是看不透想不通这是一个如何的世界，我仿佛永远徘徊在门外，没有真正的进入，没有真正的去看去听去感受。
 tags: 旅行
 ---
 

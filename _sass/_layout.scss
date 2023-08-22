@@ -400,23 +400,27 @@ body,
     }
 }
 
-/**
- * CN site
- */
-.cn-title {
-    border-bottom: 0px !important;
-    a:hover {
-        border-bottom: 1px solid $theme-color !important;
-    }
-    &,
-    &:visited {
-        color: $grey-color-dark !important;
-    }
-}
 
 /**
  * Page content
  */
+
+.title-container {
+    margin: 0 0 5px;
+    font-size: 16px;
+    font-weight: 500;
+
+    .page-title {
+        border-bottom: 0px !important;
+        &:hover {
+            border-bottom: 1px solid $theme-color !important;
+        }
+        &,
+        &:visited {
+            color: $grey-color-dark !important;
+        }
+    }
+}
 
 .page-content {
     position: relative;
@@ -427,7 +431,9 @@ body,
 
 .post-row {
     margin: 10px 0 20px 0;
-    
+    max-width: 800px;
+    margin: 10px auto 30px;
+
     .post-preview {
         font-size: 12px;
         margin-bottom: 10px;
