@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Kafka Guide] Chatper 1 Meet Kafka"
+title:  "[Kafka Guide] Chapter 1 Meet Kafka"
 date:   2023-07-31 19:00:00
 categories: blog1
 tags: "reading_notes Kafka"

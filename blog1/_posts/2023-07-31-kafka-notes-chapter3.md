@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Kafka Guide] Chatper 3 Kafka Producer"
+title:  "[Kafka Guide] Chapter 3 Kafka Producer"
 date:   2023-07-31 19:00:00
 categories: blog1
 tags: "reading_notes Kafka"
