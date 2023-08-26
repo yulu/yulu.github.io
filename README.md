@@ -14,3 +14,7 @@ cp -r /tmp/_site/* ./
 git commit -a -m "your commit message"
 git push origin gh-pages
 ```
+
+Reference
+- [Use jekyll-toc plugin on Github Pages](https://dqdongg.com/blog/github/2018/12/29/Blog-Jekyll-toc-plugin.html)
+- [GitHub Pages official dependencies](https://pages.github.com/versions/)
