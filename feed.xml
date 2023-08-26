@@ -4,10 +4,10 @@
     <title>LittleCheeseCake</title>
     <description>I am migrating from a blog service provider to github, still trying out with Jekyll
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 26 Aug 2023 15:21:04 +0800</pubDate>
-    <lastBuildDate>Sat, 26 Aug 2023 15:21:04 +0800</lastBuildDate>
+    <link>http://yulu.github.io/</link>
+    <atom:link href="http://yulu.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 26 Aug 2023 15:45:12 +0800</pubDate>
+    <lastBuildDate>Sat, 26 Aug 2023 15:45:12 +0800</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -291,8 +291,8 @@ quota.producer.override=&quot;clientA:4M,clientB:10M&quot;
 
 </description>
         <pubDate>Tue, 01 Aug 2023 03:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter3.html</guid>
+        <link>http://yulu.github.io/blog1/2023/08/01/kafka-notes-chapter3.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog1/2023/08/01/kafka-notes-chapter3.html</guid>
         
         <category>reading_notes</category>
         
@@ -474,8 +474,8 @@ wow it is working
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log.retention.bytes&lt;/code&gt; indicates once the log segment has reached to the size specified by this parameter (defaults to 1GB), the log segment is closed and a new one is opened. Once a log segment has been closed, it can be considered expiration.&lt;/p&gt;
 </description>
         <pubDate>Tue, 01 Aug 2023 03:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter2.html</guid>
+        <link>http://yulu.github.io/blog1/2023/08/01/kafka-notes-chapter2.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog1/2023/08/01/kafka-notes-chapter2.html</guid>
         
         <category>reading_notes</category>
         
@@ -568,198 +568,8 @@ A filesystem or database commit log is designed to provide a durable record of a
 
 </description>
         <pubDate>Tue, 01 Aug 2023 03:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter1.html</guid>
-        
-        <category>reading_notes</category>
-        
-        <category>Kafka</category>
-        
-        
-        <category>blog1</category>
-        
-      </item>
-    
-      <item>
-        <title>[Kafka Guide] Chapter 4 Kafka Consumer</title>
-        <description>&lt;h3 id=&quot;kafka-consumer-concepts&quot;&gt;Kafka Consumer Concepts&lt;/h3&gt;
-
-&lt;h5 id=&quot;consumers-and-consumer-groups&quot;&gt;Consumers and Consumer Groups&lt;/h5&gt;
-
-&lt;p&gt;The main way we scale data consumption from a Kafka topic is by adding more consumers to a consumer group - adding consumers in a consumer groups scales up the process, however adding more consumers (in a group) than the number of partitions does not help since some consumers just become idle - &lt;strong&gt;a partition can only be consumed by one consumer in a group&lt;/strong&gt;. Adding consumer group allows separate processing of the topic for new use cases (independent from the other consumer groups).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter4-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;💡 How should we make use of Kafka consumer and Kafka consumer group?&lt;/p&gt;
-
-&lt;p&gt;You create new consumer group for each application that needs all the messages from one or more topics. You add consumers to an existing consumer group to scale the reading and processing of messages from the topics, so each additional consumer in a group will only get a subset of the messages.&lt;/p&gt;
-
-&lt;h5 id=&quot;consumer-groups-and-partition-rebalance&quot;&gt;Consumer Groups and Partition Rebalance&lt;/h5&gt;
-
-&lt;p&gt;💡 What is Partition Rebalance?&lt;/p&gt;
-
-&lt;p&gt;Moving partition ownership from one consumer to another is called a rebalance&lt;/p&gt;
-
-&lt;p&gt;💡 When will Partition Rebalance happen?&lt;/p&gt;
-
-&lt;p&gt;It happens when new consumers are added or old consumers are removed/crashed or administrator adds new partitions etc.&lt;/p&gt;
-
-&lt;p&gt;💡 What are the two types of Partition Rebalance strategies?&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;Eager rebalances&lt;/em&gt;: during an eager rebalance, all consumers stop consuming, give up their ownership of all partitions, rejoin the consumer group, and get a brand-new partition assignment&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Cooperative rebalances (incremental rebalances)&lt;/em&gt;: typically involve reassigning only a small subset of the partitions from one consumer to another, and allowing consumers to continue processing records from all the partitions that are not reassigned&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;💡 How does consumer maintain membership in a consumer group and ownership of the assigned partition and make sure it is alive and known to the Kafka broker?&lt;/p&gt;
-
-&lt;p&gt;Consumers maintain membership and ownership by sending &lt;em&gt;heartbeats&lt;/em&gt; to a Kafka broker designated as the &lt;em&gt;group coordinator&lt;/em&gt;. The heartbeats are sent by a background thread of the consumer, and as long as the consumer is sending heartbeats at regular intervals, it is assumed to be alive.&lt;/p&gt;
-
-&lt;p&gt;💡 How does the Process of Assigning Partitions to Consumer Work?&lt;/p&gt;
-
-&lt;p&gt;When a consumer wants to join a group, it sends a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JoinGroup&lt;/code&gt; request to the group coordinator. The first consumer to join the group becomes the group leader. The leader receives a list of all consumers in the group from the group coordinator and is responsible for assigning a subset of partitions to each consumer. It uses an implementation of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PartitionAssignor&lt;/code&gt; to decide which partitions should be handled by which consumer.
-Kafka has a few build-in partition assignment polices. After deciding on the partition assignment, the consumer group leader sends the list of assignments to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GroupCoordinator&lt;/code&gt;, which sends this information to all the consumers.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;❓ Questions to be explored&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;Why the leader is responsible for the assignment strategy execution, but not the group coordinator?&lt;/li&gt;
-    &lt;li&gt;Leader is a client (e.g. java runtime), what is exactly a “group coordinator”?&lt;/li&gt;
-    &lt;li&gt;What is the Kafka broker’s architecture? 
-See more in Kafka Guide - Chapter 6 Kafka Internals later.&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h5 id=&quot;static-group-membership&quot;&gt;Static Group Membership&lt;/h5&gt;
-
-&lt;p&gt;💡 What is static group membership?&lt;/p&gt;
-
-&lt;p&gt;The consumer is assigned a unique &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;group.instance.id&lt;/code&gt; and it becomes a static member. The same partitions will be assigned to it when it rejoins the group.&lt;/p&gt;
-
-&lt;p&gt;💡 When static group membership is useful?&lt;/p&gt;
-
-&lt;p&gt;Static group membership is useful when your application maintains local state or cache that is populated by the partitions that are assigned to each consumer. When re-creating this cache is time-consuming, you don’t want this process to happen every time a consumer restarts.&lt;/p&gt;
-
-&lt;p&gt;💡 What is the difference of the rebalance strategy for a consumer with static group membership from normal consumer?&lt;/p&gt;
-
-&lt;p&gt;When consumer with static group membership restart, it will not trigger a rebalance. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;session.timeout.ms&lt;/code&gt; is used to detected whether they are really gone and rebalance is required. So we should select a good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;session.timeout.ms&lt;/code&gt; config to make sure restart of the consumer is within a acceptable delay and the consumer can catch up after restart.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-kafka-consumer-and-subscribing-to-topics&quot;&gt;Creating a Kafka Consumer and Subscribing to Topics&lt;/h3&gt;
-
-&lt;p&gt;All you need is server uri, key and value deserializers&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Properties&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;props&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Properties&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bootstrap.servers&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;broker1:9092,broder2:9092&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;group.id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;CountryCounter&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key.deserializer&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;value.deserializer&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nc&quot;&gt;KafkaConsumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KafkaConsumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Subscribing to Topics, we can use regular expression here, but need to pay attention to two issues&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;the metadata size fetched by the client might be large since client do local matching (signifcant overhead)&lt;/li&gt;
-  &lt;li&gt;the client should be grant the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;describe&lt;/code&gt; permission on the entire cluster in order to describe all topics in the cluster (then do local matching)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;singletonList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;customerCountries&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Pattern&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test.*&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;the-poll-loop&quot;&gt;The Poll Loop&lt;/h3&gt;
-
-&lt;p&gt;The heart of the Consumer API&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Duration&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Duration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ofMillis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nc&quot;&gt;ConsumerRecords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;records&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;poll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ConsumerRecords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;record:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;records&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;topic = %s, partition = %d, offset = %d, &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;customer = %s, country = %s\n&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-				&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;partition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updatedCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;custCountryMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;containsKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;updatedCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;custCountryMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;custCountryMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updatedCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-		&lt;span class=&quot;nc&quot;&gt;JSONObject&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JSONObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;custCountryMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poll()&lt;/code&gt; loop does a lot more than just get data. The first time you call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poll()&lt;/code&gt; with a new consumer, it is responsible for finding the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GroupCoordinator&lt;/code&gt;, joining the consumer group, and receiving a partition assignment. If a rebalance is triggered, it will be handled inside the poll loop as well, including related callbacks.&lt;/p&gt;
-
-&lt;p&gt;Thread Safety: one consumer per thread is the rule. To run multiple consumers in the same group in one application, you will need to run each in its own thread. To achieve multi-threaded message consumption with the Kafka Consumer, there’re some tricks to be played, see Kafka Guide - Chapter 4.1 Multi-threaded Message Consumption with Kafka Consumer&lt;/p&gt;
-
-&lt;h3 id=&quot;configuring-consumers&quot;&gt;Configuring Consumers&lt;/h3&gt;
-
-&lt;p&gt;// todo&lt;/p&gt;
-
-&lt;h3 id=&quot;commits-and-offsets&quot;&gt;Commits and Offsets&lt;/h3&gt;
-
-&lt;p&gt;One of Kafka’s unique characteristic is that it does not track acknowledgements from consumers the way many JMS queues do. Instead, it allows consumers to use Kafka to track their position (offset) in each partition. We call the action of updating the current position in the partition an &lt;strong&gt;offset commit&lt;/strong&gt;. Unlike traditional message queues, Kafka does not commit records individually. Instead, consumers commit the last message they’ve successfully processed from a partition and implicitly assume that every message before the last was also successfully processed.&lt;/p&gt;
-
-&lt;p&gt;💡 For Kafka consumer, which case there will be duplicated processing?&lt;/p&gt;
-
-&lt;p&gt;During a rebalance, a consumer is assigned a new set of partitions. If the committed offset of the partition is smaller than the offset of the last message the client processed, the messages between the last processed offset and the committed offset will be processed twice&lt;/p&gt;
-
-&lt;p&gt;💡 For Kafka consumer, which case there will be missing data?&lt;/p&gt;
-
-&lt;p&gt;Same condition as above, if the committed offset of the partition is larger than the offset of the last message the client processed, the messages between these two offsets will be missing.&lt;/p&gt;
-
-&lt;h5 id=&quot;automatic-commit&quot;&gt;Automatic Commit&lt;/h5&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enable.auto.commit=true&lt;/code&gt; - it is critical to always process all the events returned by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poll()&lt;/code&gt; before calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poll()&lt;/code&gt; again because the next &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poll()&lt;/code&gt; will commit the last offset returned by the previous &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poll()&lt;/code&gt; regardless if they are fully processed. This is a convenient approach but it does not give developers enough control to avoid duplicate messages.&lt;/p&gt;
-
-&lt;h5 id=&quot;commit-current-offset&quot;&gt;Commit Current Offset&lt;/h5&gt;
-
-&lt;p&gt;The simplest and most reliable of the commit APIs is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commitSync()&lt;/code&gt;. This API will commit the latest offset returned by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poll()&lt;/code&gt; and return once the offset is committed, throwing an exception if hte commit fails for some reason. Noted that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commitSync()&lt;/code&gt; will commit the latest offset returned by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poll()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h5 id=&quot;asynchronous-commit&quot;&gt;Asynchronous Commit&lt;/h5&gt;
-
-&lt;p&gt;Done by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commitAsync()&lt;/code&gt;: we just send the request and continue without waiting for the response from the broker. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commitAsync()&lt;/code&gt; gives you an option to pass in a callback that will be triggered when the broker responds. It is common to use the callback to log commit errors or to count them in a metric, &lt;strong&gt;but if you want to use the callback for retries, you need to be aware of the problem with commit order &amp;lt;- use a monotonically increasing sequence number to track in this case&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h5 id=&quot;combining-synchronous-and-asynchronous-commits&quot;&gt;Combining Synchronous and Asynchronous commits&lt;/h5&gt;
-
-&lt;p&gt;Before close the consumer or rebalance, we want to make extra sure that the commit succeeds. We can use a combination of sync and async commit to do this.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Duration&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Duration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ofMillis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;closing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;ConsumerRecords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;records&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;poll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ConsumerRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;records&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(...);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// just do soemthing with the record&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;commitAsync&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// it is ok to request and forget as next loop will server as a retry&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;commitSync&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// it will block and retry until unrecoverable failure&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;unexpected error&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;finally&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h5 id=&quot;committing-a-specified-offset&quot;&gt;Committing a Specified Offset&lt;/h5&gt;
-
-&lt;p&gt;Give the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commitAsync()&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commitSync()&lt;/code&gt; a Map of partition and offset, it can commit specific offsets&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TopicParitition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OffsetAndMetadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currentOffsets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;commitAsync&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currentOffsets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</description>
-        <pubDate>Tue, 01 Aug 2023 03:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter4.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter4.html</guid>
+        <link>http://yulu.github.io/blog1/2023/08/01/kafka-notes-chapter1.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog1/2023/08/01/kafka-notes-chapter1.html</guid>
         
         <category>reading_notes</category>
         
@@ -785,8 +595,8 @@ See more in Kafka Guide - Chapter 6 Kafka Internals later.&lt;/li&gt;
 &lt;p&gt;小孩子的模仿能力，观察力和想象力真的是很强大，看着一个小小人用他强大倔强的力量去认识这个世界，也是奇妙的经历。&lt;/p&gt;
 </description>
         <pubDate>Thu, 15 Jun 2023 08:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog2/2023/06/15/growing-up.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog2/2023/06/15/growing-up.html</guid>
+        <link>http://yulu.github.io/blog2/2023/06/15/growing-up.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog2/2023/06/15/growing-up.html</guid>
         
         <category>生活</category>
         
@@ -1027,8 +837,8 @@ See more in Kafka Guide - Chapter 6 Kafka Internals later.&lt;/li&gt;
 
 </description>
         <pubDate>Wed, 12 Apr 2023 10:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog1/2023/04/12/ddia-6.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog1/2023/04/12/ddia-6.html</guid>
+        <link>http://yulu.github.io/blog1/2023/04/12/ddia-6.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog1/2023/04/12/ddia-6.html</guid>
         
         <category>reading_notes</category>
         
@@ -1281,8 +1091,8 @@ Thus a scalable solution should avoid mechanisms that are linear with the highes
 &lt;/ul&gt;
 </description>
         <pubDate>Mon, 10 Apr 2023 10:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog1/2023/04/10/ddia-5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog1/2023/04/10/ddia-5.html</guid>
+        <link>http://yulu.github.io/blog1/2023/04/10/ddia-5.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog1/2023/04/10/ddia-5.html</guid>
         
         <category>reading_notes</category>
         
@@ -1454,8 +1264,8 @@ Thus a scalable solution should avoid mechanisms that are linear with the highes
 &lt;/ul&gt;
 </description>
         <pubDate>Sun, 18 Sep 2022 10:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog1/2022/09/18/ddia-4.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog1/2022/09/18/ddia-4.html</guid>
+        <link>http://yulu.github.io/blog1/2022/09/18/ddia-4.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog1/2022/09/18/ddia-4.html</guid>
         
         <category>reading_notes</category>
         
@@ -1463,19 +1273,6 @@ Thus a scalable solution should avoid mechanisms that are linear with the highes
         
         
         <category>blog1</category>
-        
-      </item>
-    
-      <item>
-        <title>一本育儿书</title>
-        <description>
-</description>
-        <pubDate>Thu, 01 Sep 2022 03:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog2/2022/09/01/motherhood.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog2/2022/09/01/motherhood.html</guid>
-        
-        
-        <category>blog2</category>
         
       </item>
     
@@ -1635,8 +1432,311 @@ The memtable will be write to disk as an SSTable after the size passes some thre
 
 </description>
         <pubDate>Wed, 27 Jul 2022 10:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog1/2022/07/27/ddia-3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/blog1/2022/07/27/ddia-3.html</guid>
+        <link>http://yulu.github.io/blog1/2022/07/27/ddia-3.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog1/2022/07/27/ddia-3.html</guid>
+        
+        <category>reading_notes</category>
+        
+        <category>system_design</category>
+        
+        
+        <category>blog1</category>
+        
+      </item>
+    
+      <item>
+        <title>闪电女侠计划</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;2021年底体检之后意识到自己的体重已经超过了健康标准。从怀孕到哺乳，都没有控制饮食，不知不觉竟然涨了这么多，于是决定减肥。看了一圈，减脂基本要领：&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;控制饮食加运动制造热量差&lt;/li&gt;
+    &lt;li&gt;减少碳水化合物和不健康脂肪的摄入促使身体消耗囤积的脂肪&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;于是开始了我的闪电女侠计划。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;tldr版本&quot;&gt;TL;DR版本&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;记录自己每天晨重&lt;/li&gt;
+  &lt;li&gt;低碳饮食并计划记录自己每顿饭&lt;/li&gt;
+  &lt;li&gt;买好看的运动服并坚持运动&lt;/li&gt;
+  &lt;li&gt;每天大量喝水&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;减脂第一个月低碳和适度运动&quot;&gt;减脂第一个月——低碳和适度运动&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;初始体重：64.5kg
+当前体重：60.1kg
+目标体重：55.0kg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;一个月减重4.5公斤，体重掉得比较平缓。对于饮食和运动都做了详细的计划，不过都是在身体和心理可以接受的舒适范围内，没有极端节食或者过度运动。吃好喝好开心蹦蹦跳跳的瘦了4.5公斤。&lt;/p&gt;
+
+&lt;h5 id=&quot;健康的饮食是第一步&quot;&gt;健康的饮食是第一步&lt;/h5&gt;
+
+&lt;p&gt;了解了所谓减脂餐，其实就是WHO官方推荐的日常健康饮食。注意一下几个方面：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1) 减少糖(&amp;lt;50克)和钠(&amp;lt;5克)的摄入
+2) 保证每天400克的蔬菜水果摄入(根茎类不算在内)
+3) 控制饱和脂肪酸和避免反式脂肪酸的摄入，尽量摄入优质的非饱和脂肪酸
+4) 用优质碳水替代精细米面
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;以上不管是否减肥，都是很好的健康饮食参考。在此基础上，通过减少碳水提高优质蛋白质摄入，完全避免糖的摄入，每顿7分饱，来到达健康减脂的效果。&lt;/p&gt;
+
+&lt;h5 id=&quot;运动循序渐进&quot;&gt;运动循序渐进&lt;/h5&gt;
+
+&lt;p&gt;对于没有运动习惯的人，从有氧运动开始建立起运动习惯比较好。慢跑，拉伸，有氧单车，健身操，我都穿插安排了一下。目前最喜欢的是晨跑，五点到六点出门跑一圈，一整天精力充沛。HIIT对于新手如我太猛了，做一次好几天恢复不过来。&lt;/p&gt;
+
+&lt;h5 id=&quot;平常心对待体重波动&quot;&gt;平常心对待体重波动&lt;/h5&gt;
+
+&lt;p&gt;减脂开始前两星期掉秤嗖嗖的。之后就开始各种瓶颈波动。开始有些焦虑，但是几次之后心态就调整过来了。明确一天之内的几斤的浮动都是水，时间线拉长点来看，才看得出变化的那点点肌肉或脂肪。碳水摄入较多或者外食重口味，身体很诚实马上就会反应，但是也很快在调饮食后恢复到正常曲线上。&lt;/p&gt;
+
+&lt;h5 id=&quot;狂喝水&quot;&gt;狂喝水&lt;/h5&gt;
+
+&lt;p&gt;我之前没有喝水的习惯。但是调整饮食结构后真的变得特别渴，在外面逛街都会突然渴到不行到处找水。&lt;/p&gt;
+
+&lt;h5 id=&quot;和自己和解&quot;&gt;和自己和解&lt;/h5&gt;
+
+&lt;p&gt;喜欢美食是人的天性，和自己和解，不要过度压抑自己。压力大时，我一定要吃点零食来缓解。蛋白棒和坚果作为零食压力就没有这么大。碳水于我也是无论如何也戒不掉，于是我满城的找好吃的酸面包，把我的碳水摄入quota消耗在最爱的食物上。外食也不慌张，控制量就好。可以这样想，家人朋友一起聚餐的好处是你可以尝很多不同美食，但是只吃一点点，吃不完剩下有别人帮你解决。&lt;/p&gt;
+
+&lt;h3 id=&quot;减脂第二个月轻断食&quot;&gt;减脂第二个月——轻断食&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;初始体重：64.5kg
+月初始体重：60.1kg
+当前体重：57.6kg
+目标体重：55.0kg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;减脂第二个月，轻断食三周左右，体重下降3kg左右，谈谈身体和心理反应。&lt;/p&gt;
+
+&lt;p&gt;开始轻断食主要是两个原因：一是月初打了疫苗，两个星期内不建议剧烈运动，二是年底外出聚餐的安排多，很难保证低碳干净的饮食，所以打算少吃一餐来降低摄入。开始实践轻断食，我的进食窗口安排在早上7点到下午3点。早餐我安排得很丰盛，碳水纤维蛋白质都有。中午一半时间吃得比较健康，另外一半时间外食吃得较重口，但是总体保证碳水摄入在比较低的水平。&lt;/p&gt;
+
+&lt;p&gt;第一周掉称特别明显，几乎是每天一斤。晚饭时间饥饿感比较强，但是因为之前低碳了一个多月，身体和心理能接受适度的饥饿感。而且睡眠特别的神奇，晚上明明很饿，一觉起来饥饿感就完全消失了。&lt;/p&gt;
+
+&lt;p&gt;第二周开始就陷入了体重瓶颈。我感觉第一周的快速掉称应该是摄入明显减少的原因，因为我减少一顿饭后没有特别增加另外两顿的量。但是身体适应这个摄入量后调整消耗，热量差就不明显了。这让我心态开始不平衡，晚上还是要忍受饥饿感，但是体重不变化。&lt;/p&gt;
+
+&lt;p&gt;到第三周，心态彻底崩溃。近年底，外食很频繁，晚上也不是很严格的断食了，因为妈妈做的饭菜太引起食欲了，我感觉多吃少吃反正体重也不变化，晚上总忍不住吃几口菜。吃得比较重口油腻，而且总外出喝水量也不够，虽然恢复运动了，但体重只增不减。&lt;/p&gt;
+
+&lt;p&gt;三个星期后结束了轻断食计划。恢复三餐，早起规律运动。晚上喝一碗素菜豆腐汤，既抑制了食欲（妈妈的菜真是减肥路上最大的绊脚石），同时保证一定能量摄入支持第二天早上运动。恢复第三天体重就下降了一斤，并且维持了新低几天了，突破了这个小小的瓶颈。&lt;/p&gt;
+
+&lt;p&gt;总结来说要我长期坚持轻断食很困难。我感觉进食窗口和摄入量需要更好的安排才能更持续的坚持，但是我没有找到一个自己比较适应的状态。不过经过这段时间的尝试，身体更好的适应了适度饥饿的状态。离目标体重还有两公斤，这个月的计划是坚持每天运动，保持均衡健康干净的饮食，偶尔放纵大餐。看一下保持正常健康的生活状态能不能减脂，也算是给自己的身体和食欲松弛一下。如果不达标，下个月继续加油。&lt;/p&gt;
+
+&lt;h3 id=&quot;减脂第三个月健康饮食和持续运动&quot;&gt;减脂第三个月——健康饮食和持续运动&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;减肥初始体重: 64.5kg
+月初始体重: 57.6kg
+当前体重: 55.15kg
+目标体重：55.0kg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;关于吃&quot;&gt;关于吃&lt;/h4&gt;
+
+&lt;p&gt;减脂还是老生常谈的两个话题：饮食和运动。先聊聊这三个月我是怎么吃的。关于吃的一些Tips：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 用坚果和无糖咖啡代替炸鸡和奶茶，健康的食物也可以吃得很开心
+2. 外出大餐完全没有问题，只要控制频率。偶尔吃点不健康零食完全没有问题，只要控制量
+3. 不需要做太复杂花哨的减脂餐。我在尝试了乱七八糟很多菜式以后，发现自己习惯的几样：烤三文鱼，腰果虾仁，手撕鸡胸肉，然后就循环着做了
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;下面是我的一日三餐菜单。我并不是严格遵守的，偶尔晚上妈妈做了好吃的菜我还是忍不住吃点，周末也和家人朋友外出吃大餐。还是上面说的，注意量和进食时间，没有什么不能吃。平衡食欲，摄入营养和体重的关系，才能持续健康的减脂。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;早餐&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 酸面包加芝士开放三明治
+- 香蕉燕麦蛋挞
+- 黑巧克力全麦吐司布丁
+- 橄榄油蔬菜坚果沙拉
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;午餐/晚餐&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;蛋白质
+
+- 蒜香鸡胸肉
+- 香煎三文鱼
+- 腰果炒虾仁
+- 蔬菜豆腐汤
+
+碳水
+
+- 蒸玉米，红薯，紫薯
+- 鱼片芝士焗饭
+- 鸡丝拌荞麦面
+- 香菇燕麦粥
+- 糙米饭
+
+蔬菜
+
+- 水煮青菜
+- 蔬菜蛋花汤
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;饮料&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 白水
+- flat white
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;零食&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 坚果
+- 蛋白棒
+- 草莓，蓝莓，柚子
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/diet-workout/diet-workout-3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/diet-workout/diet-workout-1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;关于运动&quot;&gt;关于运动&lt;/h4&gt;
+
+&lt;p&gt;坚持运动三个月，也是坚持无间隔每天运动快两个月。我的一周运动安排：间隔一天晨跑40到50分钟，另一天在家跟视频做HIIT、有氧操或者瑜伽拉伸。这里记录一下让我坚持的几个Tips。&lt;/p&gt;
+
+&lt;h5 id=&quot;选择合适的运动时间&quot;&gt;选择合适的运动时间&lt;/h5&gt;
+
+&lt;p&gt;每天忙碌生活中似乎很难抽出一个小时的运动时间。开始运动习惯要感谢早起习惯的养成。一天中只有这个时间段，没有琐事缠身没有其他人打扰，可以全身心的投入到一件事情上。&lt;/p&gt;
+
+&lt;p&gt;那到底一天中什么时间运动最佳呢？刚开始运动时，研究学习各种运动知识，关于一天中什么时候运动这个问题，我看到一个很好的答案：你能每天坚持下来的那个时间段，就是最好的时间。&lt;/p&gt;
+
+&lt;h5 id=&quot;让开始运动变得非常方便&quot;&gt;让开始运动变得非常方便&lt;/h5&gt;
+
+&lt;p&gt;我们总有这样的感觉：有些困难的事，总是拖着不愿开始，但是一旦真的开始了，反而觉得没有这么大阻力了，自然的进入“心流”，甚至不想停下来。运动肯定是这些“困难的事”之一。那我们要做的，就是尽量让开始做这件事变得非常容易。比如我会在前一天晚上把第二天要穿的运动服运动鞋包括袜子都准备好，手机或者ipad保证充满电，这样尽量排除阻碍开始做的各种困难。我听一个podcast host分享，她为了让第二天早上起床跑步变得更加容易，她就直接穿着运动服睡觉了。&lt;/p&gt;
+
+&lt;p&gt;还有就是选择一个方便开始的运动。比如去健身房对于只能在清晨抽出时间运动的我就不可行，游泳我虽然很喜欢但是准备太繁琐。相比之下，跑步和瑜伽是最没有门槛的运动，从床上弹起来基本就可以马上开始了。&lt;/p&gt;
+
+&lt;h5 id=&quot;让运动变得有所期待&quot;&gt;让运动变得有所期待&lt;/h5&gt;
+
+&lt;p&gt;运动总是困难的事，难免让人心生抵触。我们可以增加一些有意思的事同时做或者稍候做，这样让我们对困难的事也能产生期待。准备晨跑的前一天，我会选好一些有趣的podcast或者有声书，这让前一晚我就对第二天的晨跑充满了期待。我还会每天做丰盛好吃的早饭，也是我早起运动的一大动力。&lt;/p&gt;
+
+&lt;h5 id=&quot;坚持记录增加信心&quot;&gt;坚持记录增加信心&lt;/h5&gt;
+
+&lt;p&gt;人的动机很大程度来自于对及时的正向反馈，但是运动能马上给人的可感知的正向反馈很少，我们的身体和身材积极变化都是在长时间的坚持运动中缓慢发生的。我需要找到方法去可视化这样的变化，把它们转换成增加我们行动力的积极信号。记录身体的数据，看到数据曲线的变化就是一个非常有效的方法。&lt;/p&gt;
+
+&lt;h5 id=&quot;和自己和解-1&quot;&gt;和自己和解&lt;/h5&gt;
+
+&lt;p&gt;人不是机器，不可能每天都按同样的设定运转。我们总会遇到身体或心理倦怠时候，或者一些计划之外的事件。不要太勉强自己了。当我觉得有点疲乏不想跑步，就做个简单的放松瑜伽。当清晨被不睡觉的娃困住没法出门时，就把运动时间调整到中午去健身房。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/diet-workout/diet-workout-2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 15 Jul 2022 10:00:00 +0800</pubDate>
+        <link>http://yulu.github.io/blog2/2022/07/15/diet-workout.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog2/2022/07/15/diet-workout.html</guid>
+        
+        <category>生活</category>
+        
+        <category>美食</category>
+        
+        <category>运动</category>
+        
+        
+        <category>blog2</category>
+        
+      </item>
+    
+      <item>
+        <title>[DDIA] Chapter 2 - Data Models and Query Languages</title>
+        <description>&lt;h3 id=&quot;chapter-summary&quot;&gt;Chapter Summary&lt;/h3&gt;
+
+&lt;p&gt;This chapter briefly discussed the three types of data models: relational, document and graph database. Some histories about database are introduced to give us a better ideas why these databases are developed and what types of problems they solve.&lt;/p&gt;
+
+&lt;p&gt;Personally I think this chapter is loosely structured and too much detail about the query languages is provided. Advice given to anyone who read this chapter: do not spend much time in understanding the query language syntax here, because the information given in the book will not help anyone to master the particular language (if you want to get into one query language, follow a well designed tutorial a specific book). Instead, you should try to understand the philosophy of each type of data model and identify the scenarios to apply them.&lt;/p&gt;
+
+&lt;h3 id=&quot;mind-map&quot;&gt;Mind Map&lt;/h3&gt;
+
+&lt;div class=&quot;mindmap-container&quot;&gt;
+	&lt;iframe src=&quot;https://www.xmind.net/embed/sDETtj&quot; width=&quot;900px&quot; height=&quot;540px&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;questions-summary&quot;&gt;Questions Summary&lt;/h3&gt;
+
+&lt;p&gt;💡 1. What is ORM frameworks?&lt;/p&gt;
+
+&lt;p&gt;Object-relational mapping framework, e.g. Hibernate&lt;/p&gt;
+
+&lt;p&gt;💡 2. What is data locality?&lt;/p&gt;
+
+&lt;p&gt;Data locality is the process of moving computation to the node where that data resides, rather than moving data to save bandwidth. This helps to minimize network congestion and improve computation throughput.&lt;/p&gt;
+
+&lt;p&gt;In computer science, locality of reference, also known as the principle of locality, is the tendency of a processor to access the same set of memory locations repetitively over a short period of time.&lt;/p&gt;
+
+&lt;p&gt;💡 3. What is RDBMS?&lt;/p&gt;
+
+&lt;p&gt;Relational database management system&lt;/p&gt;
+
+&lt;p&gt;💡 4. What are three types of ways to store one-to-many relationship in database?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;normalized representation of the data: to store the data to multiple tables and use foreign key reference to link the data from one source to multiple others&lt;/li&gt;
+  &lt;li&gt;store the data in the predefined data structure that supported by the data store engine, e.g. json format supported by MySQL or PostgreSQL. The data is being able to be indexed and queried.&lt;/li&gt;
+  &lt;li&gt;store the data as pure text field and allow the application to interpret the data. In this case, the data will not be able to be indexed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;💡 5. What are the typical use cases of graph-like data models?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;social media&lt;/li&gt;
+  &lt;li&gt;web graph&lt;/li&gt;
+  &lt;li&gt;road or rail networks&lt;/li&gt;
+  &lt;li&gt;recommendation engine&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;💡 6. What are the difference between JPA and Hibernate and Spring Data JPA?&lt;/p&gt;
+
+&lt;p&gt;JPA (Java persistence API, nothing to do with Spring) is an interface (specification).&lt;/p&gt;
+
+&lt;p&gt;Hibernate is a JPA provider or the implementation.&lt;/p&gt;
+
+&lt;p&gt;Spring Data JPA is either an interface nor implementation, it is an abstraction used to reduce the amount of boilerplate code required to implement data access layers. Spring Data JPA cannot work without a JPA provider.&lt;/p&gt;
+
+&lt;p&gt;💡 7. What are schema-on-write and schema-on-read?&lt;/p&gt;
+
+&lt;p&gt;Schema-on-write refers to the data systems that requires the explicit definition of data schema. When data is write to the database, it will be verified against the defined schema, any content that does not conforms to the schema will not be allowed to write.&lt;/p&gt;
+
+&lt;p&gt;Schema-on-read refers to the data systems that does not require the explicit definition of data schema. The data schema will be interpreted from the data when it is read.&lt;/p&gt;
+
+&lt;p&gt;💡 8. What are NoSQL databases? What are the different types of NoSQL databases?&lt;/p&gt;
+
+&lt;p&gt;NoSQL database is a non-relational DBMS that does not require a fixed schema, avoid joins and easy to scale. There are four types of NoSQL database: Document databases (MongoDB), key-value stores (DynamoDB, Redis), wide-column database (Bigtable, Cassandra, Hbase) and Graph database (Neo4j).&lt;/p&gt;
+
+&lt;p&gt;💡 9. In a property graph database model, what are the two data concepts? And what does each of them consists of?&lt;/p&gt;
+
+&lt;p&gt;node (vertex) and relationship (edge)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;node consists of labels and properties&lt;/li&gt;
+  &lt;li&gt;relationship consists of a source node, a target node, a type and properties&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;💡 10. What does ployglot persistence mean?&lt;/p&gt;
+
+&lt;p&gt;When design an application data storage, choose multiple types of storage based on the different use cases of the components of the application.&lt;/p&gt;
+
+&lt;p&gt;💡 11. What is impedance mismatch?&lt;/p&gt;
+
+&lt;p&gt;This is the term used to refer to the problems that object-oriented programming language’s data model has a mismatch of the SQL database model, that an awkward translation is required between them.&lt;/p&gt;
+
+&lt;p&gt;ORM frameworks like Hibernate reduce the amount of boilerplate code for this translation layer.&lt;/p&gt;
+
+&lt;h3 id=&quot;highlighted-topics&quot;&gt;Highlighted Topics&lt;/h3&gt;
+
+&lt;p&gt;Property Graph model (Neo4j and Cypher) and Triple-store model (SPARQL) are two classic graph data models that is widely used. Here’s a brief summary and comparison of these two data model.&lt;/p&gt;
+
+&lt;div class=&quot;image-banner-2&quot;&gt;
+    &lt;img src=&quot;https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-2/graphDB.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;extended-topics&quot;&gt;Extended Topics&lt;/h3&gt;
+
+&lt;p&gt;I had some hands on with &lt;a href=&quot;https://neo4j.com/developer/get-started/&quot;&gt;Neo4j beginner’s tutorials&lt;/a&gt;, however I felt little I can learn and master without a practical project to work on. Unfortunately I have not got a chance to use graph database in production level projects yet. It is just valuable additions to my toolbox for building applications in the future.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 23 May 2022 10:00:00 +0800</pubDate>
+        <link>http://yulu.github.io/blog1/2022/05/23/ddia-2.html</link>
+        <guid isPermaLink="true">http://yulu.github.io/blog1/2022/05/23/ddia-2.html</guid>
         
         <category>reading_notes</category>
         
