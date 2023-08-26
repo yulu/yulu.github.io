@@ -1,19 +1,1006 @@
----
-layout: page
-title: JOURNAL
-category: blog2
-desc: "生活 • 阅读 • 旅行 • 美食"
----
+<!DOCTYPE html>
+<html>
 
-{% for post in site.posts %}
-  {% if post.categories contains 'blog2' %}
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>JOURNAL</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog2/">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+
+    <body>
+
+        <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+        <div class="blog-container">
+            <div class="blog-image">
+                <div class="title-container">
+                    <span class="title">JOURNAL</span>
+                    <span class="sub-title">生活 • 阅读 • 旅行 • 美食</span>
+                </div>
+                <div class="blog-layer"></div>
+            </div>
+
+            <div class="blog-content">
+            
+  
+
+  
+
+  
+
+  
+
+  
   	<div class="post-row">
-		<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span><br>
-		<div class="title-container"><a class="page-title" href="{{ post.url }}">{{ post.title }}</a></div>
-		<div class="post-preview"> {{ post.summary }} </div>
-		{% for tag in post.tags %}
-			<span class="post-tag">{{ tag }}</span>
-		{% endfor %}
+		<span class="post-meta">Jun 15, 2023</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2023/06/15/growing-up.html">屎壳郎，外卖和马屁精</a></div>
+		<div class="post-preview"> 早上儿子在沙发看着他最近迷上的蚂蚁动画片，突然大声问我：“妈妈！屎壳郎英文怎么说？”。因为蚂蚁的死对头就是一种黑绿的小甲壳虫，有次瞄到电视里它们在滚黑乎乎的圆球球，我就随口说这是屎壳郎呀，其实自己也是瞎说... </div>
+		
+			<span class="post-tag">生活</span>
+		
 	</div>
-  {% endif %}
-{% endfor %}
+  
+
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Sep 1, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2022/09/01/motherhood.html">一本育儿书</a></div>
+		<div class="post-preview">  </div>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 15, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2022/07/15/diet-workout.html">闪电女侠计划</a></div>
+		<div class="post-preview"> 人不是机器，不可能每天都按同样的设定运转。我们总会遇到身体或心理倦怠时候，或者一些计划之外的事件。不要太勉强自己了。当我觉得有点疲乏不想跑步，就做个简单的放松瑜伽。当清晨被不睡觉的娃困住没法出门时，就把运动时间调整到中午去健身房。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">美食</span>
+		
+			<span class="post-tag">运动</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jun 2, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2022/06/02/journey-to-the-west.html">西行漫记</a></div>
+		<div class="post-preview">  </div>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">May 10, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2022/05/10/job-hunting.html">裸辞和找工作笔记</a></div>
+		<div class="post-preview"> 在经历自我探索，自省反思之后。作为一个INFP，我的职业目标更加明确：内容创作，成为导师或教育工作者，并对社会产生积极影响。虽然终极目标明确但是短期方向模糊，我决定从保持透明，坚持内容输出和提高沟通交流能力开始做起——比如掏心掏肺地写了这篇文章！ </div>
+		
+			<span class="post-tag">终生学习</span>
+		
+			<span class="post-tag">程序媛</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 20, 2020</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2020/04/20/newborn.html">山山宝宝出生记</a></div>
+		<div class="post-preview"> 山山宝宝出生了。他来之前，我不敢想象小娃娃能带给人的这样强烈的温暖和满足，我以为嘟嘟狗子就是世间最柔软最萌的存在了。直到把山山宝贝抱在怀里，我才知道，做妈妈，是多么难以言表的幸福... </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jun 21, 2019</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2019/06/21/xiapu.html">老板很忙</a></div>
+		<div class="post-preview"> 太石给我科普了一个新词：老法师。确切的说，是“摄影老法师”。不过不需要说这么具体，懂的人自然懂。“老法师”指的是什么样的人呢？我在网上搜了搜——“老法师”主要以爱好摄影的中老年群体为主，总结来说有这么些特点：装备要高级，行动要有组织，摄影作品要参赛... </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">May 21, 2019</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2019/05/21/willpower.html">自律养成乱记</a></div>
+		<div class="post-preview"> 于是我在新年立下Flag，要在今年养成好习惯。我一向是个自制力很差的人，做事都靠小聪明和好运气。人生没有什么宏图大业要实现，仗着小聪明好运气苟活了好多年，觉得这样日子也过得有滋有味。后来观察发现，太石同学反应力和记忆力都没我强（我个人觉得，他表示不服），运气也都一般般，怎么我们混得差不多呢... </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">效率</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 30, 2019</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2019/04/30/south-asia-india.html">印度纪行—织物的反面</a></div>
+		<div class="post-preview"> 我觉得印度只是太过浓烈，有时用力过猛。就像印度的传统食物，一锅锅咖喱豆子，香料辛辣到烧得喉咙痛。我们在阿格拉光临了一家很受外国人欢迎的印度餐厅，虽然还是传统印度咖喱，但是味道却非常不错。我想是因为这家的厨师懂得节制，咖喱只放了正常份量的一半，所以饭菜味道刚刚好。后来一看，这家店店名就叫做 a pinch of spice（一小撮香料）。你看，如果不这么用力过猛，似乎他会讨人喜欢很多。可是，如果不用力过猛，是不是他也就失去了他独特的魅力，变得中庸又无趣呢？ </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">阅读</span>
+		
+			<span class="post-tag">美食</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Mar 21, 2019</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2019/03/21/amusing.html">娱乐致死和VLOG挑战</a></div>
+		<div class="post-preview"> 现在，博客时代已经过去了，至少文字博客已经不复当年的欣欣向荣。社交网络的出现让虚拟网络里人与人的交流方式更加简单直接，几个字一句话的“心情”或“状态”取代了长篇幅的博文，互动也精简到一个“赞”字或一串表情符号。具有私密性的朋友圈和具有媒体属性的公众号在私人社交和以生产内容获取收益的社交媒体之间划分出界限。而视频分享平台的流行，智能手机，无人机，视频编辑软件等软硬件设备的普及，使得拍摄高质量视频的门槛大幅降低。人人都可以很轻易的用视频记录生活，vlog应运而生。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">写作</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Dec 8, 2018</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2018/12/08/tanzania-safari.html">非洲纪行2—天真的人类</a></div>
+		<div class="post-preview"> 而就在这个游客接待点门口，一个警示牌写着：不要施舍礼物，也不要向部落族人购买任何出售的商品。据说这个举措的主要目的是尽可能地保留部落的自给自足的原始生存型态。但既然已经允许现代文明，自由经济的介入，又企图阻止它对原始文明的影响，这不是很矛盾吗？于是我疑惑，眼前我所见的非洲原始部落还保留多少原始的文明？对于原始文明的保留是部落族人自发认同的还是只是政府对于文化遗产的保护举措？ </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Aug 16, 2018</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2018/08/16/tanzania-kilimanjaro.html">非洲纪行1—闪闪发光的山</a></div>
+		<div class="post-preview"> 坦桑尼亚北部的Moshi小镇，是非洲屋脊乞力马扎罗山的登山入口。到Moshi的第一晚，我们住在山脚下的一家民宿，从楼顶的开放式小餐厅望出去，应该可以看到乞力马扎罗的主峰。可惜此时，我们在餐厅吃着早饭等了好一整，云雾就是不散去，山峰完全隐没在一片白茫茫之中。没有等到山峰露脸，我们意兴阑珊的回屋收拾东西。在走廊的墙上我看到一副小画，画上写着一句话：Hakuna Matata。我跟着拼写读了出来，哈库那马塔塔，嘿，这句话怎么这么耳熟。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">爬山</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 1, 2017</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2017/07/01/guizhou-guilin.html">老街，出城</a></div>
+		<div class="post-preview"> 下一代的孩子们，如果他们第一眼看到就是这光怪陆离的摩登世界，他们将以何种渠道去了解另一种真实存在的原始质朴？他们看待世界会是什么样的角度？对此我也充满好奇，就像我窥探老时光一样，我急切地想要窥探他们的那个新世界 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jan 31, 2017</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2017/01/31/xinxin.html">鑫鑫和我的二三事</a></div>
+		<div class="post-preview"> 鑫鑫的爱书《送你一颗子弹》中有句经典，“一个人要像一支队伍，对着自己的头脑和心灵招兵买马，不气馁，有召唤，爱自由”。我觉得活成一支队伍太过严肃，更有意思的应该像她这样，活成一支马戏团，训练自己的头脑和心灵走钢索跳火圈，并时刻保持幽默感。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jan 6, 2017</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2017/01/06/south-east-asia-vietnam.html">东南亚纪行2－越南之南</a></div>
+		<div class="post-preview"> 看到一种说法是十二生肖传入越南时，“卯兔”被误会成了“猫”；也有说传入越南时当地还没有兔这种动物，就改成了猫。不管是将错就错，还是有意为之，这在文化输出与文化自我保护的角度来看，是一个合理的存在。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">美食</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Feb 11, 2016</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2016/02/11/south-east-asia-myanmar.html">东南亚纪行1－缅甸岁月</a></div>
+		<div class="post-preview"> 一百年后，我在缅甸看到的，仍和奥威尔描绘的画面相差无几——稻田、柚木下的村庄、佛塔、黄袍僧人、清晨在河里游泳的水牛、锡袍王的宫殿，还有伴随着咿咿呀呀尖厉乐器声的牵线木偶戏。这一幕幕还是如百年前一样立于天地间。我想奥威尔对缅甸文化的好奇，探究，尊重都倾注在了弗洛里的这一番话中了。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jan 2, 2016</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2016/01/02/taiwan.html">台北人</a></div>
+		<div class="post-preview"> 在台北的街道走一走，看一看那些以熟悉城市名命名的街，再听听台北人的故事，突然觉得龙应台的这句话是多么贴切：台北城就是一张摊开的中国地图，你要是敢开口问，一个台北人背后就是一个波澜涌动的时代传记 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Nov 21, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2015/11/21/life-of-engineers.html">程序员的日常</a></div>
+		<div class="post-preview"> 工作的状态渐入佳境。并不是能力超群，也不是事事顺手，也捅篓子，也被鄙视。但是在一起工作的伙伴们，让我第一次体会到了团队一起共同做一件事的快乐。每天叫醒我的不是梦想这高大上的东西，是开始一整天有意思又充满挑战的工作的好心情。 </div>
+		
+			<span class="post-tag">程序媛</span>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Sep 21, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2015/09/21/watercolor.html">不负好时光</a></div>
+		<div class="post-preview"> 学习水彩缘于在西西佛书店里偶然看到的一本书《水彩小时光》。买回家后爱不释手的翻了好几遍，书里美妙的颜色混合，让人赏心悦目。即使没有真正动手画，只是随手翻看，就觉得愉悦。最后终于决定不再纸上谈兵，动手画起来。 </div>
+		
+			<span class="post-tag">画画</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Sep 11, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2015/09/11/dear-you.html">亲爱的小孩</a></div>
+		<div class="post-preview"> 龙应台，以她对台湾政治文化的强有力的批判性文笔而为人所知，也因此一直承受舆论的压力。我不爱读政治，对她的此番了解只来自于维基百科等简短介绍：坚持以犀利讽刺的笔调表达对政治文化，社会时事的深入思考，龙应台曾被称为“一名将野火烧向专制的斗士”（得名她1984年出版的《野火集》）。然而在我读过她的散文集《目送》《孩子你慢慢来》《亲爱的安德烈》中，她毫不掩饰她女性细腻柔情的一面。多情感性，这是女性天赋的弱点，却也是社会赋予女性的特权，看你如何把握。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Sep 9, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2015/09/09/dust.html">尘埃落定</a></div>
+		<div class="post-preview"> 有些地方，如果不是双脚真的踏上，几乎不会相信它的存在。同样有些文化，读到时，只让人瞠目惊叹。色达喇荣寺五明佛学院，坐落在四川甘孜藏族自治州色达县境内东南方向约20公里处，海拔4000米上。在重重的群山中，此地修学的僧侣和尼姑依山建起了密密麻麻成片的小木屋。不计其数的红色小屋绵延数公里，甚是壮观。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">May 5, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2015/05/05/the-art-of-travel.html">旅行的艺术</a></div>
+		<div class="post-preview"> 读万卷书，行万里路，文字和远游从来都是不可分的。一时兴起重读阿兰·德波顿的《旅行的艺术》。他把旅行中一个个真实的场景和与场景相关的文学、艺术和历史感性的结合起来，表达出一种纯粹的意境。想要出游却被迫于现实的阻碍不得成行，于是借助文字的力量，把书中一些有强烈共鸣的意境还原成记忆中一些真实的场景片断，仅是记录我在陌生城市异国街道中，所产生的那些惊讶，抵拒，喜悦和思考。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 11, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2015/04/11/on-the-top-of-tides.html">浪潮之巅</a></div>
+		<div class="post-preview"> 旧同事搬家，留下一些书，眼馋看着就都搬了回来。吴军的《浪潮之巅》算是IT互联网从业人员的必读书目了，我竟是才听说，看来确实算行业新兵。趁着短途的小假看了一大半，也算是科普了很多业界八卦。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+			<span class="post-tag">程序媛</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Mar 15, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2015/03/15/good-times.html">最好的时光</a></div>
+		<div class="post-preview"> 大半年来在日记本上记录了一些想法。由于网络的开放，觉得有些说给自己的话，或自我激励，或自我怀疑，涉及自己的个人选择，都不便在公开的博客上发布。但是发现这一段生活的最好总结，却都是当时记录的那些内心感受。有些我觉得还算有点意思，或许能给偶然读到的人，或者未来的自己一些启发。于是费力打打字，把旧文都誊了过来。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">阅读</span>
+		
+			<span class="post-tag">程序媛</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Dec 30, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2014/12/30/cameron.html">天凉好个秋</a></div>
+		<div class="post-preview"> 为何停止更新博客好一阵子？这首词还真是道尽了近来心境。以前常被别人也被自己用“为赋新词强说愁”这句话来形容。那天闲来没事被太石同学拉着一起读宋词，才知道这下一句是什么，忽然觉得有所感悟。莫不如是 - "而今识尽愁滋味，欲说还休。欲说还休，却道天凉好个秋" </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Sep 9, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2014/09/09/boating.html">泛舟于世</a></div>
+		<div class="post-preview"> 面对一页在修改的简历，发现自己正被简历上一行行项目经验和职业经历定义。又想起下午一封邮件，去一个本地公司和他们移动产品的团队作一些分享交流，和我联系的市场部的朋友发了一封通知邮件，里面写到“她身上有很多标签，等大家来发觉”。的确在职场上，人是可以被“定义的”，被别人，也被自己“贴上标签”。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">程序媛</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 15, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2014/07/15/jingui.html">因解金龟，换酒为乐</a></div>
+		<div class="post-preview"> 《最好金龟换酒》这个名字也是她博客的名称，知道了出处之后，瞬间觉得起得太妙。一本散文形式的旅行日记，多是记录拉美的历史人文，旅游随想。书中提到了三毛的南美纪行《万水千山走遍》，作为受过三毛文艺气息毒害的伪文青忍不住马上去图书馆翻翻这本书。看了却发现，反而是这个研究生毕业便在金融行业从业，业余写作的blogger，让我欣赏更多。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 13, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2014/07/13/share.html">手有余香</a></div>
+		<div class="post-preview"> 最近两个月有机会在小型的分享活动中做了两次分享。之前看TED，常常被台上一些优秀演讲者的魅力深深折服，但是一直没有信心自己可以走上台。一直觉得分享这事特别有意思，可能自己也不满足于仅通过写博客和代码来表达了，正好又受到朋友邀请在他们的分享会上聊聊自己的小项目，于是有了一些新的尝试。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">程序媛</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 4, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2014/07/04/images.html">读图</a></div>
+		<div class="post-preview"> 收集有意思的信息图是平时的一个习惯。有时巧妙的图表胜过一大段长篇的注解。毕业之际对于生活的选择有很多的疑惑，也引发了许多思考。发现一些图很能表达现在对于生活的态度。自己也把通过浏览信息，阅读书籍以及和朋友交流之后沉淀的一些想法画出来。下面的图多是模仿和再创作（已注明来源），也有自己的原创。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">程序媛</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Mar 22, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2014/03/22/dream.html">论梦想</a></div>
+		<div class="post-preview"> 对于未来的各种可能充满迷茫和不安。以前有人问我梦想的职业，我天真的说自由职业者。那时梦想遥不可及，只当一种向往说说而已。在兴趣的驱使之下，我在不自知的情况下尝试了很多，竟然发现我的选择中存在追求梦想职业的可能性。但是越是当它变得清晰，越是看到它的分量，越懂得它需要你为此做出的努力，舍弃和冒险。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">程序媛</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Feb 16, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2014/02/16/lonely-flower.html">孤独的小花</a></div>
+		<div class="post-preview"> 几个月前在植物园，拍了这张含羞草的照片。现在依然是我几台工作时使用的电脑的桌面。被这种静谧的美丽深深吸引，也第一次知道拍照也可以是一种持久的，沉稳的，全神贯注的活动，就像画画和瑜伽。“孤独的小花”这个名字很契合那天拍的一系列花草，不如就写写让我苦恼，怀疑，享受和深思的“孤独”与“安静”吧。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jan 8, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2014/01/08/mountain-climb.html">活在生活之中</a></div>
+		<div class="post-preview"> 但是为什么，我们还是乐此不疲的怀揣着好奇与恐惧，大步地走向未知世界？我看到过最好的回答，是一个睿智的女孩说：仅仅是把将旅途在外那种风雨无阻的魄力转变为平日认真活着的勇气的而已。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">爬山</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Dec 28, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/12/28/blame-words.html">竟然责怪文字</a></div>
+		<div class="post-preview"> 看到一篇转载的博文，畅读下来满心认同和欢喜。顺藤摸瓜找到了作者的博客，以及她刚出版的同名新书《最好金龟换酒》。浏览了一下，发现又是一个我钦佩的女孩子。以文字记录生活，不过是一种乐趣，悦己不求娱人。想我把之前那些细碎的念叨都一条条删掉，又关了博客换了域名是在和谁过不去呢？生活起落，竟然责怪文字。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Dec 14, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/12/14/on-happiness.html">论幸福</a></div>
+		<div class="post-preview"> 生活中的卢瑟通常在经济和精神上受极大束缚，经济拮据内心世界又匮乏，梦想说说就忘了，努力一下就乏了，只能空抱怨经济收入不能满足物质欲望。有才华的理想主义者们，不一定能够为自己的坚持买单，有能力的现实主义者们，也会在忙碌中身心疲惫。当然总有那些大神的存在，真的可以获得所谓的“自由”，但是你怎么知道他们冒过的险，吃过的苦，付出过的努力有多少。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Nov 20, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/11/20/poem.html">诗与远方</a></div>
+		<div class="post-preview"> 三月某个周六下午，我们休闲的坐在客厅沙发，一盘水果几袋小吃，安静的看完了一部电影。她一如既往看得眼泪鼻涕横流，我还是故作淡定，其实内心波涛汹涌。转眼我们已经相隔两地了。有时必须懂得，时间和空间对情感的消磨是必然的事情。九月末有机会再见，在成都的几天如此悠闲-看电影，吃甜品，品花茶，打台球，逛小店，拍照片，像我们从前做所有那些事一样。可惜美好的时光悠悠然的也变旧，就这样停在回忆里了。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Oct 25, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/10/25/nineteen.html">十九岁的自己</a></div>
+		<div class="post-preview"> 想对那个十九岁的女孩说，你终究成为了你希望成为的那种人。也发现，自己现在的心态和七年前竟然没有太大改变。一直在追寻成长，却一直没有真的成熟，或许生活就是这样。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Oct 7, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/10/07/when-you-are-old.html">激情常常消损了我们漂泊的心</a></div>
+		<div class="post-preview"> 关于探索外部世界和内心世界，一直在寻找一种平衡。回家几天远离电脑，在火车上，咖啡馆，被窝里读书，一下子读了好几本：朋友推荐的剩女励志书籍《三十岁前不结婚》，鸡汤书《遇见未知的自己》，以及叶芝诗集。叶芝的一首诗让我沉默，思绪涌出，便提笔记录一下。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 25, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/07/25/on-unknown.html">无知的叹息</a></div>
+		<div class="post-preview"> 特意翻开一张世界地图，从希腊，到埃及，耶路撒冷，巴比伦，伊朗，到北印度，一一在地图上寻找。才发现这些听上去熟悉的地点名称，原来我根本完全不知道他们的坐标。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jun 28, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/06/28/on-growup.html">成长这件孤独的小事</a></div>
+		<div class="post-preview"> 生活逼迫我成长，就连这些伪文艺的爱好似乎都摒弃了。而这半年来的改变，看似轻描淡写，实质艰难，孤独，莽撞，直到今天还都因为无知倔强做些犯傻的小事，幸好他人包容，自己也能为自己找到开脱的借口。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jun 1, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/06/01/walk-around-sg.html">寻访新加坡科技创业公司</a></div>
+		<div class="post-preview"> 受朋友邀约参加了一年一度的Walkabout Singapore活动。这个活动主要针对在新加坡对科技创业感兴趣的个人和团队，它提供了一个很好的机会让参与者近距离接触到一些相对成功的本地甚至欧美的科技公司。参加活动的公司在当天开放办公室，分享他们创业的经验。从一个底层科技工作者的角度，谈谈寻访这些公司之后对科技创业以及在初创公司工作的认识和感受。 </div>
+		
+			<span class="post-tag">程序媛</span>
+		
+			<span class="post-tag">创业</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">May 10, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/05/10/on-freelance.html">第一次尝试独立开发的经验和感悟</a></div>
+		<div class="post-preview"> 这是第一次独立完成一个Android手机App的开发——从立意构思，后程算法，界面设计，调试测试，到最后放上商店的各种文案都是自己一个人完成的。虽然是一个功能略单薄，设计也稍显稚嫩的应用，我也并没期望从中能获得任何收益，但是这个过程中学到的各种知识和能力对我很是受用和鼓舞。所有的这些收获最终也确实转化成了新的契机，让我能继续在设计和开发的路上走下去。 </div>
+		
+			<span class="post-tag">程序媛</span>
+		
+			<span class="post-tag">创业</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 30, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/04/30/zen-of-life.html">人生是一场修行</a></div>
+		<div class="post-preview"> 《非诚勿扰》。第一次看这部电影，是两年前的冬天，在纽约的酒店里。因为时差难以入睡，清晨四五点，蜷在房间一角的椅子上，心不在焉的看着。并没有被打动，只觉得三亚的风景被拍得太美，美得不真实，不真实得有点莫名其妙，其实整部电影就让我觉得莫名其妙：平凡人的生活，淡然如水，哪来这么多分分合合，这么多纠结不舍得，这么些矫情的仪式。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 4, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/04/04/on-efficiency.html">为什么我的工作效率降低了</a></div>
+		<div class="post-preview"> 一个月之前，我决定改变我的不良作息习惯——熬夜调程序到四五点，中午起床，跳过早饭直接吃午饭，下午才开始一天的正常工作。经过一个月的调整，现在我可以一点钟之前就轻松入睡，早上也能较早的自然醒。可是我发现我的工作效率却大大的降低了，这是怎么回事？ </div>
+		
+			<span class="post-tag">生活</span>
+		
+			<span class="post-tag">学习效率</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 1, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/04/01/thousand-splendid-suns.html">那一千个灿烂的太阳</a></div>
+		<div class="post-preview"> 一年之前看的这本书。看完中文版后毫不犹豫的把英文原著也一口气看完了。很多让人动容的画面在脑海中停留很久：战争中满目沧痍的阿富汗和布卡遮蔽下女人的强大内心。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Mar 27, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/03/27/underwater.html">水下的世界</a></div>
+		<div class="post-preview"> 和姐妹们尝试了一组水下拍摄。生活中最幸运的是，拥有这些不只可以陪你brunch，hightea，evening hanging out，还能帮助彼此实现生活中小梦想的朋友们。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Mar 18, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/03/18/how-they-started.html">他们是如何开始的</a></div>
+		<div class="post-preview"> 最近看完了这本书《How they started DIGITAL》。讲述了25个电子商业巨头是如何从一个想法发展起来的。很多故事非常的有趣并且具有启发性。所以翻译总结了一些吸引我的章节。也算是读了好几年英文和中文科技博后，一次正式的自己翻译文章。以后会持续纪录。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+			<span class="post-tag">翻译</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jan 2, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2013/01/02/chicago.html">在风城邂逅久违的自己</a></div>
+		<div class="post-preview"> 这一次离开，就无法预计下一次的到来了。在驶往O'Hare机场的出租车上，拍下对这个城市最后的留恋。在一个人的旅途中，遇见了那个久违的自己。命运不可躲避，不如张开双臂尽情拥抱，把这个幼稚执着又怨又爱的自己留在这里，离开的是一个更好的我。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 23, 2012</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2012/04/23/time-forgotten.html">被遗忘的时光</a></div>
+		<div class="post-preview"> 一卷胶卷，特别是一卷拍了很长周期的胶卷，有一种神奇的力量，能把人带回到那些被遗忘的时光片段中。 这是一卷两年前开始拍摄的胶片。从我们离开的大学校园开始，再到美利坚的冬日，结束于前几日的香港街头。这些失焦的胶片恰好记录了毕业后到现在生活态度的变化，让人颇为感慨。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 23, 2012</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2012/04/23/zhiming-chunjiao.html">志明与春娇</a></div>
+		<div class="post-preview"> 对于香港文艺的认知来源于大二时期的一门选修课。教授是个年轻男子，上课表情夸张。他授课期间介绍的留给我印象最深的港产电影，是王家卫的《阿飞正传》。王家卫一直是那样的一种鬼魅文艺气，但他从来没有明确的说出他每个镜头和情节的意图。于是评论者自做主张的给《阿飞正传》加上一个很深刻的论调：旭仔对于自己无根命运的质疑和愤怒隐喻着香港文化自身的无归属感，是港人“九七情绪”的第一次表达。其实，王家卫自己从来没有这样说过。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Feb 20, 2012</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2012/02/20/fusang.html">扶桑</a></div>
+		<div class="post-preview"> 看到一句简单的评论，说严歌苓是会用文字讲俗事的诗人。读完扶桑，觉得这句话很贴切。整本小说就是一首很长的诗，让人在看的时候不自觉的读出声来——靠着窗口，借着月光，听着民俗音乐，一字一句的吟诵，我就是这样看完这本书的。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Feb 2, 2012</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2012/02/02/settled.html">随遇而安</a></div>
+		<div class="post-preview"> 圣诞海边的照片现在才拷过来。我俩都是太懒散的人了。有这样一个朋友，今天说累了，想出游了，明天就定好了机票酒店，后天就能出发，这是多么难得。因为我们都是不怎么计较也不太索求的人，所有才能有这样的默契。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jan 9, 2012</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2012/01/09/old-friend.html">那些年，我们一起欺负的胖子</a></div>
+		<div class="post-preview"> 最近生活越发的热闹了起来，年少时的朋友到坡上来了。三个人一起在JP的Starbucks聊天，有种时空交错的感觉：七八年前的人，和一两年前的物——彼时的情感温柔的融合在我们此时的生活中。 </div>
+		
+			<span class="post-tag">生活</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Nov 25, 2011</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2011/11/25/hackers-and-painters.html">黑客与画家</a></div>
+		<div class="post-preview"> 一开始吸引我的仅仅是这个书名。后来才了解到作者是有硅谷创业教父的之称的Paul Graham。这本书是他的文集。书中他用浅显的文字阐述自己对于计算机科学的认识，其对世界变革的影响和高科技创业蕴藏的巨大挑战和财富。他是一个成功的创业者，投资人，同时也是黑客，作家，并且在拿到哈佛计算机博士学位之后，在佛罗伦萨学习绘画，有过一段短暂的艺术家生涯。接触奇特而睿智的灵魂总是发人深省，似醍醐灌顶。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 28, 2011</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2011/07/28/boring-gallery.html">无聊艺术</a></div>
+		<div class="post-preview"> 他将艺术，设计和科技巧妙的融合，创造出一个奇特的平台。通过这个平台，用户可以参与创作绚丽的抽象画，而画笔的原始素材竟是从Twitter和Flickr这些虚拟社交网络中提取的数字信息。 </div>
+		
+			<span class="post-tag">艺术</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">May 8, 2011</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2011/05/08/travel-euro-11.html">明日即天涯11－双面城市</a></div>
+		<div class="post-preview"> 连夜乘大巴赶路令人疲惫，但是阿姆的街道中又藏着这么多惊奇，让人忍不住走下去。如果阿姆斯特丹乏味一点，我想我会马上坐车回去睡大觉了。沉睡中的阿姆斯特丹，运河，船屋，桥梁组成的图画不亚于威尼斯的绮丽，而满街的绿树，房屋上的鲜花，整洁又极具规划的人行道，自行车道和机车道又透着维也纳式的优雅。这些是我完全没有想到的，没有人告诉我阿姆斯特丹是这样的，她竟然具备我最喜欢的城市的所有特质。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 11, 2011</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2011/04/11/mario.html">从马里奥到3D</a></div>
+		<div class="post-preview"> AR概念的构建者最初的设想——通过眼镜实现AR。看来实现这个设想只是时间问题罢了。 </div>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Apr 5, 2011</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2011/04/05/travel-euro-10.html">明日即天涯10－小镇生活</a></div>
+		<div class="post-preview"> 早上醒来，外面下着雨，打开窗就是一阵清新的树木的香气。高山上水雾环绕，空气干净凉爽，只想躲在被窝里欣赏这一切。下楼后早餐已经准备好，非常丰盛，女主人不太会说英文，但还是一个劲问我昨天睡得好不好，房间是否满意，早餐是否合胃口。然后她穿得厚厚的出门买东西去了，留我一个人在家里。小镇上的人们真是纯朴而热情。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Mar 21, 2011</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2011/03/21/travel-euro-9.html">明日即天涯9－爱琴海</a></div>
+		<div class="post-preview"> 完全陌生的国度，六点钟的天空还是灰灰的粉色，空气里都是湿热的气息。街边推着板车卖早饭的小贩在大声叫卖，一辆辆私家车排着队缓慢的驶进巨型游轮的停车仓位。看着眼前的真实，感受着自己存在的不真实，一边沉醉于蓝色大海和红色晨曦的美丽，一边焦急于找不到任何方向的困境，兴奋和胆怯，向往和畏惧的心情交杂。莽莽撞撞上了游轮，五个小时在宝蓝色的爱琴海上航行。然后，终于来到了这次旅途的终极向往。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Nov 2, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/11/02/travel-euro-8.html">明日即天涯8－罗马假日</a></div>
+		<div class="post-preview"> 到过意大利的游客，都说这里有那么一点脏乱，可是大家都还是蜂拥而至的赶去。我知道意大利必有可取之处，是我自己学得太少，了解得太少。看不懂那些艺术珍品，也不了解古罗马留下的文明的璀璨。在罗马留下了太多遗憾，没有给tower找到triangle娃娃，也没有在许愿池下投下硬币，错过了很多美景，还有一天生病了呆在旅馆里。但是仍要感激这段旅途，特别是旅途中遇见的人。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Sep 28, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/09/28/travel-euro-7.html">明日即天涯7－翡冷翠</a></div>
+		<div class="post-preview"> 很喜欢在米开朗基罗广场，俯瞰这个城市。黄昏时很多人聚集在这里，在向西的一排石阶上坐着，看日落，却有一点像并排坐看电影的感觉。而这部电影绝对不会让你后悔，看金色阳光撒在阿诺河上，教堂顶上，温暖又带一点落寞，让人心生平静又有一些伤感。 回来的时候天已经黑了，一个人在公交车上，不知道车开去哪里，有那么一点害怕和担心。不过，还是顺利回了住处。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Sep 11, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/09/11/travel-euro-6.html">明日即天涯6－消失的威尼斯</a></div>
+		<div class="post-preview"> 在我的床上可以看到夜晚的天空，听到海波怕打石板路的声音和不同国家的年轻人用不同语言喧哗和歌唱。尽管走过了好些城市，看过了好些风景，遇见了好些人，我还是看不透想不通这是一个如何的世界，我仿佛永远徘徊在门外，没有真正的进入，没有真正的去看去听去感受。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Sep 5, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/09/05/travel-euro-5.html">明日即天涯5－天上的门</a></div>
+		<div class="post-preview"> 我从来没有看过巴乔踢球，但是有他身影的图像和文字，填满了我少女的时代。有很多优雅的名称赋予他，有很多诗写的是他。但是那些都是存在于年幼时的梦想。那天我去了圣西罗的博物馆，看到了橱窗中他的一件AC米兰的球衣和一件国际米兰的球衣对折拼成的10号。有人说，巴乔是意大利足坛最后一个真正的10号。因为巴乔，年幼的我认识了整个意大利。意大利的第一站，我来到了米兰。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Aug 21, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/08/21/musong.html">目送</a></div>
+		<div class="post-preview"> 读《目送》，像是听一个成年女子，以长辈的身份对我们的谆谆教导。最后读完《目送》的时候，也有那么一点小小的私心。便是希望自己到这样的一个年纪的时候，即使经历了复杂社会的磨砺，即使承担着女儿和母亲双重身份的辛楚和甜蜜，即使看过那么多人性的美好和丑恶，还是可以这样豁达的去思考去记录去感悟，去付出去肯定去爱去享受，一直坚定自己的信仰。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Aug 19, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/08/19/travel-euro-4.html">明日即天涯4－永远的普罗旺斯</a></div>
+		<div class="post-preview"> 从普罗旺斯开始，我体会到了独游的意义。听歌，画画，拍照，野餐，看风景，记日记，逛集市。在大大的世界里拥有自己小小的国度，不被打扰不被侵犯，不得不承认我是太自我的女孩子了，我太享受这样的日子 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Aug 8, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/08/08/travel-euro-3.html">明日即天涯3－狂欢巴黎</a></div>
+		<div class="post-preview"> 抱着一个巨大的kebab在塞纳河边晒太阳，或者是盘腿坐在铁塔下摆弄我的小相机。躺在蓬皮杜的广场上听着歌睡觉，或者在街边的咖啡馆里小坐看人来人往。在橘园美术馆里邂逅莫奈的睡莲却一脸茫然，或者迷失在那些石板路小巷里，误闯入已经打烊的便利店挑水果和面包。既然单薄的言辞不足以去描述她，我想就简单的记录下那些小细节，便也足够了。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 17, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/07/17/gap-year.html">间隔年</a></div>
+		<div class="post-preview"> 并没有多少人有勇气去开始一段这样的旅途，至少在这样的社会氛围下。该走的路，似乎都被人设定好了的，读书，工作，结婚，生子，算下来真的挤不出哪怕是短暂的几个月。社会给予你的责任，家庭的压力，对身边人的承担，永远有这么多束缚羁绊着，要踏出第一步，太难。我只是在某个温暖的夏日午后，安静的翻着书页，跟着东东踏上这段神奇的旅途，仿佛自己也走过一般。 </div>
+		
+			<span class="post-tag">阅读</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 16, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/07/16/travel-euro-2.html">明日即天涯2－大城市小弄堂</a></div>
+		<div class="post-preview"> 大城市，小弄堂……无论如何在这个城市里，我还是强烈的感受到那些砖瓦和草木散发着中国的气息。我总觉得城市是有味道的，味道难于记忆，只有当你置身其中才能感受到，并且牵动每一丝关于这些味道的记忆。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+  
+  	<div class="post-row">
+		<span class="post-meta">Jul 15, 2010</span><br>
+		<div class="title-container"><a class="page-title" href="/blog2/2010/07/15/travel-euro-1.html">明日即天涯1－未启程的旅行日记</a></div>
+		<div class="post-preview"> 在转这些日记的时候，正在读阿兰·德波顿的《旅行的艺术》。第一章On Anticipation，特别能引起我的共鸣来。从脑海中冒出独自出游的这个念头来，我就将计划和准备看成了旅行的一部分。身未动，心已远，用来形容计划着出行的人们的心情，再恰当不过了。 </div>
+		
+			<span class="post-tag">旅行</span>
+		
+	</div>
+  
+
+
+            </div>
+        </div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+</html>
