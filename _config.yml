@@ -18,3 +18,7 @@ timezone: Asia/Singapore
 collections:
   books:
     output: true
+
+plugins:
+  - jekyll-toc
+

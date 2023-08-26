@@ -26,7 +26,8 @@
     </div>
 
     <div class="post-wrapper">
-        <!-- header --> 
+        <!-- header -->
+
         <div class="wrapper">
             <header class="post-header">
                 <h1 class="post-title">{{ page.title }}</h1>
@@ -34,10 +35,11 @@
             </header>
         </div>
 
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> {% toc %} </div> 
 
         <article class="post-content">
             {{ content }}
-            
 
             <div class="post-end">
                 <!-- buy me a coffee -->
@@ -60,4 +62,24 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
 </html>

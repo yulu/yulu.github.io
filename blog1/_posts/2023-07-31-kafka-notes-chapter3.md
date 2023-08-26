@@ -1,12 +1,13 @@
 ---
 layout: post
-title:  "[Kafka Guide] Chapter 3 Kafka Producer"
+title:  "[Kafka Guide] Chapter 3 - Kafka Producer"
 date:   2023-07-31 19:00:00
 categories: blog1
 tags: "reading_notes Kafka"
+toc: true
 ---
 
-### Kafka Producer Components illustrated
+### Kafka Producer Components Illustrated
 
 ![][kafka-producer-components.png]
 
@@ -23,14 +24,14 @@ kafkaProps.put("value.serializer", "org.apache.kafka.common.serialization.String
 producer = new KafkaProducer<String, String>(kafkaProps);
 ```
 
-### Sending messages
+### Sending Messages
 
->Three primary methods of sending messages
->- fire-and-forget: Send and do not wait for response
->- synchronous send: use `Future` object and `get()` to wait on the Future and see if the `send()` was successful or not before sending the next record
->- asynchronous send: A producer object can be used by multiple threads to send messages. Product object is thread-safe
+Three primary methods of sending messages
+- fire-and-forget: Send and do not wait for response
+- synchronous send: use `Future` object and `get()` to wait on the Future and see if the `send()` was successful or not before sending the next record
+- asynchronous send: A producer object can be used by multiple threads to send messages. Product object is thread-safe
 
-##### The simplest way (fire-and-forget)
+##### The Simplest Way (fire-and-forget)
 ```java
 ProducerRecord<String, String> record = 
 	new ProducerRecord<>("CustomerCountry", "Precision Products", "France"); // <= there're different constructors, here we use a simple one requires: topic name, key and value
@@ -42,10 +43,9 @@ try {
 }
 ```
 
-##### Synchronous send
+##### Synchronous Send
 ```java
-ProducerRecord<String, String> record = 
-	new ProducerRecord<>("CustomerCountry", "Precision Products", "France"); 
+ProducerRecord<String, String> record = new ProducerRecord<>("CustomerCountry", "Precision Products", "France"); 
 	
 try {
 	producer.send(record).get(); // <= use future.get() to wait for the reply
@@ -54,7 +54,7 @@ try {
 }
 ```
 
-##### Asynchronous send with a callback
+##### Asynchronous Send with a Callback
 ```java
 private class DemoProducerCallback implements Callback { // <= need to implements org.apacke.kafka.clients.producer.callback
 	@Override
@@ -65,14 +65,13 @@ private class DemoProducerCallback implements Callback { // <= need to implement
 	}
 }
 
-ProducerRecord<String, String> record = 
-	new ProducerRecord<>("CustomerCountry", "Precision Products", "France"); 
+ProducerRecord<String, String> record = new ProducerRecord<>("CustomerCountry", "Precision Products", "France"); 
 producer.send(record, new DemoProducerCallback()); // <= we pass a Callback object along when sending the record, callback is executed in the main thread, so it should be reasonably fast
 ```
 
 ### Configurations
 
-##### Core configurations
+##### Core Configurations
 - `client.id`: logical identifier for the client and the application it is used in.
 - `acks`: controls how many partition replicas must receive the record before the producer can consider the write successful. 
 

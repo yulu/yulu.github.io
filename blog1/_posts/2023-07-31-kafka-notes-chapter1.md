@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  "[Kafka Guide] Chapter 1 Meet Kafka"
+title:  "[Kafka Guide] Chapter 1 - Meet Kafka"
 date:   2023-07-31 19:00:00
 categories: blog1
 tags: "reading_notes Kafka"
+toc: true
 ---
 
 ### What Problems does Kafka Solve
@@ -13,14 +14,13 @@ tags: "reading_notes Kafka"
 > Apache Kafka was developed as a publish/subscribe messaging system designed to solve the above problem - a distributing streaming platform.
 > A filesystem or database commit log is designed to provide a durable record of all transactions so that they can be replayed to consistently build the state of the system. Similarly, data within Kafka is stored durably, in order, and can be read deterministically. In addition, the data can be distributed within the system to provide additional protections against failures, as well as significant opportunities for scaling performance. 
 
-
-##### direct-connection in/out data communications between services is difficult to trace
+##### Direct-connection in/out data communications between services is difficult to trace
 ![][kafka-chapter1-1.jpeg]
 
-##### use a pub/sub pattern
+##### Use a Pub/Sub pattern
 ![][kafka-chapter1-2.jpeg]
 
-##### multiple publish/subscribe systems to support different biz use cases
+##### Multiple publish/subscribe systems to support different biz use cases
 ![][kafka-chapter1-3.jpeg]
 
 ### Summary as Ankicard
@@ -54,6 +54,7 @@ Key is an optional metadata comes with the message, it will be hashed and used t
 **partitions**:: topics are broken down into a number of partitions. A partition is a single log. Messages are written to it in an append-only fashion and are read in order from beginning to end. Partitions can be distributed and replicated for scalability and reliability. 
 
 ![][kafka-chapter1-4.jpeg]
+
 ---
 
 **producers**:: create new messages. By default, the producer will balance messages over all partitions of a topic evenly. In some cases the producer will direct messages to specific partitions, done using the message key. 
@@ -85,4 +86,3 @@ Key is an optional metadata comes with the message, it will be hashed and used t
 [kafka-chapter1-6.jpeg]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter1-6.jpeg
 [kafka-chapter1-7.jpeg]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter1-7.jpeg
 [kafka-chapter4-4.jpeg]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter4-4.jpeg
-

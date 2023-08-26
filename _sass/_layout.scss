@@ -18,6 +18,7 @@ $more-button-color: #979797;
 $break-small: 320px;
 $break-medium: 640px;
 $break-large: 1200px;
+$break-larger: 1400px;
 
 $block-background-color: #fdfafa;
 
@@ -658,6 +659,36 @@ body,
 
 .post-wrapper {
     background-color: #fff;
+
+    .post-toc {
+        margin: auto;
+        padding: 10px;
+        position: relative;
+        z-index: 1000;
+        max-width: calc(1000px - (30px * 2));
+        a {
+            color: $text-color;
+        }
+
+        @media screen and (min-width: $break-larger) {
+            width: calc((100vw - 940px)/2);
+            max-width: 500px;
+            position: absolute;
+            left: 10px;
+            float: left;
+            
+            &.sticky {
+                position: fixed;
+                top: 65px;
+            }
+        }
+    }
+    .section-nav {
+        background-color: #fcfafe;
+        list-style-position: inside;
+        margin: 0;
+        padding: 10px 20px;
+    }
 }
 
 .post-content {
@@ -759,7 +790,8 @@ body,
 
     h5 {
         font-size: 16px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        margin-top: 30px;
         color: $text-color;
         @include media-query($on-laptop) {
             font-size: 14px;
