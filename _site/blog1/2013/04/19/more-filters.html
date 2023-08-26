@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>More Interesting Filters using Fragment Shader</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2013/04/19/more-filters.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">More Interesting Filters using Fragment Shader</h1>
+                <p class="post-meta">Apr 19, 2013</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>Continued with the previous project - image processing using OpenGL ES shaders, I studied and implemented another two interesting filters: artistic painting effect and diffuse glow effect.</p>
+
+<h3 id="artistic-painting-effect">Artistic Painting Effect</h3>
+
+<p>The idea is still taken from the popular book <a href="http://books.google.com.sg/books/about/Graphics_Shaders.html?id=29YSpc-aOlgC&amp;redir_esc=y">Graphics Shaders</a>, which is followed closely from the very start of the project. The artist effect is achieved by scanning the pixels around the centre one, and take either the brightest or darkest to replace the centre. The patch shape is critical for the final result. The sample code is using a 3x3 square patch. Since OpenGL ES shaders does not support non-constant indexed array, the implementation has to be copied through all the pixels in the patch (the codes will be super long if a larger patch is used).</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">filter</span><span class="p">()</span>
+<span class="p">{</span>    
+    <span class="kt">float</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">uPixelSize</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">uPixelSize</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="n">tempLumi</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">minLumi</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">Quantize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">.;</span>
+    <span class="n">vec3</span> <span class="n">color</span><span class="p">;</span>
+
+    <span class="c1">//Go through all the the random selected pixels in a 5x5 patch to find the hightest</span>
+
+    <span class="n">vec3</span> <span class="n">sample0</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample0</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample1</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample2</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample2</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample4</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample4</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample4</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample6</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample6</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample6</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample7</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample7</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample7</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample9</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">.</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample9</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample9</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample10</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">.</span><span class="o">*</span> <span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample10</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample10</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample11</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mi">2</span><span class="p">.</span><span class="o">*</span> <span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample11</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample11</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample12</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">.</span><span class="o">*</span> <span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample12</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample12</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample13</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">.</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">.</span><span class="o">*</span> <span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample13</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample13</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample14</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">.</span><span class="o">*</span> <span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample14</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample14</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample15</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">.</span> <span class="o">*</span><span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample15</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample15</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vec3</span> <span class="n">sample16</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="p">.</span><span class="n">x</span><span class="o">-</span> <span class="mi">2</span><span class="p">.</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">;</span>
+    <span class="n">tempLumi</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">sample16</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tempLumi</span> <span class="o">&gt;</span> <span class="n">minLumi</span><span class="p">){</span>
+        <span class="n">minLumi</span> <span class="o">=</span> <span class="n">tempLumi</span><span class="p">;</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sample16</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">color</span> <span class="o">*</span> <span class="mi">10</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">color</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17091936692_6eeb3c9f6a_o.jpg" alt="filter-1" /></p>
+
+<h3 id="diffuse-glow-effect">Diffuse Glow Effect</h3>
+
+<p>Diffuse glow effect, as termed in Photoshop, gives the image a smooth, dreamy and lightening effect. It softens the skin color if applied to portrait images. I have done some research on Google, however could not find a detail explanation of the mechanism of this effect. Then I dig deep into the codes of the open source image processing software GIMP (It can be cloned from git by git clone git://git.gnome.org/gimp). The effect is termed as Soft Glow Filter in GIMP, and the source code can be found under the plug-in/common folder. Modified for an efficient implementation using Shaders, the steps are summaried:</p>
+
+<h4 id="1-gaussian-blur">1. Gaussian Blur</h4>
+
+<p>A 3x3 Gaussian Blur box is used for a fast implementation. Slightly adjust the pixel size here to achieve a stronger blurring effect.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="p">...</span>
+
+<span class="kt">float</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">uPixelSize</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">uPixelSize</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>
+
+<span class="c1">//Gaussian Blur</span>
+<span class="n">vec3</span> <span class="n">sample0</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span> <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">sample1</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span> <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>   <span class="p">).</span><span class="n">rgb</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">sample2</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span> <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="o">-</span><span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">sample3</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>    <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">sample4</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>    <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>   <span class="p">).</span><span class="n">rgb</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">sample5</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>    <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="o">-</span><span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">sample6</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span> <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">sample7</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span> <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>   <span class="p">).</span><span class="n">rgb</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">sample8</span><span class="o">=</span><span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">texturePos</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span> <span class="n">texturePos</span><span class="p">.</span><span class="n">y</span><span class="o">-</span><span class="n">dy</span><span class="p">)).</span><span class="n">rgb</span><span class="p">);</span></code></pre></figure>
+
+<h4 id="2-desaturation">2. Desaturation</h4>
+
+<p>Mix with luminance image of itself we can get the saturated image.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">saturation</span><span class="p">(</span><span class="n">vec3</span> <span class="n">color</span><span class="p">,</span> <span class="kt">float</span> <span class="n">sat</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kt">float</span> <span class="n">luminance</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="n">vec3</span> <span class="n">lumi</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="n">luminance</span><span class="p">,</span> <span class="n">luminance</span><span class="p">,</span> <span class="n">luminance</span><span class="p">);</span>
+ 
+    <span class="k">return</span> <span class="n">mix</span><span class="p">(</span><span class="n">lumi</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">sat</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<h4 id="3-sigmoidal-transfer">3. Sigmoidal Transfer</h4>
+
+<p>A sigmoid function, which has an “S” shape,  is defined as below. The parameters are adopted from the open source codes of GIMP. (It is a curve adjusting process)</p>
+
+\[s(t)= \frac{1}{1+e^{-t}}\]
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="p">...</span>
+
+<span class="k">const</span> <span class="kt">float</span> <span class="n">SIGMOIDAL_BASE</span> <span class="o">=</span> <span class="mi">2</span><span class="p">.;</span>
+<span class="k">const</span> <span class="kt">float</span> <span class="n">SHARPNESS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">85</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">float</span> <span class="n">SIGMOIDAL_RANGE</span> <span class="o">=</span> <span class="mi">20</span><span class="p">.;</span>
+<span class="k">const</span> <span class="kt">float</span> <span class="n">BRIGHTNESS</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.</span><span class="mi">2</span><span class="p">;</span>
+
+<span class="n">vec3</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">vec3</span> <span class="n">color</span><span class="p">)</span> <span class="p">{</span>
+ 
+    <span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="o">*</span><span class="p">(</span><span class="n">SIGMOIDAL_BASE</span> <span class="o">+</span> <span class="n">SHARPNESS</span> <span class="o">*</span> <span class="n">SIGMOIDAL_RANGE</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">val</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)));</span> 
+    <span class="n">val</span> <span class="o">=</span> <span class="n">val</span> <span class="o">*</span> <span class="n">BRIGHTNESS</span><span class="p">;</span> 
+    <span class="n">val</span> <span class="o">=</span> <span class="n">clamp</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">.),</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">.));</span>
+ 
+    <span class="k">return</span> <span class="n">val</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h4 id="4-screen-blend">4. Screen Blend</h4>
+
+<p>With screen blend mode the values of the pixels in the two layers are negated, multiplied, and then negated again. The result is a brighter picture:</p>
+
+\[f(a,b) = 1 - (1-a)(1-b)\]
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="p">...</span>
+
+<span class="n">vec3</span> <span class="nf">screen</span><span class="p">(</span><span class="n">vec3</span> <span class="n">mask</span><span class="p">,</span> <span class="kt">float</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">color</span><span class="p">){</span>
+
+    <span class="k">return</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="n">mask</span><span class="o">*</span><span class="n">alpha</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="n">image</span><span class="p">);</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16470994114_5d65ea3957_o.jpg" alt="filter-2" /></p>
+
+<h3 id="closure">Closure</h3>
+
+<p>It is fun to dig into the open source code and reverse engineered out the algorithms and implemented on the faster GPU chip. I hope I could spend more time to do this, but unfortunately I have to deal with some more serious projects to produce papers, so sad. There are two very good open source projects that I get inspirations from: <a href="https://github.com/harism/android_instacam">InstaCam</a> by Harri Smatt, and <a href="https://github.com/lightbox/PhotoProcessing">LightBox</a>.</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

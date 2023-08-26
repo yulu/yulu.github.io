@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Exploration in Python and Report a Bug in OpenCV Python</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2013/08/30/python-opencv.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">Exploration in Python and Report a Bug in OpenCV Python</h1>
+                <p class="post-meta">Aug 30, 2013</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>Spent sometime to learn Python for setting up a Django web application framework. Summarize some useful tips for Python programming as well as share a modified program for feature-based homography tracking using OpenCV python wrapper (the sample codes come with OpenCV source has some bugs that cannot be executed)</p>
+
+<h3 id="tips-for-python-programming">Tips for Python Programming</h3>
+
+<h4 id="1-useful-basic-data-types---list-tuple-and-dictionary">1. Useful basic data types - list, tuple and dictionary</h4>
+
+<p>list - each one in the list is numbered, starting from zero. You can remove values from the list, and add new values to the end.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">cats</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Tom'</span><span class="p">,</span> <span class="s">'Snappy'</span><span class="p">,</span> <span class="s">'Kitty'</span><span class="p">,</span> <span class="s">'Jessie'</span><span class="p">,</span> <span class="s">'Chester'</span><span class="p">]</span> </code></pre></figure>
+
+<p>tuple - just like lists, but you can’t change their values. The values that you give it first up, are the values that you are stuck with for the rest of the program. Again, each value is numbered starting from zero.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">months</span> <span class="o">=</span> <span class="p">(</span><span class="s">'Jan'</span><span class="p">,</span> <span class="s">'Feb'</span><span class="p">,</span> <span class="s">'Mar'</span><span class="p">,</span> <span class="s">'Apr'</span><span class="p">)</span></code></pre></figure>
+
+<p>dictionary - similar to what their name suggests. In a dictionary, you have an ‘index’ of words, and for each of them a definition.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">phonebook</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Andrew Parson'</span><span class="p">:</span><span class="mi">8806336</span><span class="p">,</span> <span class="s">'Emily Evert'</span><span class="p">:</span><span class="mi">6784346</span><span class="p">,</span> <span class="s">'Peter Power'</span><span class="p">:</span><span class="mi">7658344</span><span class="p">,</span> <span class="s">'Lewis Lame'</span><span class="p">:</span><span class="mi">1122345</span><span class="p">}</span></code></pre></figure>
+
+<h4 id="2-list-comprehensions">2. List Comprehensions</h4>
+
+<p>A list comprehension is a construct consisting of logic that builds a list containing the values/objects generated by the logic.</p>
+
+<p>e.g. Let’s say we have a list containing the integers 0 through 9. What if we wanted to increment each number and get all the results back in a list? With list comprehension:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span> 
+<span class="n">data</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span></code></pre></figure>
+
+<p>or</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">even_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span><span class="mi">0</span><span class="p">]</span>  
+<span class="n">even_numbers</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span></code></pre></figure>
+
+<h4 id="3-duck-typing">3. Duck-typing</h4>
+
+<p>In computer programming with object-oriented programming languages, duck-typing is a style of dynamic typing in which an object’s methods and properties determine the valid semantics, rather than its inheritance from a particular class or implementation of a specific interface.</p>
+
+<h4 id="4-functions-are-first-class-objects">4. Functions are First-Class Objects</h4>
+
+<p>In Python, you can treat functions as any other object, such as, store them in container, assign them to different variables, pass them in as arguments to functions, and so forth. The only difference is you can execute function objects, meaning you treat them as a function by appending the usual parentheses and arguments.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">datetime</span> <span class="k">class</span> <span class="nc">DiaryEntry</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span> 
+<span class="n">entry</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">TextField</span><span class="p">();</span>  
+<span class="n">date</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="p">.</span><span class="n">date</span><span class="p">.</span><span class="n">today</span><span class="p">)</span></code></pre></figure>
+
+<p>This is tricky. If we had set default to datetime.date.today(), the function would be called at the time the model was defined, which is not what we want. Instead, we pass the function object; Django is aware of this and calls the function at instance-creation time to generate the value for us.</p>
+
+<h4 id="5-args-and-kwargs">5. *args and **kwargs</h4>
+
+<p>In function calls, * means to unpack a tuple and ** means to unpack a dictionary.
+In function signature, define variable arguments(varargs) using * representing a “tuple”  and ** a “dictionary” as a “shopping bag”.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">daily_sales_total</span><span class="p">(</span><span class="o">*</span><span class="n">all_sales</span><span class="p">):</span>      
+<span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>     
+<span class="k">for</span> <span class="n">each_sale</span> <span class="ow">in</span> <span class="n">all_sales</span><span class="p">:</span>  
+<span class="n">total</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">each_sale</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">total</span> </code></pre></figure>
+
+<h3 id="opencv-python">OpenCV Python</h3>
+
+<p>To reinstall ubuntu, opencv, cuda is always a struggle, but also a progress to learn and know better about all of these. Now working in ubuntu 12.04, opencv 2.4.6.1 and cuda 5.5. First time to try OpenCV python wrapper, and to be surprised by its efficiency and the ease to program. However there are some bugs in the official release.</p>
+
+<p>The Bug is noted in the source (RectSelector Class in common.py), however I don’t quite understand why it happens. Instead of using the class, I rewrite a PlanerTracker Class to perform the tracking by mouse clicking.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17093523655_e420956e6c_z.jpg" alt="python-1" /></p>
+
+<p>The source is uploaded <a href="https://gist.github.com/yulu/6867298">here</a>.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17092831861_295644e39d_b.jpg" alt="python-2" /></p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>The Stack that Helped Medium Drive 2.6 Millennia of Reading Time</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog3/2015/10/26/medium-tech-stack.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">The Stack that Helped Medium Drive 2.6 Millennia of Reading Time</h1>
+                <p class="post-meta">Oct 26, 2015</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <h3 id="background">Background</h3>
+
+<p>Medium is a network. It’s a place to share stories and ideas that matter - it’s where you move thinking forward, and people have spent 1.4 billion minutes - or 2.6 millennia - reading on Medium.</p>
+
+<p>We get over 25 million unique readers every month and tens of thousands of posts published each week. But we want Medium to be a place where measure of success isn’t views, but viewpoints. Where the quality of the idea matters, not the author’s qualifications. A place where conversation pushes ideas forward and words still matter.</p>
+
+<p>I lead the engineering team. I was previously a Staff Software Engineer at Google, where I worked on Google+ and Gmail, and co-founded the Closure project. In past lives I raced snowboards, jumped out of planes, and lived in the jungle.</p>
+
+<h3 id="the-team">The Team</h3>
+
+<p>I couldn’t be prouder of this team. It’s an awesome bunch of talented, curious, mindful individuals who come tegother to do great work.</p>
+
+<p>We operate in cross-functional, mission-driven teams, so while some people specialize, everyone should feel able to touch any part of the stack. We believe that exposure to different disciplines makes you a stranger engineer. I wrote about <a href="">our other values here</a>.</p>
+
+<p>The teams have a lot of flexibility in how they organize around their work, but as a company we set quarterly goals and encourage iterative sprints. We use GitHub for code reviews and bug tracking and Google Apps for email, docs, and spreadsheets. We’re heavy users of Slack - and slack bots - and many teams use Trello.</p>
+
+<h3 id="initial-stack">Initial Stack</h3>
+
+<p>We deployed to EC2 from the start. The main app servers were written in Node.js and we migrated to DynamoDB fro the public launch.</p>
+
+<p>There was a node server that we used for image processing, delegating to <a href="">GraphicsMagick</a> for the actual hard work. And another server acted as a <a href="">SQS</a> queue processor for background tasks.</p>
+
+<p>We used <a href="">SES</a> for email, S3 for static assets, CloudFront as CDN, and <a href="">nginx</a> as a reverse proxy. We used Datadog for monitoring and PagerDuty for alerting.</p>
+
+<p>The site used TinyMCE as a foundation for the editor. Before launch we were already using the <a href="">Closure Compiler</a> and some portions of the <a href="">Closure Library</a>, but <a href="">Handlebars</a> for templates.</p>
+
+<p>###Current Stack</p>
+
+<p>For a site as seemingly simple as Medium, it may be surprising how much complexity is behind the scenes. It’s just a blog, right? You could probably knock something out using Rails in a couple of days. :)</p>
+
+<p>Anyway, enough snark. Let’s start at the bottom.</p>
+
+<h4 id="production-environment">Production Environment</h4>
+
+<p>We are on Amazon’s Virtual Private Cloud. We use <a href="">Ansbile</a> for system management, which allows us to keep our configuration under source control and easily roll out changes in a controlled way.</p>
+
+<p>We have a service-oriented architecture, running about a dozen production services (depending on how you count them and some more micro than others). The primary choice as to whether to deploy a separate service is the specificity of the work it performs, how likely dependent changes are to be made across servcie boundaries, and the resource utilizaiton characteristics.</p>
+
+<p>Our main app servers are still written in <a href="">Node</a>, which allows us to share code between server and client, something we use quite heavlity with editor and post transformations. Node has worked pretty well for us, but performance problems have emerged where we block the event loop. To alleviate this, we run multiple instances per machine and route expensive endpoints to specific instances, thus isolating them. We’ve also hooked into the V8 runtime to get insights into what ticks are tacking a long time; generally it’s due to object reification during JSON deserialization.</p>
+
+<p>We have serveral auxiliary services written in Go. We’ve found Go very easy to build, package, and deploy. We like the type-safety without the verbosity and JVM tuning of Java. Personally, I’m a fan of using opinionated languages in a team environment; it improves consistency, reduces ambiguity, and ultimately gives you less rope to hang yourself.</p>
+
+<p>We now serve static asserts using <a href="">CloudFlare</a>, though we send 5% of traffic to <a href="">Fastly</a> and 5% to <a href="">CloudFront</a> to keep their caches warm should we need to cut over in an emergency. Recently we turned up CloudFlare for application traffic as well - primarily for DDOS protection but we’ve been happy with the performance gains.</p>
+
+<p>We use a combination of <a href="">Nginx</a> and <a href="">HAProxy</a> as reverse proxies and load balancers, to satisfy the Venn Diagram of features we need.</p>
+
+<p>We still use <a href="">Datagod</a> for monitoring and <a href="">PageDuty</a> for alerts, but we now heavily use ELK (Elasticsearch, Logstash, Kibana) for debugging production issues.</p>
+
+<h4 id="databases">Databases</h4>
+
+<p>DynamoDB is still our primary datastore, but it hasn’t been completely smooth sailing. One of the perennial issues we’ve hit is the hotkey issue during viral events or fanouts for million-follower users. We have a Redis cache cluster sitting in front of Dynamo, which mitigates these issues with reads. Optimizating for developer convenience and production stability have often seemed at odds, but we’re working to close the gap.</p>
+
+<p>We’re starting to use Amazon Aurora for some newer data, which allows more flexible querying and filtering than Dynamo.</p>
+
+<p>We use <a href="">Neo4j</a> to store relations between the entities that represent the Medium network, running a master with two replicas. People, posts, tags, and collections are nodes in the graphs. Edges are created on entity creation and when people perform acdtions such as follow, recommend, and highlight. We walk the graph to filter and recommend posts.</p>
+
+<h4 id="data-platform">Data Platform</h4>
+
+<p>From early on we’ve been very data hungry, investing in our analytics infrastructure to help us make business and product decisions. More recently we’re able to use the same data pipelines to feed back into production systems to power data-driven features sudh as Explore.</p>
+
+<p>We use <a href="">Amazon Redshift</a> as our data warehouse, provding the scalable storage and processing system our other tools build on. We continuously import our core data set(e.g. users, posts) from Dynamo into Redshift, and event logs(e.g. post viewed, post scrolled) from S3 to Redshift.</p>
+
+<p>Jobs are scheduled by Conduit, an internal tool that manages scheduling, data dependencies, and monitoring. We use an assertion-based scheduling model, where jobs will only be executed if their dependencies are satisfied (e.g. daily job that depends on an entire day of event logs). In production this has proved indispensable - data producers are decoupled from their consumers, simplifying configuration, and the system is very predictable and debuggable.</p>
+
+<p>While SQL queries running in Redshift work well for us, we need to get data into and out of Redshift. We’ve increasinlgy turned to <a href="">Apache Spark</a> for ETL because of its flexibility and ability to scale with our growth. Over time Spark will likely become the tool of choice for our data piplelines.</p>
+
+<p>We use Protocol Buffers for our schemas (and schema evolution rules) to keep all layers of the distributed system in sync, including mobile apps, web service, and data warehouse. Using custom options, we annotate our schemas with configuration details like table name and indexes, and validation constraints like mas length for strings, or acceptable ranges for numbers.</p>
+
+<p>People need to remain in sync too so mobile and web app developers can all log the same way, and Product Scientists can interpret fields, in the same way. We help our people work with data by treating the schemas as the spec, rigorously documenting messages and fields and publishing generated documentation from the .proto files.</p>
+
+<h4 id="images">Images</h4>
+
+<p>Our image server is now written in Go and uses a waterfall strategy for serving processed images. The servers use <a href="">groupcache</a>, which provides a memcache alternative while helping to reduce duplicated work across the fleet. The in-memory cache is backed by a persistent S3 cache; then images are processed on demand. This gives our designers the flexibility to change image presentation and optimize for different platforms without having to do large batch jobs to generate resized images.</p>
+
+<p>While it’s now mainly used for resizing and cropping, earlier versions of the site allowed fro color washes, blurring, and other image effects. Processing animated gifs has been a huge pain for reasons that should be another post.</p>
+
+<h4 id="textshots">TextShots</h4>
+
+<p>The fun TextShots feature is powered by a small Go server that interfaces with <a href="">PhantomJS</a> as a renderer process.</p>
+
+<p>I always imagined switching the rendering engine to use something like Pango, but in practice, the ability to lay out the image in HTML is way more flexible and convenient. And the frequency at which the feature is used means we can handle the throughput quite easily.</p>
+
+<h4 id="custom-domains">Custom Domains</h4>
+
+<p>We allow people to set up custom domains for their Medium publications. We wanted single sign-on and HTTPS everywhere, so it wasn’t super trival to get working. We have a set of dedicated HAProxy servers that manage certs and route traffic to the main fleet of application servers. There is some manual work required when setting up a domain, but we’ve automated large swatches of it through a custom integration with Namecheap. The cert provisioning and publication linking is handled by a dedicated service.</p>
+
+<h4 id="web-frontend">Web Frontend</h4>
+
+<p>On the web, we tend to want to stay close to the metal. We have our own Single Page Application framework that uses <a href="">Closure</a> as a standard library. We use Closure Templates for rendering on both the client and the server, and we use the Closure Compiler to minify the code and split it into modules. The editor is the most complex part of our web app, which Nick has written about.</p>
+
+<h4 id="ios">iOS</h4>
+
+<p>Both our apps are native, making minimal use of web views.</p>
+
+<p>On iOS, we use a mixture of homegrown frameworks and build-in components. In our network layer, we use NSURLSession for making requests and Mantle for parsing JSON into modules. We have a caching layer build on to pof NSKeyedArchiver. We have a generic way to render items in a list with a common styling, which allows us to quickly build new lists with different types of content. The post view is build with UICollectionView with a custom layout. We use shared components to render the full post and the post preview.</p>
+
+<p>Every commit is built and pushed to Medium employees, so that we can try out the app as quickly as possible. The cadence of our release to appstore is beholden to the review cycle, but we try to keep pushing as fast as we can, even if there are only minimal updates.</p>
+
+<p>For tests, we XCTest and OCMock.</p>
+
+<h4 id="android">Android</h4>
+
+<p>On Android, we stay current with the very lasted edition of the SDK and support libraries. We don’t use any comprehensive frameworks, preferring instead to establish consitent patterns for repeated problems. We use <a href="">guava</a> for all the things missing from Java. But otherwise, we tend to use <a href="">3rd part tools that aim to solve more narrow problems</a>. We define our API responses using protocol buffers and then generate the objects we use in the app.</p>
+
+<p>We use <a href="">mockito</a> and <a href="">robolectric</a>. We write high-level tests that spin up activities and poke acound - we create basic versions of these when we first add a screen or to prepare for refactoring. They grow as we reproduce bugs to shield against regression. We write low-level tests to exercise the particulars of single class - we create these as we build out new features and they help us reason about how our classes interact.</p>
+
+<p>Every commit is automatically pushed to the play store as an alpha build, which goes out to Medium staff right away. (This includes another flavor of the app, for our internal version of Medium - Hatch). Most Fridays we promote the lastest alpha to our beta group and have them play with things over the weekend. Then, on Monday, we promote it from beta to production. Since the lastest code is always ready for release, when we find a bad bug, we get the fix out to production immediately. When we’re worried about a new feature, we let the beta group play with things a little longer; when we’re excited, we release even more frequently.</p>
+
+<h4 id="ab-testing--feature-flags">A/B Testing &amp; Feature Flags</h4>
+
+<p>All our clients use server-supplied feature flags, called variants, for A/B testing and guarding unfinished features.</p>
+
+<h4 id="misc">Misc</h4>
+
+<p>There are a lot of other things on the fringe of the product that I haven’t mentioned above: <a href="">Algolia</a> has allowed us to iterate quickly on search-related functionality, <a href="">SendGrid</a> for inbound and outbound email, <a href="">Urban Airship</a> for notifications, <a href="">SQS</a> for queue processing, <a href="">Bloomd</a> for bloom filters, <a href="">PubSubHubbub</a> and <a href="">Superfeedr</a> for RSS, etc, etc.</p>
+
+<h3 id="build-test-deploy-workflow">Build, Test, Deploy Workflow</h3>
+
+<p>We embrace continuous integration and delivery, pushing on green as fast as possible. Jenkins manages all those processes.</p>
+
+<p>Historically we’ve used Make for our build system, but we’re migrating to <a href="">Pants</a> for newer projects.</p>
+
+<p>We have a combination of <a href="">unit tests</a> and <a href="">HTTP level functional tests</a>. All commits have to pass tests before they can be merged. We worked with the team at Box to use <a href="">Cluster Runner</a> to distribute the tests and make this fast. There’s nice integration with GitHub.</p>
+
+<p>We deploy to a staging environment as quickly as we can - currently about 15 minutes - and successful builds are then used as candidates for production. The main app servers normally deploy around five times a day, but sometimes as many as 10 times.</p>
+
+<p>We do blue/green deploys. For production we send traffic to a canary instance, and the release process monitors error rates before proceeding with the deloy. Rollbacks are internal DNS flips.</p>
+
+<h3 id="whats-next">What’s Next?</h3>
+
+<p>So much! There’s a lot to do to refine the core product and make the reading and writing better. We’re also starting to work on monetization features for authors and publishers. This is a green field project, and we’re approaching the problem space with open minds. We think the future needs new mechanism for funding content, and we want to make sure our features incentivize quality content and value to the network.</p>
+
+<h3 id="summary-of-stacks">Summary of Stacks</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EC2
+Node.js
+DynamoDB
+GraphicsMagick
+SQS
+SES
+S3
+CloudFront
+nginx
+Datadog
+PagerDuty
+Closure Compiler
+Closure Library
+Handlebars
+Amazon's Virtual Private Cloud
+Ansible
+Node
+Go
+CloudFlare
+Fastly
+Nginx
+HAProxy
+ELK
+Redis cache cluster
+Amazon Aurora
+Neo4J
+Protocal Buffers
+groupcache
+PhantomJS
+mockito
+robolectric
+variants
+Algolia
+SendGrid
+Urban Airship
+Bloomd
+PubSubHubbub
+Superfeedr
+Jenkins
+Pants
+Cluster Runner
+</code></pre></div></div>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

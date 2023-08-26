@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[Kafka Guide] Chapter 4 Kafka Consumer</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter4.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">[Kafka Guide] Chapter 4 Kafka Consumer</h1>
+                <p class="post-meta">Aug 1, 2023</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#kafka-consumer-concepts">Kafka Consumer Concepts</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#consumers-and-consumer-groups">Consumers and Consumer Groups</a></li>
+<li class="toc-entry toc-h5"><a href="#consumer-groups-and-partition-rebalance">Consumer Groups and Partition Rebalance</a></li>
+<li class="toc-entry toc-h5"><a href="#static-group-membership">Static Group Membership</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#creating-a-kafka-consumer-and-subscribing-to-topics">Creating a Kafka Consumer and Subscribing to Topics</a></li>
+<li class="toc-entry toc-h3"><a href="#the-poll-loop">The Poll Loop</a></li>
+<li class="toc-entry toc-h3"><a href="#configuring-consumers">Configuring Consumers</a></li>
+<li class="toc-entry toc-h3"><a href="#commits-and-offsets">Commits and Offsets</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#automatic-commit">Automatic Commit</a></li>
+<li class="toc-entry toc-h5"><a href="#commit-current-offset">Commit Current Offset</a></li>
+<li class="toc-entry toc-h5"><a href="#asynchronous-commit">Asynchronous Commit</a></li>
+<li class="toc-entry toc-h5"><a href="#combining-synchronous-and-asynchronous-commits">Combining Synchronous and Asynchronous commits</a></li>
+<li class="toc-entry toc-h5"><a href="#committing-a-specified-offset">Committing a Specified Offset</a></li>
+</ul>
+</li>
+</ul> </div> 
+
+        <article class="post-content">
+            <h3 id="kafka-consumer-concepts">Kafka Consumer Concepts</h3>
+
+<h5 id="consumers-and-consumer-groups">Consumers and Consumer Groups</h5>
+
+<p>The main way we scale data consumption from a Kafka topic is by adding more consumers to a consumer group - adding consumers in a consumer groups scales up the process, however adding more consumers (in a group) than the number of partitions does not help since some consumers just become idle - <strong>a partition can only be consumed by one consumer in a group</strong>. Adding consumer group allows separate processing of the topic for new use cases (independent from the other consumer groups).</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter4-1.png" alt="" /></p>
+
+<p>💡 How should we make use of Kafka consumer and Kafka consumer group?</p>
+
+<p>You create new consumer group for each application that needs all the messages from one or more topics. You add consumers to an existing consumer group to scale the reading and processing of messages from the topics, so each additional consumer in a group will only get a subset of the messages.</p>
+
+<h5 id="consumer-groups-and-partition-rebalance">Consumer Groups and Partition Rebalance</h5>
+
+<p>💡 What is Partition Rebalance?</p>
+
+<p>Moving partition ownership from one consumer to another is called a rebalance</p>
+
+<p>💡 When will Partition Rebalance happen?</p>
+
+<p>It happens when new consumers are added or old consumers are removed/crashed or administrator adds new partitions etc.</p>
+
+<p>💡 What are the two types of Partition Rebalance strategies?</p>
+
+<ul>
+  <li><em>Eager rebalances</em>: during an eager rebalance, all consumers stop consuming, give up their ownership of all partitions, rejoin the consumer group, and get a brand-new partition assignment</li>
+  <li><em>Cooperative rebalances (incremental rebalances)</em>: typically involve reassigning only a small subset of the partitions from one consumer to another, and allowing consumers to continue processing records from all the partitions that are not reassigned</li>
+</ul>
+
+<p>💡 How does consumer maintain membership in a consumer group and ownership of the assigned partition and make sure it is alive and known to the Kafka broker?</p>
+
+<p>Consumers maintain membership and ownership by sending <em>heartbeats</em> to a Kafka broker designated as the <em>group coordinator</em>. The heartbeats are sent by a background thread of the consumer, and as long as the consumer is sending heartbeats at regular intervals, it is assumed to be alive.</p>
+
+<p>💡 How does the Process of Assigning Partitions to Consumer Work?</p>
+
+<p>When a consumer wants to join a group, it sends a <code class="language-plaintext highlighter-rouge">JoinGroup</code> request to the group coordinator. The first consumer to join the group becomes the group leader. The leader receives a list of all consumers in the group from the group coordinator and is responsible for assigning a subset of partitions to each consumer. It uses an implementation of <code class="language-plaintext highlighter-rouge">PartitionAssignor</code> to decide which partitions should be handled by which consumer.
+Kafka has a few build-in partition assignment polices. After deciding on the partition assignment, the consumer group leader sends the list of assignments to the <code class="language-plaintext highlighter-rouge">GroupCoordinator</code>, which sends this information to all the consumers.</p>
+
+<blockquote>
+  <p>❓ Questions to be explored</p>
+  <ul>
+    <li>Why the leader is responsible for the assignment strategy execution, but not the group coordinator?</li>
+    <li>Leader is a client (e.g. java runtime), what is exactly a “group coordinator”?</li>
+    <li>What is the Kafka broker’s architecture? 
+See more in Kafka Guide - Chapter 6 Kafka Internals later.</li>
+  </ul>
+</blockquote>
+
+<h5 id="static-group-membership">Static Group Membership</h5>
+
+<p>💡 What is static group membership?</p>
+
+<p>The consumer is assigned a unique <code class="language-plaintext highlighter-rouge">group.instance.id</code> and it becomes a static member. The same partitions will be assigned to it when it rejoins the group.</p>
+
+<p>💡 When static group membership is useful?</p>
+
+<p>Static group membership is useful when your application maintains local state or cache that is populated by the partitions that are assigned to each consumer. When re-creating this cache is time-consuming, you don’t want this process to happen every time a consumer restarts.</p>
+
+<p>💡 What is the difference of the rebalance strategy for a consumer with static group membership from normal consumer?</p>
+
+<p>When consumer with static group membership restart, it will not trigger a rebalance. <code class="language-plaintext highlighter-rouge">session.timeout.ms</code> is used to detected whether they are really gone and rebalance is required. So we should select a good <code class="language-plaintext highlighter-rouge">session.timeout.ms</code> config to make sure restart of the consumer is within a acceptable delay and the consumer can catch up after restart.</p>
+
+<h3 id="creating-a-kafka-consumer-and-subscribing-to-topics">Creating a Kafka Consumer and Subscribing to Topics</h3>
+
+<p>All you need is server uri, key and value deserializers</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bootstrap.servers"</span><span class="o">,</span> <span class="s">"broker1:9092,broder2:9092"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"group.id"</span><span class="o">,</span> <span class="s">"CountryCounter"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"key.deserializer"</span><span class="o">,</span> <span class="s">"org.apache.kafka.common.serialization.StringDeserializer"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"value.deserializer"</span><span class="o">,</span> <span class="s">"org.apache.kafka.common.serialization.StringDeserializer"</span><span class="o">);</span>
+
+<span class="nc">KafkaConsumer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">KafkaConsumer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;(</span><span class="n">props</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Subscribing to Topics, we can use regular expression here, but need to pay attention to two issues</p>
+<ul>
+  <li>the metadata size fetched by the client might be large since client do local matching (signifcant overhead)</li>
+  <li>the client should be grant the <code class="language-plaintext highlighter-rouge">describe</code> permission on the entire cluster in order to describe all topics in the cluster (then do local matching)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">consumer</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="nc">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="s">"customerCountries"</span><span class="o">));</span>
+
+<span class="n">consumer</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="nc">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">"test.*"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<h3 id="the-poll-loop">The Poll Loop</h3>
+
+<p>The heart of the Consumer API</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Duration</span> <span class="n">timeout</span> <span class="o">=</span> <span class="nc">Duration</span><span class="o">.</span><span class="na">ofMillis</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+	<span class="nc">ConsumerRecords</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">records</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="na">poll</span><span class="o">(</span><span class="n">timeout</span><span class="o">);</span>
+
+	<span class="k">for</span> <span class="o">(</span><span class="nc">ConsumerRecords</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="nl">record:</span> <span class="n">records</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"topic = %s, partition = %d, offset = %d, "</span> <span class="o">+</span> <span class="s">"customer = %s, country = %s\n"</span><span class="o">,</span>
+				<span class="n">record</span><span class="o">.</span><span class="na">topic</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">partition</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">offset</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">key</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">value</span><span class="o">());</span>
+		<span class="kt">int</span> <span class="n">updatedCount</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">custCountryMap</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">record</span><span class="o">.</span><span class="na">value</span><span class="o">()))</span> <span class="o">{</span>
+			<span class="n">updatedCount</span> <span class="o">=</span> <span class="n">custCountryMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">record</span><span class="o">.</span><span class="na">value</span><span class="o">())</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">custCountryMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">record</span><span class="o">.</span><span class="na">value</span><span class="o">(),</span> <span class="n">updatedCount</span><span class="o">);</span>
+
+		<span class="nc">JSONObject</span> <span class="n">json</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JSONObject</span><span class="o">(</span><span class="n">custCountryMap</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">json</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">poll()</code> loop does a lot more than just get data. The first time you call <code class="language-plaintext highlighter-rouge">poll()</code> with a new consumer, it is responsible for finding the <code class="language-plaintext highlighter-rouge">GroupCoordinator</code>, joining the consumer group, and receiving a partition assignment. If a rebalance is triggered, it will be handled inside the poll loop as well, including related callbacks.</p>
+
+<p>Thread Safety: one consumer per thread is the rule. To run multiple consumers in the same group in one application, you will need to run each in its own thread. To achieve multi-threaded message consumption with the Kafka Consumer, there’re some tricks to be played, see Kafka Guide - Chapter 4.1 Multi-threaded Message Consumption with Kafka Consumer</p>
+
+<h3 id="configuring-consumers">Configuring Consumers</h3>
+
+<p>// todo</p>
+
+<h3 id="commits-and-offsets">Commits and Offsets</h3>
+
+<p>One of Kafka’s unique characteristic is that it does not track acknowledgements from consumers the way many JMS queues do. Instead, it allows consumers to use Kafka to track their position (offset) in each partition. We call the action of updating the current position in the partition an <strong>offset commit</strong>. Unlike traditional message queues, Kafka does not commit records individually. Instead, consumers commit the last message they’ve successfully processed from a partition and implicitly assume that every message before the last was also successfully processed.</p>
+
+<p>💡 For Kafka consumer, which case there will be duplicated processing?</p>
+
+<p>During a rebalance, a consumer is assigned a new set of partitions. If the committed offset of the partition is smaller than the offset of the last message the client processed, the messages between the last processed offset and the committed offset will be processed twice</p>
+
+<p>💡 For Kafka consumer, which case there will be missing data?</p>
+
+<p>Same condition as above, if the committed offset of the partition is larger than the offset of the last message the client processed, the messages between these two offsets will be missing.</p>
+
+<h5 id="automatic-commit">Automatic Commit</h5>
+
+<p><code class="language-plaintext highlighter-rouge">enable.auto.commit=true</code> - it is critical to always process all the events returned by <code class="language-plaintext highlighter-rouge">poll()</code> before calling <code class="language-plaintext highlighter-rouge">poll()</code> again because the next <code class="language-plaintext highlighter-rouge">poll()</code> will commit the last offset returned by the previous <code class="language-plaintext highlighter-rouge">poll()</code> regardless if they are fully processed. This is a convenient approach but it does not give developers enough control to avoid duplicate messages.</p>
+
+<h5 id="commit-current-offset">Commit Current Offset</h5>
+
+<p>The simplest and most reliable of the commit APIs is <code class="language-plaintext highlighter-rouge">commitSync()</code>. This API will commit the latest offset returned by <code class="language-plaintext highlighter-rouge">poll()</code> and return once the offset is committed, throwing an exception if hte commit fails for some reason. Noted that <code class="language-plaintext highlighter-rouge">commitSync()</code> will commit the latest offset returned by <code class="language-plaintext highlighter-rouge">poll()</code>.</p>
+
+<h5 id="asynchronous-commit">Asynchronous Commit</h5>
+
+<p>Done by <code class="language-plaintext highlighter-rouge">commitAsync()</code>: we just send the request and continue without waiting for the response from the broker. <code class="language-plaintext highlighter-rouge">commitAsync()</code> gives you an option to pass in a callback that will be triggered when the broker responds. It is common to use the callback to log commit errors or to count them in a metric, <strong>but if you want to use the callback for retries, you need to be aware of the problem with commit order &lt;- use a monotonically increasing sequence number to track in this case</strong>.</p>
+
+<h5 id="combining-synchronous-and-asynchronous-commits">Combining Synchronous and Asynchronous commits</h5>
+
+<p>Before close the consumer or rebalance, we want to make extra sure that the commit succeeds. We can use a combination of sync and async commit to do this.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Duration</span> <span class="n">timeout</span> <span class="o">=</span> <span class="nc">Duration</span><span class="o">.</span><span class="na">ofMillis</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">closing</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ConsumerRecords</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">records</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="na">poll</span><span class="o">(</span><span class="n">timeout</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">ConsumerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">:</span> <span class="n">records</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(...);</span> <span class="c1">// just do soemthing with the record</span>
+        <span class="o">}</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">commitAsync</span><span class="o">();</span> <span class="c1">// it is ok to request and forget as next loop will server as a retry</span>
+    <span class="o">}</span>
+    <span class="n">consumer</span><span class="o">.</span><span class="na">commitSync</span><span class="o">();</span> <span class="c1">// it will block and retry until unrecoverable failure</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"unexpected error"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+    <span class="n">consumer</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="committing-a-specified-offset">Committing a Specified Offset</h5>
+
+<p>Give the <code class="language-plaintext highlighter-rouge">commitAsync()</code> or <code class="language-plaintext highlighter-rouge">commitSync()</code> a Map of partition and offset, it can commit specific offsets</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">TopicParitition</span><span class="o">,</span> <span class="nc">OffsetAndMetadata</span><span class="o">&gt;</span> <span class="n">currentOffsets</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+
+<span class="o">...</span>
+<span class="n">consumer</span><span class="o">.</span><span class="na">commitAsync</span><span class="o">(</span><span class="n">currentOffsets</span><span class="o">,</span> <span class="kc">null</span><span class="o">)</span>
+</code></pre></div></div>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

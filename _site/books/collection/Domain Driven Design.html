@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Domain driven design</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/books/collection/Domain%20Driven%20Design.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">Domain driven design</h1>
+                <p class="post-meta">Aug 26, 2023 • Eric Evans</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <table>
+  <tbody>
+    <tr>
+      <td>![[ddd-xp-vs-waterfall.excalidraw.png</td>
+      <td>800]]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>XP works best for developers with a sharp design sense - The XP process assumes you can improve a design by refactoring, and that you will do this often and rapidly</p>
+
+<h1 id="part-i-putting-the-domain-model-to-work">Part I Putting the Domain Model to Work</h1>
+<blockquote>
+  <p>Presents the basic goals of DDD, motivate the practices in later chapters</p>
+</blockquote>
+
+<p>What is a model?</p>
+<ul>
+  <li>A model is a selectively simplified and consciously structured form of knowledge.</li>
+  <li>it is not a “Diagram”! A diagram can represent and communicate a model, as can carefully written code, as can an English sentence.
+![[ddd_model_form.excalidraw]]</li>
+</ul>
+
+<p>Three basics uses determine the model</p>
+<ul>
+  <li>The model is distilled knowledge - [[Domain Driven Design#knowledge crunching]]</li>
+  <li>The model is the backbone of a language used by all team members including non-developers - [[Domain Driven Design#Ubiquitous language]]</li>
+  <li>model and the heart of the design shape each other - the code can be interpreted based on understanding the model - [[Domain Driven Design#implementation binding]]</li>
+</ul>
+
+<h2 id="knowledge-crunching">knowledge crunching</h2>
+
+<p>Knowledge crunching is typically led by developers. Sources to utilise for knowledge crunching</p>
+<ul>
+  <li>minds of domain exports - PMs</li>
+  <li>users of existing systems - PMs and QA</li>
+  <li>prior experience of the technical team - veteran Devs</li>
+  <li>another project in the same domain - reference to other team’s software</li>
+</ul>
+
+<blockquote>
+  <p>[!important] The issue of feature-driven development
+In some case, developers get the experts to describe a desired feature and then they go build it. They show the experts the result and ask what to do next. If the programmers practice refactoring, they can keep the software clean enough to continue extending it, but if programmers are not interested in the domain, they learn only what the application should do, not the principles behind it. Useful software can be built that way, but the project will never arrive at a point where powerful new features unfold as corollaries to older features.</p>
+
+</blockquote>
+
+<h2 id="ubiquitous-language">Ubiquitous language</h2>
+
+<h3 id="about-core-developers">About core developers</h3>
+
+<p>Why we need ubiquitous language between tech and non-tech, let’s look at the how core developers facilitate the communication and what’s the drawback of that</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>![[ddd_ubiquitous_language.excalidraw.png</td>
+      <td>800]]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>core developers becomes the bottlenecks of information flow</p>
+<ul>
+  <li>domain exports and technical members are using different languages, only the ones who understand both help to crunch the knowledge and translate</li>
+  <li>the most incisive expression of the domain often emerge in a <strong>transient</strong> form that is never captured in the code or even in written docs!</li>
+</ul>
+
+<blockquote>
+  <p>[!important] Transient!
+If you’ve ever write something as <code class="language-plaintext highlighter-rouge">@transient</code> in java, you know that this marks a member variable not to be serialised when it is persisted to the streams of bytes. Similar to the domain knowledge, if the knowledge is not in code (explicitly), they are transient</p>
+</blockquote>
+
+<h3 id="how-much-documentation-should-be-in-place">How much documentation should be in place</h3>
+
+<p>UML diagram or other code-generated documents (e.g. ER diagram of MySQL) are useful, but sometimes they can be counterproductive because too much details are delivered! Diagrams are a means of communication and explanation, and they facilitate brainstorming. They serve these ends best if they are minimal. So as the code - we know code explains everything but we can’t afford to read every single lines of code to understand how the software behaves. And developers are not the only people who need to understand the software behaviour, so as PM and QA and other non-tech biz parties.</p>
+
+<blockquote>
+  <p>[!important] So what the written documentation should do</p>
+  <ul>
+    <li>explain the concepts of models</li>
+    <li>help in navigating the details of code - but it shouldn’t try to do what the code already does</li>
+    <li>give some insight into the model’s intended style of use</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>[!warning] Non-important documents
+Document does not seem relevant to people or does not seem important enough to update, let active it could create confusion and hurt the project. And if a document isn’t playing an important role, keeping it up to date through sheerwill and discipline wastes effort.</p>
+</blockquote>
+
+<h2 id="implementation-binding">Implementation binding</h2>
+
+<h1 id="pat-ii-the-building-blocks-of-model-driven-design">Pat II The Building Blocks of Model-Driven Design</h1>
+<blockquote>
+  <p>Best practices and Patterns</p>
+</blockquote>
+
+<h2 id="isolating-the-domain">Isolating the Domain</h2>
+
+<h3 id="layered-architecture">Layered Architecture</h3>
+
+<p>How domains should be fit into the layered architecture (see details about architecture patterns [[Software Architecture Patterns]])</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>![[ddd_layered_architecture.excalidraw.png</td>
+      <td>800]]</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>[!important] MVC
+The grandfather of patterns for connecting the UI to the application and domain layers is MODEL-VIEW-CONTROLLER (MVC). It was pioneered in the Smalltalk world back in the 1970s and has inspired many of the UI architectures that followed.</p>
+</blockquote>
+
+<h3 id="conflict-of-ddd-layered-architecture-and-smart-ui-micro-frontend">Conflict of DDD layered architecture and Smart UI (micro-frontend)</h3>
+
+<p>Smart UI in the context is more like small scale single-page-application (biz logic can be contained in the page) for me. The DDD book was written in 2003, before we have AJAX since 2006, way before we start to talk about micro-frontend. So I will shift the topic to layered (horizontal sliced) architecture  vs micro-service (vertically sliced) architecture, and how we could make better use of them.</p>
+
+<h1 id="pat-iii-refactoring-towards-deeper-insight">Pat III Refactoring Towards Deeper Insight</h1>
+<blockquote>
+  <p>Discovery process: Valuable models do not emerge immediately; they require a deep understanding of the domain That understanding comes from diving in, implementing an initial design based on a probably naive model, and then transforming it again and again.</p>
+</blockquote>
+
+<h1 id="part-iv-strategic-design">Part IV Strategic Design</h1>
+<blockquote>
+  <p>How to handle large-scale problem (complex systems, larger organizations, interactions with external systems and legacy systems)</p>
+</blockquote>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

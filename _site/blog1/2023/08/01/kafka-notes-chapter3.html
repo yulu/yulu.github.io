@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[Kafka Guide] Chapter 3 - Kafka Producer</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter3.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">[Kafka Guide] Chapter 3 - Kafka Producer</h1>
+                <p class="post-meta">Aug 1, 2023</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#kafka-producer-components-illustrated">Kafka Producer Components Illustrated</a></li>
+<li class="toc-entry toc-h3"><a href="#basic-setup">Basic Setup</a></li>
+<li class="toc-entry toc-h3"><a href="#sending-messages">Sending Messages</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#the-simplest-way-fire-and-forget">The Simplest Way (fire-and-forget)</a></li>
+<li class="toc-entry toc-h5"><a href="#synchronous-send">Synchronous Send</a></li>
+<li class="toc-entry toc-h5"><a href="#asynchronous-send-with-a-callback">Asynchronous Send with a Callback</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#configurations">Configurations</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#core-configurations">Core Configurations</a></li>
+<li class="toc-entry toc-h5"><a href="#message-delivery-time">Message Delivery Time</a></li>
+<li class="toc-entry toc-h5"><a href="#others">Others</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#serializers">Serializers</a></li>
+<li class="toc-entry toc-h3"><a href="#partitioners">Partitioners</a></li>
+<li class="toc-entry toc-h3"><a href="#headers-interceptors-quotas-and-throttling">Headers, Interceptors, Quotas and Throttling</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#headers">Headers</a></li>
+<li class="toc-entry toc-h5"><a href="#interceptors">Interceptors</a></li>
+<li class="toc-entry toc-h5"><a href="#quotas-and-throttling">Quotas and Throttling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#summary-as-ankicard">Summary as Ankicard</a></li>
+</ul> </div> 
+
+        <article class="post-content">
+            <h3 id="kafka-producer-components-illustrated">Kafka Producer Components Illustrated</h3>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-producer-components.png" alt="" /></p>
+
+<h3 id="basic-setup">Basic Setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Properties</span> <span class="n">kafkaProps</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span> <span class="c1">// &lt;= start with a property object</span>
+<span class="n">kafkaProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bootstrap.servers"</span><span class="o">,</span> <span class="s">"broker1:9092,broker2:9092"</span><span class="o">);</span> <span class="c1">// &lt;= server uri</span>
+
+<span class="n">kafkaProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"key.serializer"</span><span class="o">,</span> <span class="s">"org.apache.kafka.common.serialization.StringSerializer"</span><span class="o">);</span> <span class="c1">// &lt;= use default serializer</span>
+<span class="n">kafkaProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"value.serializer"</span><span class="o">,</span> <span class="s">"org.apache.kafka.common.serialization.StringSerializer"</span><span class="o">);</span>
+
+<span class="n">producer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">KafkaProducer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;(</span><span class="n">kafkaProps</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="sending-messages">Sending Messages</h3>
+
+<p>Three primary methods of sending messages</p>
+<ul>
+  <li>fire-and-forget: Send and do not wait for response</li>
+  <li>synchronous send: use <code class="language-plaintext highlighter-rouge">Future</code> object and <code class="language-plaintext highlighter-rouge">get()</code> to wait on the Future and see if the <code class="language-plaintext highlighter-rouge">send()</code> was successful or not before sending the next record</li>
+  <li>asynchronous send: A producer object can be used by multiple threads to send messages. Product object is thread-safe</li>
+</ul>
+
+<h5 id="the-simplest-way-fire-and-forget">The Simplest Way (fire-and-forget)</h5>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span> 
+	<span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="s">"CustomerCountry"</span><span class="o">,</span> <span class="s">"Precision Products"</span><span class="o">,</span> <span class="s">"France"</span><span class="o">);</span> <span class="c1">// &lt;= there're different constructors, here we use a simple one requires: topic name, key and value</span>
+	
+<span class="k">try</span> <span class="o">{</span>
+	<span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">record</span><span class="o">);</span> <span class="c1">// this returns a future object with RecordMetadata, but we ignore it</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="c1">// exceptions before msg is sent can be captured e.g. SerializationException, BufferExhaustedException and InterruptException</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="synchronous-send">Synchronous Send</h5>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="s">"CustomerCountry"</span><span class="o">,</span> <span class="s">"Precision Products"</span><span class="o">,</span> <span class="s">"France"</span><span class="o">);</span> 
+	
+<span class="k">try</span> <span class="o">{</span>
+	<span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">record</span><span class="o">).</span><span class="na">get</span><span class="o">();</span> <span class="c1">// &lt;= use future.get() to wait for the reply</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="c1">// &lt;= if there's any errors before or while sending to Kafka</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="asynchronous-send-with-a-callback">Asynchronous Send with a Callback</h5>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">class</span> <span class="nc">DemoProducerCallback</span> <span class="kd">implements</span> <span class="nc">Callback</span> <span class="o">{</span> <span class="c1">// &lt;= need to implements org.apacke.kafka.clients.producer.callback</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCompletion</span><span class="o">(</span><span class="nc">RecordMetadata</span> <span class="n">recordMetadata</span><span class="o">,</span> <span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="c1">// &lt;= if kafka returns an error, onCompletion will have a nonnull exception</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="s">"CustomerCountry"</span><span class="o">,</span> <span class="s">"Precision Products"</span><span class="o">,</span> <span class="s">"France"</span><span class="o">);</span> 
+<span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">record</span><span class="o">,</span> <span class="k">new</span> <span class="nc">DemoProducerCallback</span><span class="o">());</span> <span class="c1">// &lt;= we pass a Callback object along when sending the record, callback is executed in the main thread, so it should be reasonably fast</span>
+</code></pre></div></div>
+
+<h3 id="configurations">Configurations</h3>
+
+<h5 id="core-configurations">Core Configurations</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">client.id</code>: logical identifier for the client and the application it is used in.</li>
+  <li><code class="language-plaintext highlighter-rouge">acks</code>: controls how many partition replicas must receive the record before the producer can consider the write successful.</li>
+</ul>
+
+<blockquote>
+  <p>You will see that with lower and less reliable <code class="language-plaintext highlighter-rouge">acks</code> configuration, the producer will be able to send records faster. This means that you trade off reliability for producer latency. However, end-to-end latency is measured from the time a record was produced until it is available for consumers to read and is identical for all three options. The reason is that, in order to maintain consistency, Kafka will not allow consumers to read records until they are written to all in sync replicas. **Therefore, if you care about end-to-end latency, rather than just the producer latency, there is no trade-off to make: you will get the same end-to-end latency if you choose the most reliable option.</p>
+</blockquote>
+
+<hr />
+
+<h5 id="message-delivery-time">Message Delivery Time</h5>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-producer-delivery-time.png" alt="" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">max.block.ms</code>: how long the producer may block when calling <code class="language-plaintext highlighter-rouge">send()</code> and when explicitly requesting metadata via <code class="language-plaintext highlighter-rouge">partitionsFor()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">delivery.timeout.ms</code>: limit the amount of time spent from the point a record is ready for sending until either the broker responds or the client gives up, including time spent on retries, <strong>use this one and leave the retry settings as default</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">request.timeout.ms</code>: controls how long the producer will wait for a reply from the server when sending data</li>
+  <li><code class="language-plaintext highlighter-rouge">retries</code> and <code class="language-plaintext highlighter-rouge">retry.backoff.ms</code>: <strong>not recommended to use</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">linger.ms</code>: controls the amount of time to wait for additional messages before sending the current batch.</li>
+</ul>
+
+<hr />
+
+<h5 id="others">Others</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">buffer.memory</code>: sets the amount of memory the producer will use to buffer messages waiting to be sent to brokers.</li>
+  <li><code class="language-plaintext highlighter-rouge">compression.type</code>: e.g. snappy, gzip, lz4, zstd</li>
+  <li><code class="language-plaintext highlighter-rouge">batch.size</code>: controls the amount of memory in bytes that will be used for each batch (when multiple records are sent to the same partition, the producer will batch them together)</li>
+  <li><code class="language-plaintext highlighter-rouge">max.in.flight.requests.per.connection</code>: controls how many message batches the producer will send to the server without receiving response</li>
+  <li><code class="language-plaintext highlighter-rouge">max.request.size</code>: controls the size of a produce request sent by the producer</li>
+  <li><code class="language-plaintext highlighter-rouge">receive.buffer.bytes</code> and <code class="language-plaintext highlighter-rouge">send.buffer.bytes</code></li>
+  <li><code class="language-plaintext highlighter-rouge">enable.idempotence</code>: when idempotent producer is enabled, the producer will attach a sequence number to each record it sends. If the broker receives records with the same sequence number, it will reject the second copy and the producer will receive the harmless <code class="language-plaintext highlighter-rouge">DuplicateSequenceException</code></li>
+</ul>
+
+<h3 id="serializers">Serializers</h3>
+<p>Data serialization strategies detail can be ref to <a href="/blog1/2022/09/18/ddia-4.html">DDIA-Chapter4 encoding (serialisation mechanism)</a></p>
+
+<p><strong>Schema Regsitry</strong> Pattern is used: the idea is to store all the schemas used to write data to Kafka in the registry. Then we simply store the identifier for the schema in the record we produce to Kafka. The consumers can then use the identifier to pull the record out of the Schema Registry and deserialize the data. The key is that all this work is done in the serializers and deserializers:</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter2-1.jpeg" alt="" /></p>
+
+<p>Here is an example of how to produce generated Avro objects to Kafka</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"boostrap.servers"</span><span class="o">,</span> <span class="s">"localhost:9092"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"key.serializer"</span><span class="o">,</span> <span class="s">"io.confluent.kafka.serializers.KafkaAvroSerializer"</span><span class="o">);</span> <span class="c1">// &lt;= use kafkaAvroSerializer to serialize our objects with Avro</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"value.serializer"</span><span class="o">,</span> <span class="s">"io.confluent.kafka.serializers.kafkaAvroSerializer"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"schema.registry.url"</span><span class="o">,</span> <span class="n">schemaUrl</span><span class="o">);</span>
+
+<span class="nc">String</span> <span class="n">topic</span> <span class="o">=</span> <span class="s">"customerContacts"</span><span class="o">;</span>
+
+<span class="nc">Producer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Customer</span><span class="o">&gt;</span> <span class="n">producer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">KafkaProducer</span><span class="o">&lt;&gt;(</span><span class="n">props</span><span class="o">);</span>
+
+<span class="c1">// We keep producing new events until someone ctrl-c</span>
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+	<span class="nc">Customer</span> <span class="n">customer</span> <span class="o">=</span> <span class="nc">CustomerGenerator</span><span class="o">.</span><span class="na">getNext</span><span class="o">();</span>
+	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Generated customer "</span> <span class="o">+</span> <span class="n">customer</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+	<span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Customer</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="n">topic</span><span class="o">,</span> <span class="n">customer</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">customer</span><span class="o">);</span>
+	<span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">record</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="partitioners">Partitioners</h3>
+
+<p>The importance of keys: all messages with the same key will go to the same partition (for the same topic).</p>
+
+<ul>
+  <li>When the key is <code class="language-plaintext highlighter-rouge">null</code> and the default partitioner is used, the record will be sent to one of the available partitions of the topic at random. A round-robin algorithm will be used to balance the messages among the partitions.</li>
+  <li>If a key exists and the default partitioner is used, Kafka will hash the key and use the result to map the message to a specific partition.</li>
+  <li><code class="language-plaintext highlighter-rouge">RoundRobinPartitioner</code> and <code class="language-plaintext highlighter-rouge">UniformStickyPartitioner</code> can be used to replace the default partitioner.</li>
+</ul>
+
+<p>You can implement custom partitioning strategy, e.g. code example below</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BananaPartitioner</span> <span class="kd">implements</span> <span class="nc">Partitioner</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">configs</span><span class="o">)</span> <span class="o">{}</span>
+	
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="nc">String</span> <span class="n">topic</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">key</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">keyBytes</span><span class="o">,</span>
+						 <span class="nc">Object</span> <span class="n">value</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">valueBytes</span><span class="o">,</span>
+						 <span class="nc">Cluster</span> <span class="n">cluster</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">List</span><span class="o">&lt;</span><span class="nc">PartitionInfo</span><span class="o">&gt;</span> <span class="n">partitions</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="na">partitionsForTopic</span><span class="o">(</span><span class="n">topic</span><span class="o">);</span>
+		<span class="kt">int</span> <span class="n">numPartitions</span> <span class="o">=</span> <span class="n">partitions</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+
+		<span class="k">if</span> <span class="o">((</span><span class="n">keyBytes</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">||</span> <span class="o">(!(</span><span class="n">key</span> <span class="n">instanceOf</span> <span class="nc">String</span><span class="o">)))</span>
+			<span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidRecordException</span><span class="o">(</span><span class="s">"We expect all messages to have customer name as key"</span><span class="o">);</span>
+		
+		<span class="k">if</span> <span class="o">(((</span><span class="nc">String</span><span class="o">))</span> <span class="n">key</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">"Banana"</span><span class="o">);</span>
+			<span class="k">return</span> <span class="n">numPartitions</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// Banana will always go to last partition</span>
+
+		<span class="c1">// Other records will get hashed to the rest of the partitions</span>
+		<span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="nc">Utils</span><span class="o">.</span><span class="na">murmur2</span><span class="o">(</span><span class="n">keyBytes</span><span class="o">))</span> <span class="o">%</span> <span class="o">(</span><span class="n">numPartitions</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="headers-interceptors-quotas-and-throttling">Headers, Interceptors, Quotas and Throttling</h3>
+
+<h5 id="headers">Headers</h5>
+
+<p>Additional metadata information about Kafka record, e.g.indicate the source of data, information for routing or tracing)</p>
+
+<h5 id="interceptors">Interceptors</h5>
+
+<p>Capturing monitoring and tracing information, enhancing the message with standard headers, redacting sensitive information. Example code snippet</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CountingProducerInterceptor</span> <span class="kd">implements</span> <span class="nc">ProducerInterceptor</span> <span class="o">{</span>
+	<span class="nc">ScheduledExecutorService</span> <span class="n">executorService</span> <span class="o">=</span> 
+		<span class="nc">Executors</span><span class="o">.</span><span class="na">newSingleThreadScheduledExecutor</span><span class="o">();</span>
+	<span class="kd">static</span> <span class="nc">AtomicLong</span> <span class="n">numSent</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicLong</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+	<span class="kd">static</span> <span class="nc">AtomicLong</span> <span class="n">numAcked</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicLong</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">Long</span> <span class="n">windowSize</span> <span class="o">=</span> <span class="nc">Long</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span>
+			<span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"counting.interceptor.window.size.ms"</span><span class="o">));</span>
+		<span class="n">executorService</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(</span><span class="nl">CountingProducerInterceptor:</span><span class="o">:</span><span class="n">run</span><span class="o">,</span> <span class="n">windowSize</span><span class="o">,</span> <span class="n">windowSize</span><span class="o">,</span> <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">ProducerRecord</span> <span class="nf">onSend</span><span class="o">(</span><span class="nc">ProducerRecord</span> <span class="n">producerRecord</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">numSent</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+		<span class="k">return</span> <span class="n">producerRecord</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAcknowledgement</span><span class="o">(</span><span class="nc">RecordMetadata</span> <span class="n">recordMetadata</span><span class="o">,</span> <span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">numAcked</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">executorService</span><span class="o">.</span><span class="na">shutdownNow</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+		<span class="c1">// just print out the sent and ack counts in a separate thread</span>
+		<span class="c1">// reset the counts in each time window</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">numSent</span><span class="o">.</span><span class="na">getAndSet</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">numAcked</span><span class="o">.</span><span class="na">getAndSet</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Producer interceptors can be applied without any changes to the client code (need to have deployment config changes). To use the preceding interceptor:</p>
+<ol>
+  <li>Add your jar to the classpath
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export CLASSPATH=$CLASSPATH:~./target/CountProducerInterceptor-1.0-SNAHPSHOT.jar
+</code></pre></div>    </div>
+  </li>
+  <li>Create a config file (producer.config) that includes:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interceptor.classes=com.shapira.examples.interceptors.CountProducerInterceptor counting.interceptor.window.size.ms=100000
+</code></pre></div>    </div>
+  </li>
+  <li>Run the application as you normally would but make sure include the configuration that you created
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/kafka-console-producer.sh --broker-list localhost:9092 --topic interceptor-test --producer.config producer.config
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h5 id="quotas-and-throttling">Quotas and Throttling</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>quota.producer.default=2M
+quota.producer.override="clientA:4M,clientB:10M"
+</code></pre></div></div>
+
+<h3 id="summary-as-ankicard">Summary as Ankicard</h3>
+
+<p>💡 What are the three ways to send message from producer to Kafka broker?</p>
+
+<ul>
+  <li>send-and-forget: producer.send(record);</li>
+  <li>synchronous send: producer.send(record).get(); // &lt;= use future.get() to wait for the reply</li>
+  <li>asynchronous send: producer.send(record, new DemoProducerCallback());</li>
+</ul>
+
+<p>💡 Can a <strong>producer</strong> object be used by multiple threads to send messages in Kafka producer application?</p>
+
+<p>Yes, product object is thread-safe</p>
+
+<p>💡 What is the recommended Kafka producer timeout and retry configuration, and why?</p>
+
+<p>Configure the <code class="language-plaintext highlighter-rouge">delivery.timeout.ms</code> and leave the retries config as default. The <code class="language-plaintext highlighter-rouge">delivery.timeout.ms</code>` includes the time when record is ready to be sent to the response is received from the broker, including the retries. In this case we limit the total preparation + in-flight time and let the producer retries as many times as possible within the limited timeout constraint.</p>
+
+<p>💡 What are the five steps in the send() process in the Kafka producer?</p>
+
+<p>send() → batching → await send → retries → inflight</p>
+
+<p>💡 Which component in the Kafka producer is responsible for the serialization and how to config?</p>
+
+<p>Serializer. <code class="language-plaintext highlighter-rouge">props.put("value.serializer", "io.confluent.kafka.serializers.kafkaAvroSerializer");</code></p>
+
+<p>💡 What are the commonly used serialization strategies in Kafka producer?</p>
+
+<p>Avro, protobuff, json</p>
+
+<p>💡 The key in the message is used to select the partition. If a key is null, what strategy will be used to select the partition?</p>
+
+<p>A round-robin strategy will be used to select the partition</p>
+
+<p>💡 What some ready-to-use partitioner to replace the default partitioner?</p>
+
+<p><code class="language-plaintext highlighter-rouge">RoundRobinPartitioner</code> and <code class="language-plaintext highlighter-rouge">UniformStickyPartitioner</code></p>
+
+<p>💡 How can you write your own partitioner?</p>
+
+<p>Implement the ‘Partitioner’ interface</p>
+
+<p>💡 How can we add more metadata information in the message in Kafka producer?</p>
+
+<p>Use header</p>
+
+<p>💡 How can we limit the Kafka producer quota?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>quota.producer.default=2M
+quota.producer.override="clientA:4M,clientB:10M"
+</code></pre></div></div>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[DDIA] Chapter 4 - Encoding and Evolution</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2022/09/18/ddia-4.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_header.jpeg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">[DDIA] Chapter 4 - Encoding and Evolution</h1>
+                <p class="post-meta">Sep 18, 2022</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-entry toc-h3"><a href="#mind-map">Mind Map</a></li>
+<li class="toc-entry toc-h3"><a href="#question-summary">Question Summary</a></li>
+<li class="toc-entry toc-h3"><a href="#highlighted-topics">Highlighted Topics</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#messagepack">MessagePack</a></li>
+<li class="toc-entry toc-h4"><a href="#thrift-and-protocol-buffers">Thrift and Protocol Buffers</a></li>
+<li class="toc-entry toc-h4"><a href="#avro">Avro</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#extended-topics">Extended Topics</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#rest-vs-rpc">REST vs RPC</a></li>
+<li class="toc-entry toc-h4"><a href="#http-vs-grpc">HTTP vs gRPC</a></li>
+<li class="toc-entry toc-h4"><a href="#graphql-vs-rest">GraphQL vs REST</a></li>
+<li class="toc-entry toc-h4"><a href="#websocket">WebSocket</a></li>
+<li class="toc-entry toc-h4"><a href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+</ul> </div> 
+
+        <article class="post-content">
+            <h3 id="chapter-summary">Chapter Summary</h3>
+<p>Services communicate to each other by protocols (pre-defined interfaces and data models). As application developers, we are very often making API design choices by choosing between HTTP or gPRC, or REST vs RPC vs GraphQL, or Web socket vs HTTP etc. The definitions of these terms are sometimes misunderstood a lot (at least by me for a long time). These terms are actually not mutual-exclusive.</p>
+
+<p>This chapter provides some fundamental knowledge on data encoding (serialisation): different mechanisms of turning data structures into bytes for for communicating over the network or storing on disk. The focus is on the compatibility properties of the different encoding strategies: how easily the backward and forward compatibility can each solution provide. At the later part of the chapter, how data encoding plays a role in the three common dataflow in application design namely data store, sync API communication and async message queue is discussed. Understanding the underlie mechanism of data encoding helps us to make better tech decisions when designing and implementing application softwares.</p>
+
+<h3 id="mind-map">Mind Map</h3>
+
+<div class="mindmap-container">
+    <iframe src="https://www.xmind.net/embed/fUAvvp" width="900px" height="540px" frameborder="0" scrolling="no"></iframe>
+</div>
+
+<h3 id="question-summary">Question Summary</h3>
+
+<p>💡 1. Why we need to encode the data (translation between the in-memory data representation to a byte sequence that is sent over the network or sent to a file)?</p>
+
+<p>The data stored in memory (normally as list, object, hash tables, trees) is designed for efficient access by the CPU. While the data transferred through the network or written to a file is in a format of self-contained sequence of bytes, which is quite different from the data structure used in memory.</p>
+
+<p>💡 2. What are the problems of language specific encoding method? (e.g. java’s kryo, ruby’s marshal, python’s pickle)</p>
+
+<ul>
+  <li>they are language specified and has to tie with the chosen language</li>
+  <li>most of the time the performance is not good enough</li>
+  <li>there’s no versioning control, backward compatibility and forward compatibility is not easy to maintain</li>
+  <li>security concerns: in order to restore the data in the same object type, the decoding process needs to be able to instantiate arbitrary class, which can be used by attackers to inject executable code</li>
+</ul>
+
+<p>💡 3. What are the pros and cons of textual format encoding method? (e.g. xml, json, csv)</p>
+
+<p>Pros:</p>
+<ul>
+  <li>human readable, easy to understand and debug</li>
+  <li>can be easily made to support backward and forward compatibility</li>
+  <li>language-independent</li>
+</ul>
+
+<p>Cons:</p>
+<ul>
+  <li>verbose</li>
+  <li>ambiguity around the encoding of numbers. Specific flaws for specific format. E.g.:   integer large than 2^53 cannot be parsed correctly by language uses floating-point numbers. JSON and XML does not support binary string</li>
+  <li>weak support for schema definition</li>
+  <li>CSV does not have schema and confusion to handle value with comma or newline</li>
+</ul>
+
+<p>💡 4. What are the benefits of binary encoding?</p>
+
+<ul>
+  <li>clearly defined backward and forward compatibility semantics</li>
+  <li>efficient computation and result in compact size</li>
+  <li>type and schema definition, used as good documentation and code generation for statically typed languages</li>
+</ul>
+
+<p>💡 5. How do Thrift and Protocol Buffers handle schema changes while keeping backward and forward compatibility?</p>
+
+<p>The field tag is used to refer to each field and it is never changed. There will be new fields with new field tags added. To maintain the forward compatibility, the old code will simply ignore the unrecognized field tag. For backward compatibility, the new code can always read old data because the tag numbers still have the same meaning. The only detail is that you cannot make the new field as required, as the old code will not have written the new field you added.</p>
+
+<p>💡 6. What is the benefit of ‘repeat’ field type in Protocol Buffers?</p>
+
+<p>The encoding of ‘repeat’ field type says that the same field tag simply appears multiple times in the record. This has the nice effect that it is okay to change an optional field into a repeated field. New code reading old data sees a list with zero or one elements while old code reading new data sees only the last element of the list.</p>
+
+<p>💡 7. What are the three ways to communicate the writer’s schema to the reader when using Avro encoding?</p>
+
+<ul>
+  <li>When the dataset volume is large, it is ok to contain the writer’s schema in the file itself and sent.</li>
+  <li>When there’s upgrading of versions frequently and each entry of data might be written with different versions of schema. It is helpful to maintain a database of version number of the writer’s schema. It is helpful to maintain a database of version number of the writer’s schema. Then send only the version number with the data to the reader. When the reader reads the data, it will retrieve the schema by the version number.</li>
+  <li>When two processes are communicating over a bidirectional network connection, they can negotiate the schema version on connection setup and then use the schema for the lifetime of the connection.</li>
+</ul>
+
+<p>💡 8. How does Avro maintain the forward and backward compatibility?</p>
+
+<p>Avro maintains two set of schema - writer’s schema and reader’s schema. The schema resolution logic will check the compatibility and resolve the difference of the two. Adding or removing fields that has default value, we can maintain the compatibility.</p>
+
+<p>💡 9. Considering the dataflow through database, in which scenarios that we need to handle the backward compatibility and the forward compatibility?</p>
+
+<p>We need to consider both backward compatibility and forward compatibility. Backward compatibility needs to be handled by default, as the data written at a time, will be read at a later time. In the scenarios that a database is read and written by multiple instances, during rolling upgrade of the instances, the database may be written by a newer version of the code, and subsequently read by an older version of the code that is still running. Thus, forward compatibility is also often required for database.</p>
+
+<p>💡 10. What is data outlives code?</p>
+
+<p>Data in the database was written some time ago and might become incompatible with the newest version of code that reads and writes data.</p>
+
+<p>💡 11. What can schema evolution bring to the database dataflow?</p>
+
+<p>Schema evolution allows the entire database to appear as if it was encoded with a single schema, even though the underlying storage may contain records encoded with various historical versions of the schema</p>
+
+<h3 id="highlighted-topics">Highlighted Topics</h3>
+
+<p>Understand the four encoding algorithms with an example</p>
+
+<p>Sample data</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+	"username": "Martin",
+	"favoriteNumber": 1337,
+	"interest": ["daydreaming", "hacking"]
+}
+</code></pre></div></div>
+
+<h4 id="messagepack">MessagePack</h4>
+<p>MessagePack has no schema, it is a binary encoding for JSON. The schema (keys) needs to be encoded in the message. So, the binary encoding is 66 bytes for this example, which is not much size reduction achieved here (original json is 81 bytes). It is not clear whether such a small space reduction is worth the loss of human-readability.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-4/encoding_messagepack.JPG" alt="image_1" /></p>
+
+<h4 id="thrift-and-protocol-buffers">Thrift and Protocol Buffers</h4>
+<p>Thrift and protocol buffers are similar in the sense that schema is defined and fixed with tag number. With the re-defined schema, the message size is significant reduced since only the schema tag is required in the message. An obvious difference between thrift and protocol buffers is how the array type data is defined: thrift support list data type while protocol buffers use <code class="language-plaintext highlighter-rouge">repeated</code> marker to indicate that a field can be a list: this has the nice effect that it’s okay to change an <code class="language-plaintext highlighter-rouge">optional</code> field into a <code class="language-plaintext highlighter-rouge">repeated</code> field. New code reading old data sees a list with zero or one elements; old code reading new data sees only the last element of the list.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-4/encoding_thrift.JPG" alt="image_2" /></p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-4/encoding_protobuff.JPG" alt="image_3" /></p>
+
+<h4 id="avro">Avro</h4>
+<p>Avro is a subproject of Hadoop. It does not contains field tag in the schema. To parse the binary data, you go through the fields in the order that they appear in the schema and use the schema to tell you the datatype of each field. For Avro, the writer and reader maintains its own copy of schema, Avro library resolves the differences by looking at the writer’s schema and the reader’s schema side by side and translating the data from the writer’s schema into the reader’s schema.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-4/encoding_avro.JPG" alt="image_4" /></p>
+
+<h3 id="extended-topics">Extended Topics</h3>
+
+<p>A better understanding of the concepts:</p>
+
+<h4 id="rest-vs-rpc">REST vs RPC</h4>
+<p>REST: a philosophy that builds upon the principles of HTTP. It emphases on “resource-centric”. An API designed according to the principles of REST is called RESTful.</p>
+
+<p>RPC: first we shall differentiate the definition of RPC used in different context. RPC (remote procedure calls), the idea has been around since 1970s. The RPC model tries to make a request to a remote network service look the same as calling a function or method in your programming language, within the same process. Nowadays, we use RPC often to describe:</p>
+
+<ul>
+  <li>protocols
+    <blockquote>
+      <p>Remote Procedure Call (RPC) is a protocol that provides the high-level communications paradigm used in the operating system. RPC presumes the existence of a low-level transport protocol, such as Transmission Control Protocol/Internet Protocol (TCP/IP) or User Datagram Protocol (UDP), for carrying the message data between communicating programs. RPC implements a logical client-to-server communications system designed specifically for the support of network applications. When RPC is made, the procedure identifier and parameters serialized into a request message then sent to the remote process which serves the call. On the remote process the message got deserialized back, the process run, and the results returned in a similar way.</p>
+    </blockquote>
+  </li>
+  <li>frameworks
+    <blockquote>
+      <p>such as <a href="https://grpc.io/">gRPC</a>, <a href="https://thrift.apache.org/">Apache Thrift</a>, <a href="https://avro.apache.org/">Apache Avro</a>, <a href="https://dubbo.apache.org/en/index.html">Apache Dubbo</a></p>
+    </blockquote>
+  </li>
+  <li>Philosophy of API pattern
+    <blockquote>
+      <p>The RPC API thinks in terms of “verbs”, exposing the restaurant functionality as function calls that accept parameters, and invokes these functions via the HTTP verb that seems most appropriate - a ‘get’ for a query, and so on, but the name of the verb is purely incidental and has no real bearing on the actual functionality, since you’re calling a different URL each time. Return codes are hand-coded, and part of the service contract.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>When we compare REST and RPC, we could be comparing HTTP API design pattern - use RESTful and RPC-style design pattern (another pattern faded out is SOAP). Or we could be evaluating tech decision on protocols, whether we should use HTTP (json) or RPC (gRPC or other frameworks build on top of the protocols).</p>
+
+<h4 id="http-vs-grpc">HTTP vs gRPC</h4>
+<p>Explained above, we are comparing the json encoding and protocol buffers encoding</p>
+
+<h4 id="graphql-vs-rest">GraphQL vs REST</h4>
+<p>GraphQL is an application layer server-side technology that is used for executing queries with existing data. It is deployed over HTTP using a single endpoint that provides the full capabilities of the exposed service. It promotes a difference API design philosophy from the REST, it requires strong typed schema definition and supports schema stitching.</p>
+
+<h4 id="websocket">WebSocket</h4>
+<p>WebSocket connection is initiated by the client. It is bi-directional and persistent. It starts its life as a HTTP connection and could be “upgraded” via some well-defined handshake to a WebSocket connection. Through this persistent connection, a server could send updates to a client. WebSocket connections generally work even if a firewall is in place. This is because they use port 80 or 443 which are also used by HTTP/HTTPS connections.</p>
+
+<p>WebSocket is the default choice for the online messaging service. We could just skip the discussion of HTTP vs WebSocket in supporting peer-to-peer messaging and opt for WebSocket directly. It is not some fancy technology, as Keith Adams said in his slack presentation, it could be some 40 lines of java code wrapping a standard WebSocket library with a for loop over the people that are connected.</p>
+
+<h4 id="further-reading">Further reading</h4>
+<ul>
+  <li><a href="https://thrift.apache.org/static/files/thrift-20070401.pdf">Thrift paper</a></li>
+  <li><a href="https://martin.kleppmann.com/2012/12/05/schema-evolution-in-avro-protocol-buffers-thrift.html">A short and concise version of this chapter written by the same author 10 years ago</a></li>
+</ul>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

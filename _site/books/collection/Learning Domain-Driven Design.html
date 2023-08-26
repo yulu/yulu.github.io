@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Learning domain Driven design</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/books/collection/Learning%20Domain-Driven%20Design.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">Learning domain Driven design</h1>
+                <p class="post-meta">Aug 26, 2023 • Vlad Khononov</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <h1 id="learning-domain-driven-design">Learning Domain-Driven Design</h1>
+
+<p><img src="https://m.media-amazon.com/images/I/81WJbw5XJbL._SY160.jpg" alt="rw-book-cover" /></p>
+
+<h2 id="metadata">Metadata</h2>
+<ul>
+  <li>Author: [[Vlad Khononov]]</li>
+  <li>Full Title: Learning Domain-Driven Design</li>
+  <li>Category: #books</li>
+</ul>
+
+<h2 id="highlights">Highlights</h2>
+<blockquote>
+  <p>[!note]
+“Oh, business logic is all the loops and ‘if-else’ statements you need in order to implement the requirements.”  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=97">Location 97</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+the most complex systems are inherently simple when viewed from the right angle.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=115">Location 115</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+its core, supporting, and generic subdomains.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=348">Location 348</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+During the traditional software development lifecycle, the domain knowledge is “translated” into an engineer-friendly form known as an analysis model, which is a description of the system’s requirements rather than an understanding of the business domain behind it. While the intentions may be good, such mediation is hazardous to knowledge sharing.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=865">Location 865</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+In its essence, a model is an abstraction. The notion of abstraction allows us to handle complexity by omitting unnecessary details and leaving only what’s needed for solving the problem at hand. On the other hand, an ineffective abstraction removes necessary information or produces noise by leaving what’s not required.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=973">Location 973</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+For example, a wiki can be used as a glossary to capture and document the ubiquitous language.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1012">Location 1012</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Automated tests written in the Gherkin language are not only great tools for capturing the ubiquitous language but also act as an additional tool for bridging the gap between domain experts and software engineers.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1024">Location 1024</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+“Individuals and interactions over processes and tools.”  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1044">Location 1044</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+As we discussed in the previous chapter, a model is not a copy of the real world but a construct that helps us make sense of a complex system.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1181">Location 1181</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+striving for small bounded contexts can backfire too. The smaller they are, the more integration overhead the design induces.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1215">Location 1215</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Anticorruption layer The consumer translates the service provider’s model into a model that fits the consumer’s needs.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1711">Location 1711</a>)
+<strong>I like this one</strong></p>
+</blockquote>
+
+<h2 id="new-highlights-added-january-27-2023-at-841-am">New highlights added January 27, 2023 at 8:41 AM</h2>
+<blockquote>
+  <p>[!note]
+That said, the distinctive feature of an active record object is the separation of data structures and behavior (business logic).  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=2094">Location 2094</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Usually, an active record’s fields have public getters and setters that allow external procedures to modify its state.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=2095">Location 2095</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+In other words, this pattern allows the code to “speak” the ubiquitous language and to follow the domain experts’ mental models.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=2252">Location 2252</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Value objects shine brightest when they centralize the business logic that manipulates the values.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=2394">Location 2394</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+The reason “entity” was omitted is because we don’t implement entities independently, but only in the context of the aggregate pattern.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=2680">Location 2680</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Ironically, the projects that can benefit from DDD the most are the brownfield projects: those that already proved their business viability and need a shake-up to fight accumulated technical debt and design entropy.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=6644">Location 6644</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Another powerful yet unfortunate heuristic for core subdomains is identifying the worst-designed software components—those big balls of mud that all engineers hate but the business is unwilling to rewrite from scratch because of the accompanying business risk. The key here is that the legacy system cannot be replaced with a ready-made system—it would be a generic subdomain—and any modification to it entails business risks.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=6677">Location 6677</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Multiple teams working on the same high-level component Duplicate implementations of core subdomains Implementation of a core subdomain by an outsourced company  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=6715">Location 6715</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Friction because of frequently failing integration  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=6717">Location 6717</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Awkward models spreading from external services and legacy systems  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=6718">Location 6718</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+are rarely successful.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=6732">Location 6732</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+rename  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=6749">Location 6749</a>)
+<strong>The power of rename!!!</strong></p>
+</blockquote>
+
+<h2 id="new-highlights-added-march-9-2023-at-210-pm">New highlights added March 9, 2023 at 2:10 PM</h2>
+<blockquote>
+  <p>[!note]
+must trigger integration tests for all the affected bounded contexts.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1515">Location 1515</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+shared kernel will naturally be applied for the subdomains that change the most: the core subdomains.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1525">Location 1525</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+From a modeling perspective, the translation of the supplier’s model isolates the downstream consumer from foreign concepts that are not relevant to its bounded context. Hence, it simplifies the consumer’s ubiquitous language and model.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1599">Location 1599</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Separate ways  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1723">Location 1723</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+B and C  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1726">Location 1726</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+A and B  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1729">Location 1729</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Shared kernel.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=1732">Location 1732</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Lacking strict organization in implementation concerns makes the codebase hard to change. When the business logic has to change, it may not be evident what parts of the codebase have to be affected by the change. The change may have unexpected effects on seemingly unrelated parts of the system. Conversely, it may be easy to miss code that has to be modified. All of these issues dramatically increase the cost of maintaining the codebase.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=4300">Location 4300</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+The dependency between the business logic and the data access layers makes this architectural pattern a good fit for a system with its business logic implemented using the transaction script or active record pattern.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=4556">Location 4556</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+the downstream bounded context can adapt the upstream bounded context’s model to its needs using an anticorruption layer (ACL), while the upstream bounded context can act as an open-host service (OHS) and protect its consumers from changes to its implementation model by using an integration-specific published language.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=4924">Location 4924</a>)</p>
+</blockquote>
+
+<h2 id="new-highlights-added-april-30-2023-at-311-pm">New highlights added April 30, 2023 at 3:11 PM</h2>
+<blockquote>
+  <p>[!note]
+In some use cases, you can avoid implementing a custom solution for a stateful translation by using off-the-shelf products; for example, a stream-process platform (Kafka, AWS Kinesis, etc.), or a batching solution (Apache NiFi, AWS Glue, Spark, etc.).  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B09J2CMJZY&amp;location=5003">Location 5003</a>)</p>
+</blockquote>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

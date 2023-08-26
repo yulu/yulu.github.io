@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>How to Distribute Library on jCenter and My First UI Lib</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2016/02/02/android-crop-library.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">How to Distribute Library on jCenter and My First UI Lib</h1>
+                <p class="post-meta">Feb 2, 2016</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>In order to modularize the <a href="https://github.com/visenze/visearch-sdk-android">ViSearch Android SDK</a> that I was working with previously, I developed my very first UI lib - <a href="https://github.com/yulu/crop-image-layout">image-crop-layout</a>. This is a light-weight image cropping module that supports UI customization and box update listener.</p>
+
+<p>Here is a very good tutorial on how to <a href="http://brianattwell.com/distributing-android-libs-via-jcenter/">upload a library to jCenter by Brian Attwell</a>.</p>
+
+<h3 id="submit-library-to-jcenter-via-bintray">Submit library to jCenter via Bintray</h3>
+
+<h4 id="step-0">Step 0</h4>
+<p>Register a <a href="https://bintray.com/">Bintray</a> account and create a new package for the library using a proper Bintray repo name.</p>
+
+<h4 id="step-1">Step 1</h4>
+<p>Add bintray plug-in and maven plug-in under the project’s <code class="language-plaintext highlighter-rouge">build.gradle</code> file</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="n">dependencies</span> <span class="p">{</span>
+        <span class="n">classpath</span> <span class="s">'com.android.tools.build:gradle:1.3.0'</span>
+        <span class="n">classpath</span> <span class="s">'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'</span>
+        <span class="n">classpath</span> <span class="s">'com.github.dcendents:android-maven-gradle-plugin:1.3'</span>
+    <span class="p">}</span></code></pre></figure>
+
+<h4 id="step-2">Step 2</h4>
+<p>Config the metadata by adding the script to <code class="language-plaintext highlighter-rouge">build.gradle</code> file under the library module</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">ext</span> <span class="p">{</span>
+    <span class="c1">// Where you will see your artifact in Bintray's web interface</span>
+    <span class="c1">// The "bintrayName" should match the name of the Bintray repro.</span>
+    <span class="n">bintrayRepo</span> <span class="o">=</span> <span class="s">"maven"</span>
+    <span class="n">bintrayName</span> <span class="o">=</span> <span class="s">"crop-image-layout"</span>
+
+    <span class="c1">// Maven metadata</span>
+    <span class="n">publishedGroupId</span> <span class="o">=</span> <span class="s">"me.littlecheesecake"</span>
+    <span class="n">libraryName</span> <span class="o">=</span> <span class="s">"CropImageLayout"</span>
+    <span class="c1">// Save yourself a head ache, and set this equal to the name of the Android Studio library</span>
+    <span class="c1">// module. The artifact name needs to match the name of the library.</span>
+    <span class="n">artifact</span> <span class="o">=</span> <span class="s">"croplayout"</span>
+
+    <span class="n">libraryDescription</span> <span class="o">=</span> <span class="s">"Crop image view layout"</span>
+    <span class="n">libraryVersion</span> <span class="o">=</span> <span class="s">"${versionMajor}.${versionMinor}.${versionPatch}"</span>
+
+    <span class="n">developerId</span> <span class="o">=</span> <span class="s">"yulu"</span>
+    <span class="n">developerName</span> <span class="o">=</span> <span class="s">"Yu Lu"</span>
+    <span class="n">developerEmail</span> <span class="o">=</span> <span class="s">"yulu8798@gmail.com"</span>
+<span class="p">}</span></code></pre></figure>
+
+<h4 id="step-3">Step 3</h4>
+<p>apply the bintray plug-in by including the script from other’s gist:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">apply</span> <span class="k">from</span><span class="p">:</span> <span class="s">'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'</span>
+<span class="nb">apply</span> <span class="k">from</span><span class="p">:</span> <span class="s">'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'</span></code></pre></figure>
+
+<p>or download the scripts and apply from local path:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">apply</span> <span class="k">from</span><span class="p">:</span> <span class="s">'../tools/bintray.gradle'</span></code></pre></figure>
+
+<p>Then update the <code class="language-plaintext highlighter-rouge">local.properties</code> file in the project by including the bintray user name and password:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">bintray</span><span class="p">.</span><span class="n">user</span><span class="o">=</span><span class="p">(</span><span class="n">BINTRAY_USERNAME</span><span class="p">)</span>
+<span class="n">bintray</span><span class="p">.</span><span class="n">apikey</span><span class="o">=</span><span class="p">(</span><span class="n">BINTRAY_API_KEY</span><span class="p">)</span></code></pre></figure>
+
+<h4 id="step-4">Step 4</h4>
+<p>Run gradle command to upload the library after implementation and testing:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;</span> <span class="p">.</span><span class="o">/</span><span class="n">gradlew</span> <span class="n">bintrayUpload</span></code></pre></figure>
+
+<p>After successfully upload, you can include the library in the dependencies but need to include the repo</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">repositories</span> <span class="p">{</span>
+    <span class="n">maven</span> <span class="p">{</span>
+        <span class="n">url</span> <span class="s">'https://dl.bintray.com/yulu/maven/'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">dependencies</span> <span class="p">{</span>
+    <span class="nb">compile</span> <span class="s">'me.littlecheesecake:crop-image-layout:1.0.5'</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>By add the package to jCenter using the option provided on bintray website, the step of including the maven repo could be eliminated.</p>
+
+<h3 id="use-the-crop-image-layout-library">Use the crop-image-layout library</h3>
+
+<h4 id="import">Import</h4>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">dependencies</span> <span class="p">{</span>
+    <span class="nb">compile</span> <span class="s">'me.littlecheesecake:croplayout:1.0.5'</span>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<h4 id="usage">Usage</h4>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">EditPhotoView</span> <span class="n">imageView</span> <span class="o">=</span> <span class="o">(</span><span class="nc">EditPhotoView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">editable_image</span><span class="o">);</span>
+<span class="nc">EditableImage</span> <span class="n">image</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EditableImage</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="no">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">photo2</span><span class="o">);</span>
+<span class="n">image</span><span class="o">.</span><span class="na">setBox</span><span class="o">(</span><span class="k">new</span> <span class="nc">ScalableBox</span><span class="o">(</span><span class="mi">25</span><span class="o">,</span><span class="mi">180</span><span class="o">,</span><span class="mi">640</span><span class="o">,</span><span class="mi">880</span><span class="o">));</span>
+
+<span class="n">imageView</span><span class="o">.</span><span class="na">initView</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">image</span><span class="o">);</span>
+
+<span class="n">imageView</span><span class="o">.</span><span class="na">setOnBoxChangedListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">OnBoxChangedListener</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onChanged</span><span class="o">(</span><span class="kt">int</span> <span class="n">x1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">x2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//TODO: cropping box updated</span>
+    <span class="o">}</span>
+<span class="o">});</span></code></pre></figure>
+
+<h4 id="ui-customization">UI Customization</h4>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;me.littlecheesecake.croplayout.EditPhotoView</span>
+    <span class="na">android:id=</span><span class="s">"@+id/editable_image"</span>
+    <span class="na">android:layout_width=</span><span class="s">"300dp"</span>
+    <span class="na">android:layout_height=</span><span class="s">"200dp"</span>
+    <span class="na">android:layout_margin=</span><span class="s">"20dp"</span>
+    <span class="na">android:background=</span><span class="s">"#fff"</span>
+    <span class="na">crop:crop_corner_color=</span><span class="s">"#45B4CA"</span>
+    <span class="na">crop:crop_line_color=</span><span class="s">"#d7af55"</span>
+    <span class="na">crop:crop_shadow_color=</span><span class="s">"#77ffffff"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<p><img src="https://raw.githubusercontent.com/yulu/crop-image-layout/master/doc/crop_attr.png" alt="image_attr" /></p>
+
+<h4 id="known-issue">Known Issue</h4>
+
+<ul>
+  <li>actual cropping of the image is not implemented, but only update the selected area (cropping box)</li>
+  <li>crop box will be reset to the full image after rotation</li>
+  <li>image zoom-in is not supported</li>
+</ul>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

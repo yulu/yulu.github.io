@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[DDIA] Chapter 5 - Replication</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2023/04/10/ddia-5.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_header.jpeg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">[DDIA] Chapter 5 - Replication</h1>
+                <p class="post-meta">Apr 10, 2023</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-entry toc-h3"><a href="#mind-map">Mind Map</a></li>
+<li class="toc-entry toc-h3"><a href="#question-summary">Question Summary</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#single-leader">Single-leader</a></li>
+<li class="toc-entry toc-h4"><a href="#multi-leader">Multi-leader</a></li>
+<li class="toc-entry toc-h4"><a href="#leaderless">Leaderless</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#highlighted-topics">Highlighted Topics</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#quorums-condition">Quorums Condition</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#extended-topics">Extended Topics</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#version-vector">Version Vector</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#version-vector-with-causal-histories">Version vector with causal histories</a></li>
+<li class="toc-entry toc-h5"><a href="#causally-compliant-total-order-lww">Causally compliant total order (LWW)</a></li>
+<li class="toc-entry toc-h5"><a href="#version-vectors-with-per-server-entry">Version vectors with per-server entry</a></li>
+<li class="toc-entry toc-h5"><a href="#version-vector-with-per-client-entry">Version vector with per-client entry</a></li>
+<li class="toc-entry toc-h5"><a href="#dotted-version-vectors">Dotted version vectors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#further-reading">Further Reading</a></li>
+</ul> </div> 
+
+        <article class="post-content">
+            <h3 id="chapter-summary">Chapter Summary</h3>
+
+<p>This chapter is the start of the three related topics regarding storage systems - replication, partition and transaction. Replication is important because of these important properties it provides: 1) keep the data geographically close to the users 2) allow system to continue to work even if some of its parts have failed (redundancy) 3) allows scaling out to serve the increasing throughput.</p>
+
+<p>Three common patterns, namely single-leader, multi-leader and leaderless are discussed. In the single-leader pattern, the challenge is mainly the follower set-up and replication lag. For multi-leader and leaderless pattern, the main challenge is the write conflict detection and resolving. This chapter discussed the definition of the patterns, the challenges and various solutions in detail.</p>
+
+<h3 id="mind-map">Mind Map</h3>
+
+<div class="mindmap-container">
+    <iframe src="https://www.xmind.net/embed/itczkd" width="900px" height="540px" frameborder="0" scrolling="no"></iframe>
+</div>
+
+<h3 id="question-summary">Question Summary</h3>
+
+<h4 id="single-leader">Single-leader</h4>
+<p>💡 What are synchronous replication and asynchronous replication?</p>
+
+<p>Synchronous replication means that when write happens, the successful response to the client will only be made after copying the data to all the followers.
+Asynchronous replication means that the successful response is immediately returned to client when a write is saved to the leader. The copying from leader to followers will happen in background asynchronously.</p>
+
+<p>💡 What is semi-synchronous replication and why it is good?</p>
+
+<p>In practice that synchronous replication is impractical because one unavailable node will block all the writes. Semi-synchronous refer to the way that the data write to the leader, is synchronously copied to 1 follower, and then copied to other followers asynchronously. This ensures that at any time, at least two nodes have the up-to-date copy of the data.</p>
+
+<p>💡 What is the trade-off of async replication?</p>
+
+<p>Weak durability. In the case that a leader fails before all the data is copied to followers, there will be data lost.</p>
+
+<p>💡 What are the 4 steps to setup a new follower?</p>
+
+<ul>
+  <li>take a consistent snapshot of the leader’s database at some point in time</li>
+  <li>copy the snapshot to the new follower node</li>
+  <li>the follower connects to the leader to request all the data change since the snapshot was taken</li>
+  <li>caught up the change, which is to process the backlog of data changes since the snapshot</li>
+</ul>
+
+<p>💡 What is the log sequence number in PostgreSQL and binlog coordinate in MySQL?</p>
+
+<p>These two are the same concept, refers to the exact position in the leader’s replication log that the snapshot of the database is associated with.</p>
+
+<p>💡 What are the 3 steps for an automatic failover process?</p>
+
+<p>Step1: determine the leader has failed, normally use a ping timeout
+Step2: choose a new leader through an election process
+Step3: reconfiguring the system to use the new leader</p>
+
+<p>💡 Why manual operation to handle leader failover is preferred?</p>
+
+<ul>
+  <li>automatically handle unreplicated writes in failed leader is tricky. Simple discarding might cause serious consequences</li>
+  <li>split brain, which means that multiple leaders running at the same time may occur if the failover mechanism is not carefully designed</li>
+  <li>if the timeout is not properly decided, false alarm may occur and could result in an unnecessary failover</li>
+</ul>
+
+<p>💡 What is split brain?</p>
+
+<p>More than one leader is running in a single leader replication architecture. If there’s no process to handle write conflict, it will result in data lost or corruption.</p>
+
+<p>💡 What are the four leader-to-follower replication methods?</p>
+
+<ul>
+  <li>statement-based</li>
+  <li>write-ahead log shipping</li>
+  <li>logical (row-based) log</li>
+  <li>trigger-based</li>
+</ul>
+
+<p>💡 In a statement-based replication approach, what conditions may break the replication?</p>
+
+<ol>
+  <li>Any statement use nondeterministic function (NOW(), RAND())</li>
+  <li>Statement use auto-incrementing column</li>
+  <li>Statements that have side effects (e.g. triggers, stored procedures, user-defined functions)</li>
+</ol>
+
+<p>💡 What is the disadvantage of write-ahead log shipping replication approach?</p>
+
+<p>The log data is stored in a very low level, which makes the replication closely coupled to the storage engine. Normally the log cannot be consumed by different versions of the engine, which makes the zero-down time version upgrade challenging.</p>
+
+<p>💡 What are the different ways to solve replication lag issue?</p>
+
+<ul>
+  <li>reading your own writes (or read-after-write consistency): 1) serve the often-modified entry by leader only 2) serve by follower only after some time passed the write (e.g. 1 mins later after update) 3) record the update timestamp and use the timestamp to check if value exists</li>
+  <li>monotonic reads: the same user always reads from the same replica</li>
+  <li>consistent prefix reads: if any writes happens in a certain order, then anyone reading those writes will see them appear in the same order</li>
+</ul>
+
+<h4 id="multi-leader">Multi-leader</h4>
+<p>💡 What are the ways (name 4) of achieving convergent conflict resolution?</p>
+
+<ul>
+  <li>last write wins approach:</li>
+  <li>higher-numbered replica wins:</li>
+  <li>somehow merge the values (e.g. concatenate strings):</li>
+  <li>record the conflict in an explicit data structure that preserves all the information and ask for user to resolve at some later time:</li>
+</ul>
+
+<p>💡 What are the commonly seen multi-leader replication topologies?</p>
+
+<p>Circular topology, star topology and all-to-all topology</p>
+
+<p>💡 Why all-to-all topology is better than circular and star topology?</p>
+
+<p>Avoid the single point of failure</p>
+
+<p>💡 What is the replication topology in multi-leader replication architecture?</p>
+
+<p>A replication topology describe the communication paths along which writes are propagated from one node to another</p>
+
+<p>💡 What is the causality issue of all-to-all topology and what is the solution to that?</p>
+
+<p>Causality issue refer to the problem that some operations does not arrive to the system in the order expected due to the network latency. So one operation that depends on the other might arrive earlier (e.g. an update statement comes before an insert of the item). Version vector is the solution to the causality issue</p>
+
+<h4 id="leaderless">Leaderless</h4>
+<p>💡 How does an unavailable node catch up on the writes when it comes back online?</p>
+
+<ul>
+  <li>read repair: the client fetches the data during read and detect the stale value from the nodes, it then write the update-to-date back to the nodes</li>
+  <li>anti-entropy process: a background process that constantly looks for differences in the data between replicas and copies any missing data from one replica to another</li>
+</ul>
+
+<p>💡 What is the benefit of choosing r and w to be majority (more than n/2) of nodes?</p>
+
+<p>This choice ensures w+r&gt;n (quorum condition) while still tolerating up to n/2 node failures</p>
+
+<p>💡 If a workload pattern is few writes and many reads, what is better config for the quorum and why?</p>
+
+<p>Reduce the r, say to 1, increase the w, say to n (so r + w &gt; n holds). In this case, we can reduce the load of read. However increase w to n has the disadvantage that a single unavailable nodes will cause write fall.</p>
+
+<p>💡 Define strict quorum reads and writes</p>
+
+<p>Define the number of nodes that confirms writes are w, the number of nodes required for read is r, and the total number of nodes is n. When w + r &gt; n, it guarantees that at least one of the nodes for read contains the latest updated writes.</p>
+
+<p>💡 Define sloppy quorum</p>
+
+<p>In a large cluster with significantly more than n nodes, writes and reads still require w and r successful responses, but those may include nodes that are not among the designated n “home” nodes for a value.</p>
+
+<h3 id="highlighted-topics">Highlighted Topics</h3>
+
+<h4 id="quorums-condition">Quorums Condition</h4>
+
+<blockquote>
+  <p>Leaderless architecture becomes popular after Amazon used it for its in-house <em>Dynamo</em> system (the paper is written in 2007). <a href="https://github.com/basho/riak">Riak</a>, <a href="https://github.com/apache/cassandra">Cassandra</a> and <a href="https://github.com/voldemort/voldemort">Voldemort</a> are open source datastores with leaderless replication models inspired by Dynamo, so this kind of database is also known as <em>Dynamo-style</em>.</p>
+</blockquote>
+
+<p>Quorums is the essential concept to guarantee the data consistency in Dynamo-style data storages. It is defined as this:</p>
+<blockquote>
+  <p>If there are n replicas, every write must be confirmed by w nodes to be considered successful, and we must query at least r nodes fro each read. As long as w + r &gt; n, we expect to get an up-to-date value when reading, because at least one of the r nodes we’re reading from must be up to date. Reads and writes that obey these r and w values are called quorum reads and writes</p>
+</blockquote>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-5/ddia-quorum.excalidraw.png" alt="ddia-quorum.excalidraw" /></p>
+
+<p>We can smartly choose w and r in different use cases:</p>
+<ul>
+  <li>to a write intensive use case, we can choose a smaller w (but a larger r) to reduce the write latencies. Vice versa for read intensive use case</li>
+  <li>generally we can choose w &gt; n/2 and r &gt; n/2 so the system can tolerate up to n/2 nodes failures</li>
+</ul>
+
+<p>However even with w + r &gt; n, there are likely to be edge cases where stale values are returned. Dynamo-style databases are generally optimized for use cases that can tolerate eventual consistency (BASE vs ACID).</p>
+
+<h3 id="extended-topics">Extended Topics</h3>
+<h4 id="version-vector">Version Vector</h4>
+
+<p>Consider two operations A and B happens at very similar time, there’s only three different possibilities in terms of the which happens first:</p>
+<ul>
+  <li>A happens before B and B depends on A’s occurrence</li>
+  <li>B happens before A and A depends on B’s occurrence</li>
+  <li>They happen at the same time and there’s no causality relationship between them</li>
+</ul>
+
+<p>If we can identify the causality between A and B, then we can say that A and B are not concurrent and we can safely keep the result from the most recent operation. Otherwise, we want to keep the conflicted result from the concurrent operations A and B, and let the client to resolve the conflict (In simpler cases, we can take the “later” operation based on the timestamp or replica number order, but it comes with the risk of data loss).</p>
+
+<p>To detect the concurrency, we can take the approach to detect the causality, if no causality, means that the operations are concurrent.</p>
+
+<p>A simple algorithm to capture the happens-before relationship</p>
+<ul>
+  <li>The server maintains a version number for every key, increments the version number every time that key is written, and stores the new version number along with the value written</li>
+  <li>When a client reads a key, the server returns all values that have not been overwritten, as well as the latest version number. A client must read a key before writing</li>
+  <li>When a client writes a key, it must include the version number from the prior read, and it must merge together all values that it received in the prior read</li>
+  <li>When the server receives a write with a particular version number, it can overwrite all values with the that version number or below, but it must keep all values with a higher version number (because those values are concurrent with the incoming write)</li>
+</ul>
+
+<p>Important aspect to consider when reasoning about the scalability of these version vector is the existence of three different orders of magnitude at play:</p>
+<ul>
+  <li>a <strong>small number</strong> of replica nodes for each key</li>
+  <li>a <strong>large number</strong> of server nodes</li>
+  <li>a <strong>huge number</strong> of clients, keys and issued operations. 
+Thus a scalable solution should avoid mechanisms that are linear with the highest magnitude and, if possible, even try to match the lowest scale</li>
+</ul>
+
+<p>Here’s a summary and comparison of different version vector approaches</p>
+
+<h5 id="version-vector-with-causal-histories">Version vector with causal histories</h5>
+<p>causal histories ({a1, a2}) are maintained in this version vector solution, but this is a <strong>not useful in practical systems</strong> because they scale linearly with the number of updates.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-5/version-vector_1.excalidraw.png" alt="version-vector_1.excalidraw" /></p>
+
+<h5 id="causally-compliant-total-order-lww">Causally compliant total order (LWW)</h5>
+<p>Assuming that client clocks are well synchronised and applying real time clock order, in this approach, replica nodes never store multiple versions and writes do not need to provide a get context. Cassandra is using this simplest approach.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-5/version-vector-2.excalidraw.png" alt="version-vector-2.excalidraw" /></p>
+
+<h5 id="version-vectors-with-per-server-entry">Version vectors with per-server entry</h5>
+<p>A concise version vector can be achieved by storing all the update-to-date server+version information with each replica. In this case, it is possible to track the causality among updates that were received in different servers. However, this approach cannot track causality among updates submitted to the same server. Dynamo system uses one entry per replica node and thus falls into this category.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-5/version-vector-3.excalidraw.png" alt="version-vector-3.excalidraw" /></p>
+
+<h5 id="version-vector-with-per-client-entry">Version vector with per-client entry</h5>
+<p>The version vectors with one entry per replica node are not enough to track causality among concurrent clients. One natural approach is to track causality by using version vectors with one entry per client. In the implementation, each client needs to maintain a counter increment it and provide it in each PUT, otherwise we will encountered the problem illustrated below. This approach is not very practical mainly because it is a big challenge to maintain the clients stability of the storage system - the application can run concurrent and dynamic threads, it is difficult to the identify and track them.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-5/version-vector-4.excalidraw.png" alt="version-vector-4.excalidraw" /></p>
+
+<h5 id="dotted-version-vectors">Dotted version vectors</h5>
+<p>Dotted version vectors use a concise and accurate representation for the clocks to be used as a substitute for the classic version vectors. It uses only server-based ids and only a component per replica node, thus avoiding the space consumption explosion. The formal definition of the version vector is</p>
+
+\[\begin{align*}
+&amp;C[(r, m)] = \{r_i | 1 \leq i \leq m\}, \\
+\\
+&amp;C[(r,m,n)] = \{r_i| 1 \leq i \leq m\} \cup \{r_n\}, \\
+\\
+&amp;C[X] = \bigcup_{x\in X}C[x] \\
+\\
+&amp;\text{In a component (r,m,n) we will always have n &gt; m}
+\end{align*}\]
+
+<p>The example shows how the version vectors are updated for each update:</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-5/version-vector-5.excalidraw.png" alt="version-vector-5.excalidraw" /></p>
+
+<p>As we see, the popular databases like dynamoDB and Casandra are using simpler version of the version vectors in practice. This is very common. In reality, production-level engineering system comprises complexities for performance and engineering simplicity.</p>
+
+<h3 id="further-reading">Further Reading</h3>
+<ul>
+  <li><a href="https://www.cs.purdue.edu/homes/bb/cs542-11Spr/Parker_TSE83.pdf">Detection of Mutual Inconsistency in Distributed Systems - 1983 classic paper of version vector</a></li>
+  <li><a href="https://arxiv.org/pdf/1011.5808.pdf">Dotted Version Vectors: Logical Clocks for Optimistic Replication</a></li>
+  <li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo: Amazon’s Highly Available Key-value Store - 2007 classic paper</a></li>
+</ul>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

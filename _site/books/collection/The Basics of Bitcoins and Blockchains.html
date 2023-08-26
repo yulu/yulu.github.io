@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>The basics of bitcoins and blockchains</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/books/collection/The%20Basics%20of%20Bitcoins%20and%20Blockchains.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">The basics of bitcoins and blockchains</h1>
+                <p class="post-meta">Aug 26, 2023 • Antony Lewis</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <h2 id="highlights">Highlights</h2>
+<blockquote>
+  <p>[!note]
+The journey starts with ‘What is Bitcoin?’ but the explanations and answers come from the disciplines of economics, law, computer science, finance, civil society, history, geopolitics, and more.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=246">Location 246</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+While some believe that ‘good money’ should fulfil all of these functions, others think that the three functions can be fulfilled by different instruments.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=398">Location 398</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>Bitcoin is the very first digital asset of value that can be transferred over the internet without any specific third party having to approve the transaction or being able to deny it.</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Stability is determined more by the liquidity of a market (how many people are willing to buy and sell at any price point), than the price of an asset.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=512">Location 512</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Pegs always eventually break.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=522">Location 522</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+The concepts and eras I want to touch on are: •Barter (let’s exchange valuable things) •Commodity money (the money is the valuable thing) •Representative money (the money is a claim on the valuable thing) •Fiat currency (the money is completely de-linked from any valuable thing)  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=562">Location 562</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+money was invented to lubricate the deal.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=573">Location 573</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Just think—those libertarians who proclaim that regulation is unnecessary, but then demand that something must be done when they lose money in cryptocurrency scams, are just discovering the value of regulations that have existed ever since laws were first written down!  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=670">Location 670</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+This is relevant today because there are a number of attempts to create a ‘stable coin’ cryptocurrency, some of which rely on an entity or automated smart contract to defend a peg by buying when the price is too low and selling when the price is too high.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=749">Location 749</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+1976: The gold standard was abandoned in the USA: The US dollar became pure fiat money.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=972">Location 972</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+In fact, fiat currencies are defined by not having intrinsic value.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=979">Location 979</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+It has no intrinsic value—the paper used for banknotes is in principle worthless—yet is still accepted in exchange for goods and services because people trust the central bank to keep the value of money stable over time. If central banks were to fail in this endeavour, fiat money would lose its general acceptability as a medium of exchange and its attractiveness as a store of value.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=990">Location 990</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Zimbabwe dollar, is not on that list. There are also multiple versions of the Zimbabwe dollar (with different pricing) and the country is a fascinating case study for how not to do currency. It is a mess for shopkeepers, but a delight for monetary economists!  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1029">Location 1029</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+QE is a euphemism for an issuing authority (generally a central bank) increasing the amount of fiat money in circulation in order to stimulate a flagging economy.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1090">Location 1090</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Currency pegs are difficult to manage unless backed 100% with reserves, and although they can be successful for some time, they mostly eventually fail.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1124">Location 1124</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Although we have arguably better tools and technology now than at any previous point in time, humans are still humans and will still do what they can to gain, and hold on to power and wealth—often making the same mistakes as their predecessors.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1134">Location 1134</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Wikipedia54 describes double spending as: …a potential flaw in a digital cash scheme in which the same single digital token can be spent more than once. This is possible because a digital token consists of a digital file that can be duplicated or falsified.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1161">Location 1161</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+bookkeeper  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1166">Location 1166</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+‘book transfer’  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1188">Location 1188</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+while from your point of view the money in your account is an asset, from the bank’s point of view, the money in your account is an outstanding liability.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1200">Location 1200</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Money held at the central bank is called reserves.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1280">Location 1280</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+records interbank settlement systems. There are broadly two types: •Deferred Net Settlement (DNS) systems •Real Time Gross Settlement (RTGS) systems  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1287">Location 1287</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Each payment instruction is settled independently and not grouped, batched, or netted off against any other instructions. This is known as ‘gross settlement,’  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1305">Location 1305</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+there is no ‘central bank’ of the world60, not even the World Bank, however grand and ambitious its name.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1357">Location 1357</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Banks create money, in the form of deposits, when they write loans.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1463">Location 1463</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p><em>‘walled-garden’</em>:: A Walled Garden is a closed ecosystem in which all the operations are controlled by the ecosystem operator.</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+In most jurisdictions, licensees are usually forbidden to write loans or create money, a privilege granted to lenders and banks.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1518">Location 1518</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Ensuring that data tampering is immediately evident  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1720">Location 1720</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Bitcoins are digital assets (‘coins’) whose ownership is recorded on an electronic ledger that is updated (almost) simultaneously on about 10,000 independently operated computers around the world that connect and gossip with each other76.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1816">Location 1816</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+This ledger is called Bitcoin’s blockchain.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1819">Location 1819</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Contrary to many media articles, Bitcoin’s blockchain is not encrypted. By design, everyone sees all details of all transactions.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1825">Location 1825</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Bitcoin is designed as censorship resistant digital cash.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1848">Location 1848</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+In Bitcoin and most other cryptocurrencies, account numbers are mathematically derived from public keys (not public keys themselves), and are called addresses.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=1916">Location 1916</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Bitcoin is digital, but it works more like physical cash.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=2225">Location 2225</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+At an estimate, around 80% of the hash power is controlled by Chinese entities. BTC.com, Antpool, BTC.TOP, F2Pool, viaBTC are all Chinese groups107, and a company called Bitmain owns both BTC.com and Antpool.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=2376">Location 2376</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+cypherpunk is any activist advocating widespread use of strong cryptography and privacy-enhancing technologies as a route to social and political change.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B08RWTV6BW&amp;location=2513">Location 2513</a>)</p>
+</blockquote>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

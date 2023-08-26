@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>利用Docker开启持续交付之路</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog3/2015/09/03/docker-example.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">利用Docker开启持续交付之路</h1>
+                <p class="post-meta">Sep 3, 2015</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>文／银大伟，《程序员》2014,09</p>
+
+<blockquote>
+  <p>Docker是目前非常流行的虚拟化技术，它轻量且易于使用，对系统的侵入性低，非常适合做应用程序部署。本文将通过真实案例展示如何在构建持续交付流程中应用Docker技术，实现更为灵活的持续集成及自动化部署。</p>
+</blockquote>
+
+<p>近几年，随着DevOps的流行，持续交付（Continuous Delivery,CD）越来越被传统企业所重视。持续交付讲求以短周期，小细粒度，自动化的方式频繁地交付软件。在这个过程中要求开发，测试，用户体验等角色紧密合作，快速收集反馈，从而不断改善软件质量并减少浪费。然而，在我所接触的传统企业中，对于持续交付实践的实施都还非常初级，坦白地说，大部分还停留在手工生成发布包，手工替换文件进行部署的阶段，这样做无疑缺乏管理且容易出错。</p>
+
+<p>究其原因，我想主要是因为构建一个可实际运行且适合企业自身环境的持续发布流程并不简单。然而，Docker作为轻量级的基于容器的解决方案，它对系统侵入性低，容易移植，天生就适合做自动化部署，非常有助于降低构建持续交付流程的复杂度。本文将通过一个实际案例，分享我们在一个真实项目中使用Docker构建持续发布流程的经验总结。</p>
+
+<h3 id="项目背景">项目背景</h3>
+
+<p>这是一个来自物流行业的案例，由于近几年业务的飞速发展，企业老的门户网站对于日常访问的订单查询还勉强可以支撑，但每天遇到像“双11”这样访问量成倍增长的情况就很难招架了。因此，这家企业希望我们帮他们开发一个全新的门户网站。</p>
+
+<p>新网站采用了静动分离策略，使用Java语言，基于REST架构，并结合CMS系统。简单来说，可以将它看成是时下非常典型的一个基于Java的Web应用，具体包含如下几个部分。</p>
+
+<ul>
+  <li>基于Jersey动态服务（处理客户端动态请求）</li>
+  <li>二次开发的OpenCMS系统，来静态导出站点</li>
+  <li>基于Backbone.js的前端应用，可以打包成为一个OpenCMS支持的站点</li>
+  <li>后台任务处理服务（用于处理实时性要求不高的任务，如邮件发送等）</li>
+</ul>
+
+<h3 id="面临的挑战及选择docker的原因">面临的挑战及选择Docker的原因</h3>
+
+<p>在设计持续交付流程的过程中，这家企业有一个合理的需求：在测试环境中尽量模拟真实软件架构（如模拟静态服务器的水平扩展），以便尽早发现潜在问题。基于这个需求，我们认为，可以尝试将多台机器划分为不同的职责，并按照职责将相应服务进行部署。这时，我们遇到的第一个挑战是，硬件资源严重不足。尽管这家企业非常积极地配合，但无奈内部层层的审批制度。经过两个星期的努力，我们很艰难地申请到了两台四核CPU加8G内存的物理机（如果申请虚拟机可能还要等一段时间），同时还获得了一个Oracle数据库实例。因此，我们的任务就变为把所有服务和持续集成服务器（Jenkins）全部部署在这两台机器上，并且还要模拟出这些服务分别运行在不同职责的机器上并进行交互。如果采用传统的部署方式，要在两台机器上完成这么多服务的部署是非常困难的，需要小心调整和修改各个服务及中间件的配置，而且还面临着一旦出错就可能耗费大量时间排错，甚至需要重装系统的风险。第二个挑战是，企业内部对UAT（与产品环境配置一致，只是数据不同）和产品环境管控严格，我们无法访问，所以也就无法自动化。这意味着，整个持续发布流程不仅要支持自动化部署，同时也要允许下载独立发布包进行手工部署。</p>
+
+<p>最终，我们选择用Docker解决上述两个挑战，主要有以下几点原因。</p>
+
+<ul>
+  <li>Docker是容器，容器与容器之间相互隔离互不影响，利用这个特性可以非常容易地在一台机器上模拟出多台机器的效果</li>
+  <li>Docker对操作系统的侵入性很低，因为它使用LXC虚拟化技术，所以在大部分Linux发行版下不需要安装额外的软件就可以运行</li>
+  <li>Docker容器可重复运行，且提供了多种途径分享容器。例如，通过export/import或者save/load命令以文件形式分享；也可以通过讲容器提交至私有Registry进行分享；此外，还有Docker Hub</li>
+</ul>
+
+<p>图2是我们设计的持续发布流程。我们专门设计了一个环节用于生成唯一的发布包，打包所有War/Jar、数据库迁移脚本和配置信息。因此，无论是手工部署还是利用Docker容器自动化部署，我们都可以使用相同的发布包，这样做也满足了持续交付的单一制品原则（Single Source of Truth, Single Artifact）。</p>
+
+<h3 id="docker与持续集成">Docker与持续集成</h3>
+
+<p>持续集成（Continuous Integration, CI）在当前的软件开发中应用广泛。将CI与Docker结合后，会为CI的灵活性带来显著的提升。由于这个项目中使用的是Jenkins，则下面会以Jenkins与Docker结合为例进行说明。</p>
+
+<h4 id="创建jenkins容器">创建Jenkins容器</h4>
+
+<p>我们并没有直接把Jenkins安装到主机上，而是将其创建成容器，这样就省去了每次安装Jenkins本身及其依赖的过程，真正做到了拿来就用。</p>
+
+<p>Jenkins容器创建一个全新CI的过程变得非常简单，只需下面一行命令就可完成：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9090</span><span class="p">:</span><span class="mi">8080</span> <span class="o">--</span><span class="n">name</span> <span class="n">jenkins</span>
+<span class="n">jenkins</span><span class="p">:</span><span class="mf">1.576</span></code></pre></figure>
+
+<p>该命令启动Jenkins容器并将容器内部8080端口重定向到主机9090端口，此时访问主机IP:9090，就可能得到一个正在运行的Jenkins服务。为了降低升级和维护成本，可将构建Jenkins容器的所有操作写入Dockerfile，并用版本工具进行管理。如果需要升级Jenkins，那么重新build一次Dockerfile即可。</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">FROM</span> <span class="n">ubuntu</span>
+<span class="n">ADD</span> <span class="n">source</span><span class="p">.</span><span class="nb">list</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="p">.</span><span class="nb">list</span>
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">q</span> <span class="n">wget</span>
+<span class="n">RUN</span> <span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="o">-</span><span class="mi">0</span> <span class="o">-</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">pkg</span><span class="p">.</span><span class="n">jenkins</span><span class="o">-</span><span class="n">ci</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span><span class="n">jenkins</span><span class="o">-</span><span class="n">ci</span><span class="p">.</span><span class="n">org</span><span class="p">.</span><span class="n">key</span> <span class="o">|</span> <span class="n">apt</span><span class="o">-</span><span class="n">key</span> <span class="n">add</span> <span class="o">-</span>
+<span class="n">ADD</span> <span class="n">jenkins</span><span class="p">.</span><span class="nb">list</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="p">.</span><span class="nb">list</span><span class="p">.</span><span class="n">d</span><span class="o">/</span>
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">q</span> <span class="n">jenkins</span>
+<span class="n">ENV</span> <span class="n">JENKINS_HOME</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jenkins</span><span class="o">/</span>
+<span class="n">EXPOSE</span> <span class="mi">8080</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s">"java"</span><span class="p">,</span> <span class="s">"-jar"</span><span class="p">,</span> <span class="s">"/usr/share/jenkins/jenkins.war"</span><span class="p">]</span></code></pre></figure>
+
+<p>每次build时标注一个新的tag：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">jenkins</span><span class="p">:</span><span class="mf">1.578</span> <span class="o">--</span><span class="n">rm</span> <span class="p">.</span> </code></pre></figure>
+
+<p>另外，建议使用Docker volume功能将外部目录挂载到JENKINS_HOME目录（Jenkins会讲安装的插件等文件存放在这个目录），这样保证了升级Jenkins容器后已安装的插件都还在。例如，讲主机/usr/local/jenkins/home目录挂在到容器内部/var/lib/jenkins：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9090</span><span class="p">:</span><span class="mi">8080</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span>
+<span class="n">jenkins</span><span class="o">/</span><span class="n">home</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jenkins</span> <span class="o">--</span><span class="n">name</span>
+<span class="n">jenkins</span> <span class="n">jenkins</span><span class="p">:</span><span class="mf">1.578</span></code></pre></figure>
+
+<h4 id="将docker容器作为jenkins容器的slave">将Docker容器作为Jenkins容器的Slave</h4>
+
+<p>在使用Jenkins容器时，我们有一个原则：不在容器内部存放任何和项目相关的数据。因为运行中的容器不一定是稳定的，而Docker本身也可能有Bug，所以将项目数据存放在容器中，一旦出了问题，就有丢掉所有数据的风险。因此，我们建议Jenkins容器仅负责提供Jenkins服务而不负责构建，将构建工作安排给其他Docker容器做。</p>
+
+<p>例如，为了构建Java项目，需要创建一个包含JDK及其构建工具的容器。依然适用Dockerfile构建该容器，以下是示例代码（可根据项目实际需要安装其他工具，如Gradle等）：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">FROM</span> <span class="n">ubuntu</span>
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">q</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span> <span class="n">openjdk</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">jdk</span>
+<span class="n">RUN</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">sshd</span>
+<span class="n">RUN</span> <span class="n">echo</span> <span class="s">'root:change'</span> <span class="o">|</span><span class="n">chpasswd</span>
+<span class="n">EXPOSE</span> <span class="mi">22</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s">"/usr/sbin/sshd"</span><span class="p">,</span> <span class="s">"-D"</span><span class="p">]</span></code></pre></figure>
+
+<p>在这里安装openssh-server的原因是Jenkins需要使用SSH的方式访问和操作Slave，因此SSH应作为每一个Slave必须安装的服务，运行该容器：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">P</span> <span class="o">-</span><span class="n">name</span> <span class="n">java</span> <span class="n">java</span><span class="p">:</span><span class="mf">1.7</span></code></pre></figure>
+
+<p>其中，-P是让Docker为容器内部的22端口自动分配重新定向到主机的端口，这时如果执行命令：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">ps</span>
+<span class="mi">804</span><span class="n">b1d9e4202</span>    <span class="n">java</span><span class="p">:</span><span class="mf">1.7</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">sshd</span> <span class="o">-</span><span class="n">D</span>    <span class="mi">6</span> <span class="n">minutes</span> <span class="n">ago</span>
+<span class="n">Up</span> <span class="mi">6</span> <span class="n">minutes</span>    <span class="mf">0.0</span><span class="p">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">49153</span><span class="o">-&gt;</span><span class="mi">22</span><span class="o">/</span><span class="n">tcp</span> <span class="n">java</span></code></pre></figure>
+
+<p>端口22被重定向到了49153端口。这样，Jenkins就可以通过SSH直接操作该容器了（在Jenkins的Manage Nodes中配置该Slave）。</p>
+
+<p>有了包含构建Java项目的Slave容器后，我们依然要遵循容器中不能存放项目相关数据的原则。因此，又需要借助volume：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">jenkins</span><span class="o">/</span><span class="n">workspace</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">jenkins</span> <span class="o">-</span><span class="n">P</span> <span class="o">-</span><span class="n">name</span> <span class="n">java</span> <span class="n">java</span><span class="p">:</span><span class="mf">1.7</span></code></pre></figure>
+
+<p>这样，我们在Jenkins Slave中配置的Job、Workspace及下载的源代码都会被放置到主机目录/usr/local/jenkins/workspace下，最终达成了不在容器中放置任何项目数据的目标。</p>
+
+<p>通过上面的实践，我们成功地将一个Docker容器配置成了Jenkins的Slave。相比直接将Jenkins安装在主机上的方式，Jenkins容器的解决方案带来了一些明显的好处：</p>
+
+<ul>
+  <li>重用更加简单，只需一行命令就可获得CI的服务</li>
+  <li>升级和维护容易，只需要重新构建Jenkins容器即可</li>
+  <li>灵活配置Slave的能力，并可根据企业内部需要预先定制具有不同能力的Slave。例如，可以创建出具有构建Ruby On Rails能力的Slave和具有构建Node.js能力的Slave。当Jenkins需要具备某种能力的Slave时，只需要docker run将该容器启动，并配置为Slave，Jenkins就立刻拥有了构建该应用的能力</li>
+</ul>
+
+<p>如果一个组织内部项目繁多且技术复杂，那么采用Jenkins结合Docker的方案会简化很多配置工作，同时也带来了效率的提升。</p>
+
+<h3 id="docker与自动化部署">Docker与自动化部署</h3>
+
+<p>说到自动化部署，通常不仅代表已自动化方式把某个应用放置在它应该在的位置，这只是基本功能。此外，它还有更为重要的意义：</p>
+
+<ul>
+  <li>以快速且低成本的部署方式验证应用是否在目标环境中可运行（通常有TEST/UAT/PROD等环境）</li>
+  <li>以不同的自动化部署策略满足业务需求（如蓝绿部署）</li>
+  <li>降低了运维成本，并促使开发人员和运维人员以端到端的方式思考软件开发（DevOps）</li>
+</ul>
+
+<p>在这个案例中，由于上述第2个挑战的存在，导致无法将UAT乃至产品环境的部署全部自动化。回想客户希望验证软件架构的需求，我们的策略是尽量使测试环境靠近产品环境。</p>
+
+<h4 id="标准化docker镜像">标准化Docker镜像</h4>
+
+<p>很多企业内部都存在一套叫做标准化的规范，在这套规范中定义了开发中所使用的语言和工具的版本信息等，因为这样做可以统一开发环境并降低运维团队负担。在这个项目上，我们依据客户提供的标准化规范，创建了一系列容器并把它们按照不同的职能进行了分组，如图3。</p>
+
+<p>我们把Docker镜像分为三层：基础镜像层，服务镜像层和应用镜像层，下层镜像的构建依赖上层镜像，越靠上层的镜像越稳定且不容易变。</p>
+
+<ul>
+  <li>基础镜像层，负责配置最基本的、所有镜像都需要的软件及服务，例如前文提到的openssh-server</li>
+  <li>服务镜像层，负责构建符合企业标准化规范的镜像，这一层很想SaaS</li>
+  <li>应用镜像层，和应用程序直接相关，CI的产出物</li>
+</ul>
+
+<p>分层后，由于上层镜像已提供了应用所需要的全部软件和服务，所以可以显著加快应用层镜像构建的速度。曾经有人担心如果在CI中构建镜像会不会太慢？经过这样的分层是可以解决这个问题的。</p>
+
+<p>在Dockerfile中使用FROM命令可以帮助构建分层镜像。例如，依据标准化规范，客户的产品环境运行RHEL6.3，因此在测试环境中，我们选择用CentOS 6.3来作为所有镜像的基础操作系统。这里给出从构建base镜像到Java镜像的方法。首先是定义base镜像的Dockerfile：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">FROM</span> <span class="n">centos</span>
+<span class="n">RUN</span> <span class="n">yum</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">q</span> <span class="n">unzip</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span> 
+<span class="n">RUN</span> <span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">q</span> <span class="o">-</span><span class="n">N</span> <span class="s">""</span> <span class="o">-</span><span class="n">t</span> <span class="n">dsa</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">ssh_host_dsa_key</span> <span class="o">&amp;&amp;</span> <span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">q</span> <span class="o">-</span><span class="n">N</span> <span class="s">""</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">ssh_host_rsa_key</span>
+<span class="n">RUN</span> <span class="n">echo</span> <span class="s">'root:changeme'</span> <span class="o">|</span> <span class="n">chpasswd</span>
+<span class="n">RUN</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s">"s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g"</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span> \
+<span class="o">&amp;&amp;</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s">"s/UsePAM.*/UsePAM no/g"</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
+<span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
+<span class="n">EXPOSE</span> <span class="mi">22</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s">"/usr/sbin/sshd"</span><span class="p">,</span> <span class="s">"-D"</span><span class="p">]</span></code></pre></figure>
+
+<p>接着，构建服务层基础镜像Java，依据客户的标准化规范，Java的版本为jdk-6u38-linux-x64：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">FROM</span> <span class="n">base</span>
+<span class="n">ADD</span> <span class="n">jdk</span><span class="o">-</span><span class="mi">6</span><span class="n">u38</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x64</span><span class="o">-</span><span class="n">rpm</span><span class="p">.</span><span class="nb">bin</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">local</span><span class="o">/</span>
+<span class="n">RUN</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">jdk</span><span class="o">-</span><span class="mi">6</span><span class="n">u38</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x64</span><span class="o">-</span><span class="n">rpm</span><span class="p">.</span><span class="nb">bin</span>
+<span class="n">RUN</span> <span class="n">yes</span> <span class="o">|</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">jdk</span><span class="o">-</span><span class="mi">6</span><span class="n">u38</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x64</span><span class="o">-</span><span class="n">rpm</span><span class="p">.</span><span class="nb">bin</span> <span class="o">&amp;&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+<span class="n">ENV</span> <span class="n">JAVA_HOMe</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">jdk1</span><span class="p">.</span><span class="mf">6.0_38</span>
+<span class="n">RUN</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">var</span><span class="o">/</span><span class="n">local</span><span class="o">/*</span><span class="p">.</span><span class="nb">bin</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s">"/usr/sbin/sshd"</span><span class="p">,</span> <span class="s">"-D"</span><span class="p">]</span></code></pre></figure>
+
+<p>如果还需要构建JBoss镜像，那么将JBoss安装到Java镜像即可：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">FROM</span> <span class="n">java</span>
+<span class="n">ADD</span> <span class="n">jboss</span><span class="o">-</span><span class="mf">4.3</span><span class="o">-</span><span class="mf">201307.</span><span class="nb">zip</span> <span class="o">/</span><span class="n">app</span><span class="o">/</span>
+<span class="n">RUN</span> <span class="n">unzip</span> <span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">jboss</span><span class="o">-</span><span class="mf">4.3</span><span class="o">-</span><span class="mf">201307.</span><span class="nb">zip</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">app</span><span class="o">/</span> <span class="o">&amp;&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">dull</span> <span class="o">&amp;&amp;</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">jboss</span><span class="o">-</span><span class="mf">4.3</span><span class="o">-</span><span class="mf">201307.</span><span class="nb">zip</span>
+<span class="n">ENV</span> <span class="n">JBOSS_HOME</span> <span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">jboss</span><span class="o">/</span><span class="n">jboss</span><span class="o">-</span><span class="k">as</span>
+<span class="n">EXPOSE</span> <span class="mi">8080</span>
+
+<span class="n">CMD</span> <span class="p">[</span><span class="s">"/app/jboss/jboss-as/bin/run.sh"</span><span class="p">,</span> <span class="s">"-b"</span><span class="p">,</span> <span class="s">"0.0.0.0"</span><span class="p">]</span></code></pre></figure>
+
+<p>这样，所有使用JBoss应用程序都保证使用与标准化规范定义一致的Java版本和JBoss版本，从而使测试环境更靠近产品环境。</p>
+
+<h4 id="更好地组织自动化发布脚本">更好地组织自动化发布脚本</h4>
+
+<p>为了更好地组织自动化发布脚本，版本化控制是必须的。我们在项目中单独创建了一个目录：deloy，在这个目录下存放所有与发布相关的文件，包括：用于自动化发布的脚本，用于构建镜像的Dockerfile及与环境相关的配置文件等，其目录结构是：</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="err">├──</span><span class="n">README</span><span class="p">.</span><span class="n">md</span>
+<span class="err">├──</span><span class="n">artifacts</span> <span class="err">#</span><span class="n">war</span><span class="o">/</span><span class="n">jar</span><span class="p">,</span> <span class="err">数据迁移脚本等</span>
+<span class="err">├──</span><span class="n">bin</span>       <span class="err">#</span><span class="n">shell</span><span class="err">脚本，用于自动化构建镜像和部署</span>
+<span class="err">├──</span><span class="n">images</span>    <span class="err">#所有镜像的</span><span class="n">Dockerfile</span>
+<span class="err">├──</span><span class="n">regions</span>   <span class="err">#环境相关的配置信息，我们只包含本地环境及测试环境</span>
+<span class="err">└──</span><span class="n">roles</span>     <span class="err">#角色化部署脚本，会在</span><span class="n">bin</span><span class="err">中调用脚本</span></code></pre></figure>
+
+<p>这样，当需要向某一台机器上安装Java和JBoss镜像时，用下面这条命令即可：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">bin</span><span class="o">/</span><span class="n">install</span><span class="p">.</span><span class="n">sh</span> <span class="n">images</span> <span class="o">-</span><span class="n">p</span> <span class="mf">10.1</span><span class="p">.</span><span class="mf">2.15</span> <span class="n">java</span> <span class="n">jboss</span></code></pre></figure>
+
+<p>而在部署过程中，我们采用了角色化部署的方式。在roles目录下，它是这样的：</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="err">├──</span><span class="n">nginx</span>
+<span class="err">│</span>  <span class="err">└──</span><span class="n">deploy</span><span class="p">.</span><span class="n">sh</span>
+<span class="err">├──</span><span class="n">opencms</span>
+<span class="err">│</span> <span class="err">└──</span><span class="n">deploy</span><span class="p">.</span><span class="n">sh</span>
+<span class="err">├──</span><span class="n">service</span><span class="o">-</span><span class="n">backend</span>
+<span class="err">│</span> <span class="err">└──</span><span class="n">deploy</span><span class="p">.</span><span class="n">sh</span>
+<span class="err">├──</span><span class="n">service</span><span class="o">-</span><span class="n">web</span>
+<span class="err">│</span> <span class="err">└──</span><span class="n">deploy</span><span class="p">.</span><span class="n">sh</span>
+<span class="err">└──</span><span class="n">utils</span><span class="p">.</span><span class="n">sh</span></code></pre></figure>
+
+<p>这里我们定义了四种角色：ngix、opencms、service-backend和service-web。每个角色下都有自己的发布脚本。例如，当需要发布service-web时，可以执行命令：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">bin</span><span class="o">/</span><span class="n">deploy</span><span class="p">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">e</span> <span class="n">test</span> <span class="o">-</span><span class="n">p</span> <span class="mf">10.1</span><span class="p">.</span><span class="mf">2.15</span> <span class="n">service</span><span class="o">-</span><span class="n">web</span></code></pre></figure>
+
+<p>该脚本会加载由-e指定的test环境的配置信息，并讲service-web部署至IP地址为10.1.2.15的机器上。而最终，bin/deploy.sh会调用每个角色下的deploy.sh脚本。</p>
+
+<p>角色化后，部署变得更为清晰明了，且每个角色单独的deploy脚本则更有利于划分责任，从而避免了和其他角色的干扰。</p>
+
+<h4 id="构建本地虚拟环境">构建本地虚拟环境</h4>
+
+<p>通常在提到自动化部署脚本时，大家都乐于说这些脚本如何简化工作增加效率，但是，其编写过程通常都是痛苦和耗时的，需要把脚本放在相应的环境中反复执行来验证是否工作正常。这就是我们建议最好首先构建一个本地虚拟化环境的原因。有了它，就可以在自己的机器上反复测试而不受网络和环境的影响。</p>
+
+<p>Vagrant（http://www.vagrantup.com）是很好的本地化虚拟化工具，与Docker结合可以很容易地在本地搭建起与测试环境几乎相同的环境。以这个项目为例，可以使用Vagrant模拟两台机器。以下是Vagrant示例：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">Vagrant</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="n">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="n">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">vm</span><span class="p">.</span><span class="n">define</span> <span class="s">"server1"</span><span class="p">,</span> <span class="n">primary</span><span class="p">:</span> <span class="n">true</span> <span class="n">do</span> <span class="o">|</span><span class="n">server1</span><span class="o">|</span>
+        <span class="n">server1</span><span class="p">.</span><span class="n">vm</span><span class="p">.</span><span class="n">box</span> <span class="o">=</span> <span class="s">"raring-docker"</span>
+            <span class="n">server1</span><span class="p">.</span><span class="n">vm</span><span class="p">.</span><span class="n">network</span> <span class="p">:</span><span class="n">private_network</span><span class="p">,</span> <span class="n">ip</span><span class="p">:</span> <span class="s">"10.1.2.15"</span>
+    <span class="n">end</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">vm</span><span class="p">.</span><span class="n">define</span> <span class="s">"server2"</span> <span class="n">do</span> <span class="o">|</span><span class="n">server2</span><span class="o">|</span>
+        <span class="n">server2</span><span class="p">.</span><span class="n">vm</span><span class="p">.</span><span class="n">box</span> <span class="o">=</span> <span class="s">"raring-docker"</span>
+            <span class="n">server2</span><span class="p">.</span><span class="n">vm</span><span class="p">.</span><span class="n">network</span> <span class="p">:</span><span class="n">private_network</span><span class="p">,</span> <span class="n">ip</span><span class="p">:</span> <span class="s">"10.1.2.16"</span>
+    <span class="n">end</span>
+<span class="n">end</span></code></pre></figure>
+
+<p>由于部署脚本通常采用SSH当方式连接，所以完全可以把这两台虚拟机看做是网络中的两台机器，可以调用部署脚本验证是否正确。</p>
+
+<h4 id="构建企业内部的docker-registry">构建企业内部的Docker Registry</h4>
+
+<p>前文提到了诸多分层镜像，那么如何管理这些镜像？如何更好地分享呢？答案就是使用Docker Registry。Docker Registry是一个镜像仓库，允许用户向Registry中提交（push）镜像，同时又可以从中下载（pull）。</p>
+
+<p>构建本地的Registry非常简单，执行下面的命令：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">5000</span><span class="p">:</span><span class="mi">5000</span> <span class="n">registry</span></code></pre></figure>
+
+<p>关于如何使用Registry的更多信息，参见：https://github.com/docker/docker-registry</p>
+
+<p>在搭建好Registry后，就可以向它push自己的镜像了。例如：需要将base镜像提交至Registry：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">push</span> <span class="n">your_registry_ip</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span>
+<span class="n">base</span><span class="p">:</span><span class="n">centros</span></code></pre></figure>
+
+<p>而提交Java和JBoss也相似：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">push</span> <span class="n">your_registry_ip</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">java</span><span class="p">:</span><span class="mf">1.6</span>
+<span class="n">docker</span> <span class="n">push</span> <span class="n">your_registry_ip</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">jboss</span><span class="p">:</span><span class="mf">4.3</span></code></pre></figure>
+
+<p>使用下面的方式下载镜像：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">docker</span> <span class="n">pull</span> <span class="n">your_registry_ip</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">jboss</span><span class="p">:</span><span class="mf">4.3</span></code></pre></figure>
+
+<h3 id="总结">总结</h3>
+
+<p>本文分享了我们在实际项目中使用Docker的一些实践经验。我们认为Docker非常灵活，是一个多面手，给整个流程带来了极大的灵活性和扩展性，并且也展示了极好的性能，符合它天生就为部署而生的特质。</p>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

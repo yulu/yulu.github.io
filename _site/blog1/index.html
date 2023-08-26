@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TECH BLOG</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+
+    <body>
+
+        <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+        <div class="blog-container">
+            <div class="blog-image">
+                <div class="title-container">
+                    <span class="title">TECH BLOG</span>
+                    <span class="sub-title">Tech • Book • Growth • Reflection</span>
+                </div>
+                <div class="blog-layer"></div>
+            </div>
+
+            <div class="blog-content">
+            
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 1, 2023</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2023/08/01/kafka-notes-chapter3.html">[Kafka Guide] Chapter 3 - Kafka Producer</a></div>
+		<div class="post-preview"> Kafka Producer Components Illustrated Basic Setup Properties kafkaProps = new Properties(); // &lt;= start with a property object kafkaProps.put("bootstrap.servers", "broker1:9092,broker2:9092"); // &lt;= server uri kafkaProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer"); // &lt;= use default serializer kafkaProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer"); producer = new KafkaProducer&lt;String, String&gt;(kafkaProps); Sending Messages... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">Kafka</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 1, 2023</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2023/08/01/kafka-notes-chapter2.html">[Kafka Guide] Chapter 2 - Install Kafka</a></div>
+		<div class="post-preview"> Hands-on Running on AWS EC2 (ubuntu, t2.micro) ssh to server ssh -i yulu-mac.pem ubuntu@xx.xx.xx.xx install java 11 sudo apt-get update sudo apt install openjdk-11-jre-headless install zookeeper wget https://dlcdn.apache.org/zookeeper/zookeeper-3.5.10/apache-zookeeper-3.5.10-bin.tar.gz tar -zxf apache-zookeeper-3.5.10-bin.tar.gz mv apache-zookeeper-3.5.10-bin /usr/local/zookeeper mkdir -p /var/lib/zookeeper cp &gt; /usr/local/zookeeper/conf/zoo.cfg... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">Kafka</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 1, 2023</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2023/08/01/kafka-notes-chapter1.html">[Kafka Guide] Chapter 1 - Meet Kafka</a></div>
+		<div class="post-preview"> What Problems does Kafka Solve How Kafka comes in to save the data transportation problems here Apache Kafka was developed as a publish/subscribe messaging system designed to solve the above problem - a distributing streaming platform. A filesystem or database... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">Kafka</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 1, 2023</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2023/08/01/kafka-notes-chapter4.html">[Kafka Guide] Chapter 4 Kafka Consumer</a></div>
+		<div class="post-preview"> Kafka Consumer Concepts Consumers and Consumer Groups The main way we scale data consumption from a Kafka topic is by adding more consumers to a consumer group - adding consumers in a consumer groups scales up the process, however adding... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">Kafka</span>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 12, 2023</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2023/04/12/ddia-6.html">[DDIA] Chapter 6 - Partition</a></div>
+		<div class="post-preview"> Chapter Summary Database partition or sharding is discussed in this chapter. Partitioning is a very basic concept in data storage engine. As when the data volume goes large, a single node will not be enough to host all the data,... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">system_design</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 10, 2023</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2023/04/10/ddia-5.html">[DDIA] Chapter 5 - Replication</a></div>
+		<div class="post-preview"> Chapter Summary This chapter is the start of the three related topics regarding storage systems - replication, partition and transaction. Replication is important because of these important properties it provides: 1) keep the data geographically close to the users 2)... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">system_design</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Sep 18, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2022/09/18/ddia-4.html">[DDIA] Chapter 4 - Encoding and Evolution</a></div>
+		<div class="post-preview"> Chapter Summary Services communicate to each other by protocols (pre-defined interfaces and data models). As application developers, we are very often making API design choices by choosing between HTTP or gPRC, or REST vs RPC vs GraphQL, or Web socket... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">system_design</span>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jul 27, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2022/07/27/ddia-3.html">[DDIA] Chapter 3 - Storage and Retrieval</a></div>
+		<div class="post-preview"> Chapter Summary This is an interesting and exciting chapter! Finally it starts to talk about data systems. The discussion starts from the illustration of how data store can be done with a simple text file. Extending from the concept, a... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">system_design</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">May 23, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2022/05/23/ddia-2.html">[DDIA] Chapter 2 - Data Models and Query Languages</a></div>
+		<div class="post-preview"> Chapter Summary This chapter briefly discussed the three types of data models: relational, document and graph database. Some histories about database are introduced to give us a better ideas why these databases are developed and what types of problems they... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">system_design</span>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 28, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2022/04/28/ddia-1.html">[DDIA] Chapter 1 - Reliable, Scalable and Maintainable Applications</a></div>
+		<div class="post-preview"> The book ‘Design Data Intensive Application’ is a really popular book recently years. Why? The reason is that it is relatively ‘easy’ for the inexperience application software engineers to follow and get a glance of what distributed world looks like.... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+			<span class="post-tag">system_design</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 25, 2022</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2022/04/25/effective-learning.html">The Secret of Effective Learning</a></div>
+		<div class="post-preview"> There’s an old Chinese saying: sharpening your axe will not delay your job of chopping wood. I didn’t have a clear idea about effective learning until I encountered some popular YouTube videos posted by a YouTuber. I realized how ineffective... </div>
+		
+			<span class="post-tag">productivity</span>
+		
+			<span class="post-tag">effective_learning</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Feb 2, 2016</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2016/02/02/android-crop-library.html">How to Distribute Library on jCenter and My First UI Lib</a></div>
+		<div class="post-preview"> In order to modularize the ViSearch Android SDK that I was working with previously, I developed my very first UI lib - image-crop-layout. This is a light-weight image cropping module that supports UI customization and box update listener. Here is... </div>
+		
+			<span class="post-tag">android</span>
+		
+			<span class="post-tag">jcenter</span>
+		
+			<span class="post-tag">ui-widget</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Oct 21, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2015/10/21/software-lifecylce.html">Software Development Process</a></div>
+		<div class="post-preview"> What is software engineering? The discipline thats investigates program development. How can it be done more efficiently? What’s the best way of doing program development? And how can you develop reliable programs? - Tevfik Bultan, UCSB How is the software... </div>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Mar 24, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2015/03/24/frontend.html">About Learing HTML and CSS</a></div>
+		<div class="post-preview"> Start to learn frontend web development. Book and MOOC of March Bought the most recommanded books on Amazon. It is well structured and with really good design. I believe these two books are more for designers than developers. It grasps... </div>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 1, 2015</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2015/01/01/mr-p.html">Mr. P and Mr. S Quiz</a></div>
+		<div class="post-preview"> Few months away from my little blog, I decide to make the “I am back post” by going through an interesting brain teaser again. Months ago, one of my closest friends sent a little quiz in our chat group. I... </div>
+		
+			<span class="post-tag">brain_teazer</span>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Nov 2, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/11/02/tapi-wallet.html">Tapi Wallet Android App</a></div>
+		<div class="post-preview"> TapiWallet is an Android App for e-receipt services provided by TapiData Inc, a startup company incubated in NUS. As exectutive app developer for the project, I took responsibility of all the mobile-related product design and development practices. TapiData provide a... </div>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 12, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/08/12/my-brain.html">My Brain Has Been F**ked</a></div>
+		<div class="post-preview"> As a Brain teazers lover, code sometimes can be a fun toy for me. From last year, I started to play around with python challenge occasionally and reached level 13 (with cheating). The famous python challenge seems quite difficult for... </div>
+		
+			<span class="post-tag">brain_teazer</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jun 21, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/06/21/shader-camera.html">Shader Camera</a></div>
+		<div class="post-preview"> Occasionally I receives emails asking how to render Camera Frame using OpenGL ES on Android. I lazily used some codes from an open source project InstaCam without fully understand until recently I reviewed some fundamentals of OpenGL ES and re-impelemented... </div>
+		
+			<span class="post-tag">OpenGL</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 29, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/04/29/defence-sample.html">An Excellent Defence Presentation</a></div>
+		<div class="post-preview"> Accidently found a YouTube video of Dr David Chen’s defence presentation when searching for his paper (and realized I followed his tutorial to study server-client image processing on Android a year ago). It is such an excellent presentation with very... </div>
+		
+			<span class="post-tag">research</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 19, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/04/19/boost-cpp-python.html">Boost C++ in Python</a></div>
+		<div class="post-preview"> Need to implement some code in Cpp for efficiency, but still want to use Python to rapidly develop the software. Test the boost.python lib to convert Cpp functions to python module. Take reference example from boost.python simple example and the... </div>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 11, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/04/11/blender-camera.html">UI/UX Design for Blender Camera</a></div>
+		<div class="post-preview"> This is the first time I practice a methodological design process for Android app. I did not have any professional training on graphic/UI/UX design, just did every step with intuition. Here I note down the process. Random Thoughts on Paper... </div>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Mar 12, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/03/12/color-effect.html">Color and Art Effect by OpenGL Shaders on Android</a></div>
+		<div class="post-preview"> It has been a year! A year ago I put up some posts on image processing using Shaders just for my own record. I have never expected that this to be rewarded. Now the work is integrated in my very... </div>
+		
+			<span class="post-tag">OpenGL</span>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 31, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/01/31/lazy-snapping.html">Lazy Snapping</a></div>
+		<div class="post-preview"> Recently I received some emails asking about the implementation of Lazy Snapping (through a video post on my YouTube). I thought of taking notes of this work, however postponed many times due to lack of time. I dig out some... </div>
+		
+			<span class="post-tag">research</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 22, 2014</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2014/01/22/gtd.html">Getting Things Done</a></div>
+		<div class="post-preview"> Recently meet an interesting girl who have some common with me, and we made friends naturally. I felt that she is the same type of person as I am, energetic independent and ..dilettante. We share our thoughts about travel, dream... </div>
+		
+			<span class="post-tag">productivity</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Nov 8, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/11/08/a-book.html">A Book on Android Programming</a></div>
+		<div class="post-preview"> Months ago, tech book author Erik Hellman contacted me through the blog and asked me the permission to include some of my blog posts and source codes about shader programming in his new book on Android Programming. Today I received... </div>
+		
+			<span class="post-tag">Android</span>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 30, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/08/30/python-opencv.html">Exploration in Python and Report a Bug in OpenCV Python</a></div>
+		<div class="post-preview"> Spent sometime to learn Python for setting up a Django web application framework. Summarize some useful tips for Python programming as well as share a modified program for feature-based homography tracking using OpenCV python wrapper (the sample codes come with... </div>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 15, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/08/15/pretty-geeky-codes.html">Pretty Images from Pretty Geeky Codes</a></div>
+		<div class="post-preview"> Haven’t been here writing about techqies for such a long time. During the past few months, I had a wonderful backpack trip to Europe, where I met the Taiwanese guy who is writing shaders for Disney Animation - my dream... </div>
+		
+			<span class="post-tag">WebGL</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 1, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/08/01/wedding-cartoon.html">Cartoons for Best Friend's Wedding Invitation Card</a></div>
+		<div class="post-preview"> Just to record the process to draw two cartoon characters for my best friend’s wedding invitation card. 1) Trace the outline in Illustrator 2) Paint in Photoshop 3) Finish up Thanks to my firends’ trust and appreciation, I gradually start... </div>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jun 23, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/06/23/mood-camera.html">Mood Camera</a></div>
+		<div class="post-preview"> During the PhD courses, I have devoted most of my research effort in computer vision and GPGPU programming. Thanks for all the great work by scientists and engineers in Computer Science, we now can easily make the complex image processing... </div>
+		
+			<span class="post-tag">Android</span>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">May 25, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/05/25/gestures-camera.html">Gestures to Control the Camera View</a></div>
+		<div class="post-preview"> After I published the Mood Camera app to the play store, I have received some, not too many comments - some are from my friends (all of them give me 5 stars, thanks so much guys), some are from the... </div>
+		
+			<span class="post-tag">Android</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">May 25, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/05/25/feature-detection.html">Feature Detectors and Descriptors</a></div>
+		<div class="post-preview"> Update on July 18, 2013: A simple program based on OpenCV is on my github. Demo program, not guarantee to work perfectly. Feature descriptors are commonly used in lots of computer vision algorithms - object recognition, tracking, image stitching camera... </div>
+		
+			<span class="post-tag">research</span>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">May 9, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/05/09/a-closure.html">A Closure. A New start. Be Prepared</a></div>
+		<div class="post-preview"> Finally I got the App release to the public. For so many nights, I stayed up programming, and so many times I almost gave up when facing the technical bottleneck. I’ve also met someone who is potentially to be a... </div>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 26, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/04/26/recognition.html">Bag-of-Features for Visual Recognition</a></div>
+		<div class="post-preview"> Rationale The inspirations are from some researches [1][2] in Server-client structure for large-scale AR tracking system. What I’m going to explored as illustrated in the figure below, is to build a backend server for my current outdoor tracking system running... </div>
+		
+			<span class="post-tag">research</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 19, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/04/19/more-filters.html">More Interesting Filters using Fragment Shader</a></div>
+		<div class="post-preview"> Continued with the previous project - image processing using OpenGL ES shaders, I studied and implemented another two interesting filters: artistic painting effect and diffuse glow effect. Artistic Painting Effect The idea is still taken from the popular book Graphics... </div>
+		
+			<span class="post-tag">OpenGL</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Apr 5, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/04/05/photo-sharing.html">A Photo-sharing App using Facebook and Weibo API</a></div>
+		<div class="post-preview"> I have spent some time to play around with Facebook and Weibo SDK for Android and create an app for photo-sharing to Facebook and Weibo with in-app log in. Here are the steps and tips. The source code is available... </div>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Mar 31, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/03/31/true-to-yourself.html">True to Yourself</a></div>
+		<div class="post-preview"> “Why are you being so mellow?” I was quite often, actually I AM still occasionally, being asked on this question. I am a typical introvert, and I was aware of this quite well since I was small. However for a... </div>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Mar 8, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/03/08/live-camera-streaming.html">Live Camera Streaming using OpenGL Texture Mapping</a></div>
+		<div class="post-preview"> Previous works are handling only single image. Now I consider to apply those shader manipulations on live camera feed in, so that I might achieve a “real-time” filter effect. There is a good example on camera frame mapped to OpenGL... </div>
+		
+			<span class="post-tag">OpenGL</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Feb 24, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/02/24/fashion-figure-drawing.html">Outfit Of The Day - Fashion Figure Drawing</a></div>
+		<div class="post-preview"> Finish a parttime course in NAFA in fasion figure drawing. These are some of the work I practiced. It is a great pleasure to catch the beauty and draw it out.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </div>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Feb 20, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/02/20/instagram-filter.html">Explore Instagram-like Filters with Photoshop and OpenGL ES Shaders</a></div>
+		<div class="post-preview"> I used to spend quite some time working with Photoshop®, to edit photos or do some digital painting. However I became too lazy to PS since I started to use smartphones. Apps like Instagram® seems to be able to do... </div>
+		
+			<span class="post-tag">OpenGL</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Feb 6, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/02/06/more-on-efficiency.html">More on Efficiency and Effectiveness</a></div>
+		<div class="post-preview"> Previously I analyzed the situation I was facing - less efficient in doing my “work” after living in a more healthier way. I urged myself to figure out a way to solve the ‘low efficiency’ problem. Then I was in... </div>
+		
+			<span class="post-tag">productivity</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 31, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/01/31/image-processing.html">Having Fun: Image Processing with OpenGL ES Fragment Shaders</a></div>
+		<div class="post-preview"> I have taken a very long time to get myself familiar with OpenGL ES Shaders. Finally I made some codes run and got some results that looked nice. The main area I want to explore is to use shaders to... </div>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 25, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/01/25/efficiency.html">Why do I Lose My Efficiency after Adopting a Healthier Lifestyle</a></div>
+		<div class="post-preview"> One month ago, I decided to change my “unhealthy” lifestyle - stayed up to 4 or 5 am and wake up at noon skipping the breakfast, and started routine work only in the afternoon. After a month of adjusting my... </div>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 23, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/01/23/logo-design.html">Logo Design</a></div>
+		<div class="post-preview"> I decided to translate some posts in Chinese to English and keep a copy of those here. Some design logs I felt quite interesting and worth to be shared. Today share the process for design a simple logo. A logo... </div>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 19, 2013</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2013/01/19/how-i-draw.html">How I Draw on iPad</a></div>
+		<div class="post-preview"> Share the process I adopt to draw on iPad. First I’d like to have a rough sketch on the paper. Only pen can provide such flexibility for free drawing. Sketch Then I take a picture of the sketch, and load... </div>
+		
+	</div>
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Aug 9, 2012</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2012/08/09/ar-navi.html">AR Navi</a></div>
+		<div class="post-preview"> ARNavi is an Android application that helps anyone new to the Faculty of Engineering in NUS to navigate to the different locations in the faculty, and to get acquainted with the various facilities, offices, and places of interest that can... </div>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 20, 2012</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2012/01/20/attitude.html">Attitude</a></div>
+		<div class="post-preview"> Chapter 4 - Good Bad Attitude. Paul talks about such an interesting group of people, who amuse themselves by picking locks - breaking into safes. Those geeks seem to be very difficult to be understood, while, yet can be easily... </div>
+		
+			<span class="post-tag">reading_notes</span>
+		
+	</div>
+  
+
+  
+	<div class="post-row">
+		<span class="post-meta">Jan 18, 2012</span><br>
+		<div class="title-container"><a class="page-title" href="/blog1/2012/01/18/android-dev.html">Android Development in Eclipse Configuration</a></div>
+		<div class="post-preview"> Android is interesting, flexible and often too flexible to start with. Here I’d like to share a guide for setup a developing and debugging environment for a native android application in eclipse. The copyright is to the original author of... </div>
+		
+	</div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+            </div>
+        </div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+</html>

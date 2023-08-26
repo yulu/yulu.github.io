@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>About Learing HTML and CSS</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2015/03/24/frontend.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17091931442_70c42c8288_h.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">About Learing HTML and CSS</h1>
+                <p class="post-meta">Mar 24, 2015</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>Start to learn frontend web development.</p>
+
+<h3 id="book-and-mooc-of-march">Book and MOOC of March</h3>
+
+<p>Bought the most recommanded <a href="http://www.amazon.com/HTML-CSS-Design-Build-Websites/dp/1118008189">books</a> on Amazon. It is well structured and with really good design. I believe these two books are more for designers than developers. It grasps me immediately. I took a few weeks going through and picked up the fundementals which I could hardly study in detail when doing projects.</p>
+
+<p>I also roughly went through the class video of two Udacity courses on HTML, CSS and JS. I am a person who gains more effeciveness from books than videos. Taking the courses is more for idea introduction.</p>
+
+<p>(Set a personal target, went through a book and a MOOC every Month)</p>
+
+<h3 id="tool--resources">Tool &amp; Resources</h3>
+
+<h4 id="editor">Editor</h4>
+
+<p>Sublime remains as a quite popular editor for web developer. I started with it as well. But later I come across <a href="http://brackets.io/">Brackets</a>, the open source lightweight text editor by Adobe, and fall in love with it immediately. Sublime are considered powerful but requires quite amount of effort to get familiar. In addition, it is literally not free. Brackets instead has a less steeper learning curve. It also supports a lot of plugins. After I installed it, I have easily setup plugins for vim, markdown viewer, solarize theme which I normally get comfortable to work with.</p>
+
+<p>Another popular editor is <a href="https://atom.io/">Atom</a> from Github.</p>
+
+<h4 id="css-preprocessor">CSS Preprocessor</h4>
+
+<p><a href="http://lesscss.org/">Less</a> and <a href="http://sass-lang.com/">Sass</a> are two popular CSS preprocessor. CSS preprocessor allows you to write css code in a more “programming” way since it helps to structure code in module and make it resuable. Tried with both and really enjoy the convinience that has been brought by the preprocessor.</p>
+
+<h4 id="framework">Framework</h4>
+
+<p>There are various css <a href="http://usablica.github.io/front-end-frameworks/compare.html">framework</a> that ease the develop effort. But I have not really got to using that intensively since the current practices are limit to simple displaying page.</p>
+
+<h3 id="in-practice">In Practice</h3>
+
+<p>To get more familiar with the tools, I start to study the code from others. A beautiful UI sample from <a href="http://paulvanoijen.com/index.php">paul van oijen</a>. I am impressed that css can do so much. Then I borrowed the code and redesign my blog style by introducing the navigation style in. I also came across the site <a href="http://codepen.io/">CodePen</a>, that allows online editing html, css and js. A lot of nice work are submitted here.</p>
+
+<p>My little blog becomes my first frontend project. I start with <a href="http://jekyllrb.com/">Jekyll</a>, a simple web framework. Sass is used as the CSS preprocessor. The design of the layout is in Sketch and Brackets as the editor. All the tools are new to me, but I become comfortable with them very soon. The weekend project is most enjoyable.</p>
+
+<p>Having been introduced to the wonderful world of web development for a few months. It is really an eye opener. Taste a little bit of the frontend as well as the backend, but only a tip of the iceberg. Will continue to learn more and improve.</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

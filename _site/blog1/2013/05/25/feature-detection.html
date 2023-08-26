@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Feature Detectors and Descriptors</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2013/05/25/feature-detection.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">Feature Detectors and Descriptors</h1>
+                <p class="post-meta">May 25, 2013</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <figcaption class="reading-notes">
+Update on July 18, 2013: 
+</figcaption>
+<blockquote>
+  <p>A simple program based on OpenCV is on my <a href="https://github.com/yulu/desc_compare">github</a>. Demo program, not guarantee to work perfectly.</p>
+</blockquote>
+
+<p>Feature descriptors are commonly used in lots of computer vision algorithms - object recognition, tracking, image stitching camera calibration and etc. I used it in three different types of tasks - tracking for AR, panorama creation and visual classification. Recently I conducted a detail analysis of the state-of-the-art detectors and descriptor-generators, since I am considering to try different algorithms in  some of my undergoing research projects as well as for the purpose of my paper revision [I hate this  most! :( ]. Here is a good <a href="http://computer-vision-talks.com/2011/08/feature-descriptor-comparison-report/">report</a> about descriptor comparison. In the post I briefly summarized the most popular open source detectors and descriptors (All of them are implemented in newest version of OpenCV).</p>
+
+<h4 id="sift2003">SIFT(2003)</h4>
+
+<p>SIFT descriptor is a classic approach, also the “original” inspiration for most of the descriptors proposed later. Up to date, it still outperforms most of the descriptors in the field. The drawback  is that it is mathematically complicated and computationally heavy.  Main issues it addresses are the scaling-invariance and orientation-invariance in describing the features.</p>
+
+<p>Detector: The keypoint is selected based on the Difference of Gaussian - detecting locations that are invariant to scale change of the image can be accomplished by searching for stable features across all possible scales, using a continuous function of scale known as scale space. To detect the keypoints, scale octave is generated and the local extrema is detected by comparing the centre pixel with the neighbours in space.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16886059497_d8c6f80696_z.jpg" alt="desc-1" /></p>
+
+<p>Descriptor: To describe the keypoints, SIFT make uses of the local gradient values and orientations of pixels around the keypoint.  A keypoint describer is created by first computing the gradient magnitude and orientation at each image sample point in a region around the keypoint location, as shown on the left. These are weighted by a Gaussian window, indicated by the overlaid circle. These samples are then accumulated into orientation histograms summarizing the contents over 4x4 subregions, as shown on the right, with the length of each arrow corresponding to the sum of the gradient magnitude near that direction within the region.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17067496746_5eb3648421_z.jpg" alt="desc-2" /></p>
+
+<h4 id="fast2006">FAST(2006)</h4>
+
+<p>FAST is a standalone feature detector (not descriptor generator). It is designed to be very efficient and suitable for real-time applications of any complexity. The segment test criterion operates by considering a circle of sixteen pixels around the corner candidate p. The original detector classifies p as a corner if there exists a set of n contiguous pixels in the circle which are all brighter than the intensity of the candidate pixel Ip plus a threshold t, or all darker than Ip - t, as illustrated below. To speed up the detector, a machine learning approach is adopted, and a decision tree is generated. The detail discussion is in the paper. FAST is only a detector, but it is proven to be quite reliable and used in the upstream for lots of other descriptor generating process.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17067497576_39758e2504_z.jpg" alt="desc-3" /></p>
+
+<h4 id="surf2008">SURF(2008)</h4>
+
+<p>SURF detector is recognized as a more efficient substitution for SIFT. It has a Hessian-based detector and a distribution-based descriptor generator.</p>
+
+<p>Detector: the detector is based on the Hessian matrix, defined as</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17093464795_6e66cfcd7c.jpg" alt="desc-math-1" /></p>
+
+<p>L is the convolution of the Gaussian second order derivative with the image I. In the implementation, they replace the Gaussian kernel with a simpler box filter. It is then interpolated in scale and image space to give itself the scale-invariance properties.</p>
+
+<p>Descriptor: An orientation is first assigned to the keypoint. Then a square region is constructed around the keypoint and rotated according to the orientation. The region is split up regularly into smaller 4x4 square sub-regions. This keeps important spatial information in. For each sub-region, we compute a few simple features at 5x5 regularly spaced sample points. The horizontal and vertical Haar wavelet responses dx and dy are calculated and summed up over each sub-region and form a first set of entries to the feature vector. The absolute values of the responses dx and dy are also calculated, and together with the sum of vector to form a four-dimensional descriptor. And for all 4x4 sub-regions, it results in a vector of length 64.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16473303733_0774369d97.jpg" alt="desc-4" /></p>
+
+<h4 id="brief2010">BRIEF(2010)</h4>
+
+<p>BRIEF descriptor is a light-weight, easy-to-implement descriptor based on binary strings. Binary test is explored in FERN algorithm, which is a Naive-Bayesian classifier method for feature matching. BRIEF descriptor targeted to low-power devices, and compensate some of its robustness and accuracy to the efficiency. It is a standalone descriptor generator, an upstream detector, such as FAST is required.</p>
+
+<p>The approach is to define a test pattern (experiment indicates Gaussian distribution gives a good result) and applied to the detected keypoints. The lines indicates a test pair, an output of either 1 or 0 is provided based on the intensity difference of the two pixels. A series of such test outputs a binary string, which is considered as the “descriptor”. Matching of the descriptor is based on the Hamming distance. BRIEF descriptor is not scale and orientation invariant due to the nature of the its design, however it inspires a few most recent and advanced binary-test based descriptors, which are discussed below.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16886063067_d91ee2218a.jpg" alt="desc-5" /></p>
+
+<h4 id="orb2011">ORB(2011)</h4>
+
+<p>ORB is an extension of BRIEF descriptor by introducing orientation invariance. It uses FAST detector with an orientation assignment by intensity centroid. To describe the feature, BRIEF pattern is rotated with orientation angles and a good pattern distribution is trained from the large rotated pattern database. A bit more detail about ORB is summarized here.</p>
+
+<p>Detector: The detector first employ a Harris corner measure to order the FAST keypoints since FAST does not produce a measure of cornerness. The orientation for the detected points are calculated based on the intensity centroid. The centroid is defined as</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16907255299_dea2850f3a_m.jpg" alt="desc-math-2" /></p>
+
+<p>A vector from the corner’s center to centroid can be calculated, and the orientation simply is</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16905689878_4a4e77af10_m.jpg" alt="desc-math-3" /></p>
+
+<p>Descriptor: The test pattern is steered according to the orientation of the keypoints. But the steered BRIEF lowers its variance because the oriented corner keypoints present a more uniform appearance to binary tests. To recover from the loss of variance in steered BRIEF, a learning method is developed to select a good subset from the binary test pool. The results rBRIEF has a better diversity and lower correlation.</p>
+
+<h4 id="brisk2011">BRISK(2011)</h4>
+
+<p>BRISK is more recent method based on scale-space enabled FAST for testing and binary test patterns for describing.</p>
+
+<p>Detector: a keypoint is identified at octave ci by analyzing the 8 neighboring saliency scores in ci as well as in the corresponding scores-patches in the immediately-neighboring layers above and below. In all three layers of interest, the local saliency maximum is sub-pixel refined before a 1D parabola is fitted along the scale-axis to determine the true scale of the keypoint.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16886243407_efaa475615.jpg" alt="desc-6" /></p>
+
+<p>Descriptors: BRISK is a 512 bit binary descriptor that computes the weighted Gaussian average over a selected pattern of points near the keypoint. The pattern is designed as that N locations are equally spaced on circles concentric with the keypoint. For the formation of the rotation- and scale- normalized descriptor, BRISK applies the sampling pattern rotated by alpha around the keypoint k. The bit-vector descriptor is assembled by performing all the short-distance binary intensity comparisons of point pairs.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16905685278_016c59db13.jpg" alt="desc-7" /></p>
+
+<h4 id="freak2012">FREAK(2012)</h4>
+
+<p>FREAK is a standalone descriptor. It improves upon the sampling pattern and method of pair selection that BRISK uses. FREAK evalues 43 weighted Gaussians at locations around the keypoint, but the pattern formed by these Gaussians is biologically inspired by the retinal pattern in the eye. The pixels being averaged overlap, and are much more concentrated near the keypoint. The actual FREAK algorithm uses a cascade for comparing these pairs, and puts the 64 most important bits in front to speed up the matching process.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16907252229_b0ab3c60fa.jpg" alt="desc-8" />
+<img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16905904470_c164aa4151.jpg" alt="desc-9" /></p>
+
+<p>I will post a more detailed comparison on efficiency and accuracy. Recent two months are busy with projects and trips.</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

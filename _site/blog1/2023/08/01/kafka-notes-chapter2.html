@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[Kafka Guide] Chapter 2 - Install Kafka</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter2.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">[Kafka Guide] Chapter 2 - Install Kafka</h1>
+                <p class="post-meta">Aug 1, 2023</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#hands-on">Hands-on</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#running-on-aws-ec2-ubuntu-t2micro">Running on AWS EC2 (ubuntu, t2.micro)</a></li>
+<li class="toc-entry toc-h5"><a href="#running-on-mac">Running on Mac</a></li>
+<li class="toc-entry toc-h5"><a href="#test-the-kafka-broker-is-working">Test the Kafka broker is working</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#configuring-the-broker">Configuring the Broker</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#general-broker-parameters">General Broker Parameters</a></li>
+<li class="toc-entry toc-h5"><a href="#topic-defaults-parameters">Topic Defaults Parameters</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#summary-as-ankicard">Summary as Ankicard</a></li>
+</ul> </div> 
+
+        <article class="post-content">
+            <h3 id="hands-on">Hands-on</h3>
+
+<h5 id="running-on-aws-ec2-ubuntu-t2micro">Running on AWS EC2 (ubuntu, t2.micro)</h5>
+
+<ul>
+  <li>ssh to server
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-i</span> yulu-mac.pem ubuntu@xx.xx.xx.xx
+</code></pre></div>    </div>
+  </li>
+  <li>install java 11
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt <span class="nb">install </span>openjdk-11-jre-headless
+</code></pre></div>    </div>
+  </li>
+  <li>install zookeeper
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://dlcdn.apache.org/zookeeper/zookeeper-3.5.10/apache-zookeeper-3.5.10-bin.tar.gz
+tar -zxf apache-zookeeper-3.5.10-bin.tar.gz
+mv apache-zookeeper-3.5.10-bin /usr/local/zookeeper
+mkdir -p /var/lib/zookeeper
+cp &gt; /usr/local/zookeeper/conf/zoo.cfg &lt;&lt; EOF
+&gt; tickTime=2000
+&gt; dataDir=/var/lib/zookeeper
+&gt; clientPort=2181
+&gt; EOF
+export JAVA_HOME=/usr/java/jdk-11.0.10
+/usr/local/zookeeper/bin/zkServer.sh start
+</code></pre></div>    </div>
+  </li>
+  <li>install kafka and config the heap (since t2.micro has only 1G memory)
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://downloads.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz
+tar -zxf kafka_2.13-3.4.0.tgz
+mv kafka_2.13-3.4.0 /usr/local/kafka
+mkdir /tmp/kafka-logs
+export JAVA_HOME=/usr/java/jdk-11.0.10
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+/usr/local/kafka/bin/kafka-server-start.sh -daemon /usr/local/kafka/config/server.properties
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h5 id="running-on-mac">Running on Mac</h5>
+<ul>
+  <li>install
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>kafka
+</code></pre></div>    </div>
+  </li>
+  <li>start zookeeper
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/homebrew/bin/zookeeper-server-start /opt/homebrew/etc/zookeeper/zoo.cfg
+</code></pre></div>    </div>
+  </li>
+  <li>start kafka
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/homebrew/bin/kafka-server-start /opt/homebrew/etc/kafka/server.properties
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h5 id="test-the-kafka-broker-is-working">Test the Kafka broker is working</h5>
+
+<ul>
+  <li>send from producer console
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kafka-console-producer <span class="nt">--broker-list</span> localhost:9092 <span class="nt">--topic</span> <span class="nb">test</span>
+<span class="o">&gt;</span> send first message
+<span class="o">&gt;</span> send second message
+<span class="o">&gt;</span> wow it is working
+</code></pre></div>    </div>
+  </li>
+  <li>consume by the consumer console
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kafka-console-consumer <span class="nt">--bootstrap-server</span> localhost:9092 <span class="nt">--topic</span> <span class="nb">test</span> <span class="nt">--from-beginning</span>
+send first message
+send second message
+wow it is working
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="configuring-the-broker">Configuring the Broker</h3>
+
+<h5 id="general-broker-parameters">General Broker Parameters</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">broker.id</code>: every Kafka broker must have an integer identifier, which is set using the <code class="language-plaintext highlighter-rouge">broker.id</code></li>
+  <li><code class="language-plaintext highlighter-rouge">listener</code>: A listener is defined as <code class="language-plaintext highlighter-rouge">&lt;protocol&gt;://&lt;hostname&gt;:&lt;port&gt;</code> e.g. <code class="language-plaintext highlighter-rouge">PLAINTEXT://localhost:9092,SSL://:9091</code></li>
+  <li><code class="language-plaintext highlighter-rouge">zookeeper.connect</code>: The location of the ZooKeeper used for storing the broker metadata is set using the zookeeper.connect configuration parameter. The format for this parameter is a semicolon-separated list of <code class="language-plaintext highlighter-rouge">hostname:port/path</code> strings
+    <ul>
+      <li>hostname: the hostname or IP address of the ZooKeeper server</li>
+      <li>port: the client port number for the server</li>
+      <li>/path: an optional ZooKeeper path to use as a chroot environment for the Kafka cluster. If it is omitted, the root path is used</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Why use a Chroot path?</p>
+
+  <p>It is generally considered to be good practice to use chroot path for the Kafka cluster. This allows the ZooKeeper ensemble to be shared with other applications, including other Kafka clusters, without a conflict. It is also best to specify multiple ZooKeeper servers in this configuration. This allows the Kafka broker to connect to another member of the ZooKeeper ensemble in the event of server failure</p>
+</blockquote>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">log.dirs</code>: log segments are stored in the directory specified in the <code class="language-plaintext highlighter-rouge">log.dir</code>. For multiple directories, <code class="language-plaintext highlighter-rouge">log.dirs</code> is preferable. Kafka broker will store partitions on them in a “least-used” fashion, with one partition’s log segments stored within the same path.</li>
+  <li><code class="language-plaintext highlighter-rouge">num.recovery.threads.per.data.dir</code>: kafka uses a configurable pool of threads for handling log segments. By default, only one thread per log directory is used. The configurable parameter sets the number of threads per directory</li>
+  <li><code class="language-plaintext highlighter-rouge">auto.create.topics.enable</code>: the default Kafka configuration specifies that the broker should automatically create a topic under some circumstances. However if you are managing topic creation explicitly, you can set this parameter to <code class="language-plaintext highlighter-rouge">false</code></li>
+  <li><code class="language-plaintext highlighter-rouge">auto.leader.rebalance.enable</code>: in order to ensure a Kafka cluster doesn’t become unbalanced by having all topic leadership on one broker, this config can be specified to ensure leadership is balanced as much as possible.</li>
+  <li><code class="language-plaintext highlighter-rouge">delete.topic.enable</code>: depending on your environment and data retention guidelines, you may wish to lock down a cluster to prevent arbitrary deletions of topics. Disabling topic deletion can be set by setting this flag to <code class="language-plaintext highlighter-rouge">false</code>.</li>
+</ul>
+
+<hr />
+
+<h5 id="topic-defaults-parameters">Topic Defaults Parameters</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">num.partitions</code>: how many partitions a new topic is created with.
+    <ul>
+      <li>keep in mind that the number of partitions for a topic can only be increased, never decreased.</li>
+      <li>many users will have the partition count for a topic be equal to, or a multiple of, the number of brokers in the cluster.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">default.replication.factor</code>: If auto-topic creation is enabled, this configuration sets what the replication factor should be for new topics</li>
+  <li><code class="language-plaintext highlighter-rouge">log.retention.ms</code>: the most common configuration for how long Kafka will retain messages is by time. The default is specified in the configuration file using the <code class="language-plaintext highlighter-rouge">log.retention.hours</code> parameter. However, there’re two other parameters allowed: <code class="language-plaintext highlighter-rouge">log.retention.minutes</code> and <code class="language-plaintext highlighter-rouge">log.retention.ms</code>. All three of these control the same goal - <strong>the amount of time after which messages may be deleted</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">log.retention.bytes</code>: another way to expire messages is based on the total number of bytes of messages retained.</li>
+  <li><code class="language-plaintext highlighter-rouge">log.segment.bytes</code>: once the log segment has reached to the size specified by this parameter, which defaults to 1GB, the log segment is closed and a new one is opened. Once a log segment has been closed, it can be considered for expiration.</li>
+  <li><code class="language-plaintext highlighter-rouge">log.roll.ms</code>: another way to control when log segments are closed. This parameter specifies the amount of time after which a log segment should be closed.</li>
+  <li><code class="language-plaintext highlighter-rouge">min.insync.replicas</code>: when configuring your cluster for data durability, setting <code class="language-plaintext highlighter-rouge">min.insync.replicas</code> to 2 ensures that at least two replicas are caught up and “in sync” with the producer. Refer to <a href="/blog1/2023/04/10/ddia-5.html">DDIA-Chapter5 replication</a></li>
+  <li><code class="language-plaintext highlighter-rouge">message.max.bytes</code>: this limits the maximum size of a message that can be produced, defaults to 1 MB.</li>
+</ul>
+
+<h3 id="summary-as-ankicard">Summary as Ankicard</h3>
+
+<p>💡 What are the two simple commands to test a Kafka server?</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kafka-console-producer <span class="nt">--broker-list</span> localhost:9092 <span class="nt">--topic</span> <span class="nb">test
+</span>kafka-console-consumer <span class="nt">--bootstrap-server</span> localhost:9092 <span class="nt">--topic</span> <span class="nb">test</span> <span class="nt">--from-beginning</span>
+</code></pre></div></div>
+
+<p>💡 What is <code class="language-plaintext highlighter-rouge">broker.id</code> config?</p>
+
+<p>Every broker must have a integer identifier</p>
+
+<p>💡 What is <code class="language-plaintext highlighter-rouge">log.dirs</code> config?</p>
+
+<p>Where the log segments are stored in <code class="language-plaintext highlighter-rouge">log.dir</code>, for multiple directories, <code class="language-plaintext highlighter-rouge">log.dirs</code> are preferable.</p>
+
+<p>💡 How will Kafka broker store the partitions in multiple log directories if <code class="language-plaintext highlighter-rouge">log.dirs</code> is configured?</p>
+
+<p>Kafka will store the partitions in a “least-used” fashion</p>
+
+<p>💡 What configuration will prevent Kafka to automatically create topic by sending message to a non-existing topic?</p>
+
+<p><code class="language-plaintext highlighter-rouge">auto.create.topics.enable</code></p>
+
+<p>💡 Which parameter configs how many partitions a new topic is created with?</p>
+
+<p><code class="language-plaintext highlighter-rouge">num.partitions</code></p>
+
+<p>💡 Can the number of partitions for a topic be decreased?</p>
+
+<p>No, the number of partitions for a topic can only be increased</p>
+
+<p>💡 What is the replication factor configured by <code class="language-plaintext highlighter-rouge">default.replication.factor</code>?</p>
+
+<p>It is the number of copies of data across several brokers. It should be greater than 1 to ensure the reliability</p>
+
+<p>💡 What is the <code class="language-plaintext highlighter-rouge">min.insync.replicas</code> config and how does it ensure the reliability?</p>
+
+<p>You should set this to 2 at least to ensure that at least two replicas are caught up and “in sync” with the producer. This enables the semi-sync replication strategy.</p>
+
+<p>💡 How does <code class="language-plaintext highlighter-rouge">log.retention.ms</code> and <code class="language-plaintext highlighter-rouge">log.retention.bytes</code> works differently as Kafka’s retention policies?</p>
+
+<p><code class="language-plaintext highlighter-rouge">log.retention.ms</code> is the most common retention policy - for how long the Kafka will retain the message, it indicates the amount of time after which messages may be deleted.
+<code class="language-plaintext highlighter-rouge">log.retention.bytes</code> indicates once the log segment has reached to the size specified by this parameter (defaults to 1GB), the log segment is closed and a new one is opened. Once a log segment has been closed, it can be considered expiration.</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

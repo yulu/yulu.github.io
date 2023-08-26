@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Shader Camera</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2014/06/21/shader-camera.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">Shader Camera</h1>
+                <p class="post-meta">Jun 21, 2014</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>Occasionally I receives emails asking how to render Camera Frame using OpenGL ES on Android. I lazily used some codes from an open source project <a href="https://github.com/harism/android_instacam">InstaCam</a> without fully understand until recently I reviewed some fundamentals of OpenGL ES and re-impelemented a demo app for camera frame rendering using shaders. This post is to discuss some key aspects in the implementation and share the demo codes.</p>
+
+<h3 id="camerarenderer">CameraRenderer</h3>
+
+<p>Drawing using OpenGL is implemented by rendering on <code class="language-plaintext highlighter-rouge">GLSurfaceView</code>. The common approach is subclass the <code class="language-plaintext highlighter-rouge">GLSurfaceView</code> and implements the <code class="language-plaintext highlighter-rouge">GLSurfaceView.Renderer</code>. The rendering tasks are performed by implementing the interface.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CameraRenderer</span> <span class="kd">extends</span> <span class="nc">GLSurfaceView</span> <span class="kd">implements</span> 
+                                <span class="nc">GLSurfaceView</span><span class="o">.</span><span class="na">Renderer</span><span class="o">,</span> 
+                                <span class="nc">SurfaceTexture</span><span class="o">.</span><span class="na">OnFrameAvailableListener</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">onSurfaceCreated</span><span class="o">(</span><span class="no">GL10</span> <span class="n">gl</span><span class="o">,</span> <span class="nc">EGLConfig</span> <span class="n">config</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="c1">//compile shader here</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">onSurfaceChanged</span><span class="o">(</span><span class="no">GL10</span> <span class="n">gl</span><span class="o">,</span> <span class="kt">int</span> <span class="n">width</span><span class="o">,</span> <span class="kt">int</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+       <span class="o">...</span>
+       <span class="c1">//open camera and start preview here</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">onDrawFrame</span><span class="o">(</span><span class="no">GL10</span> <span class="n">gl</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="c1">//draw frame as required</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<h3 id="surfacetexture">SurfaceTexture</h3>
+
+<p><code class="language-plaintext highlighter-rouge">SurfaceTexture</code> Interface provided by Android SDK (API Level 11+) has made our life much easier when dealing with image streaming either from Camera or MediaPlayer. <code class="language-plaintext highlighter-rouge">SurfaceTexture</code> is bound with an OpenGL Texture id at its instantiate (<code class="language-plaintext highlighter-rouge">mCameraTexture</code> is discussed later, which generates OpenGL texture handle):</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">onSurfaceChanged</span><span class="o">(</span><span class="no">GL10</span> <span class="n">gl</span><span class="o">,</span> <span class="kt">int</span> <span class="n">width</span><span class="o">,</span> <span class="kt">int</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="nc">SurfaceTexture</span> <span class="n">mSurfaceTexture</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SurfaceTexture</span><span class="o">(</span><span class="n">mCameraTexture</span><span class="o">.</span><span class="na">getTextureId</span><span class="o">());</span>
+    <span class="o">...</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Listeners can be registered to SurfaceTexture.setOnFrameAvailable to make updates whenever a new frame is streamed in. Here the camera renderer is registered to listening for the updates, whenever a new frame is streamed in, the renderer is required to draw a new frame on the surface. Use mSurfaceTexture.updateTexImage() to query the most recent frame on the stream.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">onSurfaceChanged</span><span class="o">(</span><span class="no">GL10</span> <span class="n">gl</span><span class="o">,</span> <span class="kt">int</span> <span class="n">width</span><span class="o">,</span> <span class="kt">int</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">mSurfaceTexture</span><span class="o">.</span><span class="na">setOnFrameAvailableListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+<span class="o">...</span>
+
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">onFrameAvailable</span><span class="o">(</span><span class="nc">SurfaceTexture</span> <span class="n">surfaceTexture</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">//request the renderer to draw frame when new frame available</span>
+    <span class="n">updateTexture</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="n">requestRender</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="o">...</span>
+
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">onDrawFrame</span><span class="o">(</span><span class="no">GL10</span> <span class="n">gl</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="c1">//render the texture to FBO if new frame is available, double check</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">updateTexture</span><span class="o">){</span>
+        <span class="n">mSurfaceTexture</span><span class="o">.</span><span class="na">updateTexImage</span><span class="o">();</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The texture updated by <code class="language-plaintext highlighter-rouge">SurfaceTexture</code> can only be bound to <code class="language-plaintext highlighter-rouge">GL_TEXTURE_EXTERNAL_OES</code> target rather than the <code class="language-plaintext highlighter-rouge">GL_TEXTURE_2D</code> target. Therefore a texture handle generated by the <code class="language-plaintext highlighter-rouge">mCameraTexture</code> object as mentioned above using the following implementation (bind with <code class="language-plaintext highlighter-rouge">GLES11Ext.GL_TEXTURE_EXTERNAL_OES</code>):</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OESTexture</span> <span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">mTextureHandles</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+        <span class="no">GLES20</span><span class="o">.</span><span class="na">glGenTextures</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">mTextureHandles</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="n">mTextureHandle</span> <span class="o">=</span> <span class="n">mTextureHandles</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+        <span class="no">GLES20</span><span class="o">.</span><span class="na">glBindTexture</span><span class="o">(</span><span class="nc">GLES11Ext</span><span class="o">.</span><span class="na">GL_TEXTURE_EXTERNAL_OES</span><span class="o">,</span> <span class="n">mTextureHandles</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>In the fragment shader when the texture is binded, the first line has to be inserted:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#extension GL_OES_EGL_image_external : require
+</span>
+<span class="n">precision</span> <span class="n">mediump</span> <span class="kt">float</span><span class="p">;</span>
+
+<span class="n">uniform</span> <span class="n">samplerExternalOES</span> <span class="n">sTexture</span><span class="p">;</span>
+<span class="n">varying</span> <span class="n">vec2</span> <span class="n">vTextureCoord</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">gl_FragColor</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">vTextureCoord</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Draw Screen Quad</p>
+
+<p>Using shaders, a simple screen quad can be easily drawn.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">//Create full scene quad buffer</span>
+    <span class="kd">final</span> <span class="kt">byte</span> <span class="no">FULL_QUAD_COORDS</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">};</span>
+    <span class="n">mFullQuadVertices</span> <span class="o">=</span> <span class="nc">ByteBuffer</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">mFullQuadVertices</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="no">FULL_QUAD_COORDS</span><span class="o">).</span><span class="na">position</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+<span class="o">...</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">renderQuad</span><span class="o">(</span><span class="kt">int</span> <span class="n">aPosition</span><span class="o">)</span> <span class="o">{</span>
+    <span class="no">GLES20</span><span class="o">.</span><span class="na">glVertexAttribPointer</span><span class="o">(</span><span class="n">aPosition</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="no">GLES20</span><span class="o">.</span><span class="na">GL_BYTE</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">mFullQuadVertices</span><span class="o">);</span>
+    <span class="no">GLES20</span><span class="o">.</span><span class="na">glEnableVertexAttribArray</span><span class="o">(</span><span class="n">aPosition</span><span class="o">);</span>
+    <span class="no">GLES20</span><span class="o">.</span><span class="na">glDrawArrays</span><span class="o">(</span><span class="no">GLES20</span><span class="o">.</span><span class="na">GL_TRIANGLE_STRIP</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Three issues are considered here</p>
+
+<ul>
+  <li>
+    <p>A transformation matrix is queried using <code class="language-plaintext highlighter-rouge">mSurfaceTexture.getTransformMatrix(float[])</code>. This matrix transforms traditional 2D OpenGL ES texture coordinate column vectors of the form (s, t, 0, 1) where s and t are on the inclusive interval [0, 1] to the proper sampling location in the streamed texture.</p>
+  </li>
+  <li>
+    <p>The orientation change of the phone has effect on the Surface dimension change (Height and Width swapped) but has no effect on the camera size (Width and Height remains as Width &gt; Height all the time). This should be considered using an orientation matrix passed to the shader to adjust the orientation of the frame whenever the phoneâ€™s orientation changes.</p>
+  </li>
+  <li>
+    <p>The screen dimension (<code class="language-plaintext highlighter-rouge">SurfaceView</code> dimension and the camera frame dimension might not be the same, to maintain a proper w/h ratio, a scaling factor should be passed to the shader to resize the screen quad.</p>
+  </li>
+</ul>
+
+<p>The codes below are the passing of the three parameters to the shader. Noted that <code class="language-plaintext highlighter-rouge">uTransformM</code> updated every frame as required, <code class="language-plaintext highlighter-rouge">uOrientationM</code> updated whenever the orientation of the phone changes, and ratios updated also when the orientation of the phone changes since the w/h ratio changes when their actual values change. The later two are updated in the <code class="language-plaintext highlighter-rouge">onSurfaceChanged(GL10, int width, int height)</code> method.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">onDrawFrame</span><span class="o">(</span><span class="no">GL10</span> <span class="n">gl</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="kt">int</span> <span class="n">uTransformM</span> <span class="o">=</span> <span class="n">mOffscreenShader</span><span class="o">.</span><span class="na">getHandle</span><span class="o">(</span><span class="s">"uTransformM"</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">uOrientationM</span> <span class="o">=</span> <span class="n">mOffscreenShader</span><span class="o">.</span><span class="na">getHandle</span><span class="o">(</span><span class="s">"uOrientationM"</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">uRatioV</span> <span class="o">=</span> <span class="n">mOffscreenShader</span><span class="o">.</span><span class="na">getHandle</span><span class="o">(</span><span class="s">"ratios"</span><span class="o">);</span>
+
+    <span class="no">GLES20</span><span class="o">.</span><span class="na">glUniformMatrix4fv</span><span class="o">(</span><span class="n">uTransformM</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="n">mTransformM</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="no">GLES20</span><span class="o">.</span><span class="na">glUniformMatrix4fv</span><span class="o">(</span><span class="n">uOrientationM</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="n">mOrientationM</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="no">GLES20</span><span class="o">.</span><span class="na">glUniform2fv</span><span class="o">(</span><span class="n">uRatioV</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">mRatio</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="o">...</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>In the vertex shader, <code class="language-plaintext highlighter-rouge">uTransformM</code>, <code class="language-plaintext highlighter-rouge">uOrientationM</code> and ratios together do some work to make sure the frame texture coordinate fit into the phone window:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">uniform</span> <span class="n">mat4</span> <span class="n">uTransformM</span><span class="p">;</span>
+<span class="n">uniform</span> <span class="n">mat4</span> <span class="n">uOrientationM</span><span class="p">;</span>
+<span class="n">uniform</span> <span class="n">vec2</span> <span class="n">ratios</span><span class="p">;</span>
+<span class="n">attribute</span> <span class="n">vec2</span> <span class="n">aPosition</span><span class="p">;</span>
+
+<span class="n">varying</span> <span class="n">vec2</span> <span class="n">vTextureCoord</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">gl_Position</span> <span class="o">=</span> <span class="n">vec4</span><span class="p">(</span><span class="n">aPosition</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">vTextureCoord</span> <span class="o">=</span> <span class="p">(</span><span class="n">uTransformM</span> <span class="o">*</span> <span class="p">((</span><span class="n">uOrientationM</span> <span class="o">*</span> <span class="n">gl_Position</span> <span class="o">+</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)).</span><span class="n">xy</span><span class="p">;</span>
+    <span class="n">gl_Position</span><span class="p">.</span><span class="n">xy</span> <span class="o">*=</span> <span class="n">ratios</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="closure">Closure</h3>
+
+<p>Some details are not covered in the post. It might be confusing by looking at the code fragments above. Here what I want to do is to take note of the critical steps in my implementation for my own record. I think it will be much helpful to go through the complete implementation of the <a href="https://github.com/yulu/ShaderCam">demo app</a> (which is quite concise, only a few hundered lines of codes). What will be more interesting? Try to replace the fragment shader with some funny shaders in <a href="https://github.com/yulu/Instagram_Filter">Instagram Filter</a> and <a href="https://github.com/yulu/ShaderFilter">Shader Filter</a>, to see the interesting filter applied real-time on camera view.</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

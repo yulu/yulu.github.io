@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[DDIA] Chapter 6 - Partition</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2023/04/12/ddia-6.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_header.jpeg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">[DDIA] Chapter 6 - Partition</h1>
+                <p class="post-meta">Apr 12, 2023</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-entry toc-h3"><a href="#mind-map">Mind Map</a></li>
+<li class="toc-entry toc-h3"><a href="#question-summary">Question Summary</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#approach-for-partitioning">Approach for partitioning</a></li>
+<li class="toc-entry toc-h4"><a href="#rebalancing">Rebalancing</a></li>
+<li class="toc-entry toc-h4"><a href="#request-routing">Request Routing</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#highlighted-topics">Highlighted Topics</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#partition-strategy-comparison">Partition Strategy Comparison</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#primary-key-partition-strategy-compare">Primary key partition strategy compare</a></li>
+<li class="toc-entry toc-h5"><a href="#secondary-index-partition-strategy-compare">Secondary index partition strategy compare</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#request-routing-1">Request Routing</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#extended-topics">Extended Topics</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#consistent-hashing---dynamo-style-db-partition-strategy">Consistent Hashing - Dynamo-style DB partition strategy</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#further-reading">Further Reading</a></li>
+</ul> </div> 
+
+        <article class="post-content">
+            <h3 id="chapter-summary">Chapter Summary</h3>
+
+<p>Database partition or sharding is discussed in this chapter. Partitioning is a very basic concept in data storage engine. As when the data volume goes large, a single node will not be enough to host all the data, we have to distribute the data among multiple nodes. Different approaches for partitioning the primary key and the secondary indexes, rebalancing strategies and request routing strategies are discussed in detail in this chapter.</p>
+
+<h3 id="mind-map">Mind Map</h3>
+
+<div class="mindmap-container">
+    <iframe src="https://www.xmind.net/embed/7dePxB" width="900px" height="540px" frameborder="0" scrolling="no"></iframe>
+</div>
+
+<h3 id="question-summary">Question Summary</h3>
+<h4 id="approach-for-partitioning">Approach for partitioning</h4>
+
+<p>💡 What is “hot spot” in partitioning?</p>
+
+<p>A node with disproportionally high load</p>
+
+<p>💡 What is “skewed” in partitioning?</p>
+
+<p>Some partitions have more data or queries than others</p>
+
+<p>💡 What is the benefit and downside of key range partitioning?</p>
+
+<p>It supports the range queries easily, however some access patterns will result in hot spots</p>
+
+<p>💡 What is the benefit and downside of hash of key partitioning?</p>
+
+<p>Hash key of partitioning results more evenly distributed data over the partitions to avoid data skew and hot spot. However it makes the range queries challenging. The range queries needs to sent to all the partitions.</p>
+
+<p>💡 Describe the approach of partitioning secondary indexes by document</p>
+
+<p>It is also called local index. The secondary index of a particular partition is stored locally with the partition. When querying for the secondary index, the query needs to go to all the partitions</p>
+
+<p>💡 Describe the term-based partitioning of database with secondary indexes</p>
+
+<p>The term-based partitioning refer to the approach that the secondary indexes are stored and partitioned independent from the primary key</p>
+
+<p>💡 Why the document-based secondary index partitioning of database has expensive read queries?</p>
+
+<p>Document-based partitioning is also termed as local index. Because the index is local in each partition, so query to the index needs to be sent to and processed by all the partitions. That is why it is more expensive</p>
+
+<p>💡 What is the advantage and disadvantage of term-based secondary index partitioning?</p>
+
+<p>Term-based partitioning is more efficient in indexing query, as the index are globally partitioned. However the write become more challenging especially to maintain a synchronous update of the secondary index with write process. The distributed transaction is difficult to achieve in this case</p>
+
+<h4 id="rebalancing">Rebalancing</h4>
+<p>💡  What is “rebalancing”?</p>
+
+<p>The process of moving load of data from one node in the cluster to another</p>
+
+<p>💡  What are the minimum requirement of a ‘rebalancing’?</p>
+
+<ol>
+  <li>after the rebalancing, the data should be fairly distributed to the partitions</li>
+  <li>during the rebalancing, the read and write should not be interrupted</li>
+  <li>no more than necessary data should be moved during the rebalancing to make the rebalancing fast and minimize the network and disk I/O load</li>
+</ol>
+
+<p>💡  In which cases a ‘rebalancing’ needs to be performed?</p>
+
+<ol>
+  <li>the throughput to the data system increases that we need to add more CPUs to handle the requests</li>
+  <li>the dataset size increases that we need to add more disks or RAMs to host the data</li>
+  <li>some machine failed, that we need to move the data to another available machine</li>
+</ol>
+
+<p>💡  What is the problem of mod N partitioning strategy?</p>
+
+<p>When the number of nodes N changes, most of the data needs to be moved from one node to another. The simple solution is to create many more partitions than the number of nodes, when a new node is added, it steels few partitions from other nodes until the partitions are fairly distributed once again.</p>
+
+<p>💡  Describe the fixed number of partition strategy</p>
+
+<p>The number of partitions are chosen at a number that is much larger than the number of nodes. When a new node is added, some selected partitions from each node is moved to the new node. This makes sure that only a small amount of data is moved</p>
+
+<p>💡  In the fixed number of partition approach, what is the drawback of partition volume is too large or too small?</p>
+
+<p>Since the number of partition is fixed, with the increase of dataset size, the size of each partition increase. If the size of partition become too large, rebalancing and recovery from a node failure become expensive. If the size is too small (the fixed number is chosen too large with small sized dataset), they incur too much overhead</p>
+
+<p>💡  What is the caveat of dynamic partitioning?</p>
+
+<p>An empty database starts off with a single partition and with small amount of data, no partition is performed yet. So all the request are handled by a single node while the other nodes sit idle. To mitigate this issue, we can have an initial set of partitions to be configured on an empty database</p>
+
+<p>💡  What is the advantage of dynamic partitioning?</p>
+
+<p>The number of partitions adapts to the total data volume. It avoids the partition size too large or too small issue in the fixed number partitioning strategy</p>
+
+<h4 id="request-routing">Request Routing</h4>
+<p>💡  What are the three common approaches of request routing in partitioned data system?</p>
+
+<ol>
+  <li>contact any node and let the node handle the routes</li>
+  <li>add a routing tier that handles the routing strategy</li>
+  <li>let the client be aware of partitions and connect directly to the appropriate node</li>
+</ol>
+
+<h3 id="highlighted-topics">Highlighted Topics</h3>
+
+<h4 id="partition-strategy-comparison">Partition Strategy Comparison</h4>
+
+<h5 id="primary-key-partition-strategy-compare">Primary key partition strategy compare</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>pros</th>
+      <th>cons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>key-range</td>
+      <td>more efficient to support range query</td>
+      <td>can result in hot spot or data skews</td>
+    </tr>
+    <tr>
+      <td>key-hash</td>
+      <td>evenly distribute the data and queries</td>
+      <td>less efficient in supporting range query</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Compound primary key is supported by Cassandra: only the first part of that key is hashed to determine the partition, but the other columns are used as a concatenated index for sorting the data in Cassandra’s SSTable. A query therefore cannot search for a range of values within the first column of a compound key, but if it specifies a fixed value for the first column, it can perform an efficient range scan over the other columns of the key.</p>
+
+<p>Similar for DynamoDB, a partition key and an optional sort key are required to generate its primary key. For dynamoDB, there’s the recommended pattern to design sort-key as composite sort keys to contain the hierarchical (one-to-many) relationships in your data. For example, you might structure the sort key as</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[country]#[region]#[state]#[county]#[city]#[neighborhood]
+</code></pre></div></div>
+<p>This would let you make efficient range queries for a list of locations at any one of these levels of aggregation, from <code class="language-plaintext highlighter-rouge">country</code> to a <code class="language-plaintext highlighter-rouge">neighborhood</code> and everything in between. (<a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-sort-keys.html">ref</a>)</p>
+
+<h5 id="secondary-index-partition-strategy-compare">Secondary index partition strategy compare</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>pros</th>
+      <th>cons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>document-base (local index)</td>
+      <td>write to the secondary index is in a single partition, easy to maintain the transaction</td>
+      <td>query to the secondary index needs to be sent to all partitions, hence less efficient</td>
+    </tr>
+    <tr>
+      <td>term-based (global index)</td>
+      <td>query to the secondary index is only from a single partition, more efficient</td>
+      <td>write to the secondary index are across partitions, challenging for transaction management</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Most of the databases follow document-base secondary index. DynamoDB supports both Global Secondary Index (GSI) and Local Secondary Index (LSI). DynamoDB GSI supports eventual consistency as stated. (<a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes-general.html">ref</a>)</p>
+
+<h4 id="request-routing-1">Request Routing</h4>
+
+<p>Three different request routing strategies:</p>
+<ul>
+  <li>allow clients to contact any node (e.g. via a round-robin load balancer). If that node coincidentally owns the partition to which the request applies, it can handle the request directly, otherwise it forwards the request to the appropriate node, receives the reply and passes the reply to the client</li>
+  <li>Send all requests from clients to a routing tier first, which determines the node that should handle each request and forwards it accordingly. This routing tier does not itself handle any requests; it only acts as a partition-aware load balancer.</li>
+  <li>Require that clients to be aware of the partitioning and the assignment of partitions to nodes. In this case, a client can connect directly to the appropriate node, without any intermediary.</li>
+</ul>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-6/ddia_6_partition_request_routing.excalidraw.png" alt="ddia_6_partition_request_routing.excalidraw" /></p>
+
+<p>The challenge of request routing is the consensus among the distributed system about the changes in the assignment of partitions to nodes. Coordination service such as Zookeeper and gossip protocol among nodes are some commons approaches. Below is an illustration of zookeeper as a coordination service to sync among the routing tier and the nodes.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-6/ddia_6_request_routing_zookeeper.excalidraw.png" alt="ddia_6_request_routing_zookeeper.excalidraw" /></p>
+
+<p>Here is a summary of request routing strategies of popular databases</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>data storages</th>
+      <th>Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HBase, SolrCloud, Kafka</td>
+      <td>zookeeper as the coordination service</td>
+    </tr>
+    <tr>
+      <td>MongoDB</td>
+      <td>its own config server and monogos daemons as the routing tier</td>
+    </tr>
+    <tr>
+      <td>Cassandra and Riak</td>
+      <td>use gossip protocol among the nodes, put the complexity int the nodes, avoid external coordination service dependency</td>
+    </tr>
+    <tr>
+      <td>CouchBase</td>
+      <td>routing tier which learns the routing changes from the cluster nodes, not support auto rebalance</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="extended-topics">Extended Topics</h3>
+
+<h4 id="consistent-hashing---dynamo-style-db-partition-strategy">Consistent Hashing - Dynamo-style DB partition strategy</h4>
+
+<p>Consistent hashing is useful for</p>
+
+<ul>
+  <li>sharding: minimal rebalancing of partitions while adding or removing nodes</li>
+  <li>load balancing: better cache performance if same requests go to same servers</li>
+</ul>
+
+<p>Overview</p>
+
+<ul>
+  <li>Use a hash function and map its range to a ring</li>
+  <li>Map n nodes to the same ring using the same or another hash function</li>
+  <li>Each physical node is split into k slices through multiple hash functions: Num virtual <code class="language-plaintext highlighter-rouge">nodes = n*k</code></li>
+  <li>To write data: move clockwise on the ring from hash of data’s key to the nearest virtual node and write data to the physical node represented by that virtual node</li>
+  <li>To add server: when a server <code class="language-plaintext highlighter-rouge">si</code> is added, the affected range starts from server <code class="language-plaintext highlighter-rouge">si</code> and moves anticlockwise around the ring until a server <code class="language-plaintext highlighter-rouge">sj</code> is found. Thus, keys located between <code class="language-plaintext highlighter-rouge">si</code> and <code class="language-plaintext highlighter-rouge">sj</code> need to be redistributed to <code class="language-plaintext highlighter-rouge">si</code>.</li>
+  <li>To remove node: when a server <code class="language-plaintext highlighter-rouge">si</code> is removed, the affected range starts from <code class="language-plaintext highlighter-rouge">si</code> and moves anticlockwise around the ring until a server <code class="language-plaintext highlighter-rouge">sj</code> is found. Thus keys located between <code class="language-plaintext highlighter-rouge">sj</code> and <code class="language-plaintext highlighter-rouge">si</code> needs to be redistributed to <code class="language-plaintext highlighter-rouge">si+1</code></li>
+</ul>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-6/ddia_6_partition_consistent_hashing.excalidraw.png" alt="ddia_6_partition_consistent_hashing.excalidraw" /></p>
+
+<h3 id="further-reading">Further Reading</h3>
+
+<p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html">Amazon DynamoDB best practices</a></p>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

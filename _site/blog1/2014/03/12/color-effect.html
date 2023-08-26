@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Color and Art Effect by OpenGL Shaders on Android</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2014/03/12/color-effect.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">Color and Art Effect by OpenGL Shaders on Android</h1>
+                <p class="post-meta">Mar 12, 2014</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>It has been a year! A year ago I put up some posts on image processing using Shaders just for my own record. I have never expected that this to be rewarded. Now the work is integrated in my very own app, and included in a published book. It is my privilege to receive by emails the feedbacks, queries and thanks notes from people around the world about what I have shared. I was not excelled at programming, neither at drawing or design, but I never stop learning. More important thing is that I start to get the meaning of:</p>
+
+<blockquote>
+  <p>CONNECTING THE DOTS</p>
+</blockquote>
+
+<p>Being busy with study, I could barely spare time working on this topic. But ideas and inspirations always jumped out sometime that I could stop but to code. Whenever I came across a nice picture, a smart algorithm or anything that reminds me the fantasy of the world we viewed, I would noted down and later explored on it. Thanks to the <a href="http://pixelshaders.com/">Pixel Shader</a> by Toby Schachman, I could instantly experiment on my ideas (also a lot of inspirations are from this interactive book). I gathered all the ideas of color and art effects and deliver a new camera app that allows us to explore the combination of filter effects on real-time. I also put the source code of some filter effects discussed here into a simple demo app for sharing.</p>
+
+<h3 id="the-tricks-of-colors">The Tricks of Colors</h3>
+
+<p>Colors can perform magic tricks I believe. The tone of a picture sometimes touches us more than the subjects do. I explored the idea of adjust the B/S/C of an image and blend color map on an image previously. With the same blending process, here are some more interesting color gradient maps I could share.</p>
+
+<h4 id="color-gradient-on-the-fly">Color Gradient on the Fly</h4>
+
+<p>Previously I bind a color gradient map or pattern as a texture to an opengl target to perform the blending. Later I realized that the shader itself can produce color gradient map (or patterns) by playing around with the positions of the texels.</p>
+
+<p><em>Gradient Functions</em></p>
+
+<p>It is a simple linear equation to represent gradient distributed over positions. The horizontal linear gradient is:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec4</span> <span class="nf">LinearGradientH</span><span class="p">(</span><span class="n">vec4</span> <span class="n">start</span><span class="p">,</span> <span class="n">vec4</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">vec4</span> <span class="n">color</span><span class="p">;</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">color</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The radius linear gradient with a specified center point is:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec4</span> <span class="nf">RadiusGradient</span><span class="p">(</span><span class="n">vec4</span> <span class="n">center</span><span class="p">,</span> <span class="n">vec4</span> <span class="n">corner</span><span class="p">,</span> <span class="n">vec2</span> <span class="n">center_point</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">vec4</span> <span class="n">color</span><span class="p">;</span>
+    <span class="n">vec2</span> <span class="n">p</span> <span class="o">=</span> <span class="n">position</span> <span class="o">-</span> <span class="n">center_point</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+ 
+    <span class="n">color</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="p">(</span><span class="n">corner</span> <span class="o">-</span> <span class="n">center</span><span class="p">)</span> <span class="o">+</span> <span class="n">center</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">color</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>Nice Combination by Accident</em></p>
+
+<p>More appealing effect is to randomly generate a warm color gradient map like this:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">RandomGradientWarm</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">vec3</span> <span class="n">color</span><span class="p">;</span>
+    <span class="n">vec3</span> <span class="n">purple</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">180</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">151</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">202</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.);</span>
+    <span class="n">vec3</span> <span class="n">pink</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">213</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">66</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">108</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.);</span>
+
+    <span class="n">color</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="n">purple</span><span class="p">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">pink</span><span class="p">.</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="n">pink</span><span class="p">.</span><span class="n">r</span><span class="p">;</span>
+    <span class="n">color</span><span class="p">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="n">purple</span><span class="p">.</span><span class="n">g</span> <span class="o">-</span> <span class="n">pink</span><span class="p">.</span><span class="n">g</span><span class="p">)</span> <span class="o">+</span> <span class="n">pink</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
+    <span class="n">color</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">purple</span><span class="p">.</span><span class="n">b</span> <span class="o">-</span> <span class="n">pink</span><span class="p">.</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">pink</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">color</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<figcaption>
+Warm Gradient
+</figcaption>
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16397434123_7702494a25_o.jpg" alt="warm_gradient" /></p>
+
+<p>Or a cool color gradient map like this:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">RandomGradientCool</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">vec3</span> <span class="n">color</span><span class="p">;</span>
+
+    <span class="n">vec3</span> <span class="n">purple</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">180</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">151</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">202</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.);</span>
+    <span class="n">vec3</span> <span class="n">mint</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">28</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">169</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">178</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.);</span>
+
+    <span class="n">color</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="n">purple</span><span class="p">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">mint</span><span class="p">.</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="n">mint</span><span class="p">.</span><span class="n">r</span><span class="p">;</span>
+    <span class="n">color</span><span class="p">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">purple</span><span class="p">.</span><span class="n">g</span> <span class="o">-</span> <span class="n">mint</span><span class="p">.</span><span class="n">g</span><span class="p">)</span> <span class="o">+</span> <span class="n">mint</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
+    <span class="n">color</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">purple</span><span class="p">.</span><span class="n">b</span> <span class="o">-</span> <span class="n">mint</span><span class="p">.</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">mint</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">color</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<figcaption>
+Cool Gradient
+</figcaption>
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16991573076_769edeae5e_o.jpg" alt="cool_gradient" /></p>
+
+<h4 id="blend-functions-one-more-time">Blend Functions One More Time</h4>
+
+<p>With these beautiful colors, I can blend them on an image and get the effect I want! Review the three blend mode that is being used mostly.</p>
+
+<p><em>Screen</em></p>
+
+<p>With Screen blend mode the values of the pixels in the two layers are inverted, multiplied, and then inverted again. This yields the opposite effect to multiply. The result is a brighter picture.Here introduce an alpha value to control the level of strength the screen blending is performed.</p>
+
+\[f(a,b)=1- (1 - a*alpah)(1- b)\]
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">ScreenBlend</span><span class="p">(</span><span class="n">vec3</span> <span class="n">maskPixelComponent</span><span class="p">,</span> <span class="kt">float</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">imagePixelComponent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="n">maskPixelComponent</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="n">imagePixelComponent</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>Multiply</em></p>
+
+<p>Multiply blend mode multiplies the numbers for each pixel of the top layer with the corresponding pixel for the bottom layer. The result is a darker picture.</p>
+
+\[f(a,b)=a * alpha * b\]
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">MultiplyBlend</span><span class="p">(</span><span class="n">vec3</span> <span class="n">overlayComponent</span><span class="p">,</span> <span class="kt">float</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">underlayComponent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">underlayComponent</span> <span class="o">*</span> <span class="n">overlayComponent</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>Overlay</em></p>
+
+<p>Overlay combines Multiply and Screen blend modes. The parts of the top layer where base layer is light become lighter, the parts where the base layer is dark become darker. An overlay with the same picture looks like an S-curve.</p>
+
+\[f(a,b)=\left\{ 
+\begin{array}{l l} 
+2ab &amp; \quad \text{if $b &lt; 0.5$}\\
+1-2(1-a)(1-b) &amp; \quad \text{otherwise} 
+\end{array} \right.\]
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">OvelayBlender</span><span class="p">(</span><span class="n">vec3</span> <span class="n">Color</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">filter</span><span class="p">){</span>
+    <span class="n">vec3</span> <span class="n">filter_result</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">luminance</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">filter</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">luminance</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">filter_result</span> <span class="o">=</span> <span class="mi">2</span><span class="p">.</span> <span class="o">*</span> <span class="n">filter</span> <span class="o">*</span> <span class="n">Color</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">filter_result</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span><span class="p">.</span> <span class="o">*</span><span class="p">(</span><span class="n">filter</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span> <span class="o">-</span> <span class="n">Color</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">filter_result</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17017567585_c241dfb69f_o.jpg" alt="flower" /></p>
+
+<h3 id="being-an-artist">Being an Artist</h3>
+
+<h4 id="how-to-draw">How to Draw</h4>
+
+<p>Forget about the codes and equations for a while, let’s talk about how to draw on paper (here, actually I drew this on iPad, but I think it’s similar) A sketch of the outline is first created. Then roughly blend the color on it. If want a finer look, nicely touch on some details. This is a simple approach I used to draw.</p>
+
+<figcaption>
+How I Draw
+</figcaption>
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17016113192_60e9ee2218_o.jpg" alt="drawing" /></p>
+
+<p>How about asking the computer to draw for us like this? Emm, how to sketch an outline? Here again comes the very simple edge detection algorithm Sobel filter. (Codes are shared in previous post)</p>
+
+<p>How to blend the colors? We can pick up color from the real photo for each texel, but it seems look so real because too much fine details are included. We would like to make it less accurate. To do so by grouping the similar colors and giving them an average. In shader, to categorize each color channel into 10 groups can simply write like this by knowing that each channel in vec4 color ranges from 0 to 1:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="n">color</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">color</span> <span class="o">*</span> <span class="mi">10</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">;</span></code></pre></figure>
+
+<p>Now, we can sketch and blend:</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16991579826_1132fbe75d_o.jpg" alt="outline" /></p>
+
+<h4 id="masters-styles-just-for-fun">Masters’ Styles: Just for Fun</h4>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16810167707_7dd748ca50_o.jpg" alt="waterlili" /></p>
+
+<p>Waterlilies by Monet and Starry Night by Van Gogh are some famous masterpieces we all are familiar with. We can easily recognize the unique ways they blend colors. Monet,the Impressionist, in his work eliminated the edges and randomized the brush touches. To mimic an effect like this, I tried to combine the artistic effect without edge detection with the method I discussed previously - scanning the random selected pixels around the center one, and take either the brightest or darkest to replace the center. This gives a quite nice view I feel, if not alike.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16810166937_6864317cee_o.jpg" alt="flower-1" /></p>
+
+<p>Curved lines and circular brush touches are the identities of Vincent Van Gogh. To mimic the kind of circular motion feel, I give wave-patterned displacements to texels by using a sine function:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec2</span> <span class="nf">circular</span><span class="p">(</span><span class="n">vec2</span> <span class="n">position</span><span class="p">){</span>
+    <span class="n">vec2</span> <span class="n">p</span> <span class="o">=</span> <span class="n">position</span><span class="p">;</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="mi">80</span><span class="p">.)</span><span class="o">*</span><span class="mi">0</span><span class="p">.</span><span class="mo">003</span><span class="p">;</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="mi">80</span><span class="p">.)</span><span class="o">*</span><span class="mi">0</span><span class="p">.</span><span class="mo">003</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17016121082_fabe7a1d7b_o.jpg" alt="waterlili-1" /></p>
+
+<p>Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally, so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.</p>
+
+<h3 id="comic-book">Comic Book</h3>
+
+<p>We often see dots in American comics. <a href="https://en.wikipedia.org/wiki/Ben-Day_dots">Ben-Day dots</a> was invented dating back to 1879, to produce more dynamic colors in printing, e.g. spaced dots of red colors gives pink. Later it was explored by pop artists to produce illustrations. Same in black-and-white Japanese comics, gray areas are sometimes shaded by strips. The intention of using dots and strips patterns in comics have gave me this inspiration - how about check the intensities of the texels, on the texels that are within a defined gray region, overlay the patterns. What kind of effect can I get?</p>
+
+<p>To generate a strips pattern:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">StripsPattern</span><span class="p">(</span><span class="n">vec2</span> <span class="n">position</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">vec2</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">position</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">500</span><span class="p">.;</span>
+
+    <span class="kt">float</span> <span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">;</span>
+    <span class="n">vec2</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">vec2</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">));</span>
+    <span class="kt">float</span> <span class="n">brightness</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">direction</span><span class="p">));</span> 
+    <span class="n">vec3</span> <span class="n">color</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="o">-</span><span class="n">brightness</span><span class="p">);</span>
+
+    <span class="kt">float</span> <span class="n">gray</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">gray</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">220</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">220</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">220</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.);</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">120</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">120</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.,</span> <span class="mi">120</span><span class="p">.</span><span class="o">/</span><span class="mi">255</span><span class="p">.);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>To generate a dots pattern:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="nf">divation</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">){</span>
+    <span class="kt">float</span> <span class="n">f</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">c</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">min</span><span class="p">((</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="p">),</span> <span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="n">vec3</span> <span class="nf">DotsPattern</span><span class="p">(</span><span class="n">vec2</span> <span class="n">position</span><span class="p">,</span> <span class="n">vec2</span> <span class="n">uPixelSize</span><span class="p">,</span> <span class="kt">float</span> <span class="n">radius</span><span class="p">,</span> <span class="kt">float</span> <span class="n">interval</span><span class="p">){</span>
+
+    <span class="n">vec2</span> <span class="n">center</span> <span class="o">=</span> <span class="n">position</span><span class="o">/</span><span class="n">uPixelSize</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="n">mod_x</span> <span class="o">=</span> <span class="n">divation</span><span class="p">(</span><span class="n">center</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">interval</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">mod_y</span> <span class="o">=</span> <span class="n">divation</span><span class="p">(</span><span class="n">center</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">interval</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">mod_r</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">mod_x</span><span class="o">*</span><span class="n">mod_x</span> <span class="o">+</span> <span class="n">mod_y</span><span class="o">*</span><span class="n">mod_y</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">mod_r</span> <span class="o">&lt;</span> <span class="n">radius</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">.);</span>
+    <span class="k">else</span> 
+        <span class="k">return</span> <span class="n">vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">.);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17016692551_0a088402e5_o.jpg" alt="algo" /></p>
+
+<h3 id="the-issue">The Issue!</h3>
+
+<p>I think I have not really figured out the way to do blurring. Blur effect seems to be very popular after the releasing of IOS7. Gaussian blur however involves heavy computation. I tried using 9-by-9 Gaussian kernels to do blurring, with the optimized method proposed by <a href="">Daniel Rakos</a>, it runs really slowly on my Note II! So I give up the idea of trying filtering multiple times or with larger sized kernel. I also studied through the post and dig into the codes by Brad Larson9, luckily I learned the way to write loop for shader! However I still cannot got the idea to do a fast blur with larger sized Gaussian kernel. How can it be so fast on iPhone? Is it the hardware issue or my understanding is not accurate. I think there should be smarter way to implement blurring. Later I will revisit some fundamentals of OpenGL.</p>
+
+<p>I come up with another way to do blur, also get inspiration from here. Instead of using Gaussian kernel, I first mosaic the image, and then use the smoothstep and mix function to perform color interpolation.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">mosaic</span><span class="p">(</span><span class="n">vec2</span> <span class="n">position</span><span class="p">){</span>
+    <span class="n">vec2</span> <span class="n">p</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">position</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">.;</span>
+    <span class="k">return</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">sTexture</span><span class="p">,</span> <span class="n">p</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">vec2</span> <span class="nf">sw</span><span class="p">(</span><span class="n">vec2</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">vec2</span><span class="p">(</span> <span class="n">floor</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">,</span> <span class="n">floor</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="p">);}</span>
+<span class="n">vec2</span> <span class="nf">se</span><span class="p">(</span><span class="n">vec2</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">vec2</span><span class="p">(</span> <span class="n">ceil</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">,</span> <span class="n">floor</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="p">);}</span>
+<span class="n">vec2</span> <span class="nf">nw</span><span class="p">(</span><span class="n">vec2</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">vec2</span><span class="p">(</span> <span class="n">floor</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">,</span> <span class="n">ceil</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="p">);}</span>
+<span class="n">vec2</span> <span class="nf">ne</span><span class="p">(</span><span class="n">vec2</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">vec2</span><span class="p">(</span> <span class="n">ceil</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">,</span> <span class="n">ceil</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="p">);}</span>
+
+<span class="n">vec3</span> <span class="nf">blur</span><span class="p">(</span><span class="n">vec2</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vec2</span> <span class="n">inter</span> <span class="o">=</span> <span class="n">smoothstep</span><span class="p">(</span><span class="mi">0</span><span class="p">.,</span> <span class="mi">1</span><span class="p">.,</span> <span class="n">fract</span><span class="p">(</span><span class="n">p</span><span class="p">));</span>
+    <span class="n">vec3</span> <span class="n">s</span> <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">mosaic</span><span class="p">(</span><span class="n">sw</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span> <span class="n">mosaic</span><span class="p">(</span><span class="n">se</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span> <span class="n">inter</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">vec3</span> <span class="n">n</span> <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">mosaic</span><span class="p">(</span><span class="n">nw</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span> <span class="n">mosaic</span><span class="p">(</span><span class="n">ne</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span> <span class="n">inter</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">mix</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">inter</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">vec3</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">blur</span><span class="p">(</span><span class="n">vTextureCoord</span><span class="o">*</span><span class="mi">10</span><span class="p">.);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16395151344_e533fac091_o.jpg" alt="scene" /></p>
+
+<h3 id="closure">Closure</h3>
+
+<p>It is wonderful to combine the two things I like most - coding and painting together, to create something beautiful and smart. Hope this will give you little hints in your hacking. Happy coding, and photographing! Painting also!</p>
+
+<blockquote>
+  <p>Source Code on My <a href="https://github.com/yulu/ShaderFilter">GitHub</a></p>
+
+  <p>My <a href="https://play.google.com/store/apps/details?id=com.littlecheesecake.filterblendercamera.free&amp;hl=en">Camera App</a></p>
+
+  <p>Credit of nice photos goes to my adventurous nerd, <a href="https://www.flickr.com/photos/fenixzhang/">Flickr</a></p>
+</blockquote>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

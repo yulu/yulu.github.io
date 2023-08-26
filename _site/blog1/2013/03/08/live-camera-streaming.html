@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Live Camera Streaming using OpenGL Texture Mapping</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2013/03/08/live-camera-streaming.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">Live Camera Streaming using OpenGL Texture Mapping</h1>
+                <p class="post-meta">Mar 8, 2013</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>Previous works are handling only single image. Now I consider to apply those shader manipulations on live camera feed in, so that I might achieve a “real-time” filter effect.  There is a good <a href="http://nhenze.net/?p=172">example</a> on camera frame mapped to OpenGL texture by Niels Henze. The app can be downloaded from <a href="https://play.google.com/store/apps/details?id=de.offis.magic.core&amp;hl=en">Google Play</a>. However the author just dealt with black-and-white image mapping. To deal with color image really takes much more effort. The main problem to handle in the process is the image format conversion. Since the raw data from the camera is yuv format, rgb format however is required for the gltexture mapping. While pixel manipulation is extremely slow in Java (that’s why we want to use GPU to take the burden off). Here I adopt a piece of native code (from the <a href="https://code.google.com/p/andar/">AndAR</a> project) to perform the yuv to rgb conversion.</p>
+
+<p>Android NDK is required since we need to build lib from native codes. This piece of C++ code below is the conversion from yuv to rgb:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">const</span> <span class="kt">int</span> <span class="n">bytes_per_pixel</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">color_convert_common</span><span class="p">(</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pY</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pUV</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">,</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">gray</span><span class="p">,</span> <span class="kt">int</span> <span class="n">rotate</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">nR</span><span class="p">,</span> <span class="n">nG</span><span class="p">,</span> <span class="n">nB</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">nY</span><span class="p">,</span> <span class="n">nU</span><span class="p">,</span> <span class="n">nV</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">out</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nY</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">pY</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">j</span><span class="p">);</span>
+            <span class="n">nV</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">pUV</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">bytes_per_pixel</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">/</span><span class="mi">2</span><span class="p">));</span>
+            <span class="n">nU</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">pUV</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">bytes_per_pixel</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+            <span class="c1">// Yuv Convert</span>
+            <span class="n">nY</span> <span class="o">-=</span> <span class="mi">16</span><span class="p">;</span>
+            <span class="n">nU</span> <span class="o">-=</span> <span class="mi">128</span><span class="p">;</span>
+            <span class="n">nV</span> <span class="o">-=</span> <span class="mi">128</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">nY</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">nY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+            <span class="n">nB</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="mi">1192</span> <span class="o">*</span> <span class="n">nY</span> <span class="o">+</span> <span class="mi">2066</span> <span class="o">*</span> <span class="n">nU</span><span class="p">);</span>
+            <span class="n">nG</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="mi">1192</span> <span class="o">*</span> <span class="n">nY</span> <span class="o">-</span> <span class="mi">833</span> <span class="o">*</span> <span class="n">nV</span> <span class="o">-</span> <span class="mi">400</span> <span class="o">*</span> <span class="n">nU</span><span class="p">);</span>
+            <span class="n">nR</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="mi">1192</span> <span class="o">*</span> <span class="n">nY</span> <span class="o">+</span> <span class="mi">1634</span> <span class="o">*</span> <span class="n">nV</span><span class="p">);</span>
+
+            <span class="n">nR</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="mi">262143</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nR</span><span class="p">));</span>
+            <span class="n">nG</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="mi">262143</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nG</span><span class="p">));</span>
+            <span class="n">nB</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="mi">262143</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nB</span><span class="p">));</span>
+
+            <span class="n">nR</span> <span class="o">&gt;&gt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">nR</span> <span class="o">&amp;=</span> <span class="mh">0xff</span><span class="p">;</span>
+            <span class="n">nG</span> <span class="o">&gt;&gt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">nG</span> <span class="o">&amp;=</span> <span class="mh">0xff</span><span class="p">;</span>
+            <span class="n">nB</span> <span class="o">&gt;&gt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">nB</span> <span class="o">&amp;=</span> <span class="mh">0xff</span><span class="p">;</span>
+
+            <span class="n">out</span><span class="p">[</span><span class="n">offset</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">nR</span><span class="p">;</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">offset</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">nG</span><span class="p">;</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">offset</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">nB</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The Android project source code can be pulled from the my <a href="https://github.com/yulu/GLTexture">github</a>. There are a TextView class I added on, just a test of another app under development of mine. The issue I encountered currently is that texture mapping is not working in my HTC One X with image dimension more than 128x128. So the code might not be working on devices other than Samsung Galaxy S3 (the only device on hand for testing).</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

@@ -1,0 +1,2882 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Book Shelf</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/books/">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+
+    <body>
+
+        <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+        <div class="blog-container">
+            <div class="blog-image">
+                <div class="title-container">
+                    <span class="title">Book Shelf</span>
+                    <span class="sub-title">Hope you can be inspired, happy reading</span>
+                </div>
+                <div class="blog-layer"></div>
+            </div>
+
+            <div class="blog-content">
+            <h3>Tech Books</h3>
+<div class="post-grid">
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Building_Microservices.jpg">
+            <div>
+              <a href="/books/collection/Building%20Microservices.html">
+                  <span class="title">Building microservices</span> <br/>
+                  <span class="post-meta">Sam Newman </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Clean_Architecture.jpg">
+            <div>
+              <a href="/books/collection/Clean%20Architecture.html">
+                  <span class="title">Clean architecture</span> <br/>
+                  <span class="post-meta">Robert C. Martin </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Clean_Code.jpg">
+            <div>
+              <a href="/books/collection/Clean%20Code.html">
+                  <span class="title">Clean code</span> <br/>
+                  <span class="post-meta">Robert C. Martin </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Design_Patterns.jpg">
+            <div>
+              <a href="/books/collection/Design%20Patterns.html">
+                  <span class="title">Design patterns</span> <br/>
+                  <span class="post-meta">Erich Gamma / Richard Helm / Ralph Johnson / John Vlissides </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Designing_Data-Intensive_Applications.jpg">
+            <div>
+              <a href="/books/collection/Designing%20Data-Intensive%20Applications.html">
+                  <span class="title">Designing data Intensive applications</span> <br/>
+                  <span class="post-meta">Martin Kleppmann </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Domain_Driven_Design.jpg">
+            <div>
+              <a href="/books/collection/Domain%20Driven%20Design.html">
+                  <span class="title">Domain driven design</span> <br/>
+                  <span class="post-meta">Eric Evans </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Effective_Java.jpg">
+            <div>
+              <a href="/books/collection/Effective%20Java.html">
+                  <span class="title">Effective java</span> <br/>
+                  <span class="post-meta">Joshua Bloch </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Hackers_and_painters.png">
+            <div>
+              <a href="/books/collection/Hackers%20and%20Painters.html">
+                  <span class="title">Hackers and Painters</span> <br/>
+                  <span class="post-meta">Paul Graham </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Kafka_The_Definitive_Guide.jpg">
+            <div>
+              <a href="/books/collection/Kafka%20The%20Definitive%20Guide.html">
+                  <span class="title">Kafka the definitive guide</span> <br/>
+                  <span class="post-meta">Neha Narkhede / Todd Palino / Gwen Shapira / Rajini Sivaram </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Learning_Domain-Driven_Design.jpg">
+            <div>
+              <a href="/books/collection/Learning%20Domain-Driven%20Design.html">
+                  <span class="title">Learning domain Driven design</span> <br/>
+                  <span class="post-meta">Vlad Khononov </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Learning_the_Bash_Shell.jpg">
+            <div>
+              <a href="/books/collection/Learning%20the%20Bash%20Shell.html">
+                  <span class="title">Learning the bash shell</span> <br/>
+                  <span class="post-meta">Cameron Newham </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Microservices_Patterns.jpg">
+            <div>
+              <a href="/books/collection/Microservices%20Patterns.html">
+                  <span class="title">Microservices patterns</span> <br/>
+                  <span class="post-meta">Chris Richardson </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Monolith_to_Microservices.jpg">
+            <div>
+              <a href="/books/collection/Monolith%20to%20Microservices.html">
+                  <span class="title">Monolith to microservices</span> <br/>
+                  <span class="post-meta">Sam Newman </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Refactoring.jpg">
+            <div>
+              <a href="/books/collection/Refactoring.html">
+                  <span class="title">Refactoring</span> <br/>
+                  <span class="post-meta">Martin Fowler </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Staff_Engineer.jpg">
+            <div>
+              <a href="/books/collection/Staff%20Engineer.html">
+                  <span class="title">Staff engineer</span> <br/>
+                  <span class="post-meta">Will Larson and Tanya Reilly </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Streaming_Systems.jpg">
+            <div>
+              <a href="/books/collection/Streaming%20Systems.html">
+                  <span class="title">Streaming systems</span> <br/>
+                  <span class="post-meta">Tyler Akidau / Slava Chernyak / Reuven Lax </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Basics_of_Bitcoins_and_Blockchains.jpg">
+            <div>
+              <a href="/books/collection/The%20Basics%20of%20Bitcoins%20and%20Blockchains.html">
+                  <span class="title">The basics of bitcoins and blockchains</span> <br/>
+                  <span class="post-meta">Antony Lewis </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Linux_Command_Line.jpg">
+            <div>
+              <a href="/books/collection/The%20Linux%20Command%20Line.html">
+                  <span class="title">The linux command line</span> <br/>
+                  <span class="post-meta">William Shotts </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Mythical_Man_Month.jpg">
+            <div>
+              <a href="/books/collection/The%20Mythical%20Man%20Month.html">
+                  <span class="title">The mythical man month</span> <br/>
+                  <span class="post-meta">Frederick P. Brooks Jr. </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Pragmatic_Programmer.jpg">
+            <div>
+              <a href="/books/collection/The%20Pragmatic%20Programmer.html">
+                  <span class="title">The pragmatic programmer</span> <br/>
+                  <span class="post-meta">David Thomas / Andrew Hunt </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Staff_Engineer's_Path.jpg">
+            <div>
+              <a href="/books/collection/The%20Staff%20Engineer's%20Path.html">
+                  <span class="title">The staff engineer's path</span> <br/>
+                  <span class="post-meta">Tanya Reilly </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/淘宝技术这十年.jpg">
+            <div>
+              <a href="/books/collection/%E6%B7%98%E5%AE%9D%E6%8A%80%E6%9C%AF%E8%BF%99%E5%8D%81%E5%B9%B4.html">
+                  <span class="title">淘宝技术这十年</span> <br/>
+                  <span class="post-meta">子柳 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+<h3>Non-fiction</h3>
+<div class="post-grid">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/River_Town.jpg">
+            <div>
+              <a href="/books/collection/River%20Town.html">
+                  <span class="title">River town</span> <br/>
+                  <span class="post-meta">Peter Hessler </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/亲爱的安德烈.jpg">
+            <div>
+              <a href="/books/collection/%E4%BA%B2%E7%88%B1%E7%9A%84%E5%AE%89%E5%BE%B7%E7%83%88.html">
+                  <span class="title">亲爱的安德烈</span> <br/>
+                  <span class="post-meta">龙应台 / 安德烈 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/人生由我.jpg">
+            <div>
+              <a href="/books/collection/%E4%BA%BA%E7%94%9F%E7%94%B1%E6%88%91.html">
+                  <span class="title">人生由我</span> <br/>
+                  <span class="post-meta">梅耶·马斯克 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/俗女养成记.jpeg">
+            <div>
+              <a href="/books/collection/%E4%BF%97%E5%A5%B3%E5%85%BB%E6%88%90%E8%AE%B0.html">
+                  <span class="title">俗女养成记</span> <br/>
+                  <span class="post-meta">江鹅 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/先知.jpg">
+            <div>
+              <a href="/books/collection/%E5%85%88%E7%9F%A5.html">
+                  <span class="title">先知</span> <br/>
+                  <span class="post-meta">纪·哈·纪伯伦 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/冬牧场.jpg">
+            <div>
+              <a href="/books/collection/%E5%86%AC%E7%89%A7%E5%9C%BA.html">
+                  <span class="title">冬牧场</span> <br/>
+                  <span class="post-meta">李娟 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/千年一叹.jpg">
+            <div>
+              <a href="/books/collection/%E5%8D%83%E5%B9%B4%E4%B8%80%E5%8F%B9.html">
+                  <span class="title">千年一叹</span> <br/>
+                  <span class="post-meta">余秋雨 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/厨房里的人类学家.jpeg">
+            <div>
+              <a href="/books/collection/%E5%8E%A8%E6%88%BF%E9%87%8C%E7%9A%84%E4%BA%BA%E7%B1%BB%E5%AD%A6%E5%AE%B6.html">
+                  <span class="title">厨房里的人类学家</span> <br/>
+                  <span class="post-meta">庄祖宜 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/天真的人类学家.jpg">
+            <div>
+              <a href="/books/collection/%E5%A4%A9%E7%9C%9F%E7%9A%84%E4%BA%BA%E7%B1%BB%E5%AD%A6%E5%AE%B6.html">
+                  <span class="title">天真的人类学家</span> <br/>
+                  <span class="post-meta">奈吉尔·巴利 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/失落的卫星.jpg">
+            <div>
+              <a href="/books/collection/%E5%A4%B1%E8%90%BD%E7%9A%84%E5%8D%AB%E6%98%9F.html">
+                  <span class="title">失落的卫星</span> <br/>
+                  <span class="post-meta">刘子超 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/娱乐至死.jpg">
+            <div>
+              <a href="/books/collection/%E5%A8%B1%E4%B9%90%E8%87%B3%E6%AD%BB.html">
+                  <span class="title">娱乐至死</span> <br/>
+                  <span class="post-meta">尼尔·波兹曼 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/孩子你慢慢来.jpg">
+            <div>
+              <a href="/books/collection/%E5%AD%A9%E5%AD%90%E4%BD%A0%E6%85%A2%E6%85%A2%E6%9D%A5.html">
+                  <span class="title">孩子你慢慢来</span> <br/>
+                  <span class="post-meta">龙应台 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/寻味东西.jpg">
+            <div>
+              <a href="/books/collection/%E5%AF%BB%E5%91%B3%E4%B8%9C%E8%A5%BF.html">
+                  <span class="title">寻味东西</span> <br/>
+                  <span class="post-meta">扶霞·邓洛普 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/巷里林泉.jpeg">
+            <div>
+              <a href="/books/collection/%E5%B7%B7%E9%87%8C%E6%9E%97%E6%B3%89.html">
+                  <span class="title">巷里林泉</span> <br/>
+                  <span class="post-meta">故园风雨前 / 杨云苏 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/幸得诸君慰平生.jpg">
+            <div>
+              <a href="/books/collection/%E5%B9%B8%E5%BE%97%E8%AF%B8%E5%90%9B%E6%85%B0%E5%B9%B3%E7%94%9F.html">
+                  <span class="title">幸得诸君慰平生</span> <br/>
+                  <span class="post-meta">故园风雨前 / 杨云苏 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/我们仨.jpg">
+            <div>
+              <a href="/books/collection/%E6%88%91%E4%BB%AC%E4%BB%A8.html">
+                  <span class="title">我们仨</span> <br/>
+                  <span class="post-meta">杨绛 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/我的阿勒泰.jpg">
+            <div>
+              <a href="/books/collection/%E6%88%91%E7%9A%84%E9%98%BF%E5%8B%92%E6%B3%B0.html">
+                  <span class="title">我的阿勒泰</span> <br/>
+                  <span class="post-meta">李娟 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/文人与食事.jpg">
+            <div>
+              <a href="/books/collection/%E6%96%87%E4%BA%BA%E4%B8%8E%E9%A3%9F%E4%BA%8B.html">
+                  <span class="title">文人与食事</span> <br/>
+                  <span class="post-meta">汪曾祺 汪朗著 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/旅行的艺术.jpeg">
+            <div>
+              <a href="/books/collection/%E6%97%85%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF.html">
+                  <span class="title">旅行的艺术</span> <br/>
+                  <span class="post-meta">阿兰·德波顿 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/暮色将尽.jpg">
+            <div>
+              <a href="/books/collection/%E6%9A%AE%E8%89%B2%E5%B0%86%E5%B0%BD.html">
+                  <span class="title">暮色将尽</span> <br/>
+                  <span class="post-meta">Diana Athill </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/最好金龟换酒.jpg">
+            <div>
+              <a href="/books/collection/%E6%9C%80%E5%A5%BD%E9%87%91%E9%BE%9F%E6%8D%A2%E9%85%92.html">
+                  <span class="title">最好金龟换酒</span> <br/>
+                  <span class="post-meta">傅真 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/江城.jpg">
+            <div>
+              <a href="/books/collection/%E6%B1%9F%E5%9F%8E.html">
+                  <span class="title">江城</span> <br/>
+                  <span class="post-meta">彼得·海斯勒（李雪顺译） </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/泛若不系之舟.jpg">
+            <div>
+              <a href="/books/collection/%E6%B3%9B%E8%8B%A5%E4%B8%8D%E7%B3%BB%E4%B9%8B%E8%88%9F.html">
+                  <span class="title">泛若不系之舟</span> <br/>
+                  <span class="post-meta">傅真 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/波西米亚楼.jpg">
+            <div>
+              <a href="/books/collection/%E6%B3%A2%E8%A5%BF%E7%B1%B3%E4%BA%9A%E6%A5%BC.html">
+                  <span class="title">波西米亚楼</span> <br/>
+                  <span class="post-meta">严歌苓 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/浮生六记.jpeg">
+            <div>
+              <a href="/books/collection/%E6%B5%AE%E7%94%9F%E5%85%AD%E8%AE%B0.html">
+                  <span class="title">浮生六记</span> <br/>
+                  <span class="post-meta">沈复 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/目送.jpg">
+            <div>
+              <a href="/books/collection/%E7%9B%AE%E9%80%81.html">
+                  <span class="title">目送</span> <br/>
+                  <span class="post-meta">龙应台 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/禅与摩托车维修艺术.jpg">
+            <div>
+              <a href="/books/collection/%E7%A6%85%E4%B8%8E%E6%91%A9%E6%89%98%E8%BD%A6%E7%BB%B4%E4%BF%AE%E8%89%BA%E6%9C%AF.html">
+                  <span class="title">禅与摩托车维修艺术</span> <br/>
+                  <span class="post-meta">Robert M.Pirsig </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/纵身入山海.jpeg">
+            <div>
+              <a href="/books/collection/%E7%BA%B5%E8%BA%AB%E5%85%A5%E5%B1%B1%E6%B5%B7.html">
+                  <span class="title">纵身入山海</span> <br/>
+                  <span class="post-meta">库索 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/羊道-春牧场.jpeg">
+            <div>
+              <a href="/books/collection/%E7%BE%8A%E9%81%93-%E6%98%A5%E7%89%A7%E5%9C%BA.html">
+                  <span class="title">羊道 春牧场</span> <br/>
+                  <span class="post-meta">李娟 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/自深深处.jpeg">
+            <div>
+              <a href="/books/collection/%E8%87%AA%E6%B7%B1%E6%B7%B1%E5%A4%84.html">
+                  <span class="title">自深深处</span> <br/>
+                  <span class="post-meta">奥斯卡·王尔德 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/英子的乡恋.jpg">
+            <div>
+              <a href="/books/collection/%E8%8B%B1%E5%AD%90%E7%9A%84%E4%B9%A1%E6%81%8B.html">
+                  <span class="title">英子的乡恋</span> <br/>
+                  <span class="post-meta">林海音 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/藏地白皮书.jpg">
+            <div>
+              <a href="/books/collection/%E8%97%8F%E5%9C%B0%E7%99%BD%E7%9A%AE%E4%B9%A6.html">
+                  <span class="title">藏地白皮书</span> <br/>
+                  <span class="post-meta">傅真/毛铭基 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/送你一颗子弹.jpg">
+            <div>
+              <a href="/books/collection/%E9%80%81%E4%BD%A0%E4%B8%80%E9%A2%97%E5%AD%90%E5%BC%B9.html">
+                  <span class="title">送你一颗子弹</span> <br/>
+                  <span class="post-meta">刘瑜 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/遥远的向日葵地.jpg">
+            <div>
+              <a href="/books/collection/%E9%81%A5%E8%BF%9C%E7%9A%84%E5%90%91%E6%97%A5%E8%91%B5%E5%9C%B0.html">
+                  <span class="title">遥远的向日葵地</span> <br/>
+                  <span class="post-meta">李娟 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/鱼翅与花椒.jpg">
+            <div>
+              <a href="/books/collection/%E9%B1%BC%E7%BF%85%E4%B8%8E%E8%8A%B1%E6%A4%92.html">
+                  <span class="title">鱼翅与花椒</span> <br/>
+                  <span class="post-meta">扶霞·邓洛普 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+</div>
+
+<h3>Fictions</h3>
+<div class="post-grid">
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/1984.jpg">
+            <div>
+              <a href="/books/collection/1984.html">
+                  <span class="title">1984</span> <br/>
+                  <span class="post-meta">乔治·奥威尔 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/A_Man_Called_Ove.jpg">
+            <div>
+              <a href="/books/collection/A%20Man%20Called%20Ove.html">
+                  <span class="title">A man called ove</span> <br/>
+                  <span class="post-meta">Fredrik Backman </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Anxious_People.jpg">
+            <div>
+              <a href="/books/collection/Anxious%20People.html">
+                  <span class="title">Anxious people</span> <br/>
+                  <span class="post-meta">Fredrik Backman </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Klara_and_the_Sun.jpg">
+            <div>
+              <a href="/books/collection/Klara%20and%20the%20Sun.html">
+                  <span class="title">Klara and the sun</span> <br/>
+                  <span class="post-meta">Kazuo Ishiguro </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Stoner.jpg">
+            <div>
+              <a href="/books/collection/Stoner.html">
+                  <span class="title">Stoner</span> <br/>
+                  <span class="post-meta">John Williams and John McGahern </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Humans.jpg">
+            <div>
+              <a href="/books/collection/The%20Humans.html">
+                  <span class="title">The humans</span> <br/>
+                  <span class="post-meta">Matt Haig </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Unicorn_Project.jpg">
+            <div>
+              <a href="/books/collection/The%20Unicorn%20Project.html">
+                  <span class="title">The unicorn project</span> <br/>
+                  <span class="post-meta">Gene Kim </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/一个陌生女人的来信.jpg">
+            <div>
+              <a href="/books/collection/%E4%B8%80%E4%B8%AA%E9%99%8C%E7%94%9F%E5%A5%B3%E4%BA%BA%E7%9A%84%E6%9D%A5%E4%BF%A1.html">
+                  <span class="title">一个陌生女人的来信</span> <br/>
+                  <span class="post-meta">斯蒂芬·茨威格 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/三体.jpeg">
+            <div>
+              <a href="/books/collection/%E4%B8%89%E4%BD%93.html">
+                  <span class="title">三体</span> <br/>
+                  <span class="post-meta">刘慈欣 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/东方快车谋杀案.jpg">
+            <div>
+              <a href="/books/collection/%E4%B8%9C%E6%96%B9%E5%BF%AB%E8%BD%A6%E8%B0%8B%E6%9D%80%E6%A1%88.html">
+                  <span class="title">东方快车谋杀案</span> <br/>
+                  <span class="post-meta">阿加莎·克里斯蒂 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/动物庄园.jpg">
+            <div>
+              <a href="/books/collection/%E5%8A%A8%E7%89%A9%E5%BA%84%E5%9B%AD.html">
+                  <span class="title">动物庄园</span> <br/>
+                  <span class="post-meta">乔治·奥威尔 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/台北人.jpg">
+            <div>
+              <a href="/books/collection/%E5%8F%B0%E5%8C%97%E4%BA%BA.html">
+                  <span class="title">台北人</span> <br/>
+                  <span class="post-meta">白先勇 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/围城.jpg">
+            <div>
+              <a href="/books/collection/%E5%9B%B4%E5%9F%8E.html">
+                  <span class="title">围城</span> <br/>
+                  <span class="post-meta">钱锺书 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/圣母.jpg">
+            <div>
+              <a href="/books/collection/%E5%9C%A3%E6%AF%8D.html">
+                  <span class="title">圣母</span> <br/>
+                  <span class="post-meta">秋吉理香子 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/大雪将至.jpeg">
+            <div>
+              <a href="/books/collection/%E5%A4%A7%E9%9B%AA%E5%B0%86%E8%87%B3.html">
+                  <span class="title">大雪将至</span> <br/>
+                  <span class="post-meta">罗伯特·泽塔勒 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/小小小小的火.jpg">
+            <div>
+              <a href="/books/collection/%E5%B0%8F%E5%B0%8F%E5%B0%8F%E5%B0%8F%E7%9A%84%E7%81%AB.html">
+                  <span class="title">小小小小的火</span> <br/>
+                  <span class="post-meta">伍绮诗 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/尘埃落定.jpg">
+            <div>
+              <a href="/books/collection/%E5%B0%98%E5%9F%83%E8%90%BD%E5%AE%9A.html">
+                  <span class="title">尘埃落定</span> <br/>
+                  <span class="post-meta">阿来 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/岛上书店.jpg">
+            <div>
+              <a href="/books/collection/%E5%B2%9B%E4%B8%8A%E4%B9%A6%E5%BA%97.html">
+                  <span class="title">岛上书店</span> <br/>
+                  <span class="post-meta">加布瑞埃拉·泽文 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/廊桥遗梦.jpeg">
+            <div>
+              <a href="/books/collection/%E5%BB%8A%E6%A1%A5%E9%81%97%E6%A2%A6.html">
+                  <span class="title">廊桥遗梦</span> <br/>
+                  <span class="post-meta">罗伯特・沃勒 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/异乡人.jpg">
+            <div>
+              <a href="/books/collection/%E5%BC%82%E4%B9%A1%E4%BA%BA.html">
+                  <span class="title">异乡人</span> <br/>
+                  <span class="post-meta">加缪 (Albert Camus) </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/房思琪的初恋乐园.jpg">
+            <div>
+              <a href="/books/collection/%E6%88%BF%E6%80%9D%E7%90%AA%E7%9A%84%E5%88%9D%E6%81%8B%E4%B9%90%E5%9B%AD.html">
+                  <span class="title">房思琪的初恋乐园</span> <br/>
+                  <span class="post-meta">林奕含 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/扶桑.jpg">
+            <div>
+              <a href="/books/collection/%E6%89%B6%E6%A1%91.html">
+                  <span class="title">扶桑</span> <br/>
+                  <span class="post-meta">严歌苓 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/斑马.jpg">
+            <div>
+              <a href="/books/collection/%E6%96%91%E9%A9%AC.html">
+                  <span class="title">斑马</span> <br/>
+                  <span class="post-meta">傅真 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/斯通纳(Stoner).jpg">
+            <div>
+              <a href="/books/collection/%E6%96%AF%E9%80%9A%E7%BA%B3.html">
+                  <span class="title">斯通纳</span> <br/>
+                  <span class="post-meta">约翰·威廉斯 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/新参者.jpg">
+            <div>
+              <a href="/books/collection/%E6%96%B0%E5%8F%82%E8%80%85.html">
+                  <span class="title">新参者</span> <br/>
+                  <span class="post-meta">东野圭吾 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/月亮和六便士.jpg">
+            <div>
+              <a href="/books/collection/%E6%9C%88%E4%BA%AE%E5%92%8C%E5%85%AD%E4%BE%BF%E5%A3%AB.html">
+                  <span class="title">月亮和六便士</span> <br/>
+                  <span class="post-meta">毛姆 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/流浪地球.jpg">
+            <div>
+              <a href="/books/collection/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%83.html">
+                  <span class="title">流浪地球</span> <br/>
+                  <span class="post-meta">刘慈欣 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/献给阿尔吉侬的花束.jpg">
+            <div>
+              <a href="/books/collection/%E7%8C%AE%E7%BB%99%E9%98%BF%E5%B0%94%E5%90%89%E4%BE%AC%E7%9A%84%E8%8A%B1%E6%9D%9F.html">
+                  <span class="title">献给阿尔吉侬的花束</span> <br/>
+                  <span class="post-meta">丹尼尔·凯斯 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/白夜行.jpg">
+            <div>
+              <a href="/books/collection/%E7%99%BD%E5%A4%9C%E8%A1%8C.html">
+                  <span class="title">白夜行</span> <br/>
+                  <span class="post-meta">东野圭吾 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/百年孤独.jpg">
+            <div>
+              <a href="/books/collection/%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC.html">
+                  <span class="title">百年孤独</span> <br/>
+                  <span class="post-meta">加西亚·马尔克斯 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/红楼梦.jpeg">
+            <div>
+              <a href="/books/collection/%E7%BA%A2%E6%A5%BC%E6%A2%A6.html">
+                  <span class="title">红楼梦</span> <br/>
+                  <span class="post-meta">曹雪芹/高鹗 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/纽约客.jpg">
+            <div>
+              <a href="/books/collection/%E7%BA%BD%E7%BA%A6%E5%AE%A2.html">
+                  <span class="title">纽约客</span> <br/>
+                  <span class="post-meta">白先勇 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/缅甸岁月.jpg">
+            <div>
+              <a href="/books/collection/%E7%BC%85%E7%94%B8%E5%B2%81%E6%9C%88.html">
+                  <span class="title">缅甸岁月</span> <br/>
+                  <span class="post-meta">乔治·奥威尔 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/美丽新世界.jpg">
+            <div>
+              <a href="/books/collection/%E7%BE%8E%E4%B8%BD%E6%96%B0%E4%B8%96%E7%95%8C.html">
+                  <span class="title">美丽新世界</span> <br/>
+                  <span class="post-meta">阿道司·赫胥黎 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/苏菲的世界.jpg">
+            <div>
+              <a href="/books/collection/%E8%8B%8F%E8%8F%B2%E7%9A%84%E4%B8%96%E7%95%8C.html">
+                  <span class="title">苏菲的世界</span> <br/>
+                  <span class="post-meta">乔斯坦·贾德 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/西线无战事.jpeg">
+            <div>
+              <a href="/books/collection/%E8%A5%BF%E7%BA%BF%E6%97%A0%E6%88%98%E4%BA%8B.html">
+                  <span class="title">西线无战事</span> <br/>
+                  <span class="post-meta">埃里希·玛丽亚·雷马克 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/解忧杂货店.jpg">
+            <div>
+              <a href="/books/collection/%E8%A7%A3%E5%BF%A7%E6%9D%82%E8%B4%A7%E5%BA%97.html">
+                  <span class="title">解忧杂货店</span> <br/>
+                  <span class="post-meta">东野圭吾 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/追风筝的人.jpg">
+            <div>
+              <a href="/books/collection/%E8%BF%BD%E9%A3%8E%E7%AD%9D%E7%9A%84%E4%BA%BA.html">
+                  <span class="title">追风筝的人</span> <br/>
+                  <span class="post-meta">卡勒德·胡赛尼 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/长夜难明.jpg">
+            <div>
+              <a href="/books/collection/%E9%95%BF%E5%A4%9C%E9%9A%BE%E6%98%8E.html">
+                  <span class="title">长夜难明</span> <br/>
+                  <span class="post-meta">紫金陈 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/霍乱时期的爱情.jpg">
+            <div>
+              <a href="/books/collection/%E9%9C%8D%E4%B9%B1%E6%97%B6%E6%9C%9F%E7%9A%84%E7%88%B1%E6%83%85.html">
+                  <span class="title">霍乱时期的爱情</span> <br/>
+                  <span class="post-meta">加西亚·马尔克斯 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+<h3>Growth</h3>
+<div class="post-grid">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://m.media-amazon.com/images/I/31PBdo581fL._SX317_BO1,204,203,200_.jpg">
+            <div>
+              <a href="/books/collection/Deep%20Work.html">
+                  <span class="title">Deep work</span> <br/>
+                  <span class="post-meta">Cal Newport </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Quiet.jpg">
+            <div>
+              <a href="/books/collection/Quiet.html">
+                  <span class="title">Quiet</span> <br/>
+                  <span class="post-meta">Susan Cain </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_7_Habits_of_Highly_Effective_People.jpg">
+            <div>
+              <a href="/books/collection/The%207%20Habits%20of%20Highly%20Effective%20People.html">
+                  <span class="title">The 7 habits of highly effective people</span> <br/>
+                  <span class="post-meta">Stephen R. Covey </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://m.media-amazon.com/images/P/0062219693.01._SCLZZZZZZZ_SX500_.jpg">
+            <div>
+              <a href="/books/collection/The%20Art%20of%20Thinking%20Clearly.html">
+                  <span class="title">The art of thinking clearly</span> <br/>
+                  <span class="post-meta">Rolf Dobelli </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_First_90_Days.jpg">
+            <div>
+              <a href="/books/collection/The%20First%2090%20Days.html">
+                  <span class="title">The first 90 days</span> <br/>
+                  <span class="post-meta">Michael D. Watkins </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Magic_Years.jpg">
+            <div>
+              <a href="/books/collection/The%20Magic%20Years.html">
+                  <span class="title">The magic years</span> <br/>
+                  <span class="post-meta">Selma H. Fraiberg </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Psychology_of_Money.jpg">
+            <div>
+              <a href="/books/collection/The%20Psychology%20of%20Money.html">
+                  <span class="title">The psychology of money</span> <br/>
+                  <span class="post-meta">Morgan Housel </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/Word_Power_Made_Easy.jpg">
+            <div>
+              <a href="/books/collection/Word%20Power%20Made%20Easy.html">
+                  <span class="title">Word power made easy</span> <br/>
+                  <span class="post-meta">Norman Lewis </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/为什么精英都是时间控.jpeg">
+            <div>
+              <a href="/books/collection/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E9%83%BD%E6%98%AF%E6%97%B6%E9%97%B4%E6%8E%A7.html">
+                  <span class="title">为什么精英都是时间控</span> <br/>
+                  <span class="post-meta">桦泽紫苑 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/众病之王.jpg">
+            <div>
+              <a href="/books/collection/%E4%BC%97%E7%97%85%E4%B9%8B%E7%8E%8B.html">
+                  <span class="title">众病之王</span> <br/>
+                  <span class="post-meta">悉达多·穆克吉 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/你是你吃出来的.jpg">
+            <div>
+              <a href="/books/collection/%E4%BD%A0%E6%98%AF%E4%BD%A0%E5%90%83%E5%87%BA%E6%9D%A5%E7%9A%84.html">
+                  <span class="title">你是你吃出来的</span> <br/>
+                  <span class="post-meta">夏萌 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/你是你吃出来的2.jpg">
+            <div>
+              <a href="/books/collection/%E4%BD%A0%E6%98%AF%E4%BD%A0%E5%90%83%E5%87%BA%E6%9D%A5%E7%9A%842.html">
+                  <span class="title">你是你吃出来的2</span> <br/>
+                  <span class="post-meta">夏萌 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/刻意练习.jpg">
+            <div>
+              <a href="/books/collection/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.html">
+                  <span class="title">刻意练习</span> <br/>
+                  <span class="post-meta">安德斯·艾利克森 罗伯特·普尔 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/如何阅读一本书.jpg">
+            <div>
+              <a href="/books/collection/%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6.html">
+                  <span class="title">如何阅读一本书</span> <br/>
+                  <span class="post-meta">莫提默·艾德勒 查尔斯·范多伦 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/自控力.jpg">
+            <div>
+              <a href="/books/collection/%E8%87%AA%E6%8E%A7%E5%8A%9B.html">
+                  <span class="title">自控力</span> <br/>
+                  <span class="post-meta">凯利·麦格尼格尔 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/被讨厌的勇气.jpg">
+            <div>
+              <a href="/books/collection/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94.html">
+                  <span class="title">被讨厌的勇气</span> <br/>
+                  <span class="post-meta">岸见一郎 古贺史健 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/认知天性.jpg">
+            <div>
+              <a href="/books/collection/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7.html">
+                  <span class="title">认知天性</span> <br/>
+                  <span class="post-meta">彼得·C.布朗 亨利·L.罗迪格三世 马克·A.麦克丹尼尔 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/遇见未知的自己.jpg">
+            <div>
+              <a href="/books/collection/%E9%81%87%E8%A7%81%E6%9C%AA%E7%9F%A5%E7%9A%84%E8%87%AA%E5%B7%B1.html">
+                  <span class="title">遇见未知的自己</span> <br/>
+                  <span class="post-meta">张德芬 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/高效能人士的七个习惯.jpg">
+            <div>
+              <a href="/books/collection/%E9%AB%98%E6%95%88%E8%83%BD%E4%BA%BA%E5%A3%AB%E7%9A%84%E4%B8%83%E4%B8%AA%E4%B9%A0%E6%83%AF.html">
+                  <span class="title">高效能人士的七个习惯</span> <br/>
+                  <span class="post-meta">史蒂芬·柯维 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/魔法岁月.jpg">
+            <div>
+              <a href="/books/collection/%E9%AD%94%E6%B3%95%E5%B2%81%E6%9C%88.html">
+                  <span class="title">魔法岁月</span> <br/>
+                  <span class="post-meta">塞尔玛·弗雷伯格 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+</div>
+
+<h3>Biz and Investment</h3>
+<div class="post-grid">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/how_they_started_digital.jpeg">
+            <div>
+              <a href="/books/collection/How%20they%20started%20digital.html">
+                  <span class="title">How they started digital</span> <br/>
+                  <span class="post-meta">David Lester </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/字节跳动.jpg">
+            <div>
+              <a href="/books/collection/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8.html">
+                  <span class="title">字节跳动</span> <br/>
+                  <span class="post-meta">马修·布伦南 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/投资最重要的事.jpg">
+            <div>
+              <a href="/books/collection/%E6%8A%95%E8%B5%84%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B.html">
+                  <span class="title">投资最重要的事</span> <br/>
+                  <span class="post-meta">霍华德·马克斯 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/浪潮之巅.jpg">
+            <div>
+              <a href="/books/collection/%E6%B5%AA%E6%BD%AE%E4%B9%8B%E5%B7%85.html">
+                  <span class="title">浪潮之巅</span> <br/>
+                  <span class="post-meta">吴军 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/海龟交易法则.jpg">
+            <div>
+              <a href="/books/collection/%E6%B5%B7%E9%BE%9F%E4%BA%A4%E6%98%93%E6%B3%95%E5%88%99.html">
+                  <span class="title">海龟交易法则</span> <br/>
+                  <span class="post-meta">柯蒂斯·费思 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/穷查理宝典.jpg">
+            <div>
+              <a href="/books/collection/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8.html">
+                  <span class="title">穷查理宝典</span> <br/>
+                  <span class="post-meta">彼得·考夫曼 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+        <div class="grid-item" >
+            
+              <div class="ribbon">Done</div>
+            
+            <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/走过低谷，见过高山.jpg">
+            <div>
+              <a href="/books/collection/%E8%B5%B0%E8%BF%87%E4%BD%8E%E8%B0%B7%E8%A7%81%E8%BF%87%E9%AB%98%E5%B1%B1.html">
+                  <span class="title">走过低谷，见过高山</span> <br/>
+                  <span class="post-meta">阿曼达·斯坦伯格 </span>
+              </a>
+            </div>
+        </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+            </div>
+        </div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+</html>

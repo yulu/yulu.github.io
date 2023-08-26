@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>每秒对外提供10万张照片技术栈揭密</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog3/2015/09/03/imgix-tech-stack.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">每秒对外提供10万张照片技术栈揭密</h1>
+                <p class="post-meta">Sep 3, 2015</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <h3 id="imgix技术栈揭密">Imgix技术栈揭密</h3>
+
+<blockquote>
+  <p>如何实现每秒对外提供10万张图片</p>
+</blockquote>
+
+<h4 id="什么是imgix">什么是Imgix</h4>
+
+<p>Imgix是一项进行图像实时处理和传输的服务，授权给企业和开发者用以优化图像。借助简单的URL API接口，Imgix可以实时抓取、传输图像，并通过CDN将图像提供到世界各地。个人用户在使用时可以无限量地动态生成图像，从而不必在本地储存大量的图像。图像剪裁、大小调整等动态调整过程防止网页过于臃肿，保证了网站精炼简洁。</p>
+
+<h4 id="挑战技术">挑战技术</h4>
+
+<p>Imgix拥有超过80个URL参数，这些参数用于调整复杂的图像处理效果。Imgix可以调节压缩比和色度抽样率，进行色彩量化等操作。另外，Imgix能够同时响应多个输入，输入图像的来源（浏览器、手机、平板电脑、显示器）也可不同。目前，影响图像输出结果的参数和输入的绝对数目仍在快速增长。</p>
+
+<p>设计Imgix架构时的前提假设是，收到的图像请求不能被缓存，而且必须动态创建。这一点彻底改变了Imgix服务的提供方式和评判标准。多年来，Imgix架构被反复修改，现在已经能够做到每秒处理超过10万个的图像，其中90%的输入文件大小大于4.5MB。Imgix用最快的速度、最少的成本提供了质量最好的图像。未来，Imgix还希望把每秒处理的图像数量提高的100万个以上。</p>
+
+<h4 id="技术栈揭秘">技术栈揭秘</h4>
+
+<p>Imgix的核心架构由多个服务层组成，包括原图抓取层、原图缓存层、图像处理层、负载平衡及分配层、以及内容传输层。每个服务层都有遍布全局的配置、日志记录、监视及管理服务。</p>
+
+<p>原图抓取层和缓存层使用了定制的MogileFS、nginx、HAProxy作为底层技术。负载平衡及分配层则基于自定义C代码和自主开发的LuaJIT框架（名称为Levee）。Levee能够在一台机器上每秒处理4万个请求。将以前的一些由Python处理的服务转为用LuaJIT框架处理后，性能提高了2倍。当技术成熟之后，Levee还将开源。网络边界管理则同时使用了HAProxy、nginx和OpenResty。图像处理层的高性能图像处理服务器使用C、Objective-C以及Core Graphics搭建。在GPU中的图像处理操作时间小于1ms，提升性能的工作主要是对网络接口／本地内存的缓存到GPU纹理缓冲器这一步进行路径优化。由于图像完全契合GPU纹理缓冲器，点对点处理时间的范围小于50ms。图像处理层的所有更改都将进行一系列回归分析测试，以保证每次更改不会对图像处理结果引入视觉可辨的差异。最后的内容传输层使用了Fastly，通过Vanish工具进一步优化了流量控制。全球20多个Fastly POP使得Imgix的用户可以快速获取图像。各个服务之间的有序协作90%首次抓取、未经缓存的图像在高峰时期的点对点响应时间缩短到了700ms以下。</p>
+
+<p>Imgix每个服务层的日志记录十分重要，因此需要建立全面的日志生成流水线。Heka用于处理大部分数据行集合，并将处理后的实时数据、统计数据、分析数据分别发送给Riemann、Hosted Graphite和Google BigQuery。</p>
+
+<p>Imgix管理和监控堆栈使用了几项开源项目：Ansible用于配置管理，Consul用于服务发现，Prometheus用于网络监控，StatusPage.io用于给用户报告架构当前的状态。</p>
+
+<p>Imgix网页的前端服务完全与核心架构隔离。页面搭建主要根据需求使用Angular、Ember或Tornado，这些工具提供了配置及管理Imgix账户的网页借口。Imgix还分别为每一个前端项目、测试、制作提供了Docker容器。另外还有CircleCI用于内部服务，Travis CI用于管理开源项目和库。</p>
+
+<p>Imgix不断的整合集成，一天内常进行多次部署。Imgix的开发使用GitHub管理每项服务的代码仓库，使用Trello作为团队规划管理工具。项目讨论在Slack群组聊天软件上进行，不过跟多的时候，讨论直接就在茶水间中完成了。</p>
+
+<p>2013年，苹果公司发布了更符合Imgix需求的配件设备——mac pro。现在，Imgix的数据中心用64U</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

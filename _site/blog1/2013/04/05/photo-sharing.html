@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>A Photo-sharing App using Facebook and Weibo API</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2013/04/05/photo-sharing.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">A Photo-sharing App using Facebook and Weibo API</h1>
+                <p class="post-meta">Apr 5, 2013</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>I have spent some time to play around with <a href="https://developers.facebook.com/android/">Facebook</a> and <a href="http://open.weibo.com/wiki/SDK#Android_SDK">Weibo</a> SDK for Android and create an app for photo-sharing to Facebook and Weibo with in-app log in. Here are the steps and tips. The source code is available in my <a href="https://github.com/yulu/SocialShare">Github Repo</a>. Before it can be built and run, some steps need to be done first:</p>
+
+<h4 id="for-facebook-details-in-section-2">For Facebook (details in section 2)</h4>
+
+<ol>
+  <li>
+    <p>Download Facebook SDK and add the correct dependency path</p>
+  </li>
+  <li>
+    <p>Generate and filled in the key hash in the app development page</p>
+  </li>
+  <li>
+    <p>Fill in your own app id in res/values/strings.xml</p>
+  </li>
+</ol>
+
+<h4 id="for-weibo-details-in-section-3">For Weibo (details in section 3)</h4>
+
+<ol>
+  <li>
+    <p>Add the weibo lib (.jar) file in libs.</p>
+  </li>
+  <li>
+    <p>Add app key in res/values/strings.xml</p>
+  </li>
+  <li>
+    <p>Add the test user in the app management if the user is not the developer</p>
+  </li>
+</ol>
+
+<h3 id="1-create-an-app-with-simple-ui">1. Create an app with simple UI</h3>
+
+<h4 id="11-main-activity-layout">1.1 Main Activity Layout</h4>
+
+<p>The UI is minimum. Take notes that the uri (local path) of the image needs to be passed to the two new activities which are triggered by the “Facebook” and Weibo” buttons. Since the screen sizes differ for phones, some photo might be too large to be displayed, you may want to resize it before display (not done in the sample code).</p>
+
+<p>Sample codes for starting activity with parameters:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="nc">String</span> <span class="n">selectedImagePath</span><span class="o">;</span>
+
+<span class="o">...</span>
+
+<span class="n">facebookButton</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">OnClickListener</span><span class="o">(){</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">arg0</span><span class="o">){</span>
+
+        <span class="nc">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Intent</span><span class="o">(</span><span class="nc">SocialShare</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">facebookUpload</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"bitmapPath"</span><span class="o">,</span> <span class="n">selectedImagePath</span><span class="o">);</span>
+        <span class="n">startActivity</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+
+    <span class="o">}</span>
+<span class="o">});</span>
+
+
+
+<span class="n">weiboButton</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">OnClickListener</span><span class="o">(){</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">arg0</span><span class="o">){</span>
+
+        <span class="nc">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Intent</span><span class="o">(</span><span class="nc">SocialShare</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">weiboUpload</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"bitmapPath"</span><span class="o">,</span> <span class="n">selectedImagePath</span><span class="o">);</span>
+        <span class="n">startActivity</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+
+    <span class="o">}</span>
+ <span class="o">});</span>
+ </code></pre></figure>
+
+<p>The main UI:</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16907323929_9fddfc133a_z.jpg" alt="share-1" /></p>
+
+<h4 id="12-dialog-layout-for-log-in">1.2 Dialog layout for Log-in</h4>
+
+<p>The Facebook Log-in button is default, and similar button for weibo log-in is drawn by myself. When the user logged in, the profile image is displayed for the confirmation of the user id.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17067575076_22b5314d87_z.jpg" alt="share-2" /></p>
+
+<h3 id="2-facebook-log-in">2. Facebook Log-in</h3>
+
+<p><a href="https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/">Here</a> is a must-go-through tutorial for Facebook integration in Android app. The main points summarized below</p>
+
+<h4 id="21-add-dependency">2.1 Add dependency</h4>
+
+<p>If the Facebook lib conflict with the project, a error will be shown. Just delete the android-support-v4.jar file in libs folder.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16886137807_77b84a6686_z.jpg" alt="share-3" /></p>
+
+<h4 id="22-declare-activities-in-the-manifest">2.2 Declare Activities in the Manifest</h4>
+
+<p>Delcare not only the self-defined activity from which the Facebook log-in is called, but also the default Facebook Log-in activity</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;activity</span>
+    <span class="na">android:name=</span><span class="s">"com.sample.socialshare.facebookUpload"</span>
+    <span class="na">android:label=</span><span class="s">"@string/app_name"</span>
+    <span class="na">android:theme=</span><span class="s">"@android:style/Theme.DeviceDefault.Dialog"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.VIEW"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.DEFAULT"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/activity&gt;</span>
+
+<span class="nt">&lt;activity</span>
+    <span class="na">android:name=</span><span class="s">"com.facebook.LoginActivity"</span>
+    <span class="na">android:theme=</span><span class="s">"@android:style/Theme.Translucent.NoTitleBar"</span>
+    <span class="na">android:label=</span><span class="s">"@string/app_name"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;meta-data</span>
+    <span class="na">android:name=</span><span class="s">"com.facebook.sdk.ApplicationId"</span>
+    <span class="na">android:value=</span><span class="s">"@string/fb_app_id"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<h4 id="23-generate-key-hash">2.3 Generate Key Hash</h4>
+<p>The tutorial has talked about it carefully. It is an IMPORTANT step, I stuck in the development for a long time because I didn’t realize I should do this first! Use the keytool to generate the key hash and filled in at the development page app settings accordingly.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">keytool</span> <span class="o">-</span><span class="n">exportcert</span> <span class="o">-</span><span class="n">alias</span> <span class="n">androiddebugkey</span> <span class="o">-</span><span class="n">keystore</span> <span class="o">~/</span><span class="p">.</span><span class="n">android</span><span class="o">/</span><span class="n">debug</span><span class="p">.</span><span class="n">keystore</span> <span class="o">|</span> <span class="n">openssl</span> <span class="n">sha1</span> <span class="o">-</span><span class="n">binary</span> <span class="o">|</span> <span class="n">openssl</span> <span class="n">base64</span></code></pre></figure>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/16905758618_9ac8775a8a_z.jpg" alt="share-4" /></p>
+
+<h4 id="24-add-the-app_id-to-the-project">2.4 Add the app_id to the project</h4>
+
+<p>Add the app_id provided by Facebook in the project /res/values/strings.xml</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17067578166_c706bc140f_z.jpg" alt="share-5" /></p>
+
+<p>If all the above have been carefully done, the Facebook Log-in should work and can share the photo within the app to Facebook now.</p>
+
+<h3 id="3-weibo-log-in">3. Weibo Log-in</h3>
+
+<h4 id="31-add-the-weibo-lib-in-the-project">3.1 Add the Weibo lib in the project</h4>
+
+<p>The weibo.sdk.android.sso.jar file should be included in the download zip file from the web. It should be put inside the libs folder. Also a class is copied from the sample code to manage the access token (AccessTokenKeeper.java).</p>
+
+<h4 id="32-fill-the-app-key">3.2 Fill the App Key</h4>
+
+<p>The same as the Facebook app, the app key is required in the res/values/strings.xml</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17067580176_d9330ac167_z.jpg" alt="share-7" /></p>
+
+<p>####3.3 Add the test user in the app</p>
+
+<p>If the log-in user is not the developer of the sample app (app still under developing and testing, not approved yet), Weibo requires a declare of the test users in the app management page.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17092846651_2e8515a6cc_z.jpg" alt="share-8" /></p>
+
+<h4 id="34-get-the-profile-image">3.4 Get the Profile Image</h4>
+
+<p>Weibo SDK does not have default function to load the user profile image. We need to use the AccountAPI object and UsersAPI object, and listening for the query of an Json object. The user profile image url is referred by the “avatar_large” parameter.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">try</span> <span class="o">{</span>
+
+    <span class="nc">JSONObject</span> <span class="n">ja</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JSONObject</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+    <span class="n">userId</span> <span class="o">=</span> <span class="n">ja</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="s">"uid"</span><span class="o">);</span>
+    <span class="nc">UsersAPI</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UsersAPI</span><span class="o">(</span><span class="n">weiboUpload</span><span class="o">.</span><span class="na">accessToken</span><span class="o">);</span>
+
+    <span class="n">user</span><span class="o">.</span><span class="na">show</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="k">new</span> <span class="nc">RequestListener</span><span class="o">(){</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">(</span><span class="nc">String</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="c1">// CONVERT RESPONSE STRING TO JSON ARRAY</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">JSONObject</span> <span class="n">ja</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JSONObject</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+                <span class="n">profileImageUrl</span> <span class="o">=</span> <span class="n">ja</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"avatar_large"</span><span class="o">);</span>
+                <span class="n">userProfile</span> <span class="o">=</span> <span class="n">getBitmapFromURL</span><span class="o">(</span><span class="n">profileImageUrl</span><span class="o">);</span>
+
+                <span class="n">runOnUiThread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                        <span class="k">if</span><span class="o">(</span><span class="n">profileImageUrl</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+                            <span class="n">userDiaplay</span><span class="o">.</span><span class="na">setImageBitmap</span><span class="o">(</span><span class="n">userProfile</span><span class="o">);</span>
+                    <span class="o">}</span>
+
+                <span class="o">});</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">JSONException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="nc">WeiboException</span> <span class="n">arg0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onIOException</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">arg0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span>
+
+    <span class="o">});</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">JSONException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>That’s it, the photo-sharing app. It has not been carefully tested and debugged, forgive me for all the bugs in the app, just for sharing.</p>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

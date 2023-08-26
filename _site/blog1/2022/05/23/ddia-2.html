@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[DDIA] Chapter 2 - Data Models and Query Languages</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2022/05/23/ddia-2.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_header.jpeg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">[DDIA] Chapter 2 - Data Models and Query Languages</h1>
+                <p class="post-meta">May 23, 2022</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-entry toc-h3"><a href="#mind-map">Mind Map</a></li>
+<li class="toc-entry toc-h3"><a href="#questions-summary">Questions Summary</a></li>
+<li class="toc-entry toc-h3"><a href="#highlighted-topics">Highlighted Topics</a></li>
+<li class="toc-entry toc-h3"><a href="#extended-topics">Extended Topics</a></li>
+</ul> </div> 
+
+        <article class="post-content">
+            <h3 id="chapter-summary">Chapter Summary</h3>
+
+<p>This chapter briefly discussed the three types of data models: relational, document and graph database. Some histories about database are introduced to give us a better ideas why these databases are developed and what types of problems they solve.</p>
+
+<p>Personally I think this chapter is loosely structured and too much detail about the query languages is provided. Advice given to anyone who read this chapter: do not spend much time in understanding the query language syntax here, because the information given in the book will not help anyone to master the particular language (if you want to get into one query language, follow a well designed tutorial a specific book). Instead, you should try to understand the philosophy of each type of data model and identify the scenarios to apply them.</p>
+
+<h3 id="mind-map">Mind Map</h3>
+
+<div class="mindmap-container">
+	<iframe src="https://www.xmind.net/embed/sDETtj" width="900px" height="540px" frameborder="0" scrolling="no"></iframe>
+</div>
+
+<h3 id="questions-summary">Questions Summary</h3>
+
+<p>💡 1. What is ORM frameworks?</p>
+
+<p>Object-relational mapping framework, e.g. Hibernate</p>
+
+<p>💡 2. What is data locality?</p>
+
+<p>Data locality is the process of moving computation to the node where that data resides, rather than moving data to save bandwidth. This helps to minimize network congestion and improve computation throughput.</p>
+
+<p>In computer science, locality of reference, also known as the principle of locality, is the tendency of a processor to access the same set of memory locations repetitively over a short period of time.</p>
+
+<p>💡 3. What is RDBMS?</p>
+
+<p>Relational database management system</p>
+
+<p>💡 4. What are three types of ways to store one-to-many relationship in database?</p>
+
+<ul>
+  <li>normalized representation of the data: to store the data to multiple tables and use foreign key reference to link the data from one source to multiple others</li>
+  <li>store the data in the predefined data structure that supported by the data store engine, e.g. json format supported by MySQL or PostgreSQL. The data is being able to be indexed and queried.</li>
+  <li>store the data as pure text field and allow the application to interpret the data. In this case, the data will not be able to be indexed.</li>
+</ul>
+
+<p>💡 5. What are the typical use cases of graph-like data models?</p>
+
+<ul>
+  <li>social media</li>
+  <li>web graph</li>
+  <li>road or rail networks</li>
+  <li>recommendation engine</li>
+</ul>
+
+<p>💡 6. What are the difference between JPA and Hibernate and Spring Data JPA?</p>
+
+<p>JPA (Java persistence API, nothing to do with Spring) is an interface (specification).</p>
+
+<p>Hibernate is a JPA provider or the implementation.</p>
+
+<p>Spring Data JPA is either an interface nor implementation, it is an abstraction used to reduce the amount of boilerplate code required to implement data access layers. Spring Data JPA cannot work without a JPA provider.</p>
+
+<p>💡 7. What are schema-on-write and schema-on-read?</p>
+
+<p>Schema-on-write refers to the data systems that requires the explicit definition of data schema. When data is write to the database, it will be verified against the defined schema, any content that does not conforms to the schema will not be allowed to write.</p>
+
+<p>Schema-on-read refers to the data systems that does not require the explicit definition of data schema. The data schema will be interpreted from the data when it is read.</p>
+
+<p>💡 8. What are NoSQL databases? What are the different types of NoSQL databases?</p>
+
+<p>NoSQL database is a non-relational DBMS that does not require a fixed schema, avoid joins and easy to scale. There are four types of NoSQL database: Document databases (MongoDB), key-value stores (DynamoDB, Redis), wide-column database (Bigtable, Cassandra, Hbase) and Graph database (Neo4j).</p>
+
+<p>💡 9. In a property graph database model, what are the two data concepts? And what does each of them consists of?</p>
+
+<p>node (vertex) and relationship (edge)</p>
+
+<ul>
+  <li>node consists of labels and properties</li>
+  <li>relationship consists of a source node, a target node, a type and properties</li>
+</ul>
+
+<p>💡 10. What does ployglot persistence mean?</p>
+
+<p>When design an application data storage, choose multiple types of storage based on the different use cases of the components of the application.</p>
+
+<p>💡 11. What is impedance mismatch?</p>
+
+<p>This is the term used to refer to the problems that object-oriented programming language’s data model has a mismatch of the SQL database model, that an awkward translation is required between them.</p>
+
+<p>ORM frameworks like Hibernate reduce the amount of boilerplate code for this translation layer.</p>
+
+<h3 id="highlighted-topics">Highlighted Topics</h3>
+
+<p>Property Graph model (Neo4j and Cypher) and Triple-store model (SPARQL) are two classic graph data models that is widely used. Here’s a brief summary and comparison of these two data model.</p>
+
+<div class="image-banner-2">
+    <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/ddia-2/graphDB.png" />
+</div>
+
+<h3 id="extended-topics">Extended Topics</h3>
+
+<p>I had some hands on with <a href="https://neo4j.com/developer/get-started/">Neo4j beginner’s tutorials</a>, however I felt little I can learn and master without a practical project to work on. Unfortunately I have not got a chance to use graph database in production level projects yet. It is just valuable additions to my toolbox for building applications in the future.</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

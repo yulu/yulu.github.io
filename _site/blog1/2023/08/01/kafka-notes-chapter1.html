@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[Kafka Guide] Chapter 1 - Meet Kafka</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2023/08/01/kafka-notes-chapter1.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">[Kafka Guide] Chapter 1 - Meet Kafka</h1>
+                <p class="post-meta">Aug 1, 2023</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc"> <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#what-problems-does-kafka-solve">What Problems does Kafka Solve</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#how-kafka-comes-in-to-save-the-data-transportation-problems-here">How Kafka comes in to save the data transportation problems here</a></li>
+<li class="toc-entry toc-h5"><a href="#direct-connection-inout-data-communications-between-services-is-difficult-to-trace">Direct-connection in/out data communications between services is difficult to trace</a></li>
+<li class="toc-entry toc-h5"><a href="#use-a-pubsub-pattern">Use a Pub/Sub pattern</a></li>
+<li class="toc-entry toc-h5"><a href="#multiple-publishsubscribe-systems-to-support-different-biz-use-cases">Multiple publish/subscribe systems to support different biz use cases</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#summary-as-ankicard">Summary as Ankicard</a></li>
+<li class="toc-entry toc-h3"><a href="#basic-concepts">Basic Concepts</a></li>
+</ul> </div> 
+
+        <article class="post-content">
+            <h3 id="what-problems-does-kafka-solve">What Problems does Kafka Solve</h3>
+
+<blockquote>
+  <h5 id="how-kafka-comes-in-to-save-the-data-transportation-problems-here">How Kafka comes in to save the data transportation problems here</h5>
+
+  <p>Apache Kafka was developed as a publish/subscribe messaging system designed to solve the above problem - a distributing streaming platform.
+A filesystem or database commit log is designed to provide a durable record of all transactions so that they can be replayed to consistently build the state of the system. Similarly, data within Kafka is stored durably, in order, and can be read deterministically. In addition, the data can be distributed within the system to provide additional protections against failures, as well as significant opportunities for scaling performance.</p>
+</blockquote>
+
+<h5 id="direct-connection-inout-data-communications-between-services-is-difficult-to-trace">Direct-connection in/out data communications between services is difficult to trace</h5>
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter1-1.jpeg" alt="" /></p>
+
+<h5 id="use-a-pubsub-pattern">Use a Pub/Sub pattern</h5>
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter1-2.jpeg" alt="" /></p>
+
+<h5 id="multiple-publishsubscribe-systems-to-support-different-biz-use-cases">Multiple publish/subscribe systems to support different biz use cases</h5>
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter1-3.jpeg" alt="" /></p>
+
+<h3 id="summary-as-ankicard">Summary as Ankicard</h3>
+
+<p>💡 What problem does Kafka solve?</p>
+
+<p>Kafka is a pub/sub messaging system what is designed to decouple the business services by introducing the async communication and group the communication channel using topic. A typical Kafka architecture looks like this</p>
+
+<p>💡 What are the main 3 characteristics Kafka has?</p>
+
+<ul>
+  <li>Data within Kafka is stored durably</li>
+  <li>Data can be read deterministically (in-order)</li>
+  <li>Data can be distributed for reliability and scalability</li>
+</ul>
+
+<p>💡 What is the use of the ‘key’ in Kafka?</p>
+
+<p>Key is an optional metadata comes with the message, it will be hashed and used to decide which partition the message goes. Kafka brokers make sure that message comes with the same key goes to the same partition so they can be consumed in order. e.g. for mod-N partition, key is used to generate a consistent hash and used to select the partition number for that message so the same key are always written to the same partition</p>
+
+<h3 id="basic-concepts">Basic Concepts</h3>
+<p><strong>message</strong>:: the unit of data in Kafka, just an array of bytes as far as Kafka concerned</p>
+
+<p><strong>key</strong>:: an optional piece of metadata of the message. Keys are used when messages are to be written to partitions in a more controlled manner. e.g. for mod-N partition, key is used to generate a consistent hash and used to select the partition number for that message so the same key are always written to the same partition</p>
+
+<p><strong>batch</strong>:: a collection of messages - messages are written into Kafka in batches</p>
+
+<p><strong>schemas</strong>:: JSON, XML or Apache Avro, basically the serialisation protocol</p>
+
+<hr />
+<p><strong>topic</strong>:: analogies for a topic are a database table or a folder in a filesystem - group the same concept data into a channel</p>
+
+<p><strong>partitions</strong>:: topics are broken down into a number of partitions. A partition is a single log. Messages are written to it in an append-only fashion and are read in order from beginning to end. Partitions can be distributed and replicated for scalability and reliability.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter1-4.jpeg" alt="" /></p>
+
+<hr />
+
+<p><strong>producers</strong>:: create new messages. By default, the producer will balance messages over all partitions of a topic evenly. In some cases the producer will direct messages to specific partitions, done using the message key.</p>
+
+<p><strong>consumers</strong>:: read messages. The consumer read messages in the order in which they were produced to each partition. It keeps track of the offset - a metadata with the message to keep track of which messages it has already consumed.</p>
+
+<p><strong>consumer group</strong>:: one or more consumers that work together to consume a topic. The group ensures that each partition is only consumed by one member.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter1-6.jpeg" alt="" /></p>
+
+<blockquote>
+  <p>💡 What if there’s larger number of consumers (in a consume group) than the number of partitions?</p>
+
+  <p>Some of the consumers will be idle. Because one partition cannot be consumed by multiple consumers. 
+<img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter4-4.jpeg" alt="" /></p>
+</blockquote>
+
+<hr />
+<p><strong>broker</strong>:: a single Kafka server. It receives messages from producers, write messages to storage on disk and services consumers. - A single broker can easily handle thousands of partitions and millions of messages per second.</p>
+
+<p><strong>cluster</strong>:: a cluster of brokers has a leader broker and followers brokers. All producers must connect to the leader in order to publish messages, but consumers may fetch from either the leader or one of the followers.</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter1-7.jpeg" alt="" /></p>
+
+<p><strong>MirrorMaker</strong>:: used for replicating data to other clusters in a multi-cluster setting. The replication mechanisms within the Kafka clusters are designed only to work within a single cluster, not between multiple clusters. The MirrorMaker tool helps to fulfil this requirement</p>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

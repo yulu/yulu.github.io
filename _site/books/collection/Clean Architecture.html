@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Clean architecture</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/books/collection/Clean%20Architecture.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">Clean architecture</h1>
+                <p class="post-meta">Aug 26, 2023 • Robert C. Martin</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <h1 id="clean-architecture">Clean Architecture</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td>![rw-book-cover</td>
+      <td>150](https://images-na.ssl-images-amazon.com/images/I/51JF95r45vL.<em>SL200</em>.jpg)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="metadata">Metadata</h2>
+<ul>
+  <li>Author: [[Robert C. Martin]]</li>
+  <li>Full Title: Clean Architecture</li>
+  <li>Category: #books</li>
+</ul>
+
+<h2 id="highlights">Highlights</h2>
+<blockquote>
+  <p>[!note]
+The measure of design quality is simply the measure of the effort required to meet the needs of the customer. If that effort is low, and stays low throughout the lifetime of the system, the design is good. If that effort grows with each new release, the design is bad. It’s as simple as that.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=372">Location 372</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+The difficulty in making such a change should be proportional only to the scope of the change, and not to the shape of the change.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=479">Location 479</a>)
+<strong>Define the “scope” and “shape”</strong></p>
+</blockquote>
+
+<h2 id="new-highlights-added-july-6-2022-at-851-am">New highlights added July 6, 2022 at 8:51 AM</h2>
+<blockquote>
+  <p>[!note]
+three big concerns of architecture: function, separation of components, and data management.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=593">Location 593</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+certain uses of goto statements prevent modules from being decomposed recursively into smaller and smaller units, thereby preventing use of the divide-and-conquer approach necessary for reasonable proofs.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=621">Location 621</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+proved that all programs can be constructed from just three structures: sequence, selection, and iteration.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=627">Location 627</a>)</p>
+</blockquote>
+
+<ul>
+  <li><em>falsifiable</em>:: 可证伪
+    <blockquote>
+      <p>[!note]
+Software architects strive to define modules, components, and services that are easily falsifiable (testable). To do so, they employ restrictive disciplines similar to structured programming, albeit at a much higher level.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=694">Location 694</a>)</p>
+    </blockquote>
+  </li>
+</ul>
+
+<blockquote>
+  <p>[!note]
+The fact that OO languages provide safe and convenient polymorphism means that any source code dependency, no matter where it is, can be inverted.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=867">Location 867</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+All race conditions, deadlock conditions, and concurrent update problems are due to mutable variables.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=941">Location 941</a>)</p>
+</blockquote>
+
+<h2 id="new-highlights-added-october-29-2022-at-1109-pm">New highlights added October 29, 2022 at 11:09 PM</h2>
+<blockquote>
+  <p>[!note]
+We use polymorphism as the mechanism to cross architectural boundaries; we use functional programming to impose discipline on the location of and access to data; and we use structured programming as the algorithmic foundation of our modules.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=591">Location 591</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Event sourcing is a strategy wherein we store the transactions, but not the state. When state is required, we simply apply all the transactions from the beginning of time.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=990">Location 990</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+An active corollary to Conway’s law: The best structure for a software system is heavily influenced by the social structure of the organization that uses it so that each software module has one, and only one, reason to change.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1037">Location 1037</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+The gist is that for software systems to be easy to change, they must be designed to allow the behavior of those systems to be changed by adding new code, rather than changing existing code.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1040">Location 1040</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+A module should be responsible to one, and only one, user or stakeholder.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1069">Location 1069</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+A module should be responsible to one, and only one, actor.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1074">Location 1074</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+If component A should be protected from changes in component B, then component B should depend on component A.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1186">Location 1186</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+This goal is accomplished by partitioning the system into components, and arranging those components into a dependency hierarchy that protects higher-level components from changes in lower-level components.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1217">Location 1217</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Components are the units of deployment.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1412">Location 1412</a>)</p>
+</blockquote>
+
+<ul>
+  <li><em>menagerie</em>:: 动物园
+    <blockquote>
+      <p>[!note]
+Therefore the release process must produce the appropriate notifications and release documentation so that users can make informed decisions about when and whether to integrate the new release.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1536">Location 1536</a>)</p>
+    </blockquote>
+  </li>
+  <li><em>hodgepodge</em>:: 大杂烩
+    <blockquote>
+      <p>[!note]
+For most applications, maintainability is more important than reusability.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1555">Location 1555</a>)</p>
+    </blockquote>
+  </li>
+</ul>
+
+<blockquote>
+  <p>[!note]
+It has more to do with the way that project is developed and used, than with what the project actually does.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1611">Location 1611</a>)</p>
+</blockquote>
+
+<ul>
+  <li><em>prowess.</em></li>
+  <li><em>pinnacle</em>
+    <blockquote>
+      <p>[!note]
+The strategy behind that facilitation is to leave as many options open as possible, for as long as possible.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1950">Location 1950</a>)</p>
+    </blockquote>
+  </li>
+</ul>
+
+<blockquote>
+  <p>[!note]
+There are many systems out there, with terrible architectures, that work just fine. Their troubles do not lie in their operation; rather, they occur in their deployment, maintenance, and ongoing development.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1955">Location 1955</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+a system being developed by five different teams, each of which includes seven developers, cannot make progress unless the system is divided into well-defined components with reliably stable interfaces. If no other factors are considered, the architecture of that system will likely evolve into five components—one for each team. Such a component-per-team architecture is not likely to be the best architecture for deployment, operation, and maintenance of the system.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1968">Location 1968</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Software systems that have inefficient architectures can often be made to work effectively simply by adding more storage and more servers. The fact that hardware is cheap and people are expensive means that architectures that impede operation are not as costly as architectures that impede development, deployment, and maintenance.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1986">Location 1986</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+The architecture of the system should elevate the use cases, the features, and the required behaviors of the system to first-class entities that are visible landmarks for the developers. This simplifies the understanding of the system and, therefore, greatly aids in development and maintenance.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=1993">Location 1993</a>)</p>
+</blockquote>
+
+<ul>
+  <li><em>spelunking</em>
+    <blockquote>
+      <p>[!note]
+If you can develop the high-level policy without committing to the details that surround it, you can delay and defer decisions about those details for a long time. And the longer you wait to make those decisions, the more information you have with which to make them properly  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2028">Location 2028</a>)</p>
+    </blockquote>
+  </li>
+</ul>
+
+<blockquote>
+  <p>[!note]
+What if the decisions have already been made by someone else? What if your company has made a commitment to a certain database, or a certain web server, or a certain framework? A good architect pretends that the decision has not been made, and shapes the system such that those decisions can still be deferred or changed for as long as possible.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2035">Location 2035</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+• The use cases and operation of the system. • The maintenance of the system. • The development of the system. • The deployment of the system.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2120">Location 2120</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+The most important thing a good architecture can do to support behavior is to clarify and expose that behavior so that the intent of the system is visible at the architectural level.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2128">Location 2128</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+As strange as it may seem, this decision is one of the options that a good architect leaves open. A system that is written as a monolith, and that depends on that monolithic structure, cannot easily be upgraded to multiple processes, multiple threads, or micro-services should the need arise. By comparison, an architecture that maintains the proper isolation of its components, and does not assume the means of communication between those components, will be much easier to transition through the spectrum of threads, processes, and services as the operational needs of the system change over time.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2142">Location 2142</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Thus we find the system divided into decoupled horizontal layers—the UI, application-specific business rules, application-independent business rules, and the database, just to mention a few.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2185">Location 2185</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Be careful: This duplication is almost certainly accidental. Creating the separate view model is not a lot of effort, and it will help you keep the layers properly decoupled.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2238">Location 2238</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+A good architecture will allow a system to be born as a monolith, deployed in a single file, but then to grow into a set of independently deployable units, and then all the way to independent services and/or micro-services. Later, as things change, it should allow for reversing that progression and sliding all the way back down into a monolith.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2272">Location 2272</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Recall that the goal of an architect is to minimize the human resources required to build and maintain the required system. What it is that saps this kind of people-power? Coupling—and especially coupling to premature decisions.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2287">Location 2287</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+You should recognize this as an application of the Dependency Inversion Principle and the Stable Abstractions Principle. Dependency arrows are arranged to point from lower-level details to higher-level abstractions.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2470">Location 2470</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Such architectures almost always depend on some kind of dynamic polymorphism1 to manage their internal dependencies. This is one of the reasons that object-oriented development has become such an important paradigm in recent decades.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2493">Location 2493</a>)</p>
+</blockquote>
+
+<h2 id="new-highlights-added-october-29-2022-at-1112-pm">New highlights added October 29, 2022 at 11:12 PM</h2>
+<ul>
+  <li><em>etched</em>
+    <blockquote>
+      <p>[!note]
+redeployed. Managing and building firewalls against this change is what boundaries are all about.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2484">Location 2484</a>)</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="new-highlights-added-december-28-2022-at-411-pm">New highlights added December 28, 2022 at 4:11 PM</h2>
+<blockquote>
+  <p>[!note]
+So long as the layers and use cases are decoupled, the architecture of the system will support the organization of the teams, irrespective of whether they are organized as feature teams, component teams, layer teams, or some other variation.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2216">Location 2216</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Indeed, if the decoupling is done well, then it should be possible to hot-swap layers and use cases in running systems. Adding a new use case could be a simple as adding a few new jar files or services to the system while leaving the rest alone.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2220">Location 2220</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+We shall call these rules Critical Business Rules, because they are critical to the business itself, and would exist even if there were no system to automate them.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2632">Location 2632</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+So what does the architecture of your application scream? When you look at the top-level directory structure, and the source files in the highest-level package, do they scream “Health Care System,” or “Accounting System,” or “Inventory Management System”? Or do they scream “Rails,” or “Spring/Hibernate,” or “ASP”?  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2710">Location 2710</a>)
+<strong>Your biz model should ve explicit</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Architectures are not (or should not be) about frameworks. Architectures should not be supplied by frameworks. Frameworks are tools to be used, not architectures to be conformed to. If your architecture is based on frameworks, then it cannot be based on your use cases.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2718">Location 2718</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Develop a strategy that prevents the framework from taking over that architecture.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2743">Location 2743</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+“We see some things that look like models—but where are the views and controllers?” And you should respond: “Oh, those are details that needn’t concern us at the moment. We’ll decide about them later.”  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2754">Location 2754</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Hexagonal Architecture  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2761">Location 2761</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+data formats declared in an outer circle should not be used by an inner circle, especially if those formats are generated by a framework in an outer circle. We don’t want anything in an outer circle to impact the inner circles.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2789">Location 2789</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+Entities encapsulate enterprise-wide Critical Business Rules.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2791">Location 2791</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+these entities are the business objects of the application.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2794">Location 2794</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+The View is the humble object that is hard to test. The code in this object is kept as simple as possible. It moves data into the GUI but does not process that data. The Presenter is the testable object. Its job is to accept data from the application and format it for presentation so that the View can simply move it to the screen. For example, if the application wants a date displayed in a field, it will hand the Presenter a Date object. The Presenter will then format that data into an appropriate string and place it in a simple data structure called the View Model, where the View can find it.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=2882">Location 2882</a>)
+<strong>Echo what Zizhang has shared about the SA frontend</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+system? Which kinds of tests are there? Are unit tests and integration tests different things? What about acceptance tests, functional tests, Cucumber tests, TDD tests, BDD tests, component tests, and so on?  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=3292">Location 3292</a>)
+<strong>Come!! Throw more buzz words to me!</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>[!note]
+other. In fact, in many ways they represent the model that all other system components should follow.  (<a href="https://readwise.io/to_kindle?action=open&amp;asin=B075LRM681&amp;location=3303">Location 3303</a>)</p>
+</blockquote>
+
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>

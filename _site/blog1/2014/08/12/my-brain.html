@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>My Brain Has Been F**ked</title>
+    <meta name="description" content="I am migrating from a blog service provider to github, still trying out with Jekyll
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/blog1/2014/08/12/my-brain.html">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/nav.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-551ec72a4d0e58c1" async="async"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB2VMZMH');</script>
+    <!-- End Google Tag Manager -->
+    <!--latex-->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <meta name="google-site-verification" content="x60nHOyc_rEQN3p4MCF7G6h-7Yvng4iMYB06RrSZNS4" />
+</head>
+
+    
+    <body>
+
+    <header>
+    <div class="site-header">
+        <a href="/"><span>Little<b>CheeseCake.</b></span></a>
+    </div>
+    <!--nav button-->
+<div class="button-background">
+    <div class="button-toggle" id="toggle">
+
+        <span class="top"></span>
+        <span class="middle_1"></span>
+        <span class="middle_2"></span>
+        <span class="bottom"></span>
+    </div>
+</div>
+<!--menu overlay-->
+<div class="overlay" id="overlay">
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog2/index.html">Journal</a></li>
+            <li><a href="/blog1/index.html">Tech Blog</a></li>
+            <li><a href="/books/index.html">Books</li>
+            <li><a href="https://www.youtube.com/user/YuLu8798" target="_blank">Vlog</a></li>
+            <li><a href="/about/about.html">About</a></li>
+        </ul>
+    </nav>
+</div>
+<!--jquery script-->
+<script>
+    $('.button-background').click(function() {
+        $('#toggle').toggleClass('active');
+        $('#overlay').toggleClass('open');
+    });
+</script>
+
+</header>
+
+
+    <div class="post-image-container">
+        
+        <img class="post-image" src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/tide.jpg"/>
+              
+        
+        
+        
+          
+    </div>
+
+    <div class="post-wrapper">
+        <!-- header -->
+
+        <div class="wrapper">
+            <header class="post-header">
+                <h1 class="post-title">My Brain Has Been F**ked</h1>
+                <p class="post-meta">Aug 12, 2014</p>
+            </header>
+        </div>
+
+        <!-- table of content -->
+        <div class="post-toc" id="toc">  </div> 
+
+        <article class="post-content">
+            <p>As a Brain teazers lover, code sometimes can be a fun toy for me. From last year, I started to play around with <a href="http://www.pythonchallenge.com/">python challenge</a> occasionally and reached level 13 (with cheating). The famous python challenge seems quite difficult for me. Because the answers are easily to be found online, I could not help looking for hints when I felt I was stuck. Recently I came across a similar <a href="http://fun.coolshell.cn/">web puzzle</a> provided by Chen Hao on coolshell (He is an influential programmer), the puzzle was release last Saturday, fresh new. It is quite concise that do not require too much time to solve. Yet it is informative and very smart! I went through the puzzle by coding for every required steps. Later I realized there are actually plenty of resources available, as long as you know what you are looking for. Google/Wikipedia solves  problem better than my code. But I am glad that I tried, with great effort and really learned something as concrete knowledge rather than information that can only be considered to be known to me. Here I note down the process.</p>
+
+<h3 id="level-0-brainfuck">Level 0 Brainfuck</h3>
+
+<p>With the first sight, I did feel that my brain had been fucked. What the hell was that? Hopelessly I googled the only words on the page, and surprisingly found that there is a programming language called <a href="http://en.wikipedia.org/wiki/Brainfuck">brainfuck</a>. The language consists of only eight simple commands and an instruction pointer. It is designed for fun. The operators &gt; &lt; + - . , [ ] are corresponded to some operations on a pointer. Interpreted it using a piece of python code.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#! /usr/bin/python
+</span>
+<span class="n">interpret</span> <span class="o">=</span> <span class="s">"#include &lt;stdlib.h&gt; </span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> \
+<span class="s">"int main(){ </span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> \
+<span class="s">"char array[1000000]; char *ptr = array;"</span>
+
+<span class="n">fuckbrain</span> <span class="o">=</span> <span class="s">"++++++++[&gt;+&gt;++&gt;+++&gt;++++&gt;+++++&gt;++++++&gt;+++++++&gt;++++++++&gt;+++++++++&gt;++++++++++&gt;+++++++++++&gt;++++++++++++&gt;+++++++++++++&gt;++++++++++++++&gt;+++++++++++++++&gt;++++++++++++++++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;-.+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;---.+++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;----.++++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;+++.---&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;-.+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;---.+++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;---.+++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;--.++&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;.&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;----.++++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;---.+++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;----.++++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;."</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">fuckbrain</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s">"&gt;"</span><span class="p">:</span>
+                <span class="n">interpret</span> <span class="o">+=</span> <span class="s">"++ptr;"</span>
+        <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="s">"&lt;"</span><span class="p">:</span>
+                <span class="n">interpret</span> <span class="o">+=</span> <span class="s">"--ptr;"</span>
+        <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="s">"+"</span><span class="p">:</span>
+                <span class="n">interpret</span> <span class="o">+=</span> <span class="s">"++*ptr;"</span>
+        <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="s">"-"</span><span class="p">:</span>
+                <span class="n">interpret</span> <span class="o">+=</span> <span class="s">"--*ptr;"</span>
+        <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="s">"."</span><span class="p">:</span>
+                <span class="n">interpret</span> <span class="o">+=</span> <span class="s">"putchar(*ptr);"</span>
+        <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="s">","</span><span class="p">:</span>
+                <span class="n">interpret</span> <span class="o">+=</span> <span class="s">"*ptr=getchar();"</span>
+        <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="s">"["</span><span class="p">:</span>
+                <span class="n">interpret</span> <span class="o">+=</span> <span class="s">"while(*ptr){"</span>
+        <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="s">"]"</span><span class="p">:</span>
+                <span class="n">interpret</span> <span class="o">+=</span> <span class="s">"}"</span>
+
+<span class="n">interpret</span> <span class="o">+=</span> <span class="s">"}"</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"fuck.c"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">textfile</span><span class="p">:</span>
+        <span class="n">textfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">interpret</span><span class="p">)</span></code></pre></figure>
+
+<p>Compile the c code and run, I got the answer <code class="language-plaintext highlighter-rouge">welcome.html</code> for next level</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="err">$</span><span class="n">gcc</span> <span class="n">fuck</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">fuck</span>
+<span class="err">$</span><span class="p">.</span><span class="o">/</span><span class="n">fuck</span>
+<span class="err">$</span><span class="n">welcome</span><span class="p">.</span><span class="n">html</span></code></pre></figure>
+
+<h3 id="level-1-answer-to-life">Level 1 Answer to Life</h3>
+
+<p>There are two numbers to be figured out. One is from the series 2, 3 ,6, 18, 108. It is obvious that the next number is always the product of the previous two numbers. Therefore one of the number is 18 * 108 = 1944. 
+The other number is the “answer” to the ultimate question of life, the universe and everything, 42. Finally got 1944 * 42 = 81648, which led me to the next level.</p>
+
+<h3 id="level-2-keyboard">Level 2 Keyboard</h3>
+
+<p>There is a strange keyboard and a string below. It was easy to come up with the idea that the string is the output from this strange keyboard, which corresponds to the one from a normal keyboard. So I manually built up the corresponds between the letters from these two keyboard and encode the string.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#! /usr/bin/python
+</span>
+<span class="n">n_k</span> <span class="o">=</span> <span class="s">"-=qwertyuiop[]</span><span class="se">\\</span><span class="s">asdfghjkl;'zxcvbnm,./_+QWERTYUIOP{}|ASDFGHJKL:</span><span class="se">\"</span><span class="s">ZXCVBNM&lt;&gt;?"</span>
+
+<span class="n">s_k</span> <span class="o">=</span> <span class="s">"[]',.pyfgcrl/=</span><span class="se">\\</span><span class="s">aoeuidhtns-;qjkxbmwvz{}</span><span class="se">\"</span><span class="s">&lt;&gt;PYFGCRL?+|AOEUIDHTNS_:QJKXBMWVZ"</span>
+
+<span class="n">inp</span> <span class="o">=</span> <span class="s">"macb() ? lpcbyu(&amp;gbcq/_</span><span class="se">\\</span><span class="s">021%ocq</span><span class="se">\\</span><span class="s">012</span><span class="se">\\</span><span class="s">0_=w(gbcq)/_dak._=}_ugb_[0q60)s+"</span>
+<span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">inp</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">s_k</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="n">n_k</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="n">n</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"key.c"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">textfile</span><span class="p">:</span>
+        <span class="n">textfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></code></pre></figure>
+
+<p>It looks life c code, so I saved it as c program, compile and run.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">main</span><span class="p">()</span> <span class="p">{</span> <span class="n">printf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">unix</span><span class="p">[</span><span class="s">"</span><span class="se">\021</span><span class="s">%six</span><span class="se">\012\0</span><span class="s">"</span><span class="p">],(</span><span class="n">unix</span><span class="p">)[</span><span class="s">"have"</span><span class="p">]</span><span class="o">+</span><span class="s">"fun"</span><span class="o">-</span><span class="mh">0x60</span><span class="p">);}</span>
+
+<span class="err">$</span><span class="n">gcc</span> <span class="n">key</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">key</span>
+<span class="err">$</span><span class="p">.</span><span class="o">/</span><span class="n">key</span>
+<span class="err">$</span><span class="n">unix</span></code></pre></figure>
+
+<p>Later I knew that this keyboard layout is called <a href="http://en.wikipedia.org/wiki/Dvorak_Simplified_Keyboard">Dvorak Simplified Keyboard</a>. There is a type of encoding based on the differences in layout of a QWERTY keyboard and a Dvorak keyboard. The piece of the key.c code is famous. This program won a “Best One Line Program” award in 1987. But I could not quite understand it - yes, it is exactly that my code runs, and I don’t know why</p>
+
+<p>Use <code class="language-plaintext highlighter-rouge">unix</code> to enter the next level.</p>
+
+<h3 id="level-3-qr-code">Level 3 QR Code</h3>
+
+<p>There is a QR code, scan to get encoding information like</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="p">[</span><span class="n">abcdefghijklmnopqrstuvwxyz</span><span class="p">]</span> <span class="o">&lt;=&gt;</span> <span class="p">[</span><span class="n">pvwdgazxubqfsnrhocitlkeymj</span><span class="p">].</span></code></pre></figure>
+
+<p>Decoding the line of letters below:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#! /usr/bin/python
+</span>
+<span class="n">d</span> <span class="o">=</span> <span class="s">"abcdefghijklmnopqrstuvwxyz"</span>
+<span class="n">e</span> <span class="o">=</span> <span class="s">"pvwdgazxubqfsnrhocitlkeymj"</span>
+
+<span class="n">i</span><span class="o">=</span><span class="s">"Wxgcg txgcg ui p ixgff, txgcg ui p epm. I gyhgwt mrl lig txg ixgff wrsspnd tr irfkg txui hcrvfgs, nre, hfgpig tcm liunz txg crt13 ra </span><span class="se">\"</span><span class="s">ixgff</span><span class="se">\"</span><span class="s"> tr gntgc ngyt fgkgf."</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="n">n</span>
+
+<span class="k">print</span> <span class="n">result</span></code></pre></figure>
+
+<p>Decode the information, we are told:</p>
+
+<blockquote>
+  <p>“Where there is a shell, there is a way. I expect you use the shell command to solve this problem, now, please try using the rot13 of “shell” to enter next level.”</p>
+</blockquote>
+
+<p>Use <a href="http://en.wikipedia.org/wiki/ROT13">ROT13</a> to encode “shell”to get “furyy”. ROT13 cipher is to replace a letter with the one 13 letters after it in the alphabet. The interesting property is that encode and decode is using the same algorithms for ROT13. So encode “furyy” again, we get back to “shell”.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="err">$</span> <span class="n">rot13</span>
+<span class="n">shell</span>
+<span class="n">furyy</span></code></pre></figure>
+
+<p>Use <code class="language-plaintext highlighter-rouge">furyy</code> to get to the next level.</p>
+
+<h3 id="level-4-cat">Level 4 Cat</h3>
+
+<p>The idea is similar to a level in Python Challenge, so I quickly got started. One of the tricks is that the hints are in the html source code. However I was also constrained by the idea of solving that similar Python Challenge problem and stuck in this problem for a very long time! Finally I got the correct idea, which is to match the pattern using Regular Expression.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#! /usr/bin/python
+</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"./data.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">rfile</span><span class="p">:</span>
+        <span class="n">page_source</span> <span class="o">=</span> <span class="n">rfile</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="sa">r</span><span class="s">'([A-Z])([0-9])[a-z](\2)(\1)|([0-9])([A-Z])[a-z](\6)(\5)'</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">page_source</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">s</span><span class="p">.</span><span class="n">group</span><span class="p">()</span></code></pre></figure>
+
+<p>Previously I did not use regular expression (coz I really didn’t know about regular expression!) I searched through all the text for 5-letter arrays and checked its pattern manually. I then went through one chapter talking about regular expression in the book <a href="http://linuxcommand.org/tlcl.php">The Linux Command Line</a>, an excellent book I am reading for month, talking about fundamentals on Linux command line and shell. Here () is used to define a marked subexpression, later can be recalled for matching. That is how the RE checks the equality between the leading and ending letters, and between the second and the second last letters.</p>
+
+<p>Using shell command</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="err">$</span> <span class="n">cat</span> <span class="n">data</span><span class="p">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">E</span> <span class="s">"([A-Z])([0-9])[a-z](</span><span class="se">\2</span><span class="s">)(</span><span class="se">\1</span><span class="s">)|([0-9])([A-Z])[a-z](</span><span class="se">\6</span><span class="s">)(</span><span class="se">\5</span><span class="s">)"</span> <span class="o">-</span><span class="n">o</span>
+<span class="n">E1v1E</span>
+<span class="mi">4</span><span class="n">FaF4</span>
+<span class="mi">9</span><span class="n">XrX9</span>
+<span class="n">O3i3O</span>
+<span class="mi">0</span><span class="n">MaM0</span>
+<span class="mi">4</span><span class="n">GbG4</span>
+<span class="n">M5l5M</span>
+<span class="mi">0</span><span class="n">WeW0</span>
+<span class="n">Y0s0Y</span></code></pre></figure>
+
+<p>The answer is the center letters in the Palindromes: <code class="language-plaintext highlighter-rouge">variables</code></p>
+
+<h3 id="level-5-keep-going">Level 5 Keep Going</h3>
+
+<p>This is very similar to one of the puzzles in Python Challenge. The hint is found by clicking the image. A number shows - 32722. Replace the number 2014 in the url with this number, a new page was shown with a new number. Keeping doing this led me to the answer!</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#! /usr/bin/python
+</span><span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="k">def</span> <span class="nf">check_url_2</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">"GET"</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">"POST"</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">"get "</span><span class="o">+</span><span class="n">url</span><span class="o">+</span><span class="s">"?"</span><span class="o">+</span><span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="s">"?"</span> <span class="o">+</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s">"http://fun.coolshell.cn/n/"</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s">"32722"</span>
+<span class="k">while</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">print</span> <span class="n">s</span></code></pre></figure>
+
+<p>At last I got <code class="language-plaintext highlighter-rouge">tree</code></p>
+
+<h3 id="level-6-binary-tree">Level 6 Binary Tree</h3>
+
+<p>This is a test on the classic binary tree algorithms - Binary tree reconstruction from in-order traversal and post-order traversal. The main idea is to use the information that the last node in the post-order array is the root of the tree. That root value can be found in the in-order array which divides the array into two, each indicates the left branch and right branch from that root. By counting the number of nodes in each branch, the post-order can also be divided into two branches, which corresponds to the ones in the in-order array. In this case, in-order and post-order array for the left and right sub-trees are found and the problem can be solved recursively.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tree</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Node</span> <span class="n">mRoot</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">inOrder</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">postOrder</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+        <span class="kt">char</span> <span class="n">value</span><span class="o">;</span>
+        <span class="nc">Node</span> <span class="n">left</span><span class="o">;</span>
+        <span class="nc">Node</span> <span class="n">right</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Tree</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">i</span><span class="o">,</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//restore the tree from in-order traversal array and post-order traversal array</span>
+        <span class="n">inOrder</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+        <span class="n">postOrder</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
+        <span class="n">mRoot</span> <span class="o">=</span> <span class="n">restore</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">p</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">Node</span> <span class="nf">restore</span><span class="o">(</span><span class="kt">int</span> <span class="n">ios</span><span class="o">,</span> <span class="kt">int</span> <span class="n">ioe</span><span class="o">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="o">,</span> <span class="kt">int</span> <span class="n">poe</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//check termination condition</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">ios</span> <span class="o">&gt;</span> <span class="n">ioe</span> <span class="o">||</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="n">poe</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">//find the root value from post-order array</span>
+        <span class="kt">char</span> <span class="n">r</span> <span class="o">=</span> <span class="n">postOrder</span><span class="o">[</span><span class="n">poe</span><span class="o">];</span>
+
+        <span class="c1">//find the position of r in in-order array</span>
+        <span class="kt">int</span> <span class="n">ridx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ios</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ioe</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">r</span> <span class="o">==</span> <span class="n">inOrder</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
+                <span class="n">ridx</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">//count the number of nodes in left and right branch</span>
+        <span class="kt">int</span> <span class="n">left_size</span> <span class="o">=</span> <span class="n">ridx</span> <span class="o">-</span> <span class="n">ios</span><span class="o">;</span> 
+        <span class="kt">int</span> <span class="n">right_size</span> <span class="o">=</span> <span class="n">ioe</span> <span class="o">-</span> <span class="n">ridx</span><span class="o">;</span>
+
+        <span class="nc">Node</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Node</span><span class="o">();</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">r</span><span class="o">;</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">restore</span><span class="o">(</span><span class="n">ios</span><span class="o">,</span> <span class="n">ios</span> <span class="o">+</span> <span class="n">left_size</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">pos</span><span class="o">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">left_size</span> <span class="o">-</span><span class="mi">1</span> <span class="o">);</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">restore</span><span class="o">(</span><span class="n">ridx</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">ioe</span><span class="o">,</span> <span class="n">poe</span> <span class="o">-</span> <span class="n">right_size</span><span class="o">,</span> <span class="n">poe</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">root</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">height</span><span class="o">(</span><span class="nc">Node</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="k">return</span> <span class="nf">max</span><span class="o">(</span><span class="n">height</span><span class="o">(</span><span class="n">n</span><span class="o">.</span><span class="na">left</span><span class="o">),</span> <span class="n">height</span><span class="o">(</span><span class="n">n</span><span class="o">.</span><span class="na">right</span><span class="o">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a:</span><span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printLongestPath</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Node</span> <span class="n">n</span> <span class="o">=</span> <span class="n">mRoot</span><span class="o">;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">n</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">n</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">(</span><span class="n">n</span><span class="o">.</span><span class="na">left</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">height</span><span class="o">(</span><span class="n">n</span><span class="o">.</span><span class="na">right</span><span class="o">))</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="na">left</span><span class="o">;</span>
+            <span class="k">else</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="na">right</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">in</span> <span class="o">=</span> <span class="s">"T, b, H, V, h, 3, o, g, P, W, F, L, u, A, f, G, r, m, 1, x, J, 7, w, e, 0, i, Q, Y, n, Z, 8, K, v, q, k, 9, y, 5, C, N, B, D, 2, 4, U, l, c, p, I, E, M, a, j, 6, S, R, O, X, s, d, z, t"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">po</span> <span class="o">=</span> <span class="s">"T, V, H, o, 3, h, P, g, b, F, f, A, u, m, r, 7, J, x, e, w, 1, Y, Q, i, 0, Z, n, G, L, K, y, 9, k, q, v, N, D, B, C, 5, 4, c, l, U, 2, 8, E, I, R, S, 6, j, d, s, X, O, a, M, p, W, t, z"</span><span class="o">;</span>
+
+        <span class="n">in</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">", "</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+        <span class="kt">char</span><span class="o">[]</span> <span class="n">inorder</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+        <span class="n">po</span> <span class="o">=</span> <span class="n">po</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">", "</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+        <span class="kt">char</span><span class="o">[]</span> <span class="n">postorder</span> <span class="o">=</span> <span class="n">po</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+
+        <span class="nc">Tree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tree</span><span class="o">(</span><span class="n">inorder</span><span class="o">,</span> <span class="n">postorder</span><span class="o">);</span>
+        <span class="n">tree</span><span class="o">.</span><span class="na">printLongestPath</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Use the string found from the longest path of the binary tree to decode the information given, I got a word <code class="language-plaintext highlighter-rouge">nqueens</code></p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="err">$</span> <span class="n">java</span> <span class="n">Tree</span>
+<span class="n">zWp8LGn01wxJ7</span>
+<span class="err">$</span> <span class="n">openssl</span> <span class="n">enc</span> <span class="o">-</span><span class="n">aes</span><span class="o">-</span><span class="mi">128</span><span class="o">-</span><span class="n">cbc</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">in</span> <span class="n">code</span><span class="p">.</span><span class="n">txt</span>
+<span class="n">enter</span> <span class="n">aes</span><span class="o">-</span><span class="mi">128</span><span class="o">-</span><span class="n">cbc</span> <span class="n">decryption</span> <span class="n">password</span><span class="o">:</span>
+<span class="n">nqueens</span></code></pre></figure>
+
+<h3 id="level-7-nqueens">Level 7 NQueens</h3>
+
+<p>A classic algorithm question again. <a href="http://en.wikipedia.org/wiki/Eight_queens_puzzle">Nqueens</a> problem is to place n queens on an n by n chessboard, where solutions exist for all natural numbers n with the exception of n = 2 and n = 3. NQueens problem is a good example for backtracking algorithm practice. The java code to solve 9 queens problem:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NQueens</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">board</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">9</span><span class="o">];</span> 
+        <span class="n">placeQueenOnBoard</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">board</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">placeQueenOnBoard</span><span class="o">(</span><span class="kt">int</span> <span class="nc">Qi</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">board</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">board</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="c1">//base case</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nc">Qi</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">board</span><span class="o">[</span><span class="n">i</span><span class="o">]+</span><span class="mi">1</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">//try to put the ith Queen (Qi) in all of the columns</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">column</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">isSafePlace</span><span class="o">(</span><span class="n">column</span><span class="o">,</span> <span class="nc">Qi</span><span class="o">,</span> <span class="n">board</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">board</span><span class="o">[</span><span class="nc">Qi</span><span class="o">]</span> <span class="o">=</span> <span class="n">column</span><span class="o">;</span>
+
+                    <span class="c1">//then place remaining queens.</span>
+                    <span class="n">placeQueenOnBoard</span><span class="o">(</span><span class="nc">Qi</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">board</span><span class="o">);</span>
+
+                    <span class="c1">//backtracing</span>
+                    <span class="n">board</span><span class="o">[</span><span class="nc">Qi</span><span class="o">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">//check if the column is safe place to put Qi (ith Queen)</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isSafePlace</span><span class="o">(</span><span class="kt">int</span> <span class="n">column</span><span class="o">,</span> <span class="kt">int</span> <span class="nc">Qi</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">board</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//check for all previously placed queens</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nc">Qi</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">board</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">column</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// the ith Queen(previous) is in same column</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">//the ith Queen is in diagonal</span>
+            <span class="c1">//(r1, c1) - (r2, c1). if |r1-r2| == |c1-c2| then they are in diagonal</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">board</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">column</span><span class="o">)</span> <span class="o">==</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="nc">Qi</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>There are totally 352 solutions, traverse all to find the one whose sha hash equals to the given encoded information</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#! /usr/bin/python 
+</span><span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="s">"e48d316ed573d3273931e19f9ac9f9e6039a4242"</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="s">"zWp8LGn01wxJ7"</span> 
+<span class="n">code</span> <span class="o">=</span><span class="p">[]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"./nqueen_result.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">rfile</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">rfile</span><span class="p">.</span><span class="n">readlines</span><span class="p">():</span>
+                <span class="n">code</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">code</span><span class="p">:</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">s</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">s</span></code></pre></figure>
+
+<p>Found the answer <code class="language-plaintext highlighter-rouge">953172864</code></p>
+
+<h3 id="level-8-excel-number">Level 8 Excel Number</h3>
+
+<p>It is easy to notice that this is a base26 to decimal conversion. Using the code below:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#! /usr/bin/python
+</span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">floor</span>
+
+<span class="n">alp</span> <span class="o">=</span> <span class="s">"abcdefghijklmnopqrstuvwxyz"</span>
+<span class="n">a</span> <span class="o">=</span> <span class="s">"coolshell"</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s">"shell"</span>
+
+<span class="k">def</span> <span class="nf">base26todecimal</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+                <span class="n">index</span> <span class="o">=</span> <span class="n">alp</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="n">index</span><span class="o">*</span><span class="mi">26</span><span class="o">**</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">size</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+<span class="k">def</span> <span class="nf">decimaltobase26</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">26</span><span class="p">)))</span> <span class="c1">#highest 
+</span>        <span class="n">s</span> <span class="o">=</span><span class="s">""</span>
+
+        <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="mi">26</span><span class="o">**</span><span class="n">n</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">a</span><span class="o">%</span><span class="mi">26</span><span class="o">**</span><span class="n">n</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="n">alp</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">r</span>
+                <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">base26todecimal</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">base26todecimal</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">decimaltobase26</span><span class="p">(</span><span class="n">d</span><span class="p">)</span></code></pre></figure>
+
+<p>The output is <code class="language-plaintext highlighter-rouge">duyo</code></p>
+
+<h3 id="level-9-pigpen">Level 9 Pigpen</h3>
+
+<p>Finally got to the last level! There seemed to be no relations between the given two images. Looking around for a while and with some useless search, the hints showed up when I googled one of the pictures - pigpen. There is a cipher, called <a href="http://en.wikipedia.org/wiki/Pigpen_cipher">pigpen</a> or Freemason’s cipher, which is a geometric simple substitution cipher which exchanges letters for symbols. The graphs below can be easily decoded as helloworld using the diagram below</p>
+
+<p><img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/blog1/archive/17016118892_da54a9fb02_o.jpg" alt="pigman" /></p>
+
+<p>Get to the page using <code class="language-plaintext highlighter-rouge">helloworld</code>. Finally get to the end. It is really an incredible journey to work through all the problems. Along the way I learned a lot funny topics and fundamental knowledge about computer science which I lack of. Most of the problems can be easily solved by searching online, but I coded from sketch as a coding practice. I feel lucky and grateful that I stepped into this wonderful world 4 year ago, although it’s a bit late. I would choose to stay in this field for my career.</p>
+
+<h3 id="hidden-level">Hidden Level</h3>
+
+<p>Wait! I was told it is not the end! Here is hidden information. View the html source at the helloworld page, I can find a line below the shutdown image</p>
+
+<blockquote>
+  <p>“Did you even think vi an image file?”</p>
+</blockquote>
+
+<p>Interesting! Well, let’s vi the image file. Save the shutdown.png and open it with vi. There is a line</p>
+
+<blockquote>
+  <p>“This Image actually is a RAR file as well.”</p>
+</blockquote>
+
+<p>Save it as an rar file and unzip</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="err">$</span><span class="n">cp</span> <span class="n">shutdown</span><span class="p">.</span><span class="n">png</span> <span class="n">shutdown</span><span class="p">.</span><span class="n">rar</span>
+<span class="err">$</span><span class="n">unrar</span> <span class="n">e</span> <span class="n">shutdown</span><span class="p">.</span><span class="n">rar</span></code></pre></figure>
+
+<p>Here we get a text file helloworld.txt, open it. There are some information about hello world program, c language, and the father of c programming language - <a href="http://en.wikipedia.org/wiki/Dennis_Ritchie">Dennis Ritchie</a>. The keyword to next level: <code class="language-plaintext highlighter-rouge">DennisRitchie.html</code></p>
+
+<p>In Memoriam - Dennis Ritchie Hello world, the world full of imagination, creativity and joy, that brought to us by those great scientists.</p>
+
+
+            <div class="post-end">
+                <!-- buy me a coffee -->
+                <div>
+                    <a href="https://www.buymeacoffee.com/8QcoMFJNHD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 150px !important;" ></a>
+                </div>
+                <div class="share-container">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <span class="share-text">Share the post </span><div class="addthis_sharing_toolbox"></div>
+                </div>
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//littlecheesecakeme.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+     <div class="site-footer page">
+         <p>Build with love, <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://github.com/yulu/yulu.github.io">Github Page</a> by <a href="/about/about.html"><em>Yu Lu</em></a></p>
+    </div>
+    
+</footer>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB2VMZMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </body>
+
+    <!--jquery script for sticky toc-->
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("toc");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</html>
