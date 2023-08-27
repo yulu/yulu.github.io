@@ -31,8 +31,8 @@ It happens when new consumers are added or old consumers are removed/crashed or 
 
 💡 What are the two types of Partition Rebalance strategies?
 
-- *Eager rebalances*: during an eager rebalance, all consumers stop consuming, give up their ownership of all partitions, rejoin the consumer group, and get a brand-new partition assignment
-- *Cooperative rebalances (incremental rebalances)*: typically involve reassigning only a small subset of the partitions from one consumer to another, and allowing consumers to continue processing records from all the partitions that are not reassigned
+- **Eager rebalances**: during an eager rebalance, all consumers stop consuming, give up their ownership of all partitions, rejoin the consumer group, and get a brand-new partition assignment
+- **Cooperative rebalances (incremental rebalances)**: typically involve reassigning only a small subset of the partitions from one consumer to another, and allowing consumers to continue processing records from all the partitions that are not reassigned
 
 💡 How does consumer maintain membership in a consumer group and ownership of the assigned partition and make sure it is alive and known to the Kafka broker?
 
@@ -63,9 +63,9 @@ Static group membership is useful when your application maintains local state or
 
 When consumer with static group membership restart, it will not trigger a rebalance. `session.timeout.ms` is used to detected whether they are really gone and rebalance is required. So we should select a good `session.timeout.ms` config to make sure restart of the consumer is within a acceptable delay and the consumer can catch up after restart. 
 
-### Creating a Kafka Consumer and Subscribing to Topics
+### Creating a Kafka Consumer
 
-All you need is server uri, key and value deserializers
+All you need is server URI, key and value deserializers
 
 ```java
 Properties props = new Properties();
@@ -114,7 +114,7 @@ while (true) {
 
 The `poll()` loop does a lot more than just get data. The first time you call `poll()` with a new consumer, it is responsible for finding the `GroupCoordinator`, joining the consumer group, and receiving a partition assignment. If a rebalance is triggered, it will be handled inside the poll loop as well, including related callbacks. 
 
-Thread Safety: one consumer per thread is the rule. To run multiple consumers in the same group in one application, you will need to run each in its own thread. To achieve multi-threaded message consumption with the Kafka Consumer, there're some tricks to be played, see Kafka Guide - Chapter 4.1 Multi-threaded Message Consumption with Kafka Consumer
+Thread Safety: one consumer per thread is the rule. To run multiple consumers in the same group in one application, you will need to run each in its own thread. To achieve multi-threaded message consumption with the Kafka Consumer, there're some tricks to be played, see [Example of Multi-threaded Message Consumption](#example-multi-threaded-message-consumption)
 
 ### Configuring Consumers
 
@@ -138,7 +138,7 @@ Same condition as above, if the committed offset of the partition is larger than
 
 ##### Commit Current Offset
 
-The simplest and most reliable of the commit APIs is `commitSync()`. This API will commit the latest offset returned by `poll()` and return once the offset is committed, throwing an exception if hte commit fails for some reason. Noted that `commitSync()` will commit the latest offset returned by `poll()`.
+The simplest and most reliable of the commit APIs is `commitSync()`. This API will commit the latest offset returned by `poll()` and return once the offset is committed, throwing an exception if the commit fails for some reason. Noted that `commitSync()` will commit the latest offset returned by `poll()`.
 
 ##### Asynchronous Commit
 
@@ -177,5 +177,45 @@ private Map<TopicParitition, OffsetAndMetadata> currentOffsets = new HashMap<>()
 ...
 consumer.commitAsync(currentOffsets, null)
 ```
+
+### Rebalance Listeners
+
+The Consumer API allows you to run your own code when partitions are added or removed, by passing a `ConsumerRebalanceListener` when calling the `subscribe()` method. You can implement three methods
+- `public void onPartitionsAssigned(Collection<TopicPartition> partitions)`: called after partitions have been reassigned to the consumer but before the consumer starts consuming messages
+- `public void onPartitionsRevoked(Collection<TopicPartition> partitions)`: called when the consumer has to give up partitions that it previously owned - either as a result of a rebalance or when the consumer is being closed.
+- `public void onPartitionsLost(Collection<TopicPartition> partitions)`: called when a cooperative rebalancing algorithm is used, and only in exceptional cases where the partitions were assigned to other consumers without first being revoked by the rebalance algorithm.
+
+💡 Why we need to be aware of the consumer exiting or partition rebalancing?
+
+If you know your consumer is about to lose ownership of a partition, you will want to commit offsets of the last event you've processed. Perhaps you also need to close file handles, database connections and such.
+
+### Consuming with Specific Offsets
+
+- `seekToBeginning(Collection<TopicPartition> tp)`: start from the beginning of the partition
+- `seekToEnd(Collection<TopicPartition> tp)`: start from the end - consuming only new messages
+- `seek(TopicPartition tp, OffsetAndTimestamp offset)`: reset the offset on the partition
+
+### How to Exit Gracefully
+
+You will need another thread to call `consumer.wakeup()` (the only consumer method that is safe to call from a different thread). Calling `wakeup()` will cause `poll()` to exit with `WakeupException`. 
+
+```java
+Runtime.getRuntime().addShutdownHook(new Thread() {
+	public void run() {
+		System.out.println("Starting exit...");
+		consumer.wakeup();
+		try {
+			mainThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+});
+...
+```
+
+### Example: Multi-threaded Message Consumption
+
+
 
 [kafka-chapter4-1.png]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter4-1.png
