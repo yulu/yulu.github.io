@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[Kafka Guide] Chapter 4 Kafka Consumer"
-date:   2023-07-31 19:00:00
+date:   2023-08-30 08:00:00
 categories: blog1
 tags: "reading_notes Kafka"
 toc: true
@@ -13,7 +13,7 @@ toc: true
 
 The main way we scale data consumption from a Kafka topic is by adding more consumers to a consumer group - adding consumers in a consumer groups scales up the process, however adding more consumers (in a group) than the number of partitions does not help since some consumers just become idle - **a partition can only be consumed by one consumer in a group**. Adding consumer group allows separate processing of the topic for new use cases (independent from the other consumer groups).
 
-![][kafka-chapter4-1.png]
+![][kafka-chapter4-1]
 
 💡 How should we make use of Kafka consumer and Kafka consumer group?
 
@@ -114,11 +114,38 @@ while (true) {
 
 The `poll()` loop does a lot more than just get data. The first time you call `poll()` with a new consumer, it is responsible for finding the `GroupCoordinator`, joining the consumer group, and receiving a partition assignment. If a rebalance is triggered, it will be handled inside the poll loop as well, including related callbacks. 
 
-Thread Safety: one consumer per thread is the rule. To run multiple consumers in the same group in one application, you will need to run each in its own thread. To achieve multi-threaded message consumption with the Kafka Consumer, there're some tricks to be played, see [Example of Multi-threaded Message Consumption](#example-multi-threaded-message-consumption)
+Thread Safety: one consumer per thread is the rule. To run multiple consumers in the same group in one application, you will need to run each in its own thread. To achieve multi-threaded message consumption with the Kafka Consumer, there're some tricks to be played, see [Example of Multi-threaded Message Consumption]()
 
 ### Configuring Consumers
 
-// todo
+- `fetch.min.bytes`: specify the minimum amount of data that the consumer wants to receive from the broker when fetching records, by default one byte.
+- `fetch.max.wait.ms`: tell Kafka to wait until it has enough data to send before responding to the consumer, by default is 500 ms. 
+
+> 💡 If you set fetch `max.wait.ms` to 100 ms and `fetch.min.bytes` to 1 Mb, how will Kafka response to the fetch request from consumer?
+>
+> Kafka will receive a fetch request from the consumer and will response with data either when it has 1 MB of data to return or after 100 ms, whichever happens first. 
+
+- `fetch.max.bytes`: specify the maximum bytes that Kafka will return whenever the consumer polls a broker, 50 MB by default. 
+- `max.poll.record`: controls the maximum **number of records** that a single call to `poll()` will return. 
+- `max.partition.fetch.bytes`: controls the maximum number of bytes the server will return **per partition**, 1 MB by default. `fetch.max.bytes` is preferable since you have no control over how many partitions will be included in the broker response. 
+
+---
+
+- `session.timeout.ms` and `heartbeat.interval.ms`: The amount of time a consumer can be out of contact with the brokers while still considered alive defaults to 10 s. This property is closely related to `heartbeat.interval.ms`, which controls how frequently the Kafka consumer will send a heartbeat to the group coordinator, whereas `session.timeout.ms` controls how long a consumer can go without sending a heartbeat. Therefore, the two properties are typically modified together - `heartbeat.interval.ms` must be lower than `session.timeout.ms` and is usually set to one-third of the timeout value.
+- `max.poll.interval.ms`: set the length of time during which the consumer can go without polling before it is considered dead. Since the heartbeat is sent in a background thread, there is a possibility that the main thread consuming from Kafka is deadlocked. Since the intervals between requests is difficult to predict, this property is set a large enough value as a fail-safe or backstop, default value is 5 minutes. 
+- `default.api.timeout.ms`: the timeout that will apply to (almost) all API calls made by the consumer when you don't specify an explicit timeout while calling the API, default is 1 mins.
+- `request.timeout.ms`: maximum amount of time the consumer will wait for a response from the broker. If the broker does not respond within this time, the client will assume the broker will not respond at all, close the connection, and attempt to reconnect, default is 30 s.
+
+---
+
+- `auto.offset.reset`: controls the behaviour of the consumer when it starts reading a partition for which it doesn't have a committed offset, or if the committed offset it has is invalid. The default is "latest", which means that lacking a valid offset, the consumer will start reading from the newest records (records that were written after the consumer started running). The alternative is "earliest". Or "none" which will cause an exception to be thrown when attempting to consume from an invalid offset.
+- `enable.auto.commit`: controls whether the consumer will commit offsets automatically, and defaults to true. 
+- `partition.assignment.strategy`: by default, Kafka has these strategies: `Range`, `RoundRobin`, `Sticky`, `Cooperative Sticky`. The default is `Range`. You can implement your own and the property should point to the name of your class.
+- `client.id`:  used by the brokers to identify requests sent from the client, used in logging and metrics, for for quotas.
+- `client.rack`: to enable fetching from the closest replica, you need to set the `client.rack` configuration and identify the zone in which the client is located. Then you can configure the brokers to replace the default `replica.selector.class` with `org.apache.kafka.commom.replica.Rack.AwareReplicaSelector`. 
+- `group.instance.id`: any unique string and is used to provide a consumer with static group membership
+- `receive.buffer.bytes` and `send.buffer.bytes`: sizes of the TCP send and receive buffers used by the sockets when writing and reading data. 
+- `offsets.retention.minutes`: this is a broker configuration. As long as a consumer group has active members, the last offset committed by the group for each partition will be retained by Kafka, so it can be retrieved in case of reassignment or restart. However, once a group becomes empty, Kafka will only retain its committed offsets to the duration set by this configuration, by default 7 days.
 
 ### Commits and Offsets
 
@@ -152,18 +179,18 @@ Before close the consumer or rebalance, we want to make extra sure that the comm
 Duration timeout = Duration.ofMillis(100);
 
 try {
-    while (!closing) {
-        ConsumerRecords<String, String> records = consumer.poll(timeout);
-        for (ConsumerRecord<String, String> record : records) {
-            System.out.printf(...); // just do soemthing with the record
-        }
-        consumer.commitAsync(); // it is ok to request and forget as next loop will server as a retry
-    }
-    consumer.commitSync(); // it will block and retry until unrecoverable failure
+	while (!closing) {
+		ConsumerRecords<String, String> records = consumer.poll(timeout);
+		for (ConsumerRecord<String, String> record : records) {
+			System.out.printf(...); // just do something with the record
+		}
+		consumer.commitAysnc(); // it is ok to request and forget as next loop will serve as a retry
+	}
+	consumer.commitSync(); // it will block and retry until unrecoverable failure
 } catch (Exception e) {
-    log.error("unexpected error", e);
+	log.error("unexpected error", e);
 } finally {
-    consumer.close();
+	consumer.close();
 }
 ```
 
@@ -199,23 +226,8 @@ If you know your consumer is about to lose ownership of a partition, you will wa
 
 You will need another thread to call `consumer.wakeup()` (the only consumer method that is safe to call from a different thread). Calling `wakeup()` will cause `poll()` to exit with `WakeupException`. 
 
-```java
-Runtime.getRuntime().addShutdownHook(new Thread() {
-	public void run() {
-		System.out.println("Starting exit...");
-		consumer.wakeup();
-		try {
-			mainThread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-});
-...
-```
-
-### Example: Multi-threaded Message Consumption
+![][kafka-chapter4-exit]
 
 
-
-[kafka-chapter4-1.png]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter4-1.png
+[kafka-chapter4-1]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter4-1.png
+[kafka-chapter4-exit]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/kafka/kafka-chapter4-exit.png
