@@ -9,7 +9,27 @@ toc: true
 
 ### Parallelim in Message Consuming
 
-> Kafka consumer is not thread safe. Multi-threaded access must be properly synchronized, which can be tricky. This is why the single-threaded model is commonly used.
+#### Single-threaded model
+
+Kafka consumer is not thread safe. Multi-threaded access must be properly synchronized, which can be tricky. This is why the single-threaded model is commonly used. The code snippet shows how should we use a simple loop to fetch and consume data in a single thread. We shall take a note that by default `enable.auto.commit` is set to `true`, which means Kafka consumer will [automatically commit the offset](/blog1/2023/08/30/kafka-notes-chapter4.html#automatic-commit). 
+
+```java
+while (true) {
+    ConsumerRecords records = consumer.poll(Duration.ofMillis(100000));
+    // handle fetched records
+}
+```
+
+![][kafka-consumer-1]
+
+Processing message in a single thread sequencial seems not effcient, how about use a multi-threaded approach? 
+
+💡 What are the problems of processing each message in a separate thread taken from a thread poll?
+
+- Offset might be committed before a record is processed - violates at-least-once delivery semantics.
+- Offset might not be commited after a record is processed during rebalancing process - violates the 
+- Message processing order can't be guaranteed since messages from the same partition could be processed in parallel - violates the processing order guarantees per partition.
+
 
 
 ### The Simple Multi-Threaded Consumer Demo
