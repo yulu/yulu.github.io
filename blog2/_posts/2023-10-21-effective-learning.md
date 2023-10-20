@@ -261,6 +261,7 @@ Adam Grant指出，科学研究表明我们的身心健康的主要因素来自�
 - [MOOC - Mindshift](https://www.coursera.org/learn/mindshift)
 - [TED - How to stop languishing and start finding flow](https://www.ted.com/talks/adam_grant_how_to_stop_languishing_and_start_finding_flow)
 - [TED - Sleep is your superpower](https://www.ted.com/talks/matt_walker_sleep_is_your_superpower?autoplay=true)
+- [TED - What you can do to prevent Alzheimer's](https://www.ted.com/talks/lisa_genova_what_you_can_do_to_prevent_alzheimer_s?autoplay=true)
 
 [ineffective_study]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_note.jpg
 [progress_tracking]: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_plan.jpg
