@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Essense of Effective Learning"
+title:  "The Essence of Effective Learning"
 date:   2024-01-15 02:00:00
 categories: blog1
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_header.jpeg
@@ -8,7 +8,7 @@ tags: "productivity effective_learning"
 toc: true
 ---
 
-I wrote about [effective learning](/blog1/2022/04/25/effective-learning.html) in 2022. In 2023  I completed two MOOC courses: [Learning How to Learn](https://www.coursera.org/learn/learning-how-to-learn) and [Mindshift](https://www.coursera.org/learn/mindshift), throug which I gained a deeper understanding of effective learning. This blog is a continuum from the last piece.
+I wrote about [effective learning](/blog1/2022/04/25/effective-learning.html) in 2022. In 2023  I completed two MOOC courses: [Learning How to Learn](https://www.coursera.org/learn/learning-how-to-learn) and [Mindshift](https://www.coursera.org/learn/mindshift), though which I gained a deeper understanding of effective learning. This blog is a continuum from the last piece.
 
 ### The Essence of Learning
 
@@ -46,14 +46,14 @@ The importance of sleep for memory is emphasized in [Matt Walker's TED talk](htt
 
 #### Procrastination
 
-When it comes to effictiveness and efficiency discussion, procrastination is often a unavoidable topic. To talk about procrastination, let's begin with the development of habits.
+When it comes to effectiveness and efficiency discussion, procrastination is often a unavoidable topic. To talk about procrastination, let's begin with the development of habits.
 
 People often act based on their habits without much thought because it requires less effort for the brain. Habits can be good or bad, and cultivating good habits is one way to combat procrastination. So how are habits formed and broken? When you establish a habit, whether good or bad, you follow "action cues" that make you feel subconsciously compelled to do a particular task. Action cues have four characteristics: time, location, feeling, and response. For example, if you have a bad habit of using your phone before bed, when you lie in bed feeling bored and not very sleepy, you habitually reach for your phone (response). Breaking these action cues is a way to break bad habits, while intentionally creating action cues is a way to establish good habits.
 
 Another effective method for overcoming procrastination is to focus on the process rather than the outcome. Often, the fear of difficulty and pain associated with achieving a result makes people reluctant to start or abandon tasks midway. By concentrating on the process, you make the initial execution feel less challenging and reduce discomfort. For example we can do our study plan like this:
 
-- I plan to study 1 hour every morning (instead of making a plan to complete a course whithin 4 weeks)
-- I plan to exercise 45 mins every day (instead of making a plan to lose 5kg whitin a month)
+- I plan to study 1 hour every morning (instead of making a plan to complete a course within 4 weeks)
+- I plan to exercise 45 mins every day (instead of making a plan to lose 5kg within a month)
 
 Ultimately, through persistence and efficient execution, you will reach your goals because all learning, whether knowledge or other goals, begins with small steps. As the saying goes, "A journey of a thousand miles begins with a single step."
 
