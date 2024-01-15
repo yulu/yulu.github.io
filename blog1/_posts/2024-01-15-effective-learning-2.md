@@ -89,7 +89,7 @@ This part contains practical information and shares useful learning tools that I
 
 #### Engaging with Books
 
-Ineffective learning methods often include underlining and copying. Asking questions and summarizing the answers are considered more scientific learning methods. Here's how my note-taking process in physical books has evolved: while reading, I engage with the text as if I'm having a conversation with the author, asking questions and even throw challengings. Then, I take on the role of answering these questions by understanding, refining, and searching for information from other sources. I use physical books and a pen for this purpose. E-books can also be used, and I use [GoodNotes](https://www.goodnotes.com/) on my iPad.
+Ineffective learning methods often include underlining and copying. Asking questions and summarizing the answers are considered more scientific learning methods. Here's how my note-taking process in physical books has evolved: while reading, I engage with the text as if I'm having a conversation with the author, asking questions and even throw challenges. Then, I take on the role of answering these questions by understanding, refining, and searching for information from other sources. I use physical books and a pen for this purpose. E-books can also be used, and I use [GoodNotes](https://www.goodnotes.com/) on my iPad.
 
 ![][effective_learning_reading_notes]
 
@@ -127,7 +127,7 @@ Anki has both desktop and mobile applications for practicing flashcards. It allo
 
 Obsidian Plugins
 
-I mentioned Obsidian's powerful plugin system earlier. One highly useful plugin is the Flashcard plugin. With a few simple configurations, you can automatically generate flashcards from your notes and sync them to the Anki desktop app. Anki is a cross-platform syncing application, so I can review flashcards in any environment (changing environment, according to Prof Barbara, reinfore to your memorization). It includes creating your flashcard decks and tags based on your note tags.
+I mentioned Obsidian's powerful plugin system earlier. One highly useful plugin is the Flashcard plugin. With a few simple configurations, you can automatically generate flashcards from your notes and sync them to the Anki desktop app. Anki is a cross-platform syncing application, so I can review flashcards in any environment (changing environment, according to Prof Barbara, reinforce your memorization). It includes creating your flashcard decks and tags based on your note tags.
 
 ![][effective_study_anki_obsidian]
 
@@ -153,7 +153,7 @@ Mind mapping is a valuable tool for structuring knowledge, and [Xmind](https://x
 
 ### True Happiness
 
-Is lifelong learning the same as "hustling"? Does hustling bring happiness? "Hustling" means rushing, pushing, and acting rapidly. I have always believed that I am a slow, relaxed person who enjoys leisure time. I still have plenty of "idle" time every day. Although I occasionally regret of wasting of my time on useless activitiesd, I have to admit that I derive pleasure from this "idleness" and it is necessary "recharging". I consider myself a non-hustler, and I cannot find happiness in the  hustling blindly.
+Is lifelong learning the same as "hustling"? Does hustling bring happiness? "Hustling" means rushing, pushing, and acting rapidly. I have always believed that I am a slow, relaxed person who enjoys leisure time. I still have plenty of "idle" time every day. Although I occasionally regret of wasting of my time on useless activities, I have to admit that I derive pleasure from this "idleness" and it is necessary "recharging". I consider myself a non-hustler, and I cannot find happiness in the  hustling blindly.
 
 Then why all these discussion on efficient learning, am I not hustling? Adam Grant's TED talk, [How to stop languishing and start finding flow](https://www.ted.com/talks/adam_grant_how_to_stop_languishing_and_start_finding_flow), sheds light on the secret.
 
@@ -165,7 +165,7 @@ Three key factors for achieving flow are:
 
 - Mastery: Seeing a little progress every day.
 - Focus: Concentrating fully on a single task.
-- Mindfullness: Recognizing the positive impact on others.
+- Mindfulness: Recognizing the positive impact on others.
 
 In the middle of 2021, due to stress from work and life, I couldn't sleep well. I decided to get up at four or five in the morning to study vocabulary, and later, I added interview preparation, blogging, and morning exercise. Gradually, I developed the habit of waking up early, and the one or two hours of undisturbed time in the morning proved to be highly productive. I noticed a significantly positive change in my overall wellbeing, and my sense of happiness increased. The reason was the daily two-hour experience of "flow" in the morning, which brought me great help and made me realize true happiness. Later, I voluntarily took breaks from work in 2022 and 2023, both times enjoying several months of not working. During these periods, I had ample time to read and study, and I fully enjoyed this positive experience of "flow".
 
