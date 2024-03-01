@@ -21,4 +21,5 @@ collections:
 
 plugins:
   - jekyll-toc
+  - jekyll-sitemap
 
