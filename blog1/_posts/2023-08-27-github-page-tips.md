@@ -3,6 +3,7 @@ layout: post
 title:  "Publish Jekyll Site to GitHub Pages"
 date:   2023-08-27 00:00:00
 categories: blog1
+summary: "Here I am sharing a solution to use Github Action to build github pages with non-official jekyll plugins."
 tags: "ci/cd github_actions"
 toc: true
 ---

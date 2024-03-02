@@ -4,6 +4,7 @@ title:  "[Kafka Guide] Chapter 2 - Install Kafka"
 date:   2023-07-31 19:00:00
 categories: blog1
 tags: "reading_notes Kafka"
+summary: "This is a summary of my reading notes on studying Kafka, hand-on with installation. From book Kafka: The Definitive Guide"
 toc: true
 ---
 

@@ -2,7 +2,7 @@
 title: LittleCheeseCake
 email: yulu8798@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  I am migrating from a blog service provider to github, still trying out with Jekyll
+  I am a software engineer, a blogger and a mother. This is a personal blog about my life and tech.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://littlecheesecake.me" # the base hostname & protocol for your site
 twitter_username: little_cake_yl

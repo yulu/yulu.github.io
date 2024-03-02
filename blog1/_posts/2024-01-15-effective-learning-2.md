@@ -5,6 +5,7 @@ date:   2024-01-15 02:00:00
 categories: blog1
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_header.jpeg
 tags: "productivity effective_learning"
+summary: "I wrote about effective learning in 2022. In 2023 I completed two MOOC courses: Learning How to Learn and Mindshift, though which I gained a deeper understanding of effective learning. This blog is a continuum from the last piece. Here I am talking about the fundemantals about effective learning and sharing some very useful tools for effective learning."
 toc: true
 ---
 

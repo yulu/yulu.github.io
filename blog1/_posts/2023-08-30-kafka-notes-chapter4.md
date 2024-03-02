@@ -4,6 +4,7 @@ title:  "[Kafka Guide] Chapter 4 Kafka Consumer"
 date:   2023-08-30 08:00:00
 categories: blog1
 tags: "reading_notes Kafka"
+summary: "This post I am summarizing the study notes on learning the basics of Kafka Consumer. From book Kafka: The Definitive Guide"
 toc: true
 ---
 

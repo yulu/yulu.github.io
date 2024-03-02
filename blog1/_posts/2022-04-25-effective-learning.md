@@ -5,6 +5,7 @@ date:   2022-04-25 02:00:00
 categories: blog1
 image_url: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/effective-learning/effective_learning_header.jpeg
 tags: "productivity effective_learning"
+summary: "There's an old Chinese saying: sharpening your axe will not delay your job of chopping wood. I realized how ineffective my learning method was and how much time I have wasted because of that. So I decided to improve my learning strategy. In this post I am going to do some reflection and summarize the points."
 toc: true
 ---
 
