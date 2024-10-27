@@ -22,8 +22,12 @@ It still boils down to the fundamental topic of “incentive” which is a refle
 
 Of course, this is an extremely simplified assumption about incentive mechanisms. The actual financial market is much more complex. And the charm of finance lies in the fact that this complex system makes rational use of human nature, including people’s greed and fear, to help with risk transfer, resource circulation, and ultimately accelerating human development.
 
-> To be sure, index investors are free riders. They do receive the benefits that result from active trading without bearing the costs. But free riding on price signals provided by others is hardly a flaw of the capitalist system, it is an essential feature of that system. In a free-market economy we all benefit from relying on a set of market prices that are determined by others.
-
 One of my own immature views:
 
 In the current market, some actively managed funds and amateur day traders are essentially paying to contribute liquidity to the market. Only a small portion of fund managers and some professional traders seize arbitrage opportunities and profit from mispriced assets, thus promoting market efficiency. Beginner investors who have overcome greed, by passively investing in this relatively efficient market, can ride the tide and win effortlessly.
+
+> To be sure, index investors are free riders. They do receive the benefits that result from active trading without bearing the costs. But free riding on price signals provided by others is hardly a flaw of the capitalist system, it is an essential feature of that system. In a free-market economy we all benefit from relying on a set of market prices that are determined by others.
+
+Reference：
+
+- [Is Indexing Worse Than Marxism?](https://www.princeton.edu/~bmalkiel/Marxism.pdf)
