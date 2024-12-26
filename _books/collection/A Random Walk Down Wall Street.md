@@ -1,6 +1,7 @@
 ---
 layout: post
 tag: reading_status/reading
+status: noted
 category: biz 
 author: Burton G. Malkiel
 cover: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/A_Random_Walk_Down_Wall_Street.jpg

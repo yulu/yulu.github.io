@@ -1,5 +1,6 @@
 ---
 layout: post
+status: noted
 tag: reading_status/reading
 cover: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/The_Staff_Engineer's_Path.jpg
 category: tech
