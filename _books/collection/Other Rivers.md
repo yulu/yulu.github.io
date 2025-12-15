@@ -1,6 +1,7 @@
 ---
 layout: post
 tag: reading_status/reading
+status: noted
 category: non-fiction
 author: Peter Hessler
 cover: https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/books/other_rivers.jpg
