@@ -5,15 +5,14 @@ date:   2026-01-24 00:00:00
 categories: blog1
 tags:
   - GenAI
-  - vibe-coding
-  - web-development
+  - vibe_coding
 summary: "I spent 5 hours redesigning my MoneySense blog website with Claude Code and GitHub Copilot—writing zero lines of code myself. Here's what surprised me, what worked brilliantly, and what still needed human intervention in this vibe coding experiment."
 toc: true
 ---
 
 ### Why Vibe Coding
 
-I've been hearing a lot about "vibe coding"—the idea of building software through conversation with AI, letting it handle the implementation while you focus on the vision. My MoneySense blog needed a visual refresh, and I thought: why not use this as my first proper vibe coding experiment? This should be a very simple task, considering the capabilities of coding agent nowadays.
+I've been hearing a lot about "vibe coding"—the idea of building software through conversation with AI, letting it handle the implementation while you focus on the vision. [My MoneySense blog](/money.sense) needed a visual refresh, and I thought: why not use this as my first proper vibe coding experiment? This should be a very simple task, considering the capabilities of coding agent nowadays.
 
 The challenge: redesign the entire theme and layout of a static blog website. The constraint: write absolutely no code myself.
 
@@ -95,6 +94,7 @@ Over the next few days—spending less than 1 hour before bed each night—I wor
 - A podcast section (with actual hosted podcasts!)
 - A newsletter signup feature
 - An in-site search function
+- SEO optimization
 
 All of this, without writing code myself.
 
