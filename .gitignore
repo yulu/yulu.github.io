@@ -3,3 +3,4 @@ _site
 raft/
 .sass-cache
 .jekyll-cache/
+.idea/
