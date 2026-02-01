@@ -81,6 +81,11 @@ header {
     height: 100%;
     position: fixed;
     top: 0;
+    z-index: 1;
+
+    @media screen and (max-width: $break-medium) {
+        display: none;
+    }
 
     span {
         position: absolute;
@@ -186,27 +191,246 @@ header {
 }
 
 /**
- * Site footer
+ * Site footer - shared styles
  */
-.site-footer {
-    background-color: $theme-color-dark;
-    width: 100%;
-    height: 100px;
-    position: relative;
+.footer-main {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    @media screen and (max-width: $break-medium) {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+.footer-disclaimer {
+    flex: 2;
+
+    h4 {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 12px;
+        text-align: left;
+        padding: 0;
+    }
+}
+
+.footer-nav {
+    flex: 1;
+    display: flex;
+    gap: 40px;
+
+    @media screen and (max-width: $break-medium) {
+        gap: 30px;
+    }
+}
+
+.footer-nav-section {
+    text-align: left;
+
+    h4 {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    a {
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        margin-bottom: 8px;
+        text-decoration: none;
+        &:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 20px;
+    margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 
     p {
         width: 100%;
         text-align: center;
-        font-size: 80%;
-        display: block;
-        color: #fff;
-        padding-top: 20px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0;
+        padding: 0;
+
+        a {
+            color: rgba(255, 255, 255, 0.7);
+            &:hover {
+                color: #fff;
+            }
+        }
     }
+}
+
+.site-footer {
+    background-color: $theme-color-dark;
+    width: 100%;
+    padding: 40px 20px 25px;
+    position: relative;
+    z-index: 20;
+
     a {
         color: white;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
     }
+
     &.page {
         background-color: $theme-color;
+    }
+
+    @media screen and (max-width: $break-medium) {
+        padding: 30px 15px 20px;
+
+        .footer-main {
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .footer-disclaimer {
+            h4 {
+                font-size: 13px;
+            }
+            p {
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        }
+
+        .footer-nav {
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-nav-section {
+            h4 {
+                font-size: 13px;
+            }
+            a {
+                font-size: 12px;
+            }
+        }
+
+        .footer-bottom p {
+            font-size: 11px;
+        }
+    }
+}
+
+/**
+ * Inline footer for page layouts
+ */
+.footer-inline {
+    background-color: $theme-color-dark;
+    margin-top: 50px;
+    padding: 40px 20px 25px;
+
+    a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        &:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+}
+
+/**
+ * Page body content styling
+ */
+.page-body {
+    padding: 40px 5% 20px 5%;
+
+    h2 {
+        font-size: 22px;
+        color: $header-color;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    h3 {
+        font-size: 18px;
+        color: $header-color;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    h4 {
+        font-size: 16px;
+        color: $header-color;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.8;
+        color: $text-color;
+        margin-bottom: 15px;
+        padding: 0;
+    }
+
+    ul, ol {
+        margin-left: 20px;
+        margin-bottom: 15px;
+
+        li {
+            font-size: 14px;
+            line-height: 1.8;
+            color: $text-color;
+            margin-bottom: 8px;
+        }
+    }
+
+    a {
+        color: $theme-color;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    em {
+        font-style: italic;
+        color: $text-color;
+    }
+
+    strong {
+        font-weight: 600;
+        background-color: transparent;
+        color: $text-color;
+        padding: 0;
     }
 }
 
@@ -363,19 +587,25 @@ body,
 }
 
 .blog-content {
-    min-height: 100%;
+    min-height: 100vh;
     margin-left: 40%;
     width: 60%;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     background-color: #efefef;
-    padding: 30px;
 
     @media screen and (max-width: $break-medium) {
         width: 100%;
         margin-left: 0;
+        min-height: auto;
     }
 
-    p {
+    .page-body {
+        flex: 1;
+    }
+
+    // Direct child paragraphs only (for legacy about page intro)
+    > p {
         padding: 100px 5% 10% 5%;
         margin: auto;
 
@@ -504,14 +734,24 @@ body,
 }
 
 .block-group {
-    height: 85vh;
-    margin: 0 !important; 
+    height: 100vh;
+    margin: 0 !important;
     padding: 0;
+
+    @media screen and (max-width: $break-medium) {
+        height: auto;
+    }
+
     .block {
         height: 50%;
         padding: 0;
         font-family: 'Mistral';
         position: relative;
+
+        @media screen and (max-width: $break-medium) {
+            height: 200px;
+        }
+
         .block-title {
             font-size: 40px;
             width: 100%;
