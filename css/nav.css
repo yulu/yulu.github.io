@@ -49,13 +49,18 @@
   opacity: 1.0;
 }
 .button-toggle span {
-  background: #34215A;
+  background: #a28ec9;
   position: absolute;
   top: 0;
   left: 0;
   height: 4px;
   width: 30px;
   transition: all .35s ease;
+}
+@media (max-width: 640px) {
+  .button-toggle span {
+    background: #34215A;
+  }
 }
 .button-toggle span:nth-of-type(2) {
   top: 9px;

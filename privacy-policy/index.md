@@ -49,7 +49,13 @@ For more information about how Google uses data when you use our Site, visit: [H
 
 ## Your Choices and Opt-Out Options
 
-You can manage your preferences for personalized advertising:
+### Cookie Preferences
+
+You can manage your cookie preferences at any time using our cookie consent tool:
+
+<button type="button" data-cc="show-preferencesModal" style="background-color: #34215A; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">Manage Cookie Preferences</button>
+
+### Other Opt-Out Options
 
 - **Google Ad Settings**: Visit [Google Ad Settings](https://adssettings.google.com/) to manage your ad personalization preferences.
 - **NAI Opt-Out**: Visit the [Network Advertising Initiative opt-out page](https://optout.networkadvertising.org/) to opt out of targeted advertising from participating companies.

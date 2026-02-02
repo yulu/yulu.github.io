@@ -270,6 +270,7 @@ header {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 50px;
 
     p {
         width: 100%;
@@ -738,7 +739,7 @@ body,
     margin: 0 !important;
     padding: 0;
 
-    @media screen and (max-width: $break-medium) {
+    @media screen and (max-width: $break-large) {
         height: auto;
     }
 
@@ -748,8 +749,8 @@ body,
         font-family: 'Mistral';
         position: relative;
 
-        @media screen and (max-width: $break-medium) {
-            height: 200px;
+        @media screen and (max-width: $break-large) {
+            height: 350px;
         }
 
         .block-title {
