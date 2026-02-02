@@ -8,7 +8,7 @@
     width: 100% !important;
     border-radius: 0 !important;
     box-shadow: 0 -1px 3px rgba(0,0,0,0.1) !important;
-    padding: 6px 15px !important;
+    padding: 15px 15px !important;
     background: rgba(55, 45, 74, 0.95) !important;
 }
 
@@ -54,10 +54,16 @@
     white-space: nowrap;
 }
 
-#cc-main .cm__btn--secondary {
+/* Accept all button - transparent with light border */
+#cc-main .cm__btn--primary {
     background: transparent !important;
     border: 1px solid rgba(255,255,255,0.3) !important;
     color: rgba(255,255,255,0.7) !important;
+}
+
+#cc-main .cm__btn:last-child {
+    background-color: transparent !important;
+    color: #888 !important;
 }
 
 #cc-main .cm__footer {

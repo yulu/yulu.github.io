@@ -53,15 +53,14 @@ window.addEventListener('load', function() {
                 en: {
                     consentModal: {
                         title: 'We use cookies',
-                        description: 'This website uses cookies to enhance your browsing experience, provide personalized ads, and analyze site traffic. You can choose which cookies to allow.',
-                        acceptAllBtn: 'Accept all',
-                        acceptNecessaryBtn: 'Reject all',
-                        showPreferencesBtn: 'Manage preferences'
+                        description: 'We use cookies to enhance your experience. <button type="button" data-cc="show-preferencesModal" class="cc-link">Manage preferences</button>',
+                        acceptAllBtn: 'Accept',
+                        acceptNecessaryBtn: 'Decline'
                     },
                     preferencesModal: {
                         title: 'Cookie Preferences',
-                        acceptAllBtn: 'Accept all',
-                        acceptNecessaryBtn: 'Reject all',
+                        acceptAllBtn: 'Accept',
+                        acceptNecessaryBtn: 'Decline',
                         savePreferencesBtn: 'Save preferences',
                         sections: [
                             {
