@@ -1,0 +1,117 @@
+/**
+ * Cookie Consent Custom Styles
+ * Overrides for orestbida/cookieconsent v3
+ */
+
+#cc-main .cm {
+    max-width: none !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.1) !important;
+    padding: 6px 15px !important;
+    background: rgba(55, 45, 74, 0.95) !important;
+}
+
+#cc-main .cm__body {
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+#cc-main .cm__texts {
+    flex: 1;
+    padding: 0 !important;
+    min-width: 0;
+}
+
+#cc-main .cm__title {
+    display: none !important;
+}
+
+#cc-main .cm__desc {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    color: rgba(255,255,255,0.7) !important;
+    margin: 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#cc-main .cm__btns {
+    padding: 0 !important;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+#cc-main .cm__btn {
+    font-size: 10px !important;
+    padding: 4px 10px !important;
+    border-radius: 3px !important;
+    min-height: auto !important;
+    white-space: nowrap;
+}
+
+#cc-main .cm__btn--secondary {
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    color: rgba(255,255,255,0.7) !important;
+}
+
+#cc-main .cm__footer {
+    display: none !important;
+}
+
+/* Mobile: optimize for small screens */
+@media (max-width: 480px) {
+    #cc-main .cm {
+        padding: 6px 8px !important;
+    }
+    #cc-main .cm__body {
+        flex-wrap: wrap !important;
+        gap: 5px !important;
+    }
+    #cc-main .cm__texts {
+        width: 100% !important;
+        flex: none !important;
+    }
+    #cc-main .cm__desc {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        font-size: 9px !important;
+        line-height: 1.3 !important;
+    }
+    #cc-main .cm__btns {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-between !important;
+        gap: 3px !important;
+        border-top: none !important;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+    /* Force button group to be horizontal */
+    #cc-main .cm__btn-group {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 3px !important;
+        flex: 2 1 auto !important;
+        border-top: none !important;
+    }
+    #cc-main .cm__btn {
+        flex: 1 1 auto !important;
+        font-size: 8px !important;
+        padding: 4px 2px !important;
+        text-align: center !important;
+        min-width: 0 !important;
+        max-width: none !important;
+    }
+}
