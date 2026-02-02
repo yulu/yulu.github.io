@@ -17,7 +17,6 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    flex-wrap: nowrap;
 }
 
 #cc-main .cm__texts {
@@ -31,11 +30,10 @@
 }
 
 #cc-main .cm__desc {
-    font-size: 10px !important;
+    font-size: 12px !important;
     line-height: 1.2 !important;
     color: rgba(255,255,255,0.7) !important;
     margin: 0 !important;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -67,7 +65,7 @@
 }
 
 /* Mobile: optimize for small screens */
-@media (max-width: 480px) {
+@media (max-width: 640px) {
     #cc-main .cm {
         padding: 6px 8px !important;
     }
@@ -83,7 +81,7 @@
         white-space: normal !important;
         overflow: visible !important;
         text-overflow: unset !important;
-        font-size: 9px !important;
+        font-size: 10px !important;
         line-height: 1.3 !important;
     }
     #cc-main .cm__btns {
@@ -108,7 +106,7 @@
     }
     #cc-main .cm__btn {
         flex: 1 1 auto !important;
-        font-size: 8px !important;
+        font-size: 10px !important;
         padding: 4px 2px !important;
         text-align: center !important;
         min-width: 0 !important;
