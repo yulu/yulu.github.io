@@ -100,6 +100,16 @@ figure > img {
     display: block;
 }
 
+.post-img-600 {
+    max-width: 600px;
+    width: 100%;
+}
+
+.post-img-300 {
+    max-width: 300px;
+    width: 100%;
+}
+
 figcaption {
     font-size: $small-font-size;
 }
