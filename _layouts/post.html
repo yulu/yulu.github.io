@@ -63,6 +63,14 @@
     <!-- End Google Tag Manager (noscript) -->
     </body>
 
+    <!-- Open post content links in new tab -->
+    <script>
+        document.querySelectorAll('.post-content a').forEach(function(link) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+
     <!--jquery script for sticky toc-->
     <script>
         window.onscroll = function() {myFunction()};
