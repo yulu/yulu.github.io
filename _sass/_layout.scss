@@ -644,8 +644,10 @@ body,
 
     .page-title {
         border-bottom: 0px !important;
+        text-decoration: none !important;
         &:hover {
             border-bottom: 1px solid $theme-color !important;
+            text-decoration: none !important;
         }
         &,
         &:visited {
