@@ -2,7 +2,7 @@
 layout: post
 title: How I Use Obsidian
 date: 2026-04-08 00:00:00
-categories: blog2
+categories: blog1
 summary: "Obsidian is my core personal knowledge management tool. This post organizes a series of reflections from 2023 to 2026 on how I use Obsidian: file management, favorite plugins, reading notes, music notes, and my Vibe Writing experience after bringing in Claude Code."
 tags: "productivity effective_learning"
 toc: true
