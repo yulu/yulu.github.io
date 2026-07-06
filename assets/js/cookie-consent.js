@@ -84,35 +84,34 @@ window.addEventListener('load', function() {
             }
         },
         onConsent: function() {
-            if(CookieConsent.acceptedCategory('analytics')) {
-                loadGoogleTagManager();
-            }
-            if(CookieConsent.acceptedCategory('advertising')) {
-                loadAddThis();
-            }
+            updateGoogleConsent();
         },
         onChange: function() {
-            if(CookieConsent.acceptedCategory('analytics')) {
-                loadGoogleTagManager();
-            }
-            if(CookieConsent.acceptedCategory('advertising')) {
-                loadAddThis();
-            }
+            updateGoogleConsent();
         }
     });
 });
 
 /**
- * Load Google Tag Manager
+ * Update GA Consent Mode v2 state based on user's cookie choices.
+ * GTM is loaded upfront (see head.html); this just signals consent changes.
  */
-function loadGoogleTagManager() {
-    if(window.gtmLoaded) return;
-    window.gtmLoaded = true;
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PB2VMZMH');
+function updateGoogleConsent() {
+    if (typeof gtag !== 'function') return;
+
+    const analyticsGranted = CookieConsent.acceptedCategory('analytics');
+    const advertisingGranted = CookieConsent.acceptedCategory('advertising');
+
+    gtag('consent', 'update', {
+        'analytics_storage': analyticsGranted ? 'granted' : 'denied',
+        'ad_storage': advertisingGranted ? 'granted' : 'denied',
+        'ad_user_data': advertisingGranted ? 'granted' : 'denied',
+        'ad_personalization': advertisingGranted ? 'granted' : 'denied'
+    });
+
+    if (advertisingGranted) {
+        loadAddThis();
+    }
 }
 
 /**
