@@ -55,9 +55,9 @@ After installing the plugin, you also need the Anki desktop app and the right pe
 
 <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/obsidian-pkm/obsidian_plugin_flashcard.excalidraw.png" class="post-img-600">
 
-#### Readwised: a one-click way to sync Kindle highlights and notes
+#### Readwise: a one-click way to sync Kindle highlights and notes
 
-Once Readwised are authorized, highlights and notes from your e-books can be imported directly.
+Once Readwise are authorized, highlights and notes from your e-books can be imported directly.
 
 <img src="https://s3.ap-southeast-1.amazonaws.com/littlecheesecake.me/blog-post/obsidian-pkm-en/obsidian-reading-notes.png" class="post-img-600">
 
