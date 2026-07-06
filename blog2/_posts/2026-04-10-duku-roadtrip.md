@@ -3,7 +3,7 @@ layout: post
 title: 反走独库公路
 date: 2026-04-10 00:00:00
 categories: blog2
-summary: 
+summary: 独库公路的神奇在于，这短短的一段路有三分之一是悬崖绝壁，五分之一的地段处于高山永冻层，跨越了天山近十条主要河流，翻越终年积雪的四个冰达坂，覆盖了雅丹地貌，花斑草原，雪山冰层，岩石峡谷，景色变幻让人目不暇接，一天之内体验到穿越四季横跨南北之景。
 tags:
   - 旅行
 toc: true
@@ -17,3 +17,6 @@ toc: true
 
 在自驾路线中，独库公路只能算得上短途路线——两天一夜就可以穿越。但是它的神奇在于，这短短的一段路有三分之一是悬崖绝壁，五分之一的地段处于高山永冻层，跨越了天山近十条主要河流，翻越终年积雪的四个冰达坂，覆盖了雅丹地貌，花斑草原，雪山冰层，岩石峡谷，景色变幻让人目不暇接，一天之内体验到穿越四季横跨南北之景。
 
+<div class="video-container">
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/xc-4LaniaOg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
